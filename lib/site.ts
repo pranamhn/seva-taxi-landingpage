@@ -5,7 +5,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://seva.taxi"
 export const SITE_NAME = "SEVA Taxi";
 export const LEGAL_NAME = "PT Seva Inovasi Digital";
 
-// Public, indexable routes. /driver and /fleet-partner only redirect to /fleet-operator.
+// Public, indexable routes.
 export const PUBLIC_ROUTES = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
   { path: "/services", priority: 0.9, changeFrequency: "monthly" },
@@ -16,7 +16,9 @@ export const PUBLIC_ROUTES = [
   { path: "/how-it-works", priority: 0.7, changeFrequency: "monthly" },
   { path: "/safety", priority: 0.7, changeFrequency: "monthly" },
   { path: "/cities", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/driver", priority: 0.85, changeFrequency: "monthly" },
   { path: "/fleet-operator", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/b2b-partners", priority: 0.85, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ] as const;

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
@@ -60,10 +59,9 @@ export default function Footer() {
               Gabung Mitra
             </div>
             <ul className="space-y-2 text-xs">
-              <li><Link href="/fleet-operator#driver" className="hover:text-[#225FD2] transition-colors">Mitra Drivers</Link></li>
+              <li><Link href="/driver" className="hover:text-[#225FD2] transition-colors">Mitra Drivers</Link></li>
               <li><Link href="/fleet-operator" className="hover:text-[#225FD2] transition-colors">Fleet Operator</Link></li>
-              <li><a href="mailto:partners@seva.id" className="hover:text-[#225FD2] transition-colors">B2B Partners</a></li>
-              <li><a href="https://sevaqu.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#225FD2] transition-colors inline-flex items-center gap-1">Login Console <ExternalLink className="w-2.5 h-2.5" /></a></li>
+              <li><Link href="/b2b-partners" className="hover:text-[#225FD2] transition-colors">B2B Partners</Link></li>
             </ul>
           </div>
 

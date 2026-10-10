@@ -30,6 +30,7 @@ export const metadata: Metadata = {
 const COMPARISON_DATA = [
   {
     name: "SEVA RIDE",
+    href: "/services/ride",
     icon: Bike,
     type: "Sepeda Motor",
     baseFare: "Rp 8.000",
@@ -43,6 +44,7 @@ const COMPARISON_DATA = [
   },
   {
     name: "SEVA CAR",
+    href: "/services/car",
     icon: Car,
     type: "Mobil MPV / Sedan (AC)",
     baseFare: "Rp 9.500",
@@ -56,6 +58,7 @@ const COMPARISON_DATA = [
   },
   {
     name: "SEVA SEND",
+    href: "/services/send",
     icon: Package,
     type: "Kurir Motor Cepat",
     baseFare: "Rp 10.000",
@@ -69,6 +72,7 @@ const COMPARISON_DATA = [
   },
   {
     name: "SEVA FOOD",
+    href: "/services/food",
     icon: Utensils,
     type: "Pesan Antar Makanan",
     baseFare: "Tarif Promo",
@@ -181,15 +185,18 @@ export default function ServicesPage() {
                     return (
                       <tr key={item.name} className="hover:bg-blue-50/30 transition-colors">
                         <td className="py-4 px-6">
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center shrink-0 border border-blue-100">
+                          <Link href={item.href} className="flex items-center gap-3 group">
+                            <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center shrink-0 border border-blue-100 group-hover:scale-105 group-hover:bg-[#225FD2] group-hover:text-white transition-all">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
-                              <div className="font-bold text-slate-900">{item.name}</div>
+                              <div className="font-bold text-slate-900 group-hover:text-[#225FD2] transition-colors flex items-center gap-1">
+                                <span>{item.name}</span>
+                                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#225FD2]" />
+                              </div>
                               <div className="text-[11px] text-slate-500 font-mono">Jemput ~{item.eta}</div>
                             </div>
-                          </div>
+                          </Link>
                         </td>
                         <td className="py-4 px-5 text-slate-700">{item.type}</td>
                         <td className="py-4 px-5 font-bold text-slate-900">{item.baseFare}</td>
@@ -264,6 +271,16 @@ export default function ServicesPage() {
                     <div className="text-xs text-slate-600 space-y-1 pt-1">
                       <div><strong className="text-slate-800">Kapasitas:</strong> {item.capacity} ({item.luggage})</div>
                       <div><strong className="text-slate-800">Ideal:</strong> {item.idealFor}</div>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                      <Link
+                        href={item.href}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#225FD2] hover:underline"
+                      >
+                        <span>Lihat Detail & Tarif Lengkap</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
                     </div>
                   </div>
                 );
