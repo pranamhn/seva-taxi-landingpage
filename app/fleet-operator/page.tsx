@@ -14,11 +14,15 @@ import {
   Mail,
   Zap,
 } from "lucide-react";
+import { CONTACT_WHATSAPP_URL } from "@/lib/site";
+import { FLEET_COMPANY_COUNT, FLEET_TOTAL_VEHICLES } from "@/lib/fleet-companies";
+
+const FLEET_TOTAL_LABEL = FLEET_TOTAL_VEHICLES.toLocaleString("id-ID");
 
 export const metadata: Metadata = {
   title: "Mitra Fleet Operator & Ekosistem Armada — SEVA",
   description:
-    "Ekosistem kemitraan fleet operator SEVA menghubungkan lebih dari 4.400 unit kendaraan dari 10 perusahaan terpercaya di Indonesia dengan teknologi manajemen armada terpadu.",
+    `Ekosistem kemitraan fleet operator SEVA menghubungkan ${FLEET_TOTAL_LABEL} unit kendaraan dari ${FLEET_COMPANY_COUNT} perusahaan terpercaya di Indonesia dengan teknologi manajemen armada terpadu.`,
   alternates: { canonical: "/fleet-operator" },
 };
 
@@ -26,7 +30,7 @@ const BENEFITS = [
   {
     icon: TrendingUp,
     title: "Tingkatkan Utilisasi Armada",
-    desc: "Hubungkan armada Anda ke jutaan permintaan mobilitas harian di Jabodetabek. Meminimalkan waktu menganggur (idle time) hingga 35%.",
+    desc: "Hubungkan armada Anda ke permintaan mobilitas harian di Jabodetabek. Meminimalkan waktu menganggur (idle time) hingga 35%.",
   },
   {
     icon: BarChart3,
@@ -77,11 +81,11 @@ export default function FleetOperatorPage() {
         <PageHeader
           badge="EKOSISTEM MITRA ARMADA // FLEET PARTNERS RESMI"
           title="Kemitraan Fleet Partners & Manajemen Armada"
-          subtitle="Bergabunglah bersama 4.400+ unit armada yang telah terhubung dalam ekosistem SEVA. Maksimalkan utilisasi armada taksi, rental mobil, shuttle, dan kendaraan komersial Anda dengan platform mobilitas terpercaya."
+          subtitle={`Bergabunglah bersama ${FLEET_TOTAL_LABEL} unit armada yang telah terhubung dalam ekosistem SEVA. Maksimalkan utilisasi armada taksi, rental mobil, shuttle, dan kendaraan komersial Anda dengan platform mobilitas terpercaya.`}
           breadcrumbs={[{ label: "Fleet Partners" }]}
           metrics={[
-            { label: "Total Armada Terhubung", value: "4.390+ Unit", hint: "9 Perusahaan Mitra Aktif" },
-            { label: "Perusahaan Terdaftar", value: "9 Operator", hint: "Taksi, Rental, EV & Logistik" },
+            { label: "Total Armada Terhubung", value: `${FLEET_TOTAL_LABEL} Unit`, hint: `${FLEET_COMPANY_COUNT} Perusahaan Mitra Terdaftar` },
+            { label: "Perusahaan Terdaftar", value: `${FLEET_COMPANY_COUNT} Operator`, hint: "Taksi, Rental & EV" },
             { label: "Skema Bagi Hasil", value: "Hingga 95%", hint: "Pencairan harian H+0" },
           ]}
         />
@@ -187,7 +191,7 @@ export default function FleetOperatorPage() {
                   <span>Email Kemitraan</span>
                 </a>
                 <a
-                  href="https://wa.me/6281211119999?text=Halo%20Tim%20Kemitraan%20SEVA,%20saya%20ingin%20berkonsultasi%20mengenai%20kemitraan%20Fleet%20Operator."
+                  href={`${CONTACT_WHATSAPP_URL}?text=Halo%20Tim%20Kemitraan%20SEVA,%20saya%20ingin%20berkonsultasi%20mengenai%20kemitraan%20Fleet%20Operator.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-md"

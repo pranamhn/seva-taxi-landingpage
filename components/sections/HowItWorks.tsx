@@ -10,12 +10,12 @@ const STEPS = [
     desc: "Buka aplikasi SEVA di Android atau iOS. Masukkan alamat tujuan atau geser pin di peta untuk titik penjemputan yang akurat hingga nomor gerbang atau lobi gedung.",
     screenshot: "/images/app/app-home.jpg",
     icon: MapPin,
-    highlight: "Akurasi titik GPS hingga 2 meter",
+    highlight: "Titik jemput akurat di peta",
   },
   {
     step: "02",
     title: "Pilih Kendaraan & Cek Tarif Transparan",
-    desc: "Tentukan pilihan armada: SEVA Motor, Car, EV, atau XL. Lihat rincian biaya argo pasti dan estimasi waktu penjemputan driver sebelum melakukan konfirmasi.",
+    desc: "Tentukan pilihan armada: SEVA Ride, SEVA Car, atau SEVA Send. Lihat rincian biaya argo pasti dan estimasi waktu penjemputan driver sebelum melakukan konfirmasi.",
     screenshot: "/images/app/app-fare-map.jpg",
     icon: Car,
     highlight: "Tarif pasti tanpa lonjakan liar saat jam sibuk",
@@ -23,7 +23,7 @@ const STEPS = [
   {
     step: "03",
     title: "Driver Menjemput & Bayar Cashless",
-    desc: "Pantau kedatangan armada langsung di peta. Sapa driver profesional Anda, nikmati perjalanan nyaman ber-AC, dan bayar otomatis via QRIS, e-Wallet, atau Tunai.",
+    desc: "Pantau kedatangan armada langsung di peta. Sapa driver profesional Anda, nikmati perjalanan nyaman ber-AC, dan bayar otomatis via QRIS, SEVA Wallet, atau Tunai.",
     screenshot: "/images/app/app-chat.jpg",
     icon: CreditCard,
     highlight: "Keamanan perjalanan terpantau real-time",

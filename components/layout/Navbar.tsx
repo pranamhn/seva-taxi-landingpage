@@ -28,7 +28,7 @@ export const PASSENGER_SERVICES = [
   {
     label: "SEVA Ride",
     href: "/services/ride",
-    desc: "Ojek motor gesit mulai Rp 8.000",
+    desc: "Taksi motor gesit mulai Rp 8.000",
     badge: "Hemat",
     badgeType: "primary",
     icon: Bike,

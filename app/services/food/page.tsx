@@ -25,14 +25,14 @@ import {
 export const metadata: Metadata = {
   title: "SEVA Food (Segera Hadir) — Pesan Antar Kuliner & Resto Favorit | SEVA Taxi",
   description:
-    "Layanan pesan antar makanan dari ribuan resto favorit dan UMKM nusantara. Dilengkapi tas termal higienis penjaga suhu dan skema komisi adil bagi pelaku kuliner.",
+    "Layanan pesan antar makanan dari resto favorit dan UMKM nusantara. Dilengkapi tas termal higienis penjaga suhu dan skema komisi adil bagi pelaku kuliner.",
   alternates: { canonical: "/services/food" },
 };
 
 const FOOD_SPECS = [
   { label: "Status Peluncuran", value: "Tahap Integrasi Merchant & Restoran Rekanan" },
   { label: "Standar Wadah Antar", value: "Tas Termal Higienis Khusus (Isolasi Suhu Panas & Dingin)" },
-  { label: "Pilihan Kuliner", value: "Ribuan Menu Restoran Pilihan & UMKM Kuliner Legendaris" },
+  { label: "Pilihan Kuliner", value: "Beragam Menu Restoran Pilihan & UMKM Kuliner" },
   { label: "Skema Kemitraan Resto", value: "Komisi Ramah UMKM (Tumbuh Bersama Mitra)" },
   { label: "Estimasi Pengantaran", value: "Waktu Masak + Rute Antar Tercepat Driver Terdekat" },
   { label: "Kebersihan Kemasan", value: "Standar Segel Higienis Anti Tumpah" },
@@ -74,7 +74,7 @@ export default function SevaFoodPage() {
         <PageHeader
           badge="KULINER NUSANTARA // SEVA FOOD (SEGERA HADIR)"
           title="SEVA Food: Kuliner Resto & UMKM Diantar Hangat"
-          subtitle="Platform pesan antar makanan yang menghubungkan pecinta kuliner dengan ribuan resto favorit dan pelaku UMKM lokal. Dilengkapi tas termal higienis dan komisi adil bagi mitra."
+          subtitle="Platform pesan antar makanan yang menghubungkan pecinta kuliner dengan resto favorit dan pelaku UMKM lokal. Dilengkapi tas termal higienis dan komisi adil bagi mitra."
           breadcrumbs={[
             { label: "Layanan", href: "/services" },
             { label: "SEVA Food" },
@@ -132,7 +132,7 @@ export default function SevaFoodPage() {
                     <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#225FD2] flex items-center justify-center mb-2.5">
                       <Store className="w-4 h-4" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm">Ribuan Pilihan Kuliner Nusantara</div>
+                    <div className="font-bold text-slate-900 text-sm">Beragam Pilihan Kuliner Nusantara</div>
                     <p className="text-xs text-slate-600 mt-1">
                       Mulai dari restoran waralaba ternama hingga warung kuliner legendaris UMKM di sekitar Anda.
                     </p>
@@ -221,7 +221,7 @@ export default function SevaFoodPage() {
                   Bergabung Lebih Awal Bersama Ekosistem SEVA Food
                 </h2>
                 <p className="text-sm sm:text-base text-blue-100 leading-relaxed font-normal">
-                  Dapatkan eksposur prioritas ribuan pengguna aktif SEVA di kota Anda dengan komisi transparan yang mendukung profitabilitas resto Anda.
+                  Dapatkan eksposur prioritas kepada pengguna aktif SEVA di kota Anda dengan komisi transparan yang mendukung profitabilitas resto Anda.
                 </p>
 
                 <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
@@ -230,7 +230,7 @@ export default function SevaFoodPage() {
                     <div className="text-blue-200 text-[11px]">Onboarding dibantu tim hingga menu online</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
-                    <div className="font-bold text-white mb-1">Akses Jutaan Pengguna</div>
+                    <div className="font-bold text-white mb-1">Akses Pengguna Aplikasi SEVA</div>
                     <div className="text-blue-200 text-[11px]">Promosi langsung di halaman depan aplikasi</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">

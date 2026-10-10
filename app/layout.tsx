@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import { LEGAL_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
+import { LEGAL_NAME, SITE_NAME, SITE_URL, SUPPORT_EMAIL } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
   description:
-    "Pesan taksi online dengan mudah. Driver terverifikasi, harga transparan, perjalanan aman bersama SEVA Taxi. Tersedia di Jakarta, Surabaya, Bandung, dan kota-kota lainnya.",
+    "Pesan taksi online dengan mudah. Driver terverifikasi, harga transparan, perjalanan aman bersama SEVA Taxi. Tersedia di Jabodetabek: Jakarta, Bogor, Depok, Tangerang, dan Bekasi.",
   keywords: [
     "SEVA Taxi",
     "ride hailing Indonesia",
@@ -65,7 +65,7 @@ const organizationJsonLd = {
   legalName: LEGAL_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/icons/icon-512.png`,
-  email: "support@seva.id",
+  email: SUPPORT_EMAIL,
 };
 
 export default function RootLayout({

@@ -25,12 +25,12 @@ import {
 export const metadata: Metadata = {
   title: "SEVA Car — Taksi Mobil Harian Ber-AC Nyaman & Resmi | SEVA Taxi",
   description:
-    "Armada taksi dan mobil harian ber-AC dingin terstandarisasi. Kapasitas 4 penumpang, kabin bersih, argo resmi transparan tanpa lonjakan tarif sepihak.",
+    "Armada taksi dan mobil harian ber-AC dingin terstandar. Kapasitas 4 penumpang, kabin bersih, argo resmi transparan tanpa lonjakan tarif sepihak.",
   alternates: { canonical: "/services/car" },
 };
 
 const CAR_SPECS = [
-  { label: "Tipe Armada", value: "MPV & Sedan Terstandarisasi (Euro 4)" },
+  { label: "Tipe Armada", value: "MPV & Sedan Terstandar (Euro 4)" },
   { label: "Kapasitas Penumpang", value: "Hingga 4 Orang Dewasa" },
   { label: "Kapasitas Bagasi", value: "2 Koper Medium + 2 Tas Ransel" },
   { label: "Kenyamanan Kabin", value: "AC Dingin Terkalibrasi & Kabin Bersih Higienis" },
@@ -95,7 +95,7 @@ export default function SevaCarPage() {
               <div className="lg:col-span-7 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-50 border border-blue-200">
                   <Car className="w-3.5 h-3.5" />
-                  <span>MOBIL TAKSI BER-AC TERSTANDARISASI</span>
+                  <span>MOBIL TAKSI BER-AC TERSTANDAR</span>
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -144,7 +144,7 @@ export default function SevaCarPage() {
                     </div>
                     <div className="font-bold text-slate-900 text-sm">Argo Pasti Tanpa Lonjakan</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Bebas dari manipulasi argo atau kenaikan harga 3x lipat saat hujan badai melanda kota.
+                      Bebas dari manipulasi argo dan lonjakan harga saat hujan maupun jam sibuk.
                     </p>
                   </div>
                 </div>
@@ -301,7 +301,7 @@ export default function SevaCarPage() {
                 {
                   step: "04",
                   title: "Perjalanan Ber-AC Tenang",
-                  desc: "Nikmati kabin bersih ber-AC dingin dan kwitansi digital dikirim otomatis.",
+                  desc: "Nikmati kabin bersih ber-AC dingin dan kuitansi digital dikirim otomatis.",
                 },
               ].map((item) => (
                 <div key={item.step} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">

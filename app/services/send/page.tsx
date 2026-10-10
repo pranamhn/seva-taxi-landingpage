@@ -26,7 +26,7 @@ import {
 export const metadata: Metadata = {
   title: "SEVA Send — Layanan Kurir & Pengiriman Paket Instan On-Demand | SEVA Taxi",
   description:
-    "Kirim dokumen penting, pesanan bisnis, atau paket harian instan tiba hitungan jam. Tanpa transit gudang, live tracking GPS real-time, dan bukti foto tanda terima resmi.",
+    "Kirim dokumen penting, pesanan bisnis, atau paket harian instan tiba dalam hitungan jam. Tanpa transit gudang, live tracking GPS real-time, dan bukti foto tanda terima resmi.",
   alternates: { canonical: "/services/send" },
 };
 
@@ -74,7 +74,7 @@ export default function SevaSendPage() {
         {/* Header Breadcrumb */}
         <PageHeader
           badge="LOGISTIK ON-DEMAND // SEVA SEND"
-          title="SEVA Send: Kirim Dokumen & Paket Tiba Hitungan Jam"
+          title="SEVA Send: Kirim Dokumen & Paket Tiba dalam Hitungan Jam"
           subtitle="Layanan kurir instan on-demand untuk UMKM, kantor, dan kebutuhan personal. Kurir langsung berangkat, pelacakan live GPS transparan, dan foto bukti penerima aman."
           breadcrumbs={[
             { label: "Layanan", href: "/services" },
@@ -177,7 +177,7 @@ export default function SevaSendPage() {
                       className="object-cover object-center"
                     />
                     <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#225FD2] text-white shadow-xs">
-                      Sampai Hari Ini
+                      Tiba Hari Ini
                     </div>
                     <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
                       Mulai Rp 10.000
@@ -258,7 +258,7 @@ export default function SevaSendPage() {
                   <div className="text-xs font-mono font-semibold text-slate-500 uppercase">Lintas Kota (18 km)</div>
                   <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 64.000</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-                    Pengiriman antar perbatasan kotamadya yang membutuhkan kepastian sampai hari yang sama.
+                    Pengiriman antar perbatasan kota yang membutuhkan kepastian sampai hari yang sama.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">

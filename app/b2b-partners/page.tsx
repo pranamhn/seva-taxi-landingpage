@@ -21,6 +21,7 @@ import {
   Package,
   Calendar,
 } from "lucide-react";
+import { CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Kemitraan Korporat & B2B Partners — SEVA Taxi",
@@ -115,7 +116,7 @@ export default function B2BPartnersPage() {
                 </h2>
 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Hemat hingga 30% anggaran transportasi perusahaan dengan mengeliminasi struk kertas palsu, proses klaim reimburse manual, dan ketidakpastian biaya perjalanan kantor.
+                  Hemat hingga 30% anggaran transportasi perusahaan dengan menghapus struk kertas, proses klaim reimburse manual, dan ketidakpastian biaya perjalanan kantor.
                 </p>
 
                 <div className="space-y-3 pt-2">
@@ -282,13 +283,13 @@ export default function B2BPartnersPage() {
                     <span>Email: partners@seva.id</span>
                   </a>
                   <a
-                    href="https://wa.me/6281280005789"
+                    href={CONTACT_WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors shadow-sm inline-flex items-center justify-center gap-2"
                   >
                     <Phone className="w-4 h-4 shrink-0" />
-                    <span>WhatsApp: +62 812-8000-5789</span>
+                    <span>WhatsApp: {CONTACT_PHONE_DISPLAY}</span>
                   </a>
                 </div>
               </div>

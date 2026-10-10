@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { LEGAL_NAME, SUPPORT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-50 border-t border-slate-200/80 pt-16 pb-12 text-slate-600">
+    <footer className="bg-slate-50 border-t border-slate-200/80 pt-10 sm:pt-12 pb-8 sm:pb-10 text-slate-600">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
         
         {/* Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-200/80">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-8 sm:pb-10 border-b border-slate-200/80">
           
           {/* Brand Info (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
@@ -74,16 +75,26 @@ export default function Footer() {
               <li><Link href="/safety" className="hover:text-[#225FD2] transition-colors">Standar Keselamatan</Link></li>
               <li><Link href="/how-it-works" className="hover:text-[#225FD2] transition-colors">Panduan Cara Pesan</Link></li>
               <li><Link href="/cities" className="hover:text-[#225FD2] transition-colors">Kota Operasional</Link></li>
-              <li><span className="text-slate-500 font-mono text-[11px]">Bantuan: support@seva.id</span></li>
+              <li><span className="text-slate-500 font-mono text-[11px]">Bantuan: {SUPPORT_EMAIL}</span></li>
+              <li>
+                <a href={CONTACT_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#225FD2] transition-colors">
+                  WhatsApp: {CONTACT_PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#225FD2] transition-colors">
+                  Instagram: {INSTAGRAM_HANDLE}
+                </a>
+              </li>
             </ul>
           </div>
 
         </div>
 
         {/* Bottom Attribution Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-slate-500">
+        <div className="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} PT Seva Inovasi Digital. Hak Cipta Dilindungi.
+            &copy; {new Date().getFullYear()} {LEGAL_NAME}. Hak Cipta Dilindungi.
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <Link href="/privacy" className="hover:text-[#225FD2] transition-colors">Kebijakan Privasi</Link>

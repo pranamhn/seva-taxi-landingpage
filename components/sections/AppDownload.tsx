@@ -11,7 +11,7 @@ import Image from "next/image";
 const APP_SCREENS = [
   {
     id: "home",
-    name: "Beranda Utama",
+    name: "Beranda",
     title: "Semua Kebutuhan Perjalanan dalam Satu Genggaman",
     desc: "Akses kilat ke layanan SEVA RIDE, SEVA CAR, hingga SEVA SEND. Cek saldo dompet dan promo harian secara instan.",
     image: "/images/app/app-home.jpg",
@@ -27,7 +27,7 @@ const APP_SCREENS = [
   },
   {
     id: "chat",
-    name: "Chat & Driver",
+    name: "Chat",
     title: "Komunikasi Lancar dengan Nomor Tersamar",
     desc: "Kirim pesan teks atau panggilan suara langsung ke driver dengan proteksi virtual number masking. Privasi nomor HP Anda terjaga 100%.",
     image: "/images/app/app-chat.jpg",
@@ -35,15 +35,15 @@ const APP_SCREENS = [
   },
   {
     id: "wallet",
-    name: "Dompet & Pembayaran",
+    name: "Dompet",
     title: "Bebas Pilih Pembayaran Nontunai",
-    desc: "Terhubung langsung dengan QRIS, GoPay, OVO, DANA, dan Kartu Debit. Simpan struk digital otomatis untuk klaim perjalanan kantor.",
+    desc: "Terhubung langsung dengan QRIS, SEVA Wallet, dan Kartu Debit. Simpan struk digital otomatis untuk klaim perjalanan kantor.",
     image: "/images/app/app-wallet.jpg",
     badge: "CASHLESS WALLET",
   },
   {
     id: "profile",
-    name: "Profil & Keamanan",
+    name: "Profil",
     title: "Akses Cepat Fitur Keamanan & Bantuan",
     desc: "Kelola kontak darurat keluarga, fitur bagikan perjalanan langsung, riwayat perjalanan, dan reward poin SEVA Member.",
     image: "/images/app/app-profile.jpg",
@@ -75,33 +75,37 @@ export default function AppDownload() {
                 <span>UNDUH APLIKASI SEVA SEKARANG</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black tracking-tight leading-tight">
-                Pengalaman Ride-Hailing Paling Nyaman{" "}
-                <br className="hidden sm:inline" />
-                Ada di Saku Anda
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black tracking-tight leading-tight text-balance">
+                Pengalaman Ride-Hailing Paling Nyaman Ada di Saku Anda
               </h2>
 
               <p className="text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed">
                 Unduh aplikasi SEVA sekarang untuk iOS dan Android. Nikmati potongan diskon pengguna baru hingga Rp 30.000 untuk perjalanan pertama Anda!
               </p>
 
-              {/* Screen Feature Selector Pills */}
+              {/* Screen Feature Selector */}
               <div className="pt-2">
                 <div className="text-xs font-mono uppercase text-blue-200 tracking-wider mb-2.5">
-                  Jelajahi Fitur Aplikasi:
+                  Jelajahi Fitur Aplikasi
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div
+                  role="tablist"
+                  aria-label="Fitur aplikasi SEVA"
+                  className="inline-flex max-w-full items-center gap-1 overflow-x-auto no-scrollbar rounded-2xl border border-white/15 bg-white/10 p-1"
+                >
                   {APP_SCREENS.map((screen) => {
                     const isActive = activeScreen.id === screen.id;
                     return (
                       <button
                         key={screen.id}
                         type="button"
+                        role="tab"
+                        aria-selected={isActive}
                         onClick={() => setActiveScreen(screen)}
-                        className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                        className={`shrink-0 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-semibold transition-colors cursor-pointer ${
                           isActive
-                            ? "bg-white text-[#225FD2] shadow-md font-bold"
-                            : "bg-white/15 text-white hover:bg-white/25 border border-white/10"
+                            ? "bg-white text-[#225FD2] shadow-sm"
+                            : "text-white/90 hover:bg-white/15 hover:text-white"
                         }`}
                       >
                         {screen.name}

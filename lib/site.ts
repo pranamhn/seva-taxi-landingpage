@@ -3,7 +3,7 @@
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://seva.taxi").replace(/\/$/, "");
 
 export const SITE_NAME = "SEVA Taxi";
-export const LEGAL_NAME = "PT Seva Inovasi Digital";
+export const LEGAL_NAME = "CV Twin Digital Investama";
 
 // Public, indexable routes.
 export const PUBLIC_ROUTES = [
@@ -25,3 +25,11 @@ export const PUBLIC_ROUTES = [
 
 export const APP_STORE_URL = "https://apps.apple.com/id/app/seva-driver/id6761700121";
 export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.rentfms.driver&pcampaignid=web_share";
+
+// Kontak resmi
+export const SUPPORT_EMAIL = "support@seva.taxi";
+export const CONTACT_PHONE_E164 = "628137797167";
+export const CONTACT_PHONE_DISPLAY = "+62 813-7797-167";
+export const CONTACT_WHATSAPP_URL = `https://wa.me/${CONTACT_PHONE_E164}`;
+export const INSTAGRAM_HANDLE = "@seva.taxi";
+export const INSTAGRAM_URL = "https://www.instagram.com/seva.taxi";

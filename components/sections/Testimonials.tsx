@@ -46,7 +46,7 @@ export default function Testimonials() {
           <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
             Cerita Nyata dari{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#194cb0] to-[#225FD2]">
-              Jutaan Penumpang Setia
+              Kata Penumpang SEVA
             </span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">

@@ -1,13 +1,13 @@
 "use client";
 
-import { ShieldCheck, PhoneCall, Share2, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, PhoneCall, Share2, AlertTriangle } from "lucide-react";
 
 const SAFETY_FEATURES = [
   {
     icon: AlertTriangle,
     title: "Tombol Darurat (SOS) 24/7",
     desc: "Akses satu ketukan di aplikasi untuk menghubungkan Anda langsung dengan Command Center darurat SEVA dan aparat berwenang terdekat.",
-    badge: "Respon < 60 Detik",
+    badge: "Respon Prioritas",
     accent: "text-red-600 bg-red-50 border-red-200",
   },
   {
@@ -73,11 +73,6 @@ export default function Safety() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {feat.desc}
                   </p>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-200/60 flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Standar Resmi Kemenhub RI</span>
                 </div>
               </div>
             );

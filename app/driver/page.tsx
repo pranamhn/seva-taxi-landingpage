@@ -58,7 +58,7 @@ const DRIVER_BENEFITS = [
     icon: Award,
     title: "Bonus Target & Insentif Rutin",
     desc: "Raih bonus performa mingguan dan skema insentif jam sibuk untuk meningkatkan total penghasilan Anda.",
-    badge: "Bonus Harian",
+    badge: "Bonus Mingguan",
   },
   {
     icon: Headphones,
@@ -126,7 +126,7 @@ export default function DriverPage() {
           subtitle="Raih penghasilan maksimal dengan potongan komisi platform hanya 5%, tidak lebih, pencairan dana instan harian (H+0), dan kebebasan penuh mengatur waktu kerja Anda."
           breadcrumbs={[
             { label: "Kemitraan", href: "/fleet-operator" },
-            { label: "Mitra Drivers" },
+            { label: "Mitra Driver" },
           ]}
           metrics={[
             { label: "Bagi Hasil Bersih", value: "95%", hint: "Potongan hanya 5%" },
@@ -151,7 +151,7 @@ export default function DriverPage() {
                   </h2>
 
                   <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed max-w-2xl">
-                    Jadilah bagian dari revolusi transportasi on-demand yang adil bagi pengemudi. Nikmati order tanpa henti dari jutaan pengguna aplikasi SEVA untuk layanan SEVA Ride, SEVA Car, dan SEVA Send.
+                    Jadilah bagian dari ekosistem transportasi on-demand yang adil bagi pengemudi. Terima order dari pengguna aplikasi SEVA untuk layanan SEVA Ride, SEVA Car, dan SEVA Send.
                   </p>
 
                   <div className="pt-2 flex flex-wrap items-center gap-4">

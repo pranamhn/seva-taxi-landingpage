@@ -4,7 +4,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
 import LegalDocument, { type LegalSection } from "@/components/layout/LegalDocument";
-import { LEGAL_NAME } from "@/lib/site";
+import { LEGAL_NAME, SUPPORT_EMAIL } from "@/lib/site";
+import { CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Syarat & Ketentuan — SEVA Taxi",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
 };
 
-const CONTACT_EMAIL = "support@seva.id";
+const CONTACT_EMAIL = SUPPORT_EMAIL;
 
 const sections: LegalSection[] = [
   {
@@ -195,7 +196,9 @@ const sections: LegalSection[] = [
         <br />
         Email: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         <br />
-        Call center 24/7: 1500-SEVA
+        WhatsApp / Telepon: <a href={CONTACT_WHATSAPP_URL}>{CONTACT_PHONE_DISPLAY}</a>
+        <br />
+        Instagram: <a href={INSTAGRAM_URL}>{INSTAGRAM_HANDLE}</a>
       </p>
     ),
   },

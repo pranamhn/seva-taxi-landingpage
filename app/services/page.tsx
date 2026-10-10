@@ -64,7 +64,7 @@ const COMPARISON_DATA = [
     baseFare: "Rp 10.000",
     kmFare: "Rp 3.000 / km",
     capacity: "Barang s/d 20 kg",
-    luggage: "Dimensi maks. 50x50x50 cm",
+    luggage: "Dimensi maks. 40x40x40 cm",
     eta: "2–4 Menit",
     idealFor: "Kirim dokumen kantor, belanjaan, atau paket instan",
     status: "Aktif Beroperasi",
@@ -120,7 +120,7 @@ const FAQS = [
   },
   {
     q: "Metode pembayaran apa saja yang diterima?",
-    a: "SEVA mendukung pembayaran tunai langsung ke pengemudi serta pembayaran non-tunai praktis melalui e-Wallet dan QRIS terintegrasi.",
+    a: "SEVA mendukung pembayaran tunai langsung ke pengemudi serta pembayaran non-tunai praktis melalui SEVA Wallet dan QRIS terintegrasi.",
   },
   {
     q: "Kapan layanan SEVA FOOD resmi dapat digunakan?",
@@ -137,7 +137,7 @@ export default function ServicesPage() {
         <PageHeader
           badge="LAYANAN RESMI SEVA // TARIF ARGO PASTI"
           title="Pilihan Armada & Tarif Layanan"
-          subtitle="Jelajahi armada terstandarisasi SEVA: motor lincah tembus macet, mobil taksi ber-AC yang nyaman, pengiriman paket instan, hingga layanan pesan antar kuliner."
+          subtitle="Jelajahi armada terstandar SEVA: motor lincah tembus macet, mobil taksi ber-AC yang nyaman, pengiriman paket instan, hingga layanan pesan antar kuliner."
           breadcrumbs={[{ label: "Armada" }]}
           metrics={[
             { label: "Layanan Aktif", value: "RIDE • CAR • SEND", hint: "SEVA FOOD segera hadir" },

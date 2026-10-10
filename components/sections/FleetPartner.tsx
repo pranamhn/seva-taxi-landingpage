@@ -2,26 +2,31 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { FLEET_COMPANIES, FLEET_COMPANY_COUNT } from "@/lib/fleet-companies";
 import {
   ExternalLink,
   ArrowRight,
   ShieldCheck,
 } from "lucide-react";
 
-// Official Fleet Operator Clients powered by sevaqu.com FMS
-const fleetClients = [
-  { name: "Sarnaz Transport", logo: "/assets/logo/partners/trimmed/sarnaz-transport.png", fleetSize: "120 Armada", type: "Taksi Reguler", category: "reguler" },
-  { name: "Arkatama Trans Indonesia", logo: "/assets/logo/partners/trimmed/arkatama-trans-indonesia.png", fleetSize: "85 Armada", type: "Executive Fleet", category: "executive" },
-  { name: "Sinergi Aletra", logo: "/assets/logo/partners/trimmed/sinergi-aletra.png", fleetSize: "210 Armada", type: "EV Fleet", category: "ev" },
-  { name: "Express Group", logo: "/assets/logo/partners/trimmed/express-group.png", fleetSize: "450 Armada", type: "Urban Taxi", category: "reguler" },
-  { name: "TransGO", logo: "/assets/logo/partners/trimmed/transgo.png", fleetSize: "95 Armada", type: "Airport Shuttle", category: "shuttle" },
-  { name: "LTI Logistics", logo: "/assets/logo/partners/trimmed/lti.png", fleetSize: "140 Armada", type: "Van & Cargo", category: "shuttle" },
-  { name: "PT Satu Kosong 7", logo: "/assets/logo/partners/trimmed/pt-satu-kosong-7.png", fleetSize: "75 Armada", type: "City Cab", category: "reguler" },
-  { name: "TOP Trans", logo: "/assets/logo/partners/trimmed/top.png", fleetSize: "110 Armada", type: "Urban Taxi", category: "reguler" },
-  { name: "OBCB", logo: "/assets/logo/partners/trimmed/obcb.png", fleetSize: "60 Armada", type: "Shuttle Antarkota", category: "shuttle" },
-  { name: "KKA Transport", logo: "/assets/logo/partners/trimmed/kka.png", fleetSize: "90 Armada", type: "Executive", category: "executive" },
-  { name: "Tiga Pemuda Bersama", logo: "/assets/logo/partners/trimmed/tiga-pemuda-bersama.png", fleetSize: "130 Armada", type: "Taksi Reguler", category: "reguler" },
-  { name: "Privot", logo: "/assets/logo/partners/trimmed/privot.png", fleetSize: "50 Armada", type: "VIP Transfer", category: "executive" },
+// Fleet operator clients: satu sumber data dengan direktori mitra (FleetOperatorDirectory)
+const shortName = (name: string) =>
+  name.replace(/^PT\.?\s+/i, "").replace(/,\s*Tbk$/i, "");
+
+const fleetClients = FLEET_COMPANIES.map((c) => ({
+  name: shortName(c.name),
+  logo: c.logo ?? "",
+  fleetSize: c.vehicles > 0 ? `${c.vehicles.toLocaleString("id-ID")} Armada` : "Penyiapan unit",
+  type: c.typeLabel,
+  category: c.category,
+}));
+
+const CATEGORY_FILTERS: { id: string; label: string }[] = [
+  { id: "all", label: "Semua" },
+  { id: "taxi", label: "Taksi" },
+  { id: "rental", label: "Rental" },
+  { id: "premium", label: "Premium" },
+  { id: "ev", label: "EV" },
 ];
 
 // Telemetry live feed entries from sevaqu FMS with full diagnostic metrics
@@ -29,7 +34,7 @@ const liveTelemetryData = [
   {
     unitId: "SEV-0821-JKT",
     model: "Transmover EV Edition",
-    operator: "Sinergi Aletra",
+    operator: "Transgo Mobility Rental",
     driver: "Bambang Sudirman",
     status: "IN_TRIP",
     speed: "42 km/h",
@@ -41,42 +46,42 @@ const liveTelemetryData = [
     odometer: "48.210 KM",
   },
   {
-    unitId: "SEV-0419-BDG",
+    unitId: "SEV-0419-BKS",
     model: "Avanza Trans 1.5L",
-    operator: "Sarnaz Transport",
+    operator: "Satu Kosong Tujuh",
     driver: "Ahmad Ridwan",
     status: "DISPATCHED",
     speed: "28 km/h",
     ping: "1s",
-    loc: "-6.9175, 107.6191",
+    loc: "-6.2383, 106.9756",
     batteryFuel: "68% (BBM Pertalite)",
     temp: "88°C (Coolant OK)",
     kirExpiry: "22 Mei 2027",
     odometer: "82.450 KM",
   },
   {
-    unitId: "SEV-1102-SBY",
+    unitId: "SEV-1102-TNG",
     model: "Innova Zenix Hybrid",
-    operator: "Arkatama Trans",
+    operator: "Luxury Trans Indonesia",
     driver: "Dedi Kusuma",
     status: "STANDBY",
     speed: "0 km/h",
     ping: "4s",
-    loc: "-7.2575, 112.7521",
+    loc: "-6.1783, 106.6319",
     batteryFuel: "92% (BBM + Pack OK)",
     temp: "45°C (Idle)",
     kirExpiry: "08 Agu 2027",
     odometer: "31.900 KM",
   },
   {
-    unitId: "SEV-0914-DPS",
+    unitId: "SEV-0914-DPK",
     model: "BYD e6 Fleet",
-    operator: "Express Group",
+    operator: "Express Trasindo Utama",
     driver: "I Wayan Suarna",
     status: "IN_TRIP",
     speed: "56 km/h",
     ping: "2s",
-    loc: "-8.7482, 115.1672",
+    loc: "-6.4025, 106.7942",
     batteryFuel: "61% (Baterai BEV)",
     temp: "34°C (Normal)",
     kirExpiry: "19 Des 2027",
@@ -86,9 +91,9 @@ const liveTelemetryData = [
 
 const fmsSpecs = [
   { label: "Protokol Telemetri", val: "MQTT / TLS 1.3 over 4G LTE" },
-  { label: "Interval Ping GPS", val: "2 - 5 Detik Realtime" },
+  { label: "Interval Ping GPS", val: "2 - 5 Detik Real-time" },
   { label: "Dukungan Port OBD-II", val: "J1939, OBD-II CanBus, CAN 2.0B" },
-  { label: "Sensor Suhu & Kabin", val: "Akurasi ±0.5°C dengan Dashcam IR" },
+  { label: "Sensor Suhu & Kabin", val: "Pemantauan suhu kabin & unit" },
   { label: "API Integrasi Argo", val: "RESTful JSON / Webhook Event Dispatch" },
   { label: "SLA Uptime Platform", val: "99.98% High Availability" },
 ];
@@ -303,7 +308,7 @@ export default function FleetPartner() {
                     Klien Operator Terdaftar
                   </h3>
                   <p className="text-[11px] text-slate-500 mt-0.5">
-                    12 Kemitraan armada resmi terhubung via sevaqu FMS.
+                    {FLEET_COMPANY_COUNT} Kemitraan armada resmi terhubung via sevaqu FMS.
                   </p>
                 </div>
                 <div className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
@@ -313,18 +318,18 @@ export default function FleetPartner() {
 
               {/* Filter Pills */}
               <div className="flex flex-wrap gap-1.5 mb-4">
-                {["all", "reguler", "ev", "executive", "shuttle"].map((cat) => (
+                {CATEGORY_FILTERS.map((cat) => (
                   <button
-                    key={cat}
+                    key={cat.id}
                     type="button"
-                    onClick={() => setFilterCategory(cat)}
+                    onClick={() => setFilterCategory(cat.id)}
                     className={`px-3 py-1 rounded-full text-[11px] font-mono uppercase transition-colors border ${
-                      filterCategory === cat
+                      filterCategory === cat.id
                         ? "bg-blue-50 border-blue-400 text-[#225FD2] font-semibold"
                         : "bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900"
                     }`}
                   >
-                    {cat === "all" ? "Semua" : cat}
+                    {cat.label}
                   </button>
                 ))}
               </div>

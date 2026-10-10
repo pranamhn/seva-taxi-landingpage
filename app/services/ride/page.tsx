@@ -113,7 +113,7 @@ export default function SevaRidePage() {
                     </div>
                     <div className="font-bold text-slate-900 text-sm">Penjemputan Super Cepat</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Algoritma cerdas langsung menugaskan driver dalam radius 500 meter dari titik Anda.
+                      Sistem langsung menugaskan driver terdekat dari titik jemput Anda.
                     </p>
                   </div>
 
@@ -143,7 +143,7 @@ export default function SevaRidePage() {
                     </div>
                     <div className="font-bold text-slate-900 text-sm">Navigasi Rute Pintas</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Driver berpengalaman memanfaatkan jalan tikus aman yang terverifikasi di peta GPS.
+                      Driver berpengalaman memanfaatkan jalur alternatif yang terverifikasi di peta GPS.
                     </p>
                   </div>
                 </div>
@@ -242,7 +242,7 @@ export default function SevaRidePage() {
                   <div className="text-xs font-mono font-semibold text-[#225FD2] uppercase">Jarak Menengah (8 km)</div>
                   <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 28.000</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-                    Pilihan komuter harian antar wilayah kotamadya yang padat saat jam sibuk.
+                    Pilihan komuter harian antar wilayah kota yang padat saat jam sibuk.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-blue-100 flex items-center justify-between text-xs text-slate-500">

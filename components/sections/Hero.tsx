@@ -98,7 +98,7 @@ export default function Hero() {
   const [distance, setDistance] = useState(DEFAULT_ROUTE.distance);
 
   const selectedVehicle = RIDE_CATEGORIES.find((c) => c.id === activeCategory) || RIDE_CATEGORIES[0];
-  const calculatedFare = selectedVehicle.baseFare + Math.round(distance * selectedVehicle.perKm) + 1000;
+  const calculatedFare = selectedVehicle.baseFare + Math.round(distance * selectedVehicle.perKm);
 
   const handleSelectPreset = (preset: typeof RIDE_PRESETS[0]) => {
     setPickup(preset.pickup);
@@ -377,7 +377,7 @@ export default function Hero() {
               </div>
               <div className="relative">
                 <p className="font-bold text-xs sm:text-[13px] text-slate-900 tracking-tight leading-tight">
-                  SEVA e-Wallet
+                  SEVA Wallet
                 </p>
                 <p className="mt-1 flex items-center gap-1.5 whitespace-nowrap">
                   <span className="text-[11px] sm:text-xs font-bold text-slate-700 tabular-nums">Rp 384.000</span>
