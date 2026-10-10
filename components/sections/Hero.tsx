@@ -323,30 +323,18 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Realistic Titanium Phone Chassis with the User Uploaded Screen */}
-            <div className="relative w-full max-w-[285px] sm:max-w-[320px] md:max-w-[335px] p-2 sm:p-2.5 bg-gradient-to-b from-slate-700 via-slate-900 to-black rounded-[46px] shadow-[0_25px_60px_-15px_rgba(0,66,196,0.28),0_0_0_1px_rgba(255,255,255,0.2)_inset] border border-slate-700/80 z-10 transition-transform duration-300 hover:scale-[1.01]">
-              
-              {/* Dynamic Notch */}
-              <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-black rounded-full z-30 pointer-events-none flex items-center justify-end pr-2 gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-slate-800" />
-                <div className="w-1 h-1 rounded-full bg-blue-900" />
-              </div>
-
-              {/* Phone Screen — screenshot sudah di-crop (tanpa bezel & status bar bawaan);
-                  strip atas berwarna sama dengan header app agar notch tidak menimpa konten */}
-              <div className="relative w-full rounded-[38px] overflow-hidden bg-[#1C408A] pt-7 shadow-inner">
-                <Image
-                  src="/images/app/app-home-screen.webp"
-                  alt="SEVA Ride-Hailing App - Pesanan Selesai & Promo"
-                  width={446}
-                  height={967}
-                  sizes="(max-width: 640px) 265px, 315px"
-                  priority
-                  className="block w-full h-auto select-none"
-                  draggable={false}
-                />
-              </div>
-
+            {/* Realistic Smartphone Mockup — Beranda SEVA Ride Hailing */}
+            <div className="relative w-full max-w-[285px] sm:max-w-[320px] md:max-w-[335px] z-10 transition-transform duration-300 hover:scale-[1.01] drop-shadow-[0_25px_50px_rgba(0,66,196,0.28)]">
+              <Image
+                src="/images/app/beranda-seva-ride-hailing.webp"
+                alt="Aplikasi SEVA Ride Hailing - Beranda Utama"
+                width={427}
+                height={860}
+                sizes="(max-width: 640px) 285px, 335px"
+                priority
+                className="block w-full h-auto select-none"
+                draggable={false}
+              />
             </div>
 
             {/* Floating Verified Ride Card (Bottom Right) — Ultra-Glossy Liquid Glass */}
