@@ -1,0 +1,18 @@
+{
+  "name": "SEVA — Platform Armada & Ride-Hailing Indonesia",
+  "short_name": "SEVA",
+  "description": "Platform B2B terpadu: Fleet Management System, GPS Telematika IoT, dan Ride-Hailing Indonesia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07090e",
+  "theme_color": "#225FD2",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "id-ID",
+  "categories": ["business", "logistics", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

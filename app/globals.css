@@ -1,0 +1,302 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Official SEVA Light Palette copied from seva-landingpage */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  /* SEVA Blue Palette */
+  --color-seva-blue: #225FD2;
+  --color-seva-blue-dark: #194cb0;
+  --color-seva-blue-hover: #1b53bc;
+
+  /* Signal & Bright Blue CTAs */
+  --color-signal-blue: #0088ff;
+  --color-bright-blue: #1c95ff;
+
+  /* Honey Glow & Amber Warm Highlights */
+  --color-honey-glow: #feab30;
+  --color-amber-flame: rgb(240, 100, 19);
+
+  /* Status Accents */
+  --color-vivid-green: #16a34a;
+  --color-alert-red: #ef4444;
+  --color-electric-magenta: #cb30e0;
+
+  /* Neutrals (Clean Light) */
+  --color-pure-white: #ffffff;
+  --color-snow-gray: #f8fafc;
+  --color-silver: #e2e8f0;
+  --color-pewter: #94a3b8;
+  --color-smoke: #64748b;
+  --color-charcoal: #334155;
+  --color-ink: #0f172a;
+  --color-true-black: #000000;
+
+  /* Surface & Canvas System */
+  --color-canvas: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f8fafc;
+  --color-surface-active: #f1f5f9;
+
+  --color-border-subtle: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  /* Utilitarian Brand Accents */
+  --color-accent-blue: #225FD2;
+  --color-seva-gold: #feab30;
+  --color-accent-emerald: #16a34a;
+  --color-accent-red: #ef4444;
+
+  /* Neutral Text Hierarchy */
+  --color-text-high: #0f172a;
+  --color-text-muted: #64748b;
+  --color-text-dim: #94a3b8;
+
+  /* Custom breakpoints */
+  --breakpoint-xs: 480px;
+}
+
+:root {
+  /* Default Clean Light Mode (Matching seva-landingpage) */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+
+  /* Official SEVA Design Tokens */
+  --color-seva-blue: #225FD2;
+  --color-seva-blue-dark: #194cb0;
+  --color-seva-blue-hover: #1b53bc;
+  --gradient-seva: linear-gradient(135deg, #194cb0 0%, #225FD2 100%);
+  --color-signal-blue: #0088ff;
+  --color-bright-blue: #1c95ff;
+
+  --color-honey-glow: #feab30;
+  --gradient-amber: linear-gradient(0deg, rgb(240, 100, 19) -29.375%, rgb(254, 171, 48) 100%);
+  --color-vivid-green: #16a34a;
+  --color-alert-red: #ef4444;
+
+  --color-ink: #0f172a;
+  --color-smoke: #64748b;
+  --color-pewter: #94a3b8;
+  --color-silver: #e2e8f0;
+  --color-snow-gray: #f8fafc;
+
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+}
+
+body {
+  background: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   SEVA CLEAN LIGHT UTILITIES
+   ============================================================ */
+
+/* Surface Card */
+.surface-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.surface-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 20px -5px rgba(34, 95, 210, 0.08);
+}
+
+/* Buttons */
+.btn-primary {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #225FD2;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(34, 95, 210, 0.25);
+  transition: all 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: #194cb0;
+  box-shadow: 0 4px 12px rgba(34, 95, 210, 0.35);
+}
+
+.btn-secondary {
+  height: 40px;
+  padding: 0 18px;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+.btn-accent {
+  height: 40px;
+  padding: 0 20px;
+  background: linear-gradient(135deg, #194cb0 0%, #225FD2 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(34, 95, 210, 0.25);
+  transition: all 0.15s ease;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #1b53bc 0%, #2b6be0 100%);
+  box-shadow: 0 4px 14px rgba(34, 95, 210, 0.35);
+}
+
+.btn-signal {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #0088ff;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-signal:hover {
+  background-color: #1c95ff;
+}
+
+/* Minimalist Form Input */
+.input-base {
+  height: 40px;
+  padding: 0 14px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-base::placeholder {
+  color: #94a3b8;
+}
+
+.input-base:focus {
+  border-color: #225FD2;
+  box-shadow: 0 0 0 3px rgba(34, 95, 210, 0.12);
+  outline: none;
+}
+
+/* Status Badge */
+.badge-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background-color: #eff6ff;
+  border: 1px solid #dbeafe;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: #1e40af;
+  letter-spacing: 0.02em;
+}
+
+/* Tabular Numbers */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Section container */
+.section-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Marquee for operator partner logos */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
