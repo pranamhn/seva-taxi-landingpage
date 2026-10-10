@@ -33,6 +33,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: LEGAL_NAME }],
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
     description:
@@ -42,7 +53,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-seva-taxi.jpg",
         width: 1200,
         height: 630,
         alt: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
@@ -53,7 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
     description: "Pergi ke mana saja, kapan saja. Pesan ride sekarang.",
-    images: ["/og-image.png"],
+    images: ["/og-seva-taxi.jpg"],
   },
   robots: { index: true, follow: true },
 };
