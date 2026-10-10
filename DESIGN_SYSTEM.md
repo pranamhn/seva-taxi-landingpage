@@ -297,7 +297,7 @@ SEVA Taxi telah berhasil mengadopsi struktur fungsional terbaik dari Gojek dan G
 | **2. Klasifikasi Armada** | GoCar, GoCar Luxe, GoCar XL, GoRide. | GrabCar, GrabCar Plus, GrabCar XL, GrabBike. | SEVA Car (Sedan/MPV), SEVA EV Fleet (Listrik), SEVA Van (7-Seat), SEVA Executive (VIP). | **Full Parity (Ada EV Spesifik)** |
 | **3. Transparansi Tarif** | Estimasi dinamis dengan surge pricing saat sibuk. | Estimasi dinamis dengan lonjakan harga jam sibuk. | Tarif meter terstandarisasi (Buka Pintu + Tarif KM + Tarif Tunggu) diaudit sevaqu.com tanpa surge tersembunyi. | **Superior Transparency** |
 | **4. Safety & Compliance Center** | #AmanBersamaGojek: Tombol darurat SOS, Jasa Raharja, Share Trip, Masking HP. | Grab Safety: AudioProtect, Tim Darurat 24/7, Jasa Raharja, Geofence trip monitoring. | Protokol Terverifikasi: Asuransi Jasa Raharja s/d Rp 50 Jt, Speed Limiter OBD-II, Auto-Block KIR, Masking ISO 27001. | **Full Parity** |
-| **5. Portal Kemitraan Driver** | Formulir daftar driver, syarat SKCK & SIM, kalkulator pendapatan mitra. | Onboarding mitra pengemudi, jaminan asuransi, pencairan harian. | Bagi hasil transparan 85/15, pencairan H+0 instan, checklist 6 syarat resmi, form registrasi terverifikasi. | **Full Parity** |
+| **5. Portal Kemitraan Driver** | Formulir daftar driver, syarat SKCK & SIM, kalkulator pendapatan mitra. | Onboarding mitra pengemudi, jaminan asuransi, pencairan harian. | Bagi hasil transparan 95/5, pencairan H+0 instan, checklist 6 syarat resmi, form registrasi terverifikasi. | **Full Parity** |
 | **6. Direktori Jangkauan Kota** | Direktori kota operasional & titik jemput bandara. | Daftar coverage kota & lounge bandara resmi Grab. | Tabel direktori 12 kota metropolitan dengan data armada aktif, rata-rata waktu tiba, dan koneksi bandara/stasiun KCIC. | **Full Parity** |
 | **7. Ekosistem B2B / Enterprise** | GoCorp (Billing korporat untuk karyawan). | GrabForBusiness (Manajemen perjalanan bisnis). | **Integrasi FMS sevaqu.com:** Menghubungkan langsung perusahaan fleet operator (Sarnaz, Arkatama, Aletra EV, Express Group, dll.) via API & OBD-II. | **Differentiated Edge (B2B Fleet Operator Layer)** |
 | **8. Multi-Platform Gateways** | Download iOS & Android via QR / store link. | Download iOS & Android via QR / store link. | Multi-portal: Aplikasi penumpang iOS/Android, Portal Driver, dan Web Console Operator sevaqu.com. | **Full Parity** |
@@ -318,7 +318,7 @@ graph TD
     subgraph SEVA Taxi Ecosystem [SEVA Taxi + sevaqu.com]
         F[Consumer App & Web Console] --> G[Argo Resmi SK Gub + Telemetri OBD-II]
         G --> H[Kemenhub + Jasa Raharja + ISO 27001]
-        H --> I[85/15 Payout H+0 Driver Onboarding]
+        H --> I[95/5 Payout H+0 Driver Onboarding]
         I --> J[12 Kota Metropolitan & Hub Bandara]
         J --> K[B2B Fleet Operator Layer // sevaqu.com FMS]
     end
@@ -338,7 +338,7 @@ graph TD
 
 #### Pilar 4: Portal Kemitraan & Ekonomi Pengemudi
 - **Gojek & Grab:** Menampilkan transparansi penghasilan dan kemudahan pencairan dana untuk merekrut mitra pengemudi.
-- **Implementasi SEVA:** Menampilkan formula bagi hasil bersih 85% untuk mitra dan 15% platform fee flat, pencairan dana instan H+0 langsung ke rekening bank, serta persyaratan berkas yang jelas dan tegas.
+- **Implementasi SEVA:** Menampilkan formula bagi hasil bersih 95% untuk mitra dan 5% platform fee flat, pencairan dana instan H+0 langsung ke rekening bank, serta persyaratan berkas yang jelas dan tegas.
 
 #### Pilar 5: Direktori Wilayah Operasional
 - **Gojek & Grab:** Memastikan pengguna tahu kota mana saja yang terlayani dan titik penjemputan resmi di bandara.
@@ -431,7 +431,7 @@ graph LR
 ```
 
 - **Aplikasi Mobile:** Berfokus pada kemudahan konsumen memesan transportasi (*Mobil, Motor, Kirim, Makanan*) dengan dompet terintegrasi *SEVA Pay*.
-- **Website SEVA Taxi (`seva-taxi`):** Bertindak sebagai portal pusat informasi tarif transparan resmi, sertifikasi keselamatan Kemenhub, pendaftaran mitra pengemudi (skema 85/15), dan konsol operasional bagi pemilik armada melalui integrasi **sevaqu.com**.
+- **Website SEVA Taxi (`seva-taxi`):** Bertindak sebagai portal pusat informasi tarif transparan resmi, sertifikasi keselamatan Kemenhub, pendaftaran mitra pengemudi (skema 95/5), dan konsol operasional bagi pemilik armada melalui integrasi **sevaqu.com**.
 
 ---
 
@@ -483,7 +483,7 @@ Sesuai standar pengalaman pengguna profesional dan SEO arsitektur web modern, se
 | `/safety` | **Standar Keselamatan** | Standar Keselamatan & Kepatuhan — SEVA Taxi | `PageHeader` (SLA SOS < 90s, Kemenhub, Jasa Raharja), `Safety`, `AppDownload` |
 | `/how-it-works` | **Cara Kerja** | Cara Kerja & Alur Pemesanan — SEVA Taxi | `PageHeader` (Alur 4 Langkah, SLA Matching), `HowItWorks`, `Testimonials`, `AppDownload` |
 | `/cities` | **Cakupan Kota** | Cakupan Kota & Hub Transit Resmi — SEVA Taxi | `PageHeader` (7 Metropolitan, 14 Hub Bandara & Kereta), `CityCoverage`, `AppDownload` |
-| `/driver` | **Mitra Driver** | Pendaftaran Mitra Pengemudi & Fleet Operator — SEVA Taxi | `PageHeader` (Bagi Hasil 88%, Pencairan H+0), `DriverCTA`, `FleetPartner` |
+| `/driver` | **Mitra Driver** | Pendaftaran Mitra Pengemudi & Fleet Operator — SEVA Taxi | `PageHeader` (Bagi Hasil 95%, Pencairan H+0), `DriverCTA`, `FleetPartner` |
 
 ### 12.1 Penanda Link Aktif (Active Route Highlighting)
 Setiap link di Navbar mengevaluasi `usePathname() === link.href`:

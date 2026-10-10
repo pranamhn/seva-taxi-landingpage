@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, MapPin, Sparkles, Plane, Train, CheckCircle2, Clock } from "lucide-react";
+import { Search, Sparkles } from "lucide-react";
 
 interface CityItem {
   code: string;
@@ -10,76 +10,89 @@ interface CityItem {
   zone: "jakarta" | "tangerang" | "bodetabek";
   activeFleet: string;
   avgArrival: string;
-  hub: string;
-  hubType: "airport" | "train" | "transit";
   status: "AKTIF";
 }
 
 const CITY_DIRECTORY: CityItem[] = [
   {
     code: "JKT-01",
-    name: "Jakarta Pusat & Selatan",
+    name: "Jakarta Pusat",
     province: "DKI Jakarta",
     zone: "jakarta",
     activeFleet: "Aktif 24/7",
     avgArrival: "2–4 mnt",
-    hub: "SCBD, Sudirman, Kuningan, Stasiun Gambir & MRT",
-    hubType: "transit",
     status: "AKTIF",
   },
   {
     code: "JKT-02",
-    name: "Jakarta Barat & Utara",
+    name: "Jakarta Utara",
     province: "DKI Jakarta",
     zone: "jakarta",
     activeFleet: "Aktif 24/7",
     avgArrival: "3–5 mnt",
-    hub: "Kawasan PIK, Pluit, Kelapa Gading, Tj. Priok",
-    hubType: "transit",
     status: "AKTIF",
   },
   {
     code: "JKT-03",
-    name: "Jakarta Timur & Halim",
+    name: "Jakarta Barat",
+    province: "DKI Jakarta",
+    zone: "jakarta",
+    activeFleet: "Aktif 24/7",
+    avgArrival: "3–5 mnt",
+    status: "AKTIF",
+  },
+  {
+    code: "JKT-04",
+    name: "Jakarta Selatan",
     province: "DKI Jakarta",
     zone: "jakarta",
     activeFleet: "Aktif 24/7",
     avgArrival: "2–4 mnt",
-    hub: "Bandara Halim Perdanakusuma (HLP) & Stasiun Whoosh",
-    hubType: "airport",
+    status: "AKTIF",
+  },
+  {
+    code: "JKT-05",
+    name: "Jakarta Timur",
+    province: "DKI Jakarta",
+    zone: "jakarta",
+    activeFleet: "Aktif 24/7",
+    avgArrival: "2–4 mnt",
     status: "AKTIF",
   },
   {
     code: "TNG-01",
-    name: "Kota Tangerang & Bandara CGK",
+    name: "Kota Tangerang",
     province: "Banten",
     zone: "tangerang",
     activeFleet: "Aktif 24/7",
     avgArrival: "2–4 mnt",
-    hub: "Bandara Soekarno-Hatta (Terminal 1, 2, 3) & Kota",
-    hubType: "airport",
     status: "AKTIF",
   },
   {
     code: "TNG-02",
-    name: "Tangerang Selatan & BSD City",
+    name: "Kota Tangerang Selatan",
     province: "Banten",
     zone: "tangerang",
     activeFleet: "Aktif 24/7",
     avgArrival: "3–5 mnt",
-    hub: "BSD City, Alam Sutera, Bintaro Jaya, Serpong",
-    hubType: "transit",
     status: "AKTIF",
   },
   {
     code: "BGR-01",
-    name: "Kota & Kabupaten Bogor",
+    name: "Kota Bogor",
     province: "Jawa Barat",
     zone: "bodetabek",
     activeFleet: "Aktif 24/7",
     avgArrival: "3–5 mnt",
-    hub: "Pusat Kota Bogor, Sentul City, Stasiun Bogor",
-    hubType: "train",
+    status: "AKTIF",
+  },
+  {
+    code: "BGR-02",
+    name: "Kabupaten Bogor",
+    province: "Jawa Barat",
+    zone: "bodetabek",
+    activeFleet: "Aktif 24/7",
+    avgArrival: "3–5 mnt",
     status: "AKTIF",
   },
   {
@@ -89,21 +102,35 @@ const CITY_DIRECTORY: CityItem[] = [
     zone: "bodetabek",
     activeFleet: "Aktif 24/7",
     avgArrival: "3–5 mnt",
-    hub: "Margonda Raya, Cinere, Kawasan Kampus UI & Sawangan",
-    hubType: "transit",
     status: "AKTIF",
   },
   {
     code: "BKS-01",
-    name: "Kota & Kabupaten Bekasi",
+    name: "Kota Bekasi",
     province: "Jawa Barat",
     zone: "bodetabek",
     activeFleet: "Aktif 24/7",
     avgArrival: "3–5 mnt",
-    hub: "Bekasi Barat, Summarecon, Stasiun LRT, Cikarang",
-    hubType: "train",
     status: "AKTIF",
   },
+  {
+    code: "BKS-02",
+    name: "Kabupaten Bekasi",
+    province: "Jawa Barat",
+    zone: "bodetabek",
+    activeFleet: "Aktif 24/7",
+    avgArrival: "3–5 mnt",
+    status: "AKTIF",
+  },
+];
+
+type ZoneFilter = "all" | CityItem["zone"];
+
+const ZONE_FILTERS: { id: ZoneFilter; label: string }[] = [
+  { id: "all", label: "Semua Wilayah" },
+  { id: "jakarta", label: "DKI Jakarta" },
+  { id: "tangerang", label: "Tangerang & BSD" },
+  { id: "bodetabek", label: "Bogor, Depok & Bekasi" },
 ];
 
 interface CityCoverageProps {
@@ -112,21 +139,25 @@ interface CityCoverageProps {
 
 export default function CityCoverage({ hideHeader = false }: CityCoverageProps) {
   const [search, setSearch] = useState("");
-  const [activeZone, setActiveZone] = useState<"all" | "jakarta" | "tangerang" | "bodetabek">("all");
+  const [activeZone, setActiveZone] = useState<ZoneFilter>("all");
 
+  const query = search.trim().toLowerCase();
   const filtered = CITY_DIRECTORY.filter((c) => {
     const matchesZone = activeZone === "all" ? true : c.zone === activeZone;
     const matchesSearch =
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.province.toLowerCase().includes(search.toLowerCase()) ||
-      c.hub.toLowerCase().includes(search.toLowerCase()) ||
-      c.code.toLowerCase().includes(search.toLowerCase());
+      !query ||
+      c.name.toLowerCase().includes(query) ||
+      c.province.toLowerCase().includes(query) ||
+      c.code.toLowerCase().includes(query);
 
     return matchesZone && matchesSearch;
   });
 
+  const countFor = (zone: ZoneFilter) =>
+    zone === "all" ? CITY_DIRECTORY.length : CITY_DIRECTORY.filter((c) => c.zone === zone).length;
+
   return (
-    <section id="cities" className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
+    <section id="cities" className="py-10 sm:py-16 bg-white border-b border-slate-200/80">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
         {/* Optional Header (shown on Home, hidden if page already has PageHeader) */}
         {!hideHeader && (
@@ -136,7 +167,7 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>WILAYAH OPERASIONAL RESMI</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
                 Beroperasi Penuh di Jabodetabek
               </h2>
               <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed">
@@ -146,152 +177,107 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
           </div>
         )}
 
-        {/* Operational Notice Banner */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/70 border border-blue-200/80 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5">
-          <div className="flex items-start sm:items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-[#225FD2] text-white flex items-center justify-center shrink-0 shadow-xs">
-              <CheckCircle2 className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-xs sm:text-sm font-bold text-slate-900">
-                Layanan SEVA Aktif di Seluruh Kawasan Jabodetabek
-              </div>
-              <div className="text-xs text-slate-600">
-                Pemesanan SEVA RIDE, SEVA CAR, dan SEVA SEND telah aktif beroperasi 24 jam untuk Jakarta, Bogor, Depok, Tangerang, dan Bekasi.
-              </div>
-            </div>
+        {/* Directory header (page already has a hero header on /cities) */}
+        {hideHeader && (
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-6">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+              Direktori Wilayah Layanan
+            </h2>
+            <p className="mt-1 text-sm text-slate-600 max-w-2xl leading-relaxed">
+              SEVA RIDE, SEVA CAR, dan SEVA SEND aktif 24 jam di seluruh wilayah berikut.
+            </p>
           </div>
-          <span className="text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shrink-0 self-start sm:self-auto">
-            ● 8 Zona Aktif Live
+          <span className="inline-flex items-center gap-2 self-start lg:self-auto text-xs font-semibold text-emerald-700 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="tabular-nums">{CITY_DIRECTORY.length}</span> zona aktif
           </span>
         </div>
+        )}
 
         {/* Controls: Zone Filter & Search */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
-          {/* Zone Filter Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-            <button
-              type="button"
-              onClick={() => setActiveZone("all")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                activeZone === "all"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Semua Wilayah ({CITY_DIRECTORY.length})
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveZone("jakarta")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                activeZone === "jakarta"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              DKI Jakarta
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveZone("tangerang")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                activeZone === "tangerang"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Tangerang &amp; BSD
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveZone("bodetabek")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                activeZone === "bodetabek"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Bogor, Depok &amp; Bekasi
-            </button>
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-6 pb-6 border-b border-slate-200/80">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar -mx-1 px-1" role="group" aria-label="Filter wilayah">
+            {ZONE_FILTERS.map((z) => {
+              const isActive = activeZone === z.id;
+              return (
+                <button
+                  key={z.id}
+                  type="button"
+                  onClick={() => setActiveZone(z.id)}
+                  aria-pressed={isActive}
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap border cursor-pointer ${
+                    isActive
+                      ? "bg-[#225FD2] text-white border-[#225FD2]"
+                      : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                  }`}
+                >
+                  {z.label}
+                  <span
+                    className={`tabular-nums text-[10px] font-mono px-1.5 py-0.5 rounded ${
+                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                    }`}
+                  >
+                    {countFor(z.id)}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Search Box */}
-          <div className="w-full sm:w-72 relative">
+          <div className="w-full md:w-72 relative shrink-0">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={search}
-              aria-label="Cari wilayah, bandara, atau stasiun"
+              aria-label="Cari kota atau kabupaten"
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari wilayah, bandara, stasiun..."
-              className="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-slate-50 border border-slate-200 text-slate-800 focus:bg-white focus:outline-none focus:border-[#225FD2] transition-colors"
+              placeholder="Cari kota atau kabupaten..."
+              className="w-full pl-10 pr-4 py-2 text-xs rounded-lg bg-white border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#225FD2] focus:ring-2 focus:ring-blue-500/15 transition-colors"
             />
           </div>
         </div>
 
-        {/* City Cards Grid - ONLY ACTIVE ONES */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* City Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {filtered.map((city) => (
-            <div
-              key={city.code}
-              className="rounded-3xl p-5 border transition-all duration-300 flex flex-col justify-between bg-white border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-300"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#225FD2]">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>{city.code}</span>
-                  </div>
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1.5 border bg-emerald-50 text-emerald-700 border-emerald-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    {city.status}
+              <article
+                key={city.code}
+                className="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-colors hover:border-slate-300"
+              >
+                <header className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono font-semibold tracking-wider text-slate-400">
+                    {city.code}
                   </span>
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    Aktif
+                  </span>
+                </header>
+
+                <div className="mt-4">
+                  <h3 className="text-base font-bold text-slate-900 leading-snug">{city.name}</h3>
+                  <p className="mt-0.5 text-xs text-slate-500">{city.province}</p>
                 </div>
 
-                <h3 className="text-base font-extrabold text-slate-900 mb-0.5">
-                  {city.name}
-                </h3>
-                <p className="text-xs text-slate-500 mb-3">{city.province}</p>
-
-                <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/70 text-xs text-slate-600 space-y-2">
-                  <div className="flex items-start gap-1.5">
-                    {city.hubType === "airport" ? (
-                      <Plane className="w-3.5 h-3.5 text-[#225FD2] shrink-0 mt-0.5" />
-                    ) : city.hubType === "train" ? (
-                      <Train className="w-3.5 h-3.5 text-[#225FD2] shrink-0 mt-0.5" />
-                    ) : (
-                      <MapPin className="w-3.5 h-3.5 text-[#225FD2] shrink-0 mt-0.5" />
-                    )}
-                    <span className="text-[11px] font-medium leading-snug line-clamp-2">
-                      {city.hub}
-                    </span>
+                <dl className="mt-5 grid grid-cols-2 gap-4 border-t border-slate-100 pt-4">
+                  <div>
+                    <dt className="text-[11px] text-slate-500">Waktu jemput</dt>
+                    <dd className="mt-0.5 text-sm font-semibold text-slate-900 tabular-nums">{city.avgArrival}</dd>
                   </div>
-                  <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-slate-200/60 font-mono">
-                    <span className="text-slate-500 flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-slate-400" /> Waktu Jemput:
-                    </span>
-                    <span className="font-bold text-[#225FD2]">
-                      {city.avgArrival}
-                    </span>
+                  <div>
+                    <dt className="text-[11px] text-slate-500">Armada</dt>
+                    <dd className="mt-0.5 text-sm font-semibold text-slate-900">{city.activeFleet}</dd>
                   </div>
-                </div>
-              </div>
-
-              <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
-                <span>Status Armada:</span>
-                <span className="font-bold text-slate-900">
-                  {city.activeFleet}
-                </span>
-              </div>
-            </div>
+                </dl>
+              </article>
           ))}
         </div>
 
         {filtered.length === 0 && (
           <div className="text-center py-12 bg-slate-50 rounded-2xl border border-slate-200">
             <p className="text-sm text-slate-600">
-              Tidak ada wilayah atau hub transit yang cocok dengan pencarian &quot;{search}&quot;.
+              Tidak ada kota atau kabupaten yang cocok dengan pencarian &quot;{search}&quot;.
             </p>
           </div>
         )}

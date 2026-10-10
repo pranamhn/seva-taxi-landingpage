@@ -14,7 +14,6 @@ import {
   ShieldCheck,
   Clock,
   Sparkles,
-  HelpCircle,
   ArrowRight,
   Flame,
   Store,
@@ -37,25 +36,6 @@ const FOOD_SPECS = [
   { label: "Skema Kemitraan Resto", value: "Komisi Ramah UMKM (Tumbuh Bersama Mitra)" },
   { label: "Estimasi Pengantaran", value: "Waktu Masak + Rute Antar Tercepat Driver Terdekat" },
   { label: "Kebersihan Kemasan", value: "Standar Segel Higienis Anti Tumpah" },
-];
-
-const FAQS_FOOD = [
-  {
-    q: "Kapan layanan SEVA Food dapat resmi digunakan di aplikasi?",
-    a: "SEVA Food saat ini sedang menyelesaikan tahap integrasi sistem kasir merchant dan pelatihan mitra pengemudi. Rilis resmi akan diumumkan secara bertahap di aplikasi SEVA dengan berbagai voucher promo diskon perdana.",
-  },
-  {
-    q: "Bagaimana cara mendaftarkan restoran atau usaha kuliner saya?",
-    a: "Pemilik restoran, kafe, maupun UMKM kuliner dapat mendaftar lebih awal dengan mengirimkan profil usaha ke email partners@seva.id untuk mendapatkan fasilitas onboarding gratis dan promosi prioritas.",
-  },
-  {
-    q: "Bagaimana SEVA menjaga makanan tetap hangat dan higienis?",
-    a: "Setiap kurir SEVA Food dibekali tas termal khusus dengan lapisan isolator tebal yang menjaga makanan berkuah tetap hangat dan minuman dingin tetap segar selama perjalanan.",
-  },
-  {
-    q: "Apakah biaya ongkir SEVA Food terjangkau?",
-    a: "Ya. Didukung algoritma pencarian driver terdekat dari lokasi merchant, ongkos kirim dihitung transparan per kilometer tanpa mark-up liar harga menu makanan.",
-  },
 ];
 
 const OTHER_SERVICES = [
@@ -215,9 +195,9 @@ export default function SevaFoodPage() {
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
                     {FOOD_SPECS.map((spec) => (
-                      <div key={spec.label} className="py-2 flex items-center justify-between gap-4">
+                      <div key={spec.label} className="py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
                         <dt className="text-slate-500">{spec.label}</dt>
-                        <dd className="font-semibold text-slate-900 text-right">{spec.value}</dd>
+                        <dd className="font-semibold text-slate-900 text-left sm:text-right">{spec.value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -269,30 +249,6 @@ export default function SevaFoodPage() {
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-slate-700 bg-slate-100 mb-3">
-                <HelpCircle className="w-3.5 h-3.5" />
-                <span>FAQ SEVA FOOD</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Pertanyaan Seputar SEVA Food
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {FAQS_FOOD.map((faq, i) => (
-                <div key={i} className="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-2xs">
-                  <h3 className="font-bold text-slate-900 text-sm mb-2">{faq.q}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

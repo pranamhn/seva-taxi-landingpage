@@ -16,7 +16,6 @@ import {
   Wallet,
   Sparkles,
   CheckCircle2,
-  HelpCircle,
   ArrowRight,
   Luggage,
   Wind,
@@ -37,25 +36,6 @@ const CAR_SPECS = [
   { label: "Kenyamanan Kabin", value: "AC Dingin Terkalibrasi & Kabin Bersih Higienis" },
   { label: "Fitur Keselamatan", value: "Dashcam Aktif, Sabuk Pengaman Lengkap, Tombol SOS" },
   { label: "Kebijakan Pembatalan", value: "Gratis Pembatalan dalam 5 Menit Pertama" },
-];
-
-const FAQS_CAR = [
-  {
-    q: "Apakah biaya tol dan parkir sudah termasuk dalam tarif argo?",
-    a: "Tarif di aplikasi mencakup biaya jasa transportasi argo pasti. Biaya tiket tol dan parkir gedung/bandara ditanggung oleh penumpang sesuai rute yang dilalui dan dapat dibayar tunai atau ditambahkan ke tagihan e-Wallet resmi.",
-  },
-  {
-    q: "Berapa banyak koper yang bisa dimuat di bagasi SEVA Car?",
-    a: "Bagasi SEVA Car dapat menampung hingga 2 koper ukuran sedang (medium luggage 24 inch) ditambah 2 tas ransel atau jinjing dengan aman dan rapi.",
-  },
-  {
-    q: "Apakah bisa memesan SEVA Car untuk perjalanan antar kota?",
-    a: "Bisa. SEVA Car melayani perjalanan ke bandara internasional maupun rute aglomerasi antar kota dalam jangkauan operasional resmi SEVA dengan argo yang tertera jelas sebelum pemesanan.",
-  },
-  {
-    q: "Bagaimana jika saya perlu membatalkan pesanan?",
-    a: "SEVA menerapkan kebijakan bebas biaya pembatalan (free cancellation) selama dibatalkan dalam waktu 5 menit pertama sejak driver menerima pesanan Anda.",
-  },
 ];
 
 const OTHER_SERVICES = [
@@ -211,9 +191,9 @@ export default function SevaCarPage() {
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
                     {CAR_SPECS.map((spec) => (
-                      <div key={spec.label} className="py-2 flex items-center justify-between gap-4">
+                      <div key={spec.label} className="py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
                         <dt className="text-slate-500">{spec.label}</dt>
-                        <dd className="font-semibold text-slate-900 text-right">{spec.value}</dd>
+                        <dd className="font-semibold text-slate-900 text-left sm:text-right">{spec.value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -328,30 +308,6 @@ export default function SevaCarPage() {
                   <div className="text-2xl font-black font-mono text-[#225FD2] mb-3">{item.step}</div>
                   <h3 className="font-bold text-slate-900 text-sm mb-1.5">{item.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-slate-700 bg-slate-200/60 mb-3">
-                <HelpCircle className="w-3.5 h-3.5" />
-                <span>FAQ SEVA CAR</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Pertanyaan Seputar SEVA Car
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {FAQS_CAR.map((faq, i) => (
-                <div key={i} className="p-5 rounded-xl bg-white border border-slate-200 shadow-2xs">
-                  <h3 className="font-bold text-slate-900 text-sm mb-2">{faq.q}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>

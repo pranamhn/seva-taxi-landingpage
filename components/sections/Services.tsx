@@ -113,31 +113,31 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
   return (
     <section 
       id="services" 
-      className={`${hideHeader ? "pt-6 sm:pt-8 pb-16 sm:pb-20" : "py-16 sm:py-24"} bg-slate-50/70 border-b border-slate-200/80`}
+      className={`${hideHeader ? "pt-6 sm:pt-8 pb-12 sm:pb-16" : "py-10 sm:py-16"} bg-slate-50/70 border-b border-slate-200/80`}
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
         
         {/* Section Header (Hidden when used inside /services page with PageHeader) */}
         {!hideHeader && (
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3.5 shadow-2xs">
+          <div className="text-center max-w-4xl mx-auto mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-2.5 shadow-2xs">
               <Sparkles className="w-3.5 h-3.5" />
               <span>PILIHAN LAYANAN SEVA</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
               Satu Aplikasi untuk{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#194cb0] to-[#225FD2]">
                 Semua Kebutuhan Perjalanan
               </span>
             </h2>
-            <p className="mt-3 text-sm sm:text-[15px] text-slate-600 leading-relaxed max-w-xl mx-auto">
+            <p className="mt-2 text-sm sm:text-[15px] text-slate-600 leading-relaxed max-w-2xl mx-auto">
               Nikmati kemudahan pesan motor, mobil taksi ber-AC, kirim paket instan, hingga pesan antar kuliner dengan tarif pasti transparan.
             </p>
           </div>
         )}
 
         {/* Tab Navigation Pill Bar */}
-        <div className="flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap pb-2 mb-8">
+        <div className="flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap pb-1 mb-6">
           {RIDE_SERVICES.map((service) => {
             const isActive = activeTab === service.id;
             const isSoon = service.badge === "Soon";
@@ -146,7 +146,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
                 key={service.id}
                 type="button"
                 onClick={() => setActiveTab(service.id)}
-                className={`flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap shrink-0 border ${
+                className={`flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap shrink-0 border cursor-pointer ${
                   isActive
                     ? "bg-[#225FD2] text-white border-[#225FD2] shadow-md shadow-blue-500/25"
                     : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
@@ -172,11 +172,11 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
         </div>
 
         {/* Active Service Showcase Card */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_20px_50px_-25px_rgba(34,95,210,0.15)] overflow-hidden p-6 sm:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_20px_50px_-25px_rgba(34,95,210,0.15)] overflow-hidden p-6 sm:p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
             {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-5">
               
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-50 text-[#225FD2] border border-blue-200/70 mb-2">
@@ -195,7 +195,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
               </p>
 
               {/* Quick Specs Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
                   <span className="text-[11px] font-medium text-slate-500 block">Kapasitas</span>
                   <span className="text-xs sm:text-sm font-bold text-slate-900 mt-0.5 block">
@@ -217,7 +217,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
               </div>
 
               {/* Service Features Checkmarks */}
-              <div className="space-y-2.5 pt-2">
+              <div className="space-y-2 pt-1">
                 <p className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
                   Standar Kenyamanan &amp; Keamanan:
                 </p>
@@ -234,10 +234,10 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
               </div>
 
               {/* CTA Action */}
-              <div className="pt-4 flex flex-wrap items-center gap-3">
+              <div className="pt-3 flex flex-wrap items-center gap-3">
                 <Link
                   href={`/services/${currentService.id}`}
-                  className="h-10 px-6 rounded-full bg-[#225FD2] hover:bg-[#194cb0] text-white text-xs font-bold flex items-center gap-2 transition-all shadow-md shadow-blue-500/25"
+                  className="h-10 px-6 rounded-full bg-[#225FD2] hover:bg-[#194cb0] text-white text-xs font-bold flex items-center gap-2 transition-all shadow-md shadow-blue-500/25 cursor-pointer"
                 >
                   <span>
                     Detail Layanan &amp; Tarif {currentService.name}
@@ -246,7 +246,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
                 </Link>
                 <Link
                   href="/services"
-                  className="h-10 px-4 rounded-full border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                  className="h-10 px-4 rounded-full border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <span>Bandingkan Semua</span>
                 </Link>
@@ -256,32 +256,74 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
 
             {/* Right Visual Image Column */}
             <div className="lg:col-span-5 flex justify-center items-center">
-              <div
-                className={`group relative w-full max-w-[460px] aspect-[2/1] rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm ${
-                  currentService.imageFit === "contain" ? "bg-white p-3" : "bg-slate-100"
-                }`}
-              >
-                {/* Card image — banner cards are full-bleed, food card stays contained on white */}
-                <div className="relative w-full h-full">
-                  <Image
-                    key={currentService.id}
-                    src={imageSrc}
-                    alt={currentService.name}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 460px"
-                    draggable={false}
-                    className={`select-none transition-transform duration-500 group-hover:scale-[1.03] ${
-                      currentService.imageFit === "contain" ? "object-contain" : "object-cover object-center"
-                    }`}
-                    onError={() =>
-                      setFailedImages((prev) => ({ ...prev, [currentService.id]: true }))
-                    }
-                  />
-                </div>
+              <div className="relative w-full max-w-[480px]">
+                {/* Subtle Ambient Radial Glow */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/15 via-[#225FD2]/10 to-emerald-500/15 rounded-[32px] blur-xl opacity-70 pointer-events-none" />
 
-                {/* Overlaid Badge */}
-                <div className="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 text-[11px] font-bold text-slate-800 shadow-sm">
-                  {currentService.kmFare}
+                {/* Main Showcase Frame */}
+                <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 bg-white shadow-lg group">
+                  
+                  {/* Top Meta Bar */}
+                  <div className="px-4 py-2.5 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-[11px] font-bold text-slate-700 tracking-wide">
+                        {currentService.name} • {currentService.category}
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-200/80">
+                      {currentService.kmFare}
+                    </span>
+                  </div>
+
+                  {/* Image Display */}
+                  <div className={`relative w-full aspect-[16/10] overflow-hidden ${
+                    currentService.imageFit === "contain" ? "bg-white p-4" : "bg-slate-100"
+                  }`}>
+                    <Image
+                      key={currentService.id}
+                      src={imageSrc}
+                      alt={currentService.name}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 480px"
+                      draggable={false}
+                      className={`select-none transition-transform duration-700 group-hover:scale-105 ${
+                        currentService.imageFit === "contain" 
+                          ? "object-contain p-2" 
+                          : "object-cover object-center"
+                      }`}
+                      onError={() =>
+                        setFailedImages((prev) => ({ ...prev, [currentService.id]: true }))
+                      }
+                    />
+                    
+                    {/* Soft Bottom Gradient on Cover Images */}
+                    {currentService.imageFit !== "contain" && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent pointer-events-none" />
+                    )}
+                  </div>
+
+                  {/* Floating Bottom Info Pill inside the Frame */}
+                  <div className="p-3 bg-white border-t border-slate-100 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs">
+                        ✓
+                      </div>
+                      <span className="font-semibold text-slate-800 text-[11px] sm:text-[11.5px]">
+                        {currentService.id === "ride"
+                          ? "Helm SNI Higienis & Driver Terlatih"
+                          : currentService.id === "car"
+                          ? "Kabin AC Dingin & SOP Pengemudi Sopan"
+                          : currentService.id === "send"
+                          ? "Live Tracking GPS & Konfirmasi Foto"
+                          : "Thermal Bag Penjaga Suhu Makanan"}
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-emerald-600 font-bold shrink-0 bg-emerald-50 px-2 py-0.5 rounded-full">
+                      Siap Jemput
+                    </span>
+                  </div>
+
                 </div>
               </div>
             </div>

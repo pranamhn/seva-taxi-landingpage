@@ -16,7 +16,6 @@ import {
   Wallet,
   Sparkles,
   CheckCircle2,
-  HelpCircle,
   ArrowRight,
   MapPin,
   Camera,
@@ -38,25 +37,6 @@ const SEND_SPECS = [
   { label: "Pelacakan Pengiriman", value: "Live GPS Tracking di Peta Real-Time" },
   { label: "Bukti Penerimaan", value: "Foto Serah Terima & Tanda Tangan Digital" },
   { label: "Kecepatan Pengantaran", value: "Langsung Berangkat Begitu Kurir Mengambil Paket" },
-];
-
-const FAQS_SEND = [
-  {
-    q: "Apakah kurir SEVA Send mampir ke gudang transit?",
-    a: "Tidak. SEVA Send adalah layanan instan point-to-point. Kurir langsung mengambil paket dari tangan pengirim dan meluncur langsung mengantarkannya ke penerima.",
-  },
-  {
-    q: "Bagaimana cara penerima melacak posisi kurir?",
-    a: "Pengirim dapat membagikan tautan tracking live kepada penerima melalui WhatsApp atau SMS. Penerima dapat memantau pergerakan kurir di peta secara real-time tanpa perlu menginstal aplikasi.",
-  },
-  {
-    q: "Barang apa saja yang dilarang dikirim melalui SEVA Send?",
-    a: "Barang terlarang mencakup narkotika, senjata tajam/api, zat kimia berbahaya mudah meledak/terbakar, uang tunai, hewan hidup, dan barang ilegal lainnya yang melanggar hukum RI.",
-  },
-  {
-    q: "Apakah ada asuransi atau garansi perlindungan barang?",
-    a: "Setiap paket dilindungi standar pertanggungan ganti rugi sesuai ketentuan layanan. Pastikan barang dikemas rapi dengan pelindung kardus atau bubble wrap yang layak sebelum diserahkan ke kurir.",
-  },
 ];
 
 const OTHER_SERVICES = [
@@ -212,9 +192,9 @@ export default function SevaSendPage() {
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
                     {SEND_SPECS.map((spec) => (
-                      <div key={spec.label} className="py-2 flex items-center justify-between gap-4">
+                      <div key={spec.label} className="py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
                         <dt className="text-slate-500">{spec.label}</dt>
-                        <dd className="font-semibold text-slate-900 text-right">{spec.value}</dd>
+                        <dd className="font-semibold text-slate-900 text-left sm:text-right">{spec.value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -354,30 +334,6 @@ export default function SevaSendPage() {
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-slate-700 bg-slate-200/60 mb-3">
-                <HelpCircle className="w-3.5 h-3.5" />
-                <span>FAQ SEVA SEND</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Pertanyaan Seputar SEVA Send
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {FAQS_SEND.map((faq, i) => (
-                <div key={i} className="p-5 rounded-xl bg-white border border-slate-200 shadow-2xs">
-                  <h3 className="font-bold text-slate-900 text-sm mb-2">{faq.q}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

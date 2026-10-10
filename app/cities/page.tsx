@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
 import CityCoverage from "@/components/sections/CityCoverage";
+import CoverageMap from "@/components/sections/CoverageMap";
 import AppDownload from "@/components/sections/AppDownload";
 import {
   Plane,
@@ -89,21 +90,24 @@ export default function CitiesPage() {
           ]}
         />
 
+        {/* Interactive Coverage Map (Radar & Google Maps Embed) */}
+        <CoverageMap />
+
         {/* Directory & Tabs */}
         <CityCoverage hideHeader={true} />
 
         {/* Transit Hubs Highlights */}
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-12">
+            <div className="text-center max-w-4xl mx-auto mb-12">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>TITIK TRANSIT UTAMA</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Penjemputan Mudah di Bandara & Stasiun
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+                Penjemputan Mudah di Bandara &amp; Stasiun
               </h2>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">
                 Layanan SEVA siap sedia di gerbang kedatangan bandara internasional dan simpul transportasi utama Jabodetabek.
               </p>
             </div>
@@ -146,15 +150,15 @@ export default function CitiesPage() {
         {/* FAQs Section */}
         <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-xl mx-auto mb-10">
+            <div className="text-center max-w-4xl mx-auto mb-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
                 <HelpCircle className="w-3.5 h-3.5" />
                 <span>INFORMASI OPERASIONAL</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
                 Pertanyaan Seputar Wilayah Layanan
               </h2>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">
                 Punya pertanyaan tentang rute dan jangkauan penjemputan SEVA?
               </p>
             </div>

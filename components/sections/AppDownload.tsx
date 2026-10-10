@@ -55,7 +55,7 @@ export default function AppDownload() {
   const [activeScreen, setActiveScreen] = useState(APP_SCREENS[0]);
 
   return (
-    <section id="download" className="py-16 sm:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
+    <section id="download" className="py-10 sm:py-16 bg-white border-b border-slate-200/80 overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
         
         {/* Banner Card Wrapper */}
@@ -75,8 +75,10 @@ export default function AppDownload() {
                 <span>UNDUH APLIKASI SEVA SEKARANG</span>
               </div>
 
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.15]">
-                Pengalaman Ride-Hailing Paling Nyaman Ada di Saku Anda
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black tracking-tight leading-tight">
+                Pengalaman Ride-Hailing Paling Nyaman{" "}
+                <br className="hidden sm:inline" />
+                Ada di Saku Anda
               </h2>
 
               <p className="text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed">

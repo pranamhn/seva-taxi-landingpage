@@ -16,7 +16,6 @@ import {
   Phone,
   CheckCircle2,
   Sparkles,
-  HelpCircle,
   ArrowRight,
   Car,
   Package,
@@ -80,25 +79,6 @@ const B2B_ADVANTAGES = [
   },
 ];
 
-const B2B_FAQS = [
-  {
-    q: "Bagaimana skema pembayaran untuk akun korporat B2B?",
-    a: "Kami menyediakan opsi pembayaran prabayar (top-up deposit korporat) maupun pascabayar (invoicing bulanan tempo TOP 14–30 hari) setelah melalui proses verifikasi kelayakan kredit korporat.",
-  },
-  {
-    q: "Apakah perusahaan akan mendapatkan faktur pajak resmi?",
-    a: "Ya. Setiap tagihan bulanan diterbitkan oleh PT Seva Inovasi Digital lengkap dengan Faktur Pajak resmi (e-Faktur PPN) sesuai NPWP badan usaha Anda.",
-  },
-  {
-    q: "Apakah ada batasan minimal jumlah karyawan atau armada?",
-    a: "Tidak ada batasan minimal. Program B2B SEVA dirancang fleksibel untuk startup, UMKM dengan 5 karyawan, hingga korporasi multinasional dengan ribuan staf.",
-  },
-  {
-    q: "Bagaimana cara menghubungkan sistem internal kantor dengan SEVA?",
-    a: "Kami menyediakan dokumentasi API lengkap untuk integrasi otomatis pemesanan kurir SEVA Send, serta dashboard web manajemen korporat yang siap pakai tanpa instalasi tambahan.",
-  },
-];
-
 export default function B2BPartnersPage() {
   return (
     <>
@@ -151,20 +131,20 @@ export default function B2BPartnersPage() {
                   ))}
                 </div>
 
-                <div className="pt-4 flex flex-wrap items-center gap-4">
+                <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-3">
                   <a
                     href="mailto:partners@seva.id?subject=Kemitraan%20B2B%20Corporate%20SEVA"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#225FD2] text-white font-bold text-xs hover:bg-[#1a4cb0] transition-colors shadow-sm"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#225FD2] text-white font-bold text-xs hover:bg-[#1a4cb0] transition-colors shadow-sm"
                   >
-                    <Mail className="w-4 h-4" />
-                    <span>Ajukan Proposal Kemitraan (partners@seva.id)</span>
+                    <Mail className="w-4 h-4 shrink-0" />
+                    <span>Ajukan Proposal Kemitraan</span>
                   </a>
                   <Link
                     href="/fleet-operator"
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-xs hover:bg-slate-50 transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-xs hover:bg-slate-50 transition-colors"
                   >
                     <span>Lihat Ekosistem Fleet Operator</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                   </Link>
                 </div>
               </div>
@@ -208,15 +188,15 @@ export default function B2BPartnersPage() {
         {/* 4 B2B Solutions */}
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-12">
+            <div className="text-center max-w-4xl mx-auto mb-12">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>SOLUSI KEMITRAAN</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
                 Pilihan Model Kerjasama B2B
               </h2>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">
                 Pilih paket solusi yang paling sesuai dengan kebutuhan industri dan operasional perusahaan Anda.
               </p>
             </div>
@@ -251,11 +231,11 @@ export default function B2BPartnersPage() {
         {/* Advantages */}
         <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <div className="text-center max-w-4xl mx-auto mb-12">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
                 Keunggulan Layanan Korporat SEVA
               </h2>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">
                 Transparansi finansial dan kepatuhan standar hukum untuk kenyamanan manajemen perusahaan.
               </p>
             </div>
@@ -282,60 +262,36 @@ export default function B2BPartnersPage() {
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="bg-gradient-to-br from-slate-900 via-[#102a6b] to-[#154194] rounded-3xl p-8 sm:p-12 text-white shadow-xl">
               <div className="max-w-2xl space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-blue-200 border border-white/20">
-                  <Mail className="w-3.5 h-3.5" />
-                  <span>KONSULTASI GRATIS KEBUTUHAN MOBILITAS BISNIS</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-white/10 text-blue-200 border border-white/20 max-w-full">
+                  <Mail className="w-3.5 h-3.5 shrink-0" />
+                  <span className="break-words">KONSULTASI GRATIS MOBILITAS BISNIS</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight break-words">
                   Mulai Kemitraan Bisnis dengan SEVA Hari Ini
                 </h2>
-                <p className="text-sm text-blue-100/90 leading-relaxed">
+                <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed">
                   Hubungi tim Account Manager kami untuk mendapatkan simulasi penghematan biaya transportasi dan presentasi solusi khusus untuk kantor Anda.
                 </p>
 
-                <div className="pt-3 flex flex-wrap items-center gap-4 text-xs font-semibold">
+                <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-3 text-xs font-semibold">
                   <a
                     href="mailto:partners@seva.id"
-                    className="px-5 py-3 rounded-xl bg-white text-[#225FD2] font-bold hover:bg-blue-50 transition-colors shadow-sm inline-flex items-center gap-2"
+                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white text-[#225FD2] font-bold hover:bg-blue-50 transition-colors shadow-sm inline-flex items-center justify-center gap-2"
                   >
-                    <Mail className="w-4 h-4" />
+                    <Mail className="w-4 h-4 shrink-0" />
                     <span>Email: partners@seva.id</span>
                   </a>
                   <a
                     href="https://wa.me/6281280005789"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors shadow-sm inline-flex items-center gap-2"
+                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors shadow-sm inline-flex items-center justify-center gap-2"
                   >
-                    <Phone className="w-4 h-4" />
-                    <span>WhatsApp Bisnis: +62 812-8000-5789</span>
+                    <Phone className="w-4 h-4 shrink-0" />
+                    <span>WhatsApp: +62 812-8000-5789</span>
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-slate-700 bg-slate-100 mb-3">
-                <HelpCircle className="w-3.5 h-3.5" />
-                <span>FAQ KORPORAT</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Pertanyaan Seputar Kemitraan B2B
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {B2B_FAQS.map((faq, i) => (
-                <div key={i} className="p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-2xs">
-                  <h3 className="font-bold text-slate-900 text-sm mb-2">{faq.q}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

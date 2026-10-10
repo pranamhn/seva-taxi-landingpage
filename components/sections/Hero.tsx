@@ -9,36 +9,40 @@ import {
   MapPin,
   Navigation,
   ArrowRight,
+  ArrowUpDown,
   Download,
   Sparkles,
+  Star,
   Clock,
   Wallet,
+  BadgeCheck,
   UtensilsCrossed,
 } from "lucide-react";
 import Image from "next/image";
 
+// Default route shown in the estimator (no quick-route pill)
+const DEFAULT_ROUTE = {
+  distance: 8.5,
+  pickup: "Stasiun Gambir, Jakarta Pusat",
+  dest: "SCBD Sudirman, Jakarta Selatan",
+};
+
 // Popular commute route presets in Jabodetabek
 const RIDE_PRESETS = [
   {
-    name: "Stasiun Gambir ➔ SCBD",
-    distance: 8.5,
-    pickup: "Stasiun Gambir, Jakarta Pusat",
-    dest: "SCBD Sudirman, Jakarta Selatan",
-  },
-  {
-    name: "Bandara CGK ➔ Thamrin",
+    name: "CGK ➔ Thamrin",
     distance: 31.4,
     pickup: "Terminal 3 Bandara Soekarno-Hatta (CGK)",
     dest: "Grand Indonesia / Bundaran HI, Thamrin",
   },
   {
-    name: "Stasiun KCIC Whoosh ➔ Kuningan",
+    name: "Whoosh ➔ Kuningan",
     distance: 14.2,
     pickup: "Stasiun Kereta Cepat Halim (KCIC)",
     dest: "Mega Kuningan, Jakarta Selatan",
   },
   {
-    name: "BSD City ➔ Senayan",
+    name: "BSD ➔ Senayan",
     distance: 26.8,
     pickup: "The Breeze BSD City, Tangsel",
     dest: "Gelora Bung Karno (GBK), Senayan",
@@ -89,9 +93,9 @@ const RIDE_CATEGORIES = [
 
 export default function Hero() {
   const [activeCategory, setActiveCategory] = useState("ride");
-  const [pickup, setPickup] = useState(RIDE_PRESETS[0].pickup);
-  const [dest, setDest] = useState(RIDE_PRESETS[0].dest);
-  const [distance, setDistance] = useState(RIDE_PRESETS[0].distance);
+  const [pickup, setPickup] = useState(DEFAULT_ROUTE.pickup);
+  const [dest, setDest] = useState(DEFAULT_ROUTE.dest);
+  const [distance, setDistance] = useState(DEFAULT_ROUTE.distance);
 
   const selectedVehicle = RIDE_CATEGORIES.find((c) => c.id === activeCategory) || RIDE_CATEGORIES[0];
   const calculatedFare = selectedVehicle.baseFare + Math.round(distance * selectedVehicle.perKm) + 1000;
@@ -103,7 +107,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative isolate w-full min-h-[calc(100vh-68px)] flex items-center justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden bg-white">
+    <section id="hero" className="relative isolate w-full min-h-[100svh] flex items-center justify-center pt-[84px] sm:pt-[88px] pb-6 sm:pb-8 overflow-hidden bg-white">
       {/* Sky Blue Highway Ambient Background with Soft Fade */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
@@ -123,13 +127,13 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/30 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-[1240px] w-full mx-auto px-4 sm:px-6 my-auto">
+      <div className="relative z-10 max-w-[1240px] w-full mx-auto px-4 sm:px-6">
         
         {/* Main 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.1fr] gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-8 lg:gap-12 xl:gap-16 items-center">
           
           {/* Left Column: Heading, Subtitle, and Clean Quick Ride Estimator */}
-          <div className="text-left space-y-4 sm:space-y-5 animate-hero-fade">
+          <div className="text-left space-y-3 sm:space-y-4 lg:space-y-[clamp(8px,1.6vh,16px)] w-full animate-hero-fade">
             
             {/* Top Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-blue-500/10 border border-blue-500/20 text-[#225FD2] shadow-2xs">
@@ -138,11 +142,12 @@ export default function Hero() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[48px] font-extrabold tracking-tight text-slate-900 leading-[1.14]">
+            <h1 className="text-3xl sm:text-4xl lg:text-[clamp(28px,min(5.4vh,3.3vw),42px)] font-extrabold tracking-tight text-slate-900 leading-[1.14] break-words">
               Perjalanan Nyaman,{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#194cb0] to-[#225FD2]">
                 Cepat &amp; Aman
               </span>{" "}
+              <br className="hidden lg:block" />
               dengan Tarif Transparan
             </h1>
 
@@ -151,11 +156,11 @@ export default function Hero() {
               Pesan SEVA RIDE, SEVA CAR, kirim barang dengan SEVA SEND, serta segera nikmati pesan antar SEVA FOOD. Tarif pasti di awal, tanpa lonjakan liar.
             </p>
 
-            {/* Clean Quick Ride Booking Widget */}
-            <div className="bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_-20px_rgba(34,95,210,0.18)] space-y-3.5">
+            {/* Premium Ride Booking Simulator Card */}
+            <div className="w-full max-w-[540px] bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_-15px_rgba(34,95,210,0.18)] space-y-3.5 transition-all">
               
               {/* Category Switcher Tabs: SEVA RIDE, SEVA CAR, SEVA SEND, SEVA FOOD */}
-              <div className="grid grid-cols-4 gap-1 sm:gap-1.5 bg-slate-100/80 p-1 rounded-2xl">
+              <div className="grid grid-cols-4 gap-1 sm:gap-1.5 bg-slate-100/90 p-1 sm:p-1.5 rounded-2xl border border-slate-200/60">
                 {RIDE_CATEGORIES.map((cat) => {
                   const Icon = cat.icon;
                   const isActive = activeCategory === cat.id;
@@ -166,9 +171,9 @@ export default function Hero() {
                       onClick={() => setActiveCategory(cat.id)}
                       aria-pressed={isActive}
                       aria-label={cat.badge === "Soon" ? `${cat.name} (segera hadir)` : cat.name}
-                      className={`flex items-center justify-center gap-1 sm:gap-1.5 py-2 px-1 sm:px-1.5 rounded-xl text-[11px] sm:text-xs transition-all duration-200 ${
+                      className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 relative py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs transition-all duration-200 cursor-pointer ${
                         isActive
-                          ? "bg-white text-[#225FD2] shadow-xs border border-slate-200/80 font-bold"
+                          ? "bg-white text-[#225FD2] shadow-sm border border-slate-200/90 font-bold"
                           : "text-slate-600 hover:text-slate-900 hover:bg-white/60 font-semibold"
                       }`}
                     >
@@ -178,101 +183,147 @@ export default function Hero() {
                         {cat.name.replace(/^SEVA\s+/, "")}
                       </span>
                       {cat.badge === "Soon" && (
-                        <>
-                          <span className="sm:hidden w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" aria-hidden="true" />
-                          <span className="hidden sm:inline text-[9px] px-1.5 py-0.2 rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-200 shrink-0">
-                            Soon
-                          </span>
-                        </>
+                        <span className="absolute -top-2 -right-0.5 text-[8.5px] leading-none px-1.5 py-[3px] rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-200 shadow-2xs">
+                          Soon
+                        </span>
                       )}
                     </button>
                   );
                 })}
               </div>
 
-              {/* Commuter Route Pills */}
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar text-[11px]">
-                <span className="text-slate-400 font-medium shrink-0">Rute:</span>
-                {RIDE_PRESETS.map((preset) => (
-                  <button
-                    key={preset.name}
-                    type="button"
-                    onClick={() => handleSelectPreset(preset)}
-                    className={`px-2.5 py-1 rounded-full border transition-all whitespace-nowrap shrink-0 ${
-                      pickup === preset.pickup
-                        ? "bg-blue-50 border-blue-300 text-[#225FD2] font-bold shadow-2xs"
-                        : "bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300"
-                    }`}
-                  >
-                    {preset.name}
-                  </button>
-                ))}
+              {/* Connected Route Selector (Unified Pickup & Destination Box) */}
+              <div className="relative rounded-2xl bg-slate-50/90 border border-slate-200/90 p-2.5 sm:p-3 transition-colors focus-within:border-blue-400 focus-within:bg-white focus-within:shadow-sm">
+                {/* Left Route Indicator (Pickup Dot -> Dashed Line -> Destination Marker) */}
+                <div className="absolute left-3.5 top-[18px] bottom-[18px] flex flex-col items-center justify-between pointer-events-none">
+                  {/* Pickup Dot */}
+                  <div className="w-2.5 h-2.5 rounded-full border-2 border-[#225FD2] bg-white flex items-center justify-center">
+                    <div className="w-1 h-1 rounded-full bg-[#225FD2]" />
+                  </div>
+                  {/* Dashed Connector Line */}
+                  <div className="w-0 flex-1 my-1 border-l-2 border-dashed border-slate-300" />
+                  {/* Destination Marker */}
+                  <div className="w-2.5 h-2.5 rounded-xs bg-emerald-500 shadow-xs" />
+                </div>
+
+                {/* Input Fields */}
+                <div className="pl-6 pr-10 space-y-1.5">
+                  {/* Pickup Field */}
+                  <div className="relative">
+                    <div className="text-[9.5px] font-mono uppercase font-bold text-slate-400 tracking-wider leading-none mb-0.5">
+                      Titik Jemput
+                    </div>
+                    <input
+                      type="text"
+                      value={pickup}
+                      aria-label="Lokasi penjemputan"
+                      autoComplete="off"
+                      onChange={(e) => setPickup(e.target.value)}
+                      placeholder={
+                        activeCategory === "food"
+                          ? "Cari resto atau kuliner favorit..."
+                          : activeCategory === "send"
+                          ? "Alamat penjemputan barang / paket..."
+                          : "Lokasi penjemputan..."
+                      }
+                      className="w-full text-xs sm:text-[13px] font-semibold text-slate-900 bg-transparent outline-none truncate placeholder:text-slate-400 placeholder:font-normal"
+                    />
+                  </div>
+
+                  {/* Clean Divider */}
+                  <div className="h-px bg-slate-200/80 my-1" />
+
+                  {/* Destination Field */}
+                  <div className="relative">
+                    <div className="text-[9.5px] font-mono uppercase font-bold text-slate-400 tracking-wider leading-none mb-0.5">
+                      Tujuan Pengantaran
+                    </div>
+                    <input
+                      type="text"
+                      value={dest}
+                      aria-label="Tujuan perjalanan"
+                      autoComplete="off"
+                      onChange={(e) => setDest(e.target.value)}
+                      placeholder={
+                        activeCategory === "food"
+                          ? "Alamat pengantaran makanan..."
+                          : activeCategory === "send"
+                          ? "Alamat tujuan pengiriman..."
+                          : "Tujuan perjalanan..."
+                      }
+                      className="w-full text-xs sm:text-[13px] font-semibold text-slate-900 bg-transparent outline-none truncate placeholder:text-slate-400 placeholder:font-normal"
+                    />
+                  </div>
+                </div>
+
+                {/* Swap Button */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const temp = pickup;
+                    setPickup(dest);
+                    setDest(temp);
+                  }}
+                  title="Tukar Titik Jemput dan Tujuan"
+                  aria-label="Tukar Titik Jemput dan Tujuan"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-500 hover:text-[#225FD2] flex items-center justify-center transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <ArrowUpDown className="w-3.5 h-3.5" />
+                </button>
               </div>
 
-              {/* Pickup & Destination Inputs with Connector Line */}
-              <div className="space-y-2 relative">
-                <div className="relative flex items-center">
-                  <div className="w-6 h-6 rounded-lg bg-blue-50 text-[#225FD2] flex items-center justify-center absolute left-2.5 pointer-events-none">
-                    <MapPin className="w-3.5 h-3.5" />
-                  </div>
-                  <input
-                    type="text"
-                    value={pickup}
-                    aria-label="Lokasi penjemputan"
-                    autoComplete="off"
-                    onChange={(e) => setPickup(e.target.value)}
-                    placeholder={
-                      activeCategory === "food"
-                        ? "Cari resto atau kuliner favorit..."
-                        : activeCategory === "send"
-                        ? "Alamat penjemputan barang / paket..."
-                        : "Lokasi penjemputan..."
-                    }
-                    className="w-full pl-10 pr-3 py-2 text-xs font-medium rounded-xl bg-slate-50/90 border border-slate-200 text-slate-800 focus:bg-white focus:outline-none focus:border-[#225FD2] transition-colors"
-                  />
-                </div>
-
-                <div className="relative flex items-center">
-                  <div className="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center absolute left-2.5 pointer-events-none">
-                    <Navigation className="w-3.5 h-3.5" />
-                  </div>
-                  <input
-                    type="text"
-                    value={dest}
-                    aria-label="Tujuan perjalanan"
-                    autoComplete="off"
-                    onChange={(e) => setDest(e.target.value)}
-                    placeholder={
-                      activeCategory === "food"
-                        ? "Alamat pengantaran makanan..."
-                        : activeCategory === "send"
-                        ? "Alamat tujuan pengiriman..."
-                        : "Tujuan perjalanan..."
-                    }
-                    className="w-full pl-10 pr-3 py-2 text-xs font-medium rounded-xl bg-slate-50/90 border border-slate-200 text-slate-800 focus:bg-white focus:outline-none focus:border-[#225FD2] transition-colors"
-                  />
-                </div>
+              {/* Commuter Route Pills (Quick Suggestions) */}
+              <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
+                <span className="text-[10px] font-mono uppercase font-bold text-slate-400 shrink-0">
+                  Rute Cepat:
+                </span>
+                {RIDE_PRESETS.map((preset) => {
+                  const isSelected = pickup === preset.pickup && dest === preset.dest;
+                  return (
+                    <button
+                      key={preset.name}
+                      type="button"
+                      onClick={() => handleSelectPreset(preset)}
+                      className={`px-2.5 py-1 rounded-lg border transition-all whitespace-nowrap shrink-0 text-xs cursor-pointer ${
+                        isSelected
+                          ? "bg-blue-50 border-blue-300 text-[#225FD2] font-bold shadow-2xs"
+                          : "bg-slate-50/80 border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-100"
+                      }`}
+                    >
+                      {preset.name}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Price Calculation & Action Trigger */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
-                <div>
-                  <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
-                    <Clock className="w-3 h-3 text-[#225FD2]" />
-                    <span>Jemput: {selectedVehicle.eta}</span>
+              <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500">
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-[#225FD2]" />
+                      <span>Jemput: {selectedVehicle.eta}</span>
+                    </span>
                     <span className="text-slate-300">•</span>
-                    <span className="text-emerald-600 font-semibold">
-                      {activeCategory === "food" ? "Segera Hadir" : "Tarif Pasti"}
+                    <span className="text-emerald-600 font-semibold truncate">
+                      {activeCategory === "food" ? "Segera Hadir" : "Tarif Pasti (Argo Resmi)"}
                     </span>
                   </div>
-                  <div className="text-lg sm:text-xl font-extrabold text-slate-900 font-mono tracking-tight mt-0.5">
-                    {activeCategory === "food" ? "Coming Soon" : `Rp ${calculatedFare.toLocaleString("id-ID")}`}
+                  <div className="flex items-baseline gap-1.5 mt-0.5">
+                    <span className="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono tracking-tight">
+                      {activeCategory === "food" ? "Coming Soon" : `Rp ${calculatedFare.toLocaleString("id-ID")}`}
+                    </span>
+                    {activeCategory !== "food" && (
+                      <span className="text-[11px] font-mono text-slate-400">
+                        ({distance} km)
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 <Link
                   href="#download"
-                  className="h-9 px-4.5 rounded-xl bg-[#225FD2] hover:bg-[#194cb0] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 hover:scale-[1.02]"
+                  className="h-10 px-5 rounded-xl bg-gradient-to-r from-[#225FD2] to-[#184cb3] hover:from-[#1b53c7] hover:to-[#143f96] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 hover:scale-[1.02] active:scale-[0.98] shrink-0 w-full sm:w-auto"
                 >
                   <span>
                     {activeCategory === "food"
@@ -288,69 +339,86 @@ export default function Hero() {
             </div>
 
             {/* Trust Badges Bar */}
-            <div className="flex items-center gap-2 text-xs font-medium text-slate-600 pt-1">
-              <div className="flex items-center gap-1">
-                <Download className="w-3.5 h-3.5 text-[#225FD2]" />
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1">
+              <div className="inline-flex items-center gap-2 h-9 pl-1.5 pr-3 rounded-xl bg-white/85 backdrop-blur border border-slate-200/80 shadow-2xs text-xs">
+                <span className="w-6 h-6 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
+                  <Download className="w-3.5 h-3.5 text-[#225FD2]" aria-hidden="true" />
+                </span>
                 <span className="font-bold text-slate-900">10K+</span>
-                <span>Unduhan Aplikasi</span>
+                <span className="font-medium text-slate-600">Unduhan Aplikasi</span>
+              </div>
+              <div className="inline-flex items-center gap-2 h-9 pl-1.5 pr-3 rounded-xl bg-white/85 backdrop-blur border border-slate-200/80 shadow-2xs text-xs">
+                <span className="w-6 h-6 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
+                  <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" aria-hidden="true" />
+                </span>
+                <span className="font-bold text-slate-900">4.8/5.0</span>
+                <span className="font-medium text-slate-500">Rating Jabodetabek</span>
               </div>
             </div>
 
           </div>
 
           {/* Right Column: Visual Smartphone Mockup with Real Passenger App Screen from User */}
-          <div className="relative flex justify-center items-center my-auto mt-6 lg:mt-0">
+          <div className="relative flex justify-center items-center mt-6 lg:mt-0">
             
             {/* Ambient Radial Blue Glow */}
             <div className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] rounded-full bg-blue-500/18 blur-3xl pointer-events-none -z-10" />
 
-            {/* Floating e-Wallet Card (Top Left) — Ultra-Glossy Liquid Glass */}
-            <div className="absolute top-6 sm:top-10 -left-3 sm:-left-8 lg:-left-12 z-30 flex items-center gap-3 rounded-2xl sm:rounded-3xl px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/95 backdrop-blur-xl border border-white/90 shadow-[0_18px_40px_-8px_rgba(34,95,210,0.22),0_4px_16px_rgba(0,0,0,0.06)] select-none animate-float-slow">
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl p-2 bg-blue-50 border border-blue-200/80 flex items-center justify-center shrink-0">
-                <Wallet className="w-5 h-5 text-[#225FD2]" />
-                <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+            {/* Floating e-Wallet Card (Top Left) — Glossy Liquid Glass */}
+            <div className="absolute top-6 sm:top-10 left-0 z-30 flex items-center gap-3 overflow-hidden rounded-2xl sm:rounded-[22px] pl-2.5 pr-4 py-2.5 sm:pl-3 sm:pr-5 sm:py-3 bg-gradient-to-br from-white/95 via-white/85 to-blue-100/70 backdrop-blur-2xl backdrop-saturate-150 border border-white/80 ring-1 ring-blue-900/5 shadow-[0_24px_48px_-16px_rgba(34,95,210,0.45),0_4px_12px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.95)] select-none animate-float-slow">
+              {/* Top gloss highlight */}
+              <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent" />
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#5b94ff] via-[#225FD2] to-[#143f96] shadow-[0_8px_16px_-6px_rgba(34,95,210,0.75),inset_0_1px_0_rgba(255,255,255,0.45)] flex items-center justify-center shrink-0">
+                <Wallet className="w-5 h-5 text-white drop-shadow-sm" aria-hidden="true" />
+                <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 border border-white"></span>
                 </span>
               </div>
-              <div>
+              <div className="relative">
                 <p className="font-bold text-xs sm:text-[13px] text-slate-900 tracking-tight leading-tight">
                   SEVA e-Wallet
                 </p>
-                <p className="text-[10px] sm:text-xs font-semibold text-emerald-600 mt-0.5">
-                  Rp 384.000 • Cashless
+                <p className="mt-1 flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-700 tabular-nums">Rp 384.000</span>
+                  <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] sm:text-[10px] leading-none font-bold text-emerald-700">
+                    Cashless
+                  </span>
                 </p>
               </div>
             </div>
 
             {/* Realistic Smartphone Mockup — Beranda SEVA Ride Hailing */}
-            <div className="relative w-full max-w-[285px] sm:max-w-[320px] md:max-w-[335px] z-10 transition-transform duration-300 hover:scale-[1.01] drop-shadow-[0_25px_50px_rgba(0,66,196,0.28)]">
+            <div className="relative w-full max-w-[285px] sm:max-w-[320px] md:max-w-[335px] lg:max-w-none lg:w-auto lg:shrink-0 lg:aspect-[427/860] lg:h-[min(660px,calc(100svh-215px))] z-10 transition-transform duration-300 hover:scale-[1.01] drop-shadow-[0_25px_50px_rgba(0,66,196,0.28)]">
               <Image
                 src="/images/app/beranda-seva-ride-hailing.webp"
                 alt="Aplikasi SEVA Ride Hailing - Beranda Utama"
                 width={427}
                 height={860}
-                sizes="(max-width: 640px) 285px, 335px"
+                sizes="(max-width: 640px) 285px, 320px"
                 priority
-                className="block w-full h-auto select-none"
+                className="block w-full h-auto lg:h-full object-contain select-none"
                 draggable={false}
               />
             </div>
 
-            {/* Floating Verified Ride Card (Bottom Right) — Ultra-Glossy Liquid Glass */}
-            <div className="absolute bottom-6 sm:bottom-10 -right-2 sm:-right-6 lg:-right-8 z-30 flex items-center gap-3 rounded-2xl sm:rounded-3xl px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/95 backdrop-blur-xl border border-white/90 shadow-[0_18px_40px_-8px_rgba(16,185,129,0.25),0_4px_16px_rgba(0,0,0,0.06)] select-none animate-float-slow">
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl p-2 bg-emerald-50 border border-emerald-200/80 flex items-center justify-center shrink-0">
+            {/* Floating Verified Ride Card (Bottom Right) — Glossy Liquid Glass */}
+            <div className="absolute bottom-6 sm:bottom-10 right-0 z-30 flex items-center gap-3 overflow-hidden rounded-2xl sm:rounded-[22px] pl-2.5 pr-4 py-2.5 sm:pl-3 sm:pr-5 sm:py-3 bg-gradient-to-br from-white/95 via-white/85 to-emerald-100/70 backdrop-blur-2xl backdrop-saturate-150 border border-white/80 ring-1 ring-emerald-900/5 shadow-[0_24px_48px_-16px_rgba(16,185,129,0.45),0_4px_12px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.95)] select-none animate-float-slow">
+              {/* Top gloss highlight */}
+              <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent" />
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl p-2 bg-gradient-to-br from-white to-emerald-100 border border-white shadow-[0_8px_16px_-6px_rgba(16,185,129,0.55),inset_0_1px_0_rgba(255,255,255,0.9)] flex items-center justify-center shrink-0">
                 <Image src="/icons/vehicle.webp" alt="Ride Hailing" width={40} height={40} className="w-full h-full object-contain" />
-                <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#225FD2] border border-white"></span>
                 </span>
               </div>
-              <div>
+              <div className="relative">
                 <p className="font-bold text-xs sm:text-[13px] text-slate-900 tracking-tight leading-tight">
                   Ride Hailing SEVA
                 </p>
-                <p className="text-[10px] sm:text-xs font-semibold text-emerald-600 mt-0.5">
+                <p className="mt-1 flex items-center gap-1 whitespace-nowrap text-[10px] sm:text-xs font-semibold text-emerald-700">
+                  <BadgeCheck className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
                   Pembayaran Terverifikasi
                 </p>
               </div>

@@ -36,7 +36,7 @@ const BENEFITS = [
   {
     icon: Zap,
     title: "Skema Bagi Hasil Adil & H+0",
-    desc: "Potongan platform yang kompetitif hingga 85% bagi hasil bersih. Rekonsiliasi keuangan transparan dengan pencairan dana harian langsung.",
+    desc: "Potongan platform hanya 5%, tidak lebih, dengan bagi hasil bersih hingga 95%. Rekonsiliasi keuangan transparan dengan pencairan dana harian langsung.",
   },
   {
     icon: ShieldCheck,
@@ -75,14 +75,14 @@ export default function FleetOperatorPage() {
       <main className="bg-white text-slate-900 min-h-screen">
         {/* Page Header */}
         <PageHeader
-          badge="EKOSISTEM MITRA ARMADA // FLEET OPERATOR RESMI"
-          title="Kemitraan Fleet Operator & Manajemen Armada"
+          badge="EKOSISTEM MITRA ARMADA // FLEET PARTNERS RESMI"
+          title="Kemitraan Fleet Partners & Manajemen Armada"
           subtitle="Bergabunglah bersama 4.400+ unit armada yang telah terhubung dalam ekosistem SEVA. Maksimalkan utilisasi armada taksi, rental mobil, shuttle, dan kendaraan komersial Anda dengan platform mobilitas terpercaya."
-          breadcrumbs={[{ label: "Fleet Operator" }]}
+          breadcrumbs={[{ label: "Fleet Partners" }]}
           metrics={[
             { label: "Total Armada Terhubung", value: "4.390+ Unit", hint: "9 Perusahaan Mitra Aktif" },
             { label: "Perusahaan Terdaftar", value: "9 Operator", hint: "Taksi, Rental, EV & Logistik" },
-            { label: "Skema Bagi Hasil", value: "Hingga 85%", hint: "Pencairan harian H+0" },
+            { label: "Skema Bagi Hasil", value: "Hingga 95%", hint: "Pencairan harian H+0" },
           ]}
         />
 
@@ -92,15 +92,15 @@ export default function FleetOperatorPage() {
         {/* Keunggulan Kemitraan Fleet Operator */}
         <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="text-center max-w-4xl mx-auto mb-14">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3.5">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>NILAI TAMBAH MITRA FLEET</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
                 Mengapa Bermitra dengan SEVA?
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
                 Kami menyediakan teknologi distribusi pesanan pintar dan model kemitraan yang menguntungkan bagi pemilik armada besar maupun operator transportasi berkembang.
               </p>
             </div>
@@ -134,15 +134,15 @@ export default function FleetOperatorPage() {
         {/* 4 Langkah Mudah Bergabung */}
         <section className="py-16 sm:py-24 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="text-center max-w-4xl mx-auto mb-14">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3.5">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>ALUR KEMITRAAN CEPAT</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
                 4 Langkah Mudah Mengintegrasikan Armada
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
                 Proses orientasi yang terstruktur memastikan armada Anda dapat segera aktif di jalan tanpa birokrasi berbelit.
               </p>
             </div>

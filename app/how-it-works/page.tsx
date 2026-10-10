@@ -3,7 +3,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
 import HowItWorks from "@/components/sections/HowItWorks";
-import Testimonials from "@/components/sections/Testimonials";
 import AppDownload from "@/components/sections/AppDownload";
 
 export const metadata: Metadata = {
@@ -30,7 +29,6 @@ export default function HowItWorksPage() {
           ]}
         />
         <HowItWorks />
-        <Testimonials />
         <AppDownload />
       </main>
       <Footer />

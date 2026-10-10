@@ -7,7 +7,6 @@ import ComparisonSection from "@/components/sections/ComparisonSection";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Safety from "@/components/sections/Safety";
 import CityCoverage from "@/components/sections/CityCoverage";
-import Testimonials from "@/components/sections/Testimonials";
 import AppDownload from "@/components/sections/AppDownload";
 
 export const metadata: Metadata = {
@@ -25,7 +24,6 @@ export default function Home() {
         <HowItWorks />
         <Safety />
         <CityCoverage />
-        <Testimonials />
         <AppDownload />
       </main>
       <Footer />

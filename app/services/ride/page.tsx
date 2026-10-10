@@ -16,7 +16,6 @@ import {
   Wallet,
   Sparkles,
   CheckCircle2,
-  HelpCircle,
   ArrowRight,
   MapPin,
   Compass,
@@ -36,25 +35,6 @@ const RIDE_SPECS = [
   { label: "Perlengkapan Keamanan", value: "Helm SNI Bersih + Hairnet Steril Gratis" },
   { label: "Perlengkapan Cuaca", value: "Jas Hujan Cadangan Tersedia" },
   { label: "Waktu Tunggu Rata-rata", value: "1–3 Menit (Driver Terdekat)" },
-];
-
-const FAQS_RIDE = [
-  {
-    q: "Apakah disediakan helm dan hairnet?",
-    a: "Ya. Setiap mitra driver SEVA Ride wajib menyediakan helm berstandar SNI yang higienis serta penutup kepala (hairnet steril) baru sekali pakai tanpa biaya tambahan.",
-  },
-  {
-    q: "Bagaimana jika dalam perjalanan turun hujan lebat?",
-    a: "Mitra driver membawa jas hujan cadangan untuk penumpang. Anda juga dapat berkoordinasi dengan pengemudi untuk menepi sementara di tempat yang aman jika cuaca ekstrem.",
-  },
-  {
-    q: "Berapa kapasitas barang bawaan di SEVA Ride?",
-    a: "Kapasitas wajar adalah 1 ransel atau tas laptop yang dapat dipangku atau digendong oleh penumpang dengan berat maksimal 10 kg demi keselamatan berkendara.",
-  },
-  {
-    q: "Apakah tarif SEVA Ride akan berubah di tengah jalan?",
-    a: "Tidak. Tarif yang tertera saat Anda mengonfirmasi pesanan di aplikasi adalah tarif argo pasti yang mengikat, tanpa lonjakan harga tersembunyi.",
-  },
 ];
 
 const OTHER_SERVICES = [
@@ -210,9 +190,9 @@ export default function SevaRidePage() {
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
                     {RIDE_SPECS.map((spec) => (
-                      <div key={spec.label} className="py-2 flex items-center justify-between gap-4">
+                      <div key={spec.label} className="py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
                         <dt className="text-slate-500">{spec.label}</dt>
-                        <dd className="font-semibold text-slate-900 text-right">{spec.value}</dd>
+                        <dd className="font-semibold text-slate-900 text-left sm:text-right">{spec.value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -327,30 +307,6 @@ export default function SevaRidePage() {
                   <div className="text-2xl font-black font-mono text-[#225FD2] mb-3">{item.step}</div>
                   <h3 className="font-bold text-slate-900 text-sm mb-1.5">{item.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-slate-700 bg-slate-200/60 mb-3">
-                <HelpCircle className="w-3.5 h-3.5" />
-                <span>FAQ SEVA RIDE</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Pertanyaan Seputar SEVA Ride
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {FAQS_RIDE.map((faq, i) => (
-                <div key={i} className="p-5 rounded-xl bg-white border border-slate-200 shadow-2xs">
-                  <h3 className="font-bold text-slate-900 text-sm mb-2">{faq.q}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>

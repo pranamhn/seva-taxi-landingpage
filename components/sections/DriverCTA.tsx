@@ -28,26 +28,27 @@ export default function DriverCTA() {
               </div>
 
               {/* Headline */}
-              <h2 className="text-2xl sm:text-4xl lg:text-[40px] font-extrabold tracking-tight text-white leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
                 Gabung Jadi Mitra Pengemudi,{" "}
+                <br className="hidden sm:inline" />
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-300">
-                  Bawa Pulang Bersih 85%
+                  Bawa Pulang Bersih 95%
                 </span>
               </h2>
 
               {/* Subtitle */}
               <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed max-w-xl">
-                Nikmati potongan komisi platform terendah di Indonesia (hanya 15%), pencairan dana instan setiap hari (H+0) langsung ke rekening Anda, dan kebebasan penuh mengatur jam kerja.
+                Nikmati potongan komisi platform hanya 5%, tidak lebih, pencairan dana instan setiap hari (H+0) langsung ke rekening Anda, dan kebebasan penuh mengatur jam kerja.
               </p>
 
               {/* 3 Key Benefits */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
                   <div className="w-8 h-8 rounded-xl bg-emerald-400/20 text-emerald-400 flex items-center justify-center mb-2 font-bold">
-                    85%
+                    95%
                   </div>
                   <div className="text-xs font-bold text-white">Bagi Hasil Adil</div>
-                  <div className="text-[11px] text-blue-200/80 mt-0.5">Potongan hanya 15%</div>
+                  <div className="text-[11px] text-blue-200/80 mt-0.5">Potongan hanya 5%</div>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
@@ -109,14 +110,14 @@ export default function DriverCTA() {
                   className="w-full h-full object-cover rounded-2xl select-none"
                 />
 
-                {/* Floating Badge 1 (Top Left): 85% Bersih */}
+                {/* Floating Badge 1 (Top Left): 95% Bersih */}
                 <div className="absolute top-6 left-6 z-20 flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-white text-slate-900 shadow-lg animate-float-slow select-none">
                   <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs">
-                    85%
+                    95%
                   </div>
                   <div>
                     <div className="text-[11px] font-bold text-slate-900 leading-tight">Bagi Hasil Bersih</div>
-                    <div className="text-[9px] text-slate-500 font-medium">Potongan cuma 15%</div>
+                    <div className="text-[9px] text-slate-500 font-medium">Potongan cuma 5%</div>
                   </div>
                 </div>
 

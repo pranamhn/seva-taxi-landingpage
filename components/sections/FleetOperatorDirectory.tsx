@@ -150,7 +150,7 @@ export default function FleetOperatorDirectory() {
               <Sparkles className="w-3.5 h-3.5" />
               <span>DAFTAR MITRA FLEET TERDAFTAR</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
               Perusahaan Fleet Operator Terintegrasi
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
@@ -324,8 +324,8 @@ export default function FleetOperatorDirectory() {
               key={item.name}
               className="p-5 bg-white rounded-2xl border border-slate-200/80 shadow-xs space-y-3"
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex items-start justify-between gap-2.5">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/80 p-1 flex items-center justify-center shrink-0 overflow-hidden">
                     {item.logo ? (
                       <Image
@@ -339,12 +339,12 @@ export default function FleetOperatorDirectory() {
                       <Building2 className="w-5 h-5 text-slate-400" />
                     )}
                   </div>
-                  <div>
-                    <div className="font-bold text-slate-900 text-sm">{item.name}</div>
-                    <div className="text-[11px] text-slate-500">{item.typeLabel}</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-bold text-slate-900 text-sm break-words leading-snug">{item.name}</div>
+                    <div className="text-[11px] text-slate-500 truncate">{item.typeLabel}</div>
                   </div>
                 </div>
-                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
                   Active
                 </span>
               </div>

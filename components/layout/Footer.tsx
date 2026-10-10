@@ -59,8 +59,8 @@ export default function Footer() {
               Gabung Mitra
             </div>
             <ul className="space-y-2 text-xs">
-              <li><Link href="/driver" className="hover:text-[#225FD2] transition-colors">Mitra Drivers</Link></li>
-              <li><Link href="/fleet-operator" className="hover:text-[#225FD2] transition-colors">Fleet Operator</Link></li>
+              <li><Link href="/driver" className="hover:text-[#225FD2] transition-colors">Driver Partners</Link></li>
+              <li><Link href="/fleet-operator" className="hover:text-[#225FD2] transition-colors">Fleet Partners</Link></li>
               <li><Link href="/b2b-partners" className="hover:text-[#225FD2] transition-colors">B2B Partners</Link></li>
             </ul>
           </div>
@@ -71,9 +71,9 @@ export default function Footer() {
               Keamanan &amp; Bantuan
             </div>
             <ul className="space-y-2 text-xs">
-              <li><Link href="/safety" className="hover:text-[#225FD2] transition-colors">Standar Keselamatan &amp; Tombol SOS</Link></li>
+              <li><Link href="/safety" className="hover:text-[#225FD2] transition-colors">Standar Keselamatan</Link></li>
               <li><Link href="/how-it-works" className="hover:text-[#225FD2] transition-colors">Panduan Cara Pesan</Link></li>
-              <li><Link href="/cities" className="hover:text-[#225FD2] transition-colors">Cakupan Kota Layanan</Link></li>
+              <li><Link href="/cities" className="hover:text-[#225FD2] transition-colors">Kota Operasional</Link></li>
               <li><span className="text-slate-500 font-mono text-[11px]">Bantuan: support@seva.id</span></li>
             </ul>
           </div>
@@ -85,7 +85,7 @@ export default function Footer() {
           <div>
             &copy; {new Date().getFullYear()} PT Seva Inovasi Digital. Hak Cipta Dilindungi.
           </div>
-          <div className="flex items-center gap-x-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <Link href="/privacy" className="hover:text-[#225FD2] transition-colors">Kebijakan Privasi</Link>
             <span>•</span>
             <Link href="/terms" className="hover:text-[#225FD2] transition-colors">Syarat &amp; Ketentuan</Link>

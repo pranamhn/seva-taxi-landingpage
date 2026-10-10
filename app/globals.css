@@ -2,6 +2,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 @theme {
   --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -300,3 +306,48 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* Coverage map (Leaflet) */
+.seva-map { background: #f1f5f9; font-family: inherit; }
+.seva-map .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.85);
+  color: #64748b;
+  font-size: 10px;
+}
+.seva-map .leaflet-control-attribution a { color: #475569; }
+.seva-map .leaflet-bar { border: 1px solid #e2e8f0; box-shadow: none; }
+.seva-map .leaflet-bar a {
+  background: #ffffff;
+  color: #334155;
+  border-bottom-color: #e2e8f0;
+}
+.seva-map .leaflet-bar a:hover { background: #f1f5f9; }
+.seva-pin-wrap { background: transparent; border: 0; }
+.seva-pin {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.seva-pin--hub { background: #eff6ff; border-color: #225fd2; color: #225fd2; }
+.seva-pin--active { background: #225fd2; border-color: #ffffff; color: #ffffff; transform: scale(1.15); }
+.seva-pin-wrap:hover .seva-pin { background: #225fd2; border-color: #ffffff; color: #ffffff; }
+.leaflet-tooltip.seva-tip {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  color: #0f172a;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
+}
+.leaflet-tooltip.seva-tip::before { display: none; }
+.leaflet-tooltip.seva-tip--active { background: #225fd2; border-color: #ffffff; color: #ffffff; }
