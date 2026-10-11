@@ -1,6 +1,6 @@
 // Base URL used for metadataBase, sitemap, robots, and JSON-LD.
 // Override with NEXT_PUBLIC_SITE_URL for staging/preview deployments.
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://seva.taxi").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://sevataxi.com").replace(/\/$/, "");
 
 export const SITE_NAME = "SEVA Taxi";
 export const LEGAL_NAME = "CV Twin Digital Investama";

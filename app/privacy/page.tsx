@@ -23,7 +23,7 @@ const sections: LegalSection[] = [
     content: (
       <>
         <p>
-          Kebijakan ini berlaku untuk situs <strong>seva.taxi</strong> dan aplikasi SEVA yang
+          Kebijakan ini berlaku untuk situs <strong>sevataxi.com</strong> dan aplikasi SEVA yang
           dikelola oleh <strong>{LEGAL_NAME}</strong> (&ldquo;SEVA&rdquo;, &ldquo;kami&rdquo;).
           Dalam kebijakan ini, SEVA bertindak sebagai pengendali data pribadi sebagaimana diatur
           dalam Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (&ldquo;UU
@@ -70,7 +70,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "situs-web",
-    title: "Penggunaan Situs Web seva.taxi",
+    title: "Penggunaan Situs Web sevataxi.com",
     content: (
       <>
         <p>

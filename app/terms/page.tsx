@@ -23,7 +23,7 @@ const sections: LegalSection[] = [
     title: "Penerimaan Syarat",
     content: (
       <p>
-        Dengan mengakses situs seva.taxi, memasang aplikasi, atau memesan layanan SEVA yang
+        Dengan mengakses situs sevataxi.com, memasang aplikasi, atau memesan layanan SEVA yang
         dikelola oleh <strong>{LEGAL_NAME}</strong>, Anda menyatakan telah membaca, memahami, dan
         menyetujui syarat dan ketentuan ini beserta{" "}
         <Link href="/privacy">Kebijakan Privasi</Link>. Jika tidak setuju, mohon tidak
