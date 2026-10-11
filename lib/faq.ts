@@ -27,7 +27,7 @@ export const FAQ_LIST: FaqItem[] = [
     category: "booking",
     question: "Bagaimana cara memesan perjalanan di aplikasi SEVA?",
     answer:
-      "Unduh aplikasi SEVA di Google Play Store atau Apple App Store, lalu masuk dengan nomor ponsel Anda. Tentukan titik jemput dan tujuan di peta, pilih layanan (SEVA Ride untuk motor, SEVA Car untuk mobil ber-AC, atau SEVA Send untuk kirim paket), periksa tarifnya, lalu konfirmasi pesanan. Driver terdekat akan menuju titik jemput Anda.",
+      "Unduh aplikasi SEVA di Google Play Store atau Apple App Store, lalu masuk dengan nomor ponsel Anda. Tentukan titik jemput dan tujuan di peta, pilih layanan (SEVA Ride untuk motor, SEVA Car untuk mobil, atau SEVA Send untuk kirim paket), periksa tarifnya, lalu konfirmasi pesanan. Driver terdekat akan menuju titik jemput Anda.",
     link: { href: "/how-it-works", label: "Lihat panduan cara pesan" },
   },
   {
@@ -159,14 +159,14 @@ export const FAQ_LIST: FaqItem[] = [
     question: "Bagaimana skema bagi hasil untuk mitra pengemudi?",
     answer:
       "Mitra pengemudi membawa pulang 95% pendapatan perjalanan; potongan platform hanya 5%, tidak lebih. Penghasilan dapat dicairkan harian (H+0) ke rekening bank atas nama mitra tanpa potongan tersembunyi.",
-    link: { href: "/driver-partners", label: "Gabung jadi mitra pengemudi" },
+    link: { href: "/partner/driver", label: "Gabung jadi mitra pengemudi" },
   },
   {
     id: "driver-syarat",
     category: "driver",
     question: "Apa saja syarat menjadi pengemudi SEVA?",
     answer:
-      "WNI berusia 18–60 tahun dengan KTP asli, SIM C (motor) atau SIM A (mobil) yang aktif, SKCK yang masih berlaku, rekening bank atas nama pribadi, STNK dan pajak kendaraan aktif, serta smartphone Android atau iOS dengan GPS aktif. Sepeda motor minimal tahun 2016 dan mobil MPV/sedan minimal tahun 2017 ber-AC.",
+      "WNI berusia 18–60 tahun dengan KTP asli, SIM C (motor) atau SIM A (mobil) yang aktif, SKCK yang masih berlaku, rekening bank atas nama pribadi, STNK dan pajak kendaraan aktif, serta smartphone Android atau iOS dengan GPS aktif. Kendaraan minimal tahun 2017.",
   },
   {
     id: "driver-daftar",
@@ -189,7 +189,7 @@ export const FAQ_LIST: FaqItem[] = [
     category: "safety",
     question: "Fitur keselamatan apa saja yang tersedia selama perjalanan?",
     answer:
-      "Aplikasi SEVA dilengkapi tombol darurat (SOS) 24/7 yang terhubung ke tim respons SEVA, fitur Bagikan Perjalanan untuk memantau rute secara live bersama keluarga, dan penyamaran nomor telepon (number masking) saat Anda menghubungi driver.",
+      "Aplikasi SEVA dilengkapi tombol darurat (SOS) untuk menelepon layanan darurat 112 atau kontak darurat yang Anda simpan, fitur Bagikan Perjalanan untuk memantau rute secara live bersama keluarga, dan penyamaran nomor telepon (number masking) saat Anda menghubungi driver.",
     link: { href: "/safety", label: "Lihat standar keselamatan" },
   },
   {
@@ -236,7 +236,7 @@ export const FAQ_LIST: FaqItem[] = [
     question: "Apakah perusahaan bisa membuka akun korporat?",
     answer:
       "Bisa. Akun korporat mendukung voucher perjalanan karyawan, tagihan bulanan terpusat dengan faktur pajak, dan pengiriman dokumen melalui SEVA Send. Ajukan lewat formulir di halaman B2B Partners.",
-    link: { href: "/b2b-partners#ajukan-kemitraan", label: "Ajukan kemitraan korporat" },
+    link: { href: "/partner/b2b#ajukan-kemitraan", label: "Ajukan kemitraan korporat" },
   },
   {
     id: "partner-merchant",

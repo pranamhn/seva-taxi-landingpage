@@ -9,16 +9,81 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { FLEET_COMPANIES, FLEET_COMPANY_COUNT } from "@/lib/fleet-companies";
+import type { Locale } from "@/lib/i18n";
 
-export default function FleetOperatorDirectory() {
+type Category = "all" | "taxi" | "rental" | "premium" | "ev";
+
+const COPY: Record<
+  Locale,
+  {
+    numberLocale: string;
+    eyebrow: string;
+    title: string;
+    introLead: string;
+    vehiclesUnit: string;
+    introTail: (companies: number) => string;
+    totalLabel: string;
+    tabs: Record<Category, string>;
+    searchLabel: string;
+    searchPlaceholder: string;
+    cols: { company: string; status: string; vehicles: string; share: string };
+    active: string;
+    unit: string;
+    fleetSize: string;
+    empty: (q: string) => string;
+  }
+> = {
+  id: {
+    numberLocale: "id-ID",
+    eyebrow: "DAFTAR MITRA FLEET TERDAFTAR",
+    title: "Perusahaan Fleet Operator Terintegrasi",
+    introLead: "Sebanyak",
+    vehiclesUnit: "unit armada",
+    introTail: (n) => `dari ${n} perusahaan telah terdaftar resmi dan beroperasi dalam ekosistem mobilitas SEVA.`,
+    totalLabel: "Total Armada Terdaftar",
+    tabs: { all: "Semua Operator", taxi: "Taksi Reguler", rental: "Rental Mobil", premium: "VIP & Premium", ev: "EV Listrik" },
+    searchLabel: "Cari nama perusahaan armada",
+    searchPlaceholder: "Cari nama perusahaan armada...",
+    cols: { company: "Perusahaan (Company)", status: "Status", vehicles: "Jumlah Armada (Vehicles)", share: "Pangsa (%)" },
+    active: "Active",
+    unit: "Unit",
+    fleetSize: "Jumlah Armada:",
+    empty: (q) => `Tidak ada operator yang cocok dengan pencarian "${q}".`,
+  },
+  en: {
+    numberLocale: "en-US",
+    eyebrow: "REGISTERED FLEET PARTNERS",
+    title: "Integrated Fleet Operators",
+    introLead: "A total of",
+    vehiclesUnit: "vehicles",
+    introTail: (n) => `from ${n} companies are officially registered and operating in the SEVA network.`,
+    totalLabel: "Total Registered Vehicles",
+    tabs: { all: "All Operators", taxi: "Regular Taxi", rental: "Car Rental", premium: "VIP & Premium", ev: "Electric (EV)" },
+    searchLabel: "Search fleet companies",
+    searchPlaceholder: "Search fleet companies...",
+    cols: { company: "Company", status: "Status", vehicles: "Vehicles", share: "Share (%)" },
+    active: "Active",
+    unit: "Vehicles",
+    fleetSize: "Fleet size:",
+    empty: (q) => `No operator matches "${q}".`,
+  },
+};
+
+const CATEGORIES: Category[] = ["all", "taxi", "rental", "premium", "ev"];
+
+export default function FleetOperatorDirectory({ locale = "id" }: { locale?: Locale }) {
+  const t = COPY[locale];
   const [search, setSearch] = useState("");
-  const [filterCategory, setFilterCategory] = useState<string>("all");
+  const [filterCategory, setFilterCategory] = useState<Category>("all");
 
   const filtered = FLEET_COMPANIES.filter((item) => {
+    const q = search.toLowerCase();
     const matchesSearch =
-      item.name.toLowerCase().includes(search.toLowerCase()) ||
-      item.typeLabel.toLowerCase().includes(search.toLowerCase()) ||
-      item.description.toLowerCase().includes(search.toLowerCase());
+      item.name.toLowerCase().includes(q) ||
+      item.typeLabel.toLowerCase().includes(q) ||
+      item.typeLabelEn.toLowerCase().includes(q) ||
+      item.description.toLowerCase().includes(q) ||
+      item.descriptionEn.toLowerCase().includes(q);
     const matchesCategory =
       filterCategory === "all" ? true : item.category === filterCategory;
     return matchesSearch && matchesCategory;
@@ -35,13 +100,17 @@ export default function FleetOperatorDirectory() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>DAFTAR MITRA FLEET TERDAFTAR</span>
+              <span>{t.eyebrow}</span>
             </div>
             <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
-              Perusahaan Fleet Operator Terintegrasi
+              {t.title}
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
-              Sebanyak <strong>{totalVehicles.toLocaleString("id-ID")} unit armada</strong> dari {FLEET_COMPANY_COUNT} perusahaan telah terdaftar resmi dan beroperasi dalam ekosistem mobilitas SEVA.
+              {t.introLead}{" "}
+              <strong>
+                {totalVehicles.toLocaleString(t.numberLocale)} {t.vehiclesUnit}
+              </strong>{" "}
+              {t.introTail(FLEET_COMPANY_COUNT)}
             </p>
           </div>
 
@@ -52,10 +121,10 @@ export default function FleetOperatorDirectory() {
             </div>
             <div>
               <div className="text-2xl font-black text-slate-900 tabular-nums">
-                {totalVehicles.toLocaleString("id-ID")}
+                {totalVehicles.toLocaleString(t.numberLocale)}
               </div>
               <div className="text-xs text-slate-500 font-medium">
-                Total Armada Terdaftar
+                {t.totalLabel}
               </div>
             </div>
           </div>
@@ -65,61 +134,24 @@ export default function FleetOperatorDirectory() {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
           {/* Category Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-            <button
-              type="button"
-              onClick={() => setFilterCategory("all")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                filterCategory === "all"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Semua Operator ({FLEET_COMPANIES.length})
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterCategory("taxi")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                filterCategory === "taxi"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Taksi Reguler
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterCategory("rental")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                filterCategory === "rental"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Rental Mobil
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterCategory("premium")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                filterCategory === "premium"
-                  ? "bg-[#225FD2] text-white border-[#225FD2] shadow-xs"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              VIP &amp; Premium
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterCategory("ev")}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
-                filterCategory === "ev"
-                  ? "bg-emerald-600 text-white border-emerald-600 shadow-xs"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              EV Listrik
-            </button>
+            {CATEGORIES.map((cat) => {
+              const isActive = filterCategory === cat;
+              const activeClass = cat === "ev" ? "bg-emerald-600 text-white border-emerald-600 shadow-xs" : "bg-[#225FD2] text-white border-[#225FD2] shadow-xs";
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setFilterCategory(cat)}
+                  aria-pressed={isActive}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
+                    isActive ? activeClass : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
+                  }`}
+                >
+                  {t.tabs[cat]}
+                  {cat === "all" && ` (${FLEET_COMPANIES.length})`}
+                </button>
+              );
+            })}
           </div>
 
           {/* Search Box */}
@@ -128,9 +160,9 @@ export default function FleetOperatorDirectory() {
             <input
               type="text"
               value={search}
-              aria-label="Cari nama perusahaan armada"
+              aria-label={t.searchLabel}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari nama perusahaan armada..."
+              placeholder={t.searchPlaceholder}
               className="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-white border border-slate-200 text-slate-800 focus:outline-none focus:border-[#225FD2] transition-colors"
             />
           </div>
@@ -141,10 +173,10 @@ export default function FleetOperatorDirectory() {
           <table className="w-full text-left text-sm text-slate-700">
             <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
               <tr>
-                <th scope="col" className="py-4 px-6">Perusahaan (Company)</th>
-                <th scope="col" className="py-4 px-6 text-center">Status</th>
-                <th scope="col" className="py-4 px-6 text-right">Jumlah Armada (Vehicles)</th>
-                <th scope="col" className="py-4 px-6 text-right">Pangsa (%)</th>
+                <th scope="col" className="py-4 px-6">{t.cols.company}</th>
+                <th scope="col" className="py-4 px-6 text-center">{t.cols.status}</th>
+                <th scope="col" className="py-4 px-6 text-right">{t.cols.vehicles}</th>
+                <th scope="col" className="py-4 px-6 text-right">{t.cols.share}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 font-medium">
@@ -171,19 +203,19 @@ export default function FleetOperatorDirectory() {
                       </div>
                       <div>
                         <div className="font-bold text-slate-900 text-sm">{item.name}</div>
-                        <div className="text-xs text-slate-500 font-normal">{item.description}</div>
+                        <div className="text-xs text-slate-500 font-normal">{locale === "en" ? item.descriptionEn : item.description}</div>
                       </div>
                     </div>
                   </td>
                   <td className="py-4 px-6 text-center">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                      Active
+                      {t.active}
                     </span>
                   </td>
                   <td className="py-4 px-6 text-right font-bold text-slate-900 text-base tabular-nums">
-                    {item.vehicles.toLocaleString("id-ID")}{" "}
-                    <span className="text-xs text-slate-400 font-normal">Unit</span>
+                    {item.vehicles.toLocaleString(t.numberLocale)}{" "}
+                    <span className="text-xs text-slate-400 font-normal">{t.unit}</span>
                   </td>
                   <td className="py-4 px-6 text-right text-xs text-slate-500 tabular-nums">
                     <div className="flex items-center justify-end gap-2">
@@ -228,23 +260,23 @@ export default function FleetOperatorDirectory() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="font-bold text-slate-900 text-sm break-words leading-snug">{item.name}</div>
-                    <div className="text-[11px] text-slate-500 truncate">{item.typeLabel}</div>
+                    <div className="text-[11px] text-slate-500 truncate">{locale === "en" ? item.typeLabelEn : item.typeLabel}</div>
                   </div>
                 </div>
                 <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
-                  Active
+                  {t.active}
                 </span>
               </div>
 
               <div className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl flex items-center justify-between">
-                <span className="text-slate-500">Jumlah Armada:</span>
+                <span className="text-slate-500">{t.fleetSize}</span>
                 <span className="font-bold text-slate-900 text-sm tabular-nums">
-                  {item.vehicles.toLocaleString("id-ID")} Unit
+                  {item.vehicles.toLocaleString(t.numberLocale)} {t.unit}
                 </span>
               </div>
 
               <p className="text-[11px] text-slate-500 leading-relaxed">
-                {item.description}
+                {locale === "en" ? item.descriptionEn : item.description}
               </p>
             </div>
           ))}
@@ -253,7 +285,7 @@ export default function FleetOperatorDirectory() {
         {filtered.length === 0 && (
           <div className="text-center py-12 bg-white rounded-2xl border border-slate-200">
             <p className="text-sm text-slate-600">
-              Tidak ada operator yang cocok dengan pencarian &quot;{search}&quot;.
+              {t.empty(search)}
             </p>
           </div>
         )}

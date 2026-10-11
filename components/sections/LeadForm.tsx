@@ -4,8 +4,9 @@ import { useState } from "react";
 import { track } from "@vercel/analytics";
 import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
 import { CONTACT_WHATSAPP_URL, SUPPORT_EMAIL } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
 
-type Variant = "b2b" | "fleet" | "merchant";
+type Variant = "b2b" | "fleet" | "merchant" | "food-waitlist" | "support";
 
 interface Field {
   name: string;
@@ -17,10 +18,10 @@ interface Field {
   wide?: boolean;
 }
 
-const CONFIG: Record<
-  Variant,
-  { id: string; badge: string; title: string; intro: string; subject: string; opening: string; fields: Field[] }
-> = {
+type FormConfig = { id: string; badge: string; title: string; intro: string; subject: string; opening: string; fields: Field[] };
+
+// `id` (anchor) sama di kedua bahasa agar tautan seperti /partner/fleet#daftar-operator tetap berfungsi.
+const CONFIG: Record<Variant, FormConfig> = {
   b2b: {
     id: "ajukan-kemitraan",
     badge: "FORMULIR KEMITRAAN KORPORAT",
@@ -100,15 +101,232 @@ const CONFIG: Record<
       },
     ],
   },
+  "food-waitlist": {
+    id: "waitlist-food",
+    badge: "DAFTAR TUNGGU SEVA FOOD",
+    title: "Kabari Saya Saat SEVA Food Dibuka",
+    intro: "Tinggalkan nomor WhatsApp dan area Anda. Tim SEVA akan mengabari ketika SEVA Food mulai melayani wilayah Anda.",
+    subject: "Daftar Tunggu SEVA Food",
+    opening: "Halo Tim SEVA, saya ingin masuk daftar tunggu SEVA Food.",
+    fields: [
+      { name: "nama", label: "Nama", type: "text", placeholder: "Nama Anda", required: true },
+      { name: "whatsapp", label: "No. WhatsApp", type: "tel", placeholder: "08xx xxxx xxxx", required: true },
+      { name: "kota", label: "Area pengantaran", type: "text", placeholder: "Contoh: Bekasi Barat", required: true, wide: true },
+    ],
+  },
+  support: {
+    id: "laporkan-masalah",
+    badge: "LAPORKAN MASALAH",
+    title: "Belum Menemukan Jawaban?",
+    intro: "Ceritakan kendala Anda. Sertakan ID pesanan bila terkait perjalanan atau pengiriman agar tim SEVA bisa menelusurinya lebih cepat.",
+    subject: "Laporan Kendala SEVA",
+    opening: "Halo Tim SEVA, saya ingin melaporkan kendala.",
+    fields: [
+      { name: "nama", label: "Nama", type: "text", placeholder: "Nama Anda", required: true },
+      { name: "whatsapp", label: "No. WhatsApp terdaftar", type: "tel", placeholder: "08xx xxxx xxxx", required: true },
+      {
+        name: "peran",
+        label: "Saya adalah",
+        type: "select",
+        required: true,
+        options: ["Penumpang", "Pengirim / penerima paket", "Mitra driver", "Fleet operator / korporat"],
+      },
+      {
+        name: "topik",
+        label: "Topik",
+        type: "select",
+        required: true,
+        options: [
+          "Barang tertinggal",
+          "Tarif atau pembayaran",
+          "SEVA eWallet",
+          "Perilaku driver / penumpang",
+          "Paket SEVA Send",
+          "Akun & login",
+          "Lainnya",
+        ],
+      },
+      { name: "pesanan", label: "ID pesanan", type: "text", placeholder: "Lihat di riwayat pesanan", wide: true },
+      { name: "kendala", label: "Kendala", type: "textarea", placeholder: "Apa yang terjadi, kapan, dan di mana", required: true, wide: true },
+    ],
+  },
 };
 
-const STEPS = ["Isi formulir singkat", "Kirim lewat WhatsApp", "Tim SEVA menghubungi Anda"];
+const CONFIG_EN: Record<Variant, FormConfig> = {
+  b2b: {
+    id: "ajukan-kemitraan",
+    badge: "CORPORATE PARTNERSHIP FORM",
+    title: "Apply for a Corporate Account",
+    intro: "Tell us about your company's travel needs. The SEVA team will contact you with a cost estimate and an offer.",
+    subject: "SEVA Corporate (B2B) Partnership",
+    opening: "Hello SEVA team, I would like to apply for a corporate (B2B) partnership.",
+    fields: [
+      { name: "nama", label: "Full name", type: "text", placeholder: "Your name", required: true },
+      { name: "perusahaan", label: "Company / organisation", type: "text", placeholder: "Company name", required: true },
+      { name: "whatsapp", label: "WhatsApp number", type: "tel", placeholder: "+62 8xx xxxx xxxx", required: true },
+      { name: "email", label: "Work email", type: "email", placeholder: "name@company.com" },
+      {
+        name: "kebutuhan",
+        label: "Main need",
+        type: "select",
+        required: true,
+        wide: true,
+        options: [
+          "Staff travel vouchers",
+          "Guest / hotel / airport transfers",
+          "Document & parcel delivery (SEVA Send)",
+          "Event / MICE transport",
+          "Other",
+        ],
+      },
+      { name: "catatan", label: "Notes", type: "textarea", placeholder: "Approximate number of staff, routes, or schedule", wide: true },
+    ],
+  },
+  fleet: {
+    id: "daftar-operator",
+    badge: "FLEET OPERATOR FORM",
+    title: "Register Your Fleet",
+    intro: "Share a few details about your company and fleet. The SEVA partnerships team will contact you about verification and integration.",
+    subject: "SEVA Fleet Operator Partnership",
+    opening: "Hello SEVA team, I would like to register my fleet as a fleet operator.",
+    fields: [
+      { name: "nama", label: "Contact person", type: "text", placeholder: "Your name", required: true },
+      { name: "perusahaan", label: "Company name", type: "text", placeholder: "Company / cooperative", required: true },
+      { name: "whatsapp", label: "WhatsApp number", type: "tel", placeholder: "+62 8xx xxxx xxxx", required: true },
+      { name: "kota", label: "Operating city", type: "text", placeholder: "e.g. South Jakarta" },
+      {
+        name: "jumlah",
+        label: "Fleet size",
+        type: "select",
+        required: true,
+        options: ["1–10 vehicles", "11–50 vehicles", "51–200 vehicles", "More than 200 vehicles"],
+      },
+      {
+        name: "jenis",
+        label: "Fleet type",
+        type: "select",
+        required: true,
+        options: ["Regular taxi", "Car rental", "Shuttle", "Electric vehicles (EV)", "Other"],
+      },
+    ],
+  },
+  merchant: {
+    id: "daftar-merchant",
+    badge: "SEVA FOOD MERCHANT FORM",
+    title: "Register Early as a Merchant",
+    intro: "Register your restaurant or food business for SEVA Food onboarding. We will contact you when registration opens.",
+    subject: "SEVA Food Merchant Registration",
+    opening: "Hello SEVA team, I would like to register as a SEVA Food merchant.",
+    fields: [
+      { name: "nama", label: "Owner / contact person", type: "text", placeholder: "Your name", required: true },
+      { name: "usaha", label: "Business name", type: "text", placeholder: "Restaurant / café / home kitchen", required: true },
+      { name: "whatsapp", label: "WhatsApp number", type: "tel", placeholder: "+62 8xx xxxx xxxx", required: true },
+      { name: "kota", label: "Business location", type: "text", placeholder: "e.g. Depok, Margonda" },
+      {
+        name: "kategori",
+        label: "Category",
+        type: "select",
+        required: true,
+        wide: true,
+        options: ["Restaurant", "Café & drinks", "Home-based food business", "Other"],
+      },
+    ],
+  },
+  "food-waitlist": {
+    id: "waitlist-food",
+    badge: "SEVA FOOD WAITLIST",
+    title: "Let Me Know When SEVA Food Launches",
+    intro: "Leave your WhatsApp number and area. We will let you know when SEVA Food starts serving your area.",
+    subject: "SEVA Food Waitlist",
+    opening: "Hello SEVA team, I would like to join the SEVA Food waitlist.",
+    fields: [
+      { name: "nama", label: "Name", type: "text", placeholder: "Your name", required: true },
+      { name: "whatsapp", label: "WhatsApp number", type: "tel", placeholder: "+62 8xx xxxx xxxx", required: true },
+      { name: "kota", label: "Delivery area", type: "text", placeholder: "e.g. West Bekasi", required: true, wide: true },
+    ],
+  },
+  support: {
+    id: "laporkan-masalah",
+    badge: "REPORT A PROBLEM",
+    title: "Didn't Find Your Answer?",
+    intro: "Tell us what went wrong. Include your order ID if it is about a trip or delivery so the SEVA team can look into it faster.",
+    subject: "SEVA Problem Report",
+    opening: "Hello SEVA team, I would like to report a problem.",
+    fields: [
+      { name: "nama", label: "Name", type: "text", placeholder: "Your name", required: true },
+      { name: "whatsapp", label: "Registered WhatsApp number", type: "tel", placeholder: "+62 8xx xxxx xxxx", required: true },
+      {
+        name: "peran",
+        label: "I am a",
+        type: "select",
+        required: true,
+        options: ["Passenger", "Parcel sender / recipient", "Driver partner", "Fleet operator / corporate"],
+      },
+      {
+        name: "topik",
+        label: "Topic",
+        type: "select",
+        required: true,
+        options: ["Lost item", "Fare or payment", "SEVA eWallet", "Driver / passenger behaviour", "SEVA Send parcel", "Account & login", "Other"],
+      },
+      { name: "pesanan", label: "Order ID", type: "text", placeholder: "Find it in your order history", wide: true },
+      { name: "kendala", label: "What happened", type: "textarea", placeholder: "What happened, when, and where", required: true, wide: true },
+    ],
+  },
+};
+
+const CONFIGS: Record<Locale, Record<Variant, FormConfig>> = { id: CONFIG, en: CONFIG_EN };
+
+const UI: Record<
+  Locale,
+  {
+    steps: string[];
+    preferEmail: string;
+    optional: string;
+    choose: string;
+    invalidPhone: string;
+    submit: string;
+    opened: string;
+    openWhatsapp: string;
+    or: string;
+    sendEmail: string;
+    notStored: string;
+  }
+> = {
+  id: {
+    steps: ["Isi formulir singkat", "Kirim lewat WhatsApp", "Tim SEVA menghubungi Anda"],
+    preferEmail: "Lebih suka email?",
+    optional: "(opsional)",
+    choose: "Pilih salah satu",
+    invalidPhone: "Nomor WhatsApp belum valid.",
+    submit: "Kirim via WhatsApp",
+    opened: "WhatsApp dibuka di tab baru. Belum terbuka?",
+    openWhatsapp: "Buka WhatsApp",
+    or: "atau",
+    sendEmail: "kirim lewat email",
+    notStored: "Isian tidak disimpan di server; Anda mengirimnya sendiri ke tim SEVA.",
+  },
+  en: {
+    steps: ["Fill in the short form", "Send it via WhatsApp", "The SEVA team contacts you"],
+    preferEmail: "Prefer email?",
+    optional: "(optional)",
+    choose: "Choose one",
+    invalidPhone: "Please enter a valid WhatsApp number.",
+    submit: "Send via WhatsApp",
+    opened: "WhatsApp opened in a new tab. Didn't open?",
+    openWhatsapp: "Open WhatsApp",
+    or: "or",
+    sendEmail: "send by email",
+    notStored: "Your answers are not stored on our servers; you send them to the SEVA team yourself.",
+  },
+};
 
 const inputClass =
   "w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#225FD2] focus:outline-none focus:ring-2 focus:ring-blue-500/15";
 
-export default function LeadForm({ variant }: { variant: Variant }) {
-  const cfg = CONFIG[variant];
+export default function LeadForm({ variant, locale = "id" }: { variant: Variant; locale?: Locale }) {
+  const cfg = CONFIGS[locale][variant];
+  const ui = UI[locale];
   const [values, setValues] = useState<Record<string, string>>({});
   const [error, setError] = useState("");
   const [sentUrl, setSentUrl] = useState("");
@@ -128,7 +346,7 @@ export default function LeadForm({ variant }: { variant: Variant }) {
     e.preventDefault();
     const phone = (values.whatsapp ?? "").replace(/[^\d+]/g, "");
     if (phone.replace(/\D/g, "").length < 9) {
-      setError("Nomor WhatsApp belum valid.");
+      setError(ui.invalidPhone);
       return;
     }
     setError("");
@@ -152,7 +370,7 @@ export default function LeadForm({ variant }: { variant: Variant }) {
           <p className="mt-2 max-w-md text-sm text-slate-600 leading-relaxed">{cfg.intro}</p>
 
           <ol className="mt-6 space-y-3">
-            {STEPS.map((step, i) => (
+            {ui.steps.map((step, i) => (
               <li key={step} className="flex items-center gap-3 text-sm text-slate-700">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs font-bold text-[#225FD2]">
                   {i + 1}
@@ -163,7 +381,7 @@ export default function LeadForm({ variant }: { variant: Variant }) {
           </ol>
 
           <p className="mt-6 text-xs text-slate-500">
-            Lebih suka email?{" "}
+            {ui.preferEmail}{" "}
             <a href={mailto} className="font-semibold text-[#225FD2] hover:underline">
               {SUPPORT_EMAIL}
             </a>
@@ -183,7 +401,7 @@ export default function LeadForm({ variant }: { variant: Variant }) {
                 <div key={f.name} className={f.wide ? "sm:col-span-2" : ""}>
                   <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-slate-700">
                     {f.label}
-                    {!f.required && <span className="font-normal text-slate-500"> (opsional)</span>}
+                    {!f.required && <span className="font-normal text-slate-500"> {ui.optional}</span>}
                   </label>
                   {f.type === "select" ? (
                     <select
@@ -194,7 +412,7 @@ export default function LeadForm({ variant }: { variant: Variant }) {
                       className={`${inputClass.replace("text-slate-900", values[f.name] ? "text-slate-900" : "text-slate-400")} cursor-pointer`}
                     >
                       <option value="" disabled>
-                        Pilih salah satu
+                        {ui.choose}
                       </option>
                       {f.options?.map((o) => (
                         <option key={o} value={o}>
@@ -240,7 +458,7 @@ export default function LeadForm({ variant }: { variant: Variant }) {
             type="submit"
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#225FD2] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#194cb0] cursor-pointer"
           >
-            Kirim via WhatsApp
+            {ui.submit}
             <ArrowRight className="h-4 w-4" />
           </button>
 
@@ -248,13 +466,13 @@ export default function LeadForm({ variant }: { variant: Variant }) {
             <p className="mt-3 flex items-start gap-2 text-xs text-emerald-700" role="status">
               <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
               <span>
-                WhatsApp dibuka di tab baru. Belum terbuka?{" "}
+                {ui.opened}{" "}
                 <a href={sentUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline">
-                  Buka WhatsApp
+                  {ui.openWhatsapp}
                 </a>{" "}
-                atau{" "}
+                {ui.or}{" "}
                 <a href={mailto} className="font-semibold underline">
-                  kirim lewat email
+                  {ui.sendEmail}
                 </a>
                 .
               </span>
@@ -262,7 +480,7 @@ export default function LeadForm({ variant }: { variant: Variant }) {
           ) : (
             <p className="mt-3 flex items-center gap-1.5 text-[11px] text-slate-500">
               <Mail className="h-3 w-3" />
-              Isian tidak disimpan di server; Anda mengirimnya sendiri ke tim SEVA.
+              {ui.notStored}
             </p>
           )}
         </form>

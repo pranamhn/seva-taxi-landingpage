@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
 
 type Size = "sm" | "md" | "lg";
 
@@ -11,7 +12,12 @@ const HEIGHT: Record<Size, string> = {
 
 // Renders the App Store + Google Play badges as two sibling links so the
 // parent decides the flex layout. Badges are self-hosted in /public/images/badges.
-export default function StoreBadges({ size = "lg" }: { size?: Size }) {
+const ALT: Record<Locale, { appStore: string; googlePlay: string }> = {
+  id: { appStore: "Unduh di App Store", googlePlay: "Dapatkan di Google Play" },
+  en: { appStore: "Download on the App Store", googlePlay: "Get it on Google Play" },
+};
+
+export default function StoreBadges({ size = "lg", locale = "id" }: { size?: Size; locale?: Locale }) {
   const height = HEIGHT[size];
   return (
     <>
@@ -23,7 +29,7 @@ export default function StoreBadges({ size = "lg" }: { size?: Size }) {
       >
         <Image
           src="/images/badges/app-store.svg"
-          alt="Unduh di App Store"
+          alt={ALT[locale].appStore}
           width={120}
           height={40}
           className={`${height} w-auto`}
@@ -37,7 +43,7 @@ export default function StoreBadges({ size = "lg" }: { size?: Size }) {
       >
         <Image
           src="/images/badges/google-play.png"
-          alt="Dapatkan di Google Play"
+          alt={ALT[locale].googlePlay}
           width={564}
           height={168}
           className={`${height} w-auto`}

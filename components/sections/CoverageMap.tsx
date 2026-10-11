@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { REGION_POLYGONS, type RegionGroup } from "@/lib/coverage-geo";
 import { FLEET_TOTAL_VEHICLES } from "@/lib/fleet-companies";
+import type { Locale } from "@/lib/i18n";
 
 type ZoneType = "hub" | "core" | "metropolitan";
 
@@ -184,12 +185,109 @@ const COVERAGE_POINTS: CoverageZone[] = [
   },
 ];
 
-const FILTERS: { id: "all" | ZoneType; label: string }[] = [
-  { id: "all", label: "Semua Titik" },
-  { id: "hub", label: "Hub Bandara & Kereta" },
-  { id: "core", label: "Jakarta Bisnis" },
-  { id: "metropolitan", label: "Bodetabek" },
-];
+// Teks versi Inggris untuk titik layanan (nama tempat tetap; hanya keterangan yang diterjemahkan).
+const POINT_EN: Record<string, { name: string; label: string; city: string }> = {
+  cgk: { name: "Soekarno-Hatta International Airport (CGK)", label: "Soekarno-Hatta", city: "Tangerang City" },
+  "jkt-pusat": { name: "Central Jakarta (Sudirman - Thamrin - Monas)", label: "Central Jakarta", city: "Jakarta" },
+  scbd: { name: "SCBD & Senayan - Mega Kuningan", label: "SCBD & Kuningan", city: "South Jakarta" },
+  hlp: { name: "Halim Perdanakusuma Airport (HLP)", label: "Halim (HLP)", city: "East Jakarta" },
+  whoosh: { name: "Whoosh Halim High-Speed Rail Station", label: "Whoosh Halim", city: "East Jakarta" },
+  bsd: { name: "BSD City, Alam Sutera & Bintaro", label: "BSD & Bintaro", city: "South Tangerang" },
+  depok: { name: "Margonda Raya & Universitas Indonesia", label: "Margonda & UI", city: "Depok City" },
+  bekasi: { name: "Summarecon & Greater Bekasi", label: "Summarecon Bekasi", city: "Bekasi City & Regency" },
+  bogor: { name: "Bogor City Centre & Sentul City", label: "Bogor & Sentul", city: "Bogor City & Regency" },
+};
+
+const REGION_EN: Record<string, string> = {
+  "jakarta-pusat": "Central Jakarta",
+  "jakarta-utara": "North Jakarta",
+  "jakarta-barat": "West Jakarta",
+  "jakarta-selatan": "South Jakarta",
+  "jakarta-timur": "East Jakarta",
+  "tangerang-kota": "Tangerang City",
+  tangsel: "South Tangerang",
+  depok: "Depok",
+  "bogor-kota": "Bogor City",
+  "bekasi-kota": "Bekasi City",
+  "tangerang-kab": "Tangerang Regency",
+  "bogor-kab": "Bogor Regency",
+  "bekasi-kab": "Bekasi Regency",
+};
+
+const regionName = (region: (typeof REGION_POLYGONS)[number], locale: Locale) =>
+  locale === "en" ? REGION_EN[region.id] ?? region.name : region.name;
+
+const localizePoint = (p: CoverageZone, locale: Locale): CoverageZone =>
+  locale === "en" && POINT_EN[p.id] ? { ...p, ...POINT_EN[p.id] } : p;
+
+const COPY: Record<
+  Locale,
+  {
+    filters: Record<"all" | ZoneType, string>;
+    eyebrow: string;
+    title: string;
+    intro: string;
+    allActive: string;
+    vehicles: (n: string) => string;
+    filterLabel: string;
+    mapLabel: string;
+    loading: string;
+    buffer: string;
+    airport: string;
+    station: string;
+    activeServices: (name: string) => string;
+    points: (n: number) => string;
+    book: string;
+    available: string;
+    attribution: string;
+    numberLocale: string;
+  }
+> = {
+  id: {
+    filters: { all: "Semua Titik", hub: "Hub Bandara & Kereta", core: "Jakarta Bisnis", metropolitan: "Bodetabek" },
+    eyebrow: "PETA JANGKAUAN SEVA",
+    title: "Peta Wilayah Operasional Jabodetabek",
+    intro:
+      "Batas wilayah administratif Jakarta, Bogor, Depok, Tangerang, dan Bekasi beserta hub bandara dan stasiun transit yang terlayani SEVA.",
+    allActive: "Seluruh Zona Aktif 24/7",
+    vehicles: (n) => `${n} Armada Terpantau`,
+    filterLabel: "Filter titik",
+    mapLabel: "Peta wilayah operasional SEVA di Jabodetabek",
+    loading: "Memuat peta…",
+    buffer: "Kabupaten penyangga",
+    airport: "Bandara",
+    station: "Stasiun",
+    activeServices: (name) => `Layanan aktif (${name})`,
+    points: (n) => `Titik layanan (${n})`,
+    book: "Pesan Penjemputan di Titik Ini",
+    available: "Tersedia untuk pengguna iOS & Android di seluruh Jabodetabek",
+    attribution: "Batas wilayah: © OpenStreetMap contributors (ODbL). Posisi titik bersifat perkiraan.",
+    numberLocale: "id-ID",
+  },
+  en: {
+    filters: { all: "All Points", hub: "Airport & Rail Hubs", core: "Central Jakarta", metropolitan: "Greater Jakarta" },
+    eyebrow: "SEVA COVERAGE MAP",
+    title: "Greater Jakarta Service Area Map",
+    intro:
+      "Administrative boundaries of Jakarta, Bogor, Depok, Tangerang, and Bekasi, plus the airport and transit hubs SEVA serves.",
+    allActive: "All Areas Active 24/7",
+    vehicles: (n) => `${n} Partner Vehicles`,
+    filterLabel: "Filter points",
+    mapLabel: "Map of SEVA service areas in Greater Jakarta",
+    loading: "Loading map…",
+    buffer: "Surrounding regencies",
+    airport: "Airport",
+    station: "Station",
+    activeServices: (name) => `Active services (${name})`,
+    points: (n) => `Service points (${n})`,
+    book: "Book a Pickup Here",
+    available: "Available on iOS & Android across Greater Jakarta",
+    attribution: "Boundaries: © OpenStreetMap contributors (ODbL). Point positions are approximate.",
+    numberLocale: "en-US",
+  },
+};
+
+const FILTER_IDS: ("all" | ZoneType)[] = ["all", "hub", "core", "metropolitan"];
 
 const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services";
 
@@ -216,11 +314,12 @@ const REGION_COLORS: Record<string, string> = {
 };
 const REGION_MUTED = "#64748b";
 
-const URBAN_LEGEND = REGION_POLYGONS.filter((r) => REGION_COLORS[r.id]).map((r) => ({
-  id: r.id,
-  name: r.name.replace("Kota Tangerang Selatan", "Tangerang Selatan").replace(/^Kota /, ""),
-  color: REGION_COLORS[r.id],
-}));
+const urbanLegend = (locale: Locale) =>
+  REGION_POLYGONS.filter((r) => REGION_COLORS[r.id]).map((r) => ({
+    id: r.id,
+    name: locale === "en" ? REGION_EN[r.id] ?? r.name : r.name.replace("Kota Tangerang Selatan", "Tangerang Selatan").replace(/^Kota /, ""),
+    color: REGION_COLORS[r.id],
+  }));
 
 // Ikon (path lucide) untuk penanda di peta
 const ICON_PATHS: Record<CoverageZone["kind"], string> = {
@@ -266,7 +365,9 @@ function polygonStyle(
   return { ...base, opacity: 0.95 };
 }
 
-export default function CoverageMap() {
+export default function CoverageMap({ locale = "id" }: { locale?: Locale }) {
+  const t = COPY[locale];
+  const points = useMemo(() => COVERAGE_POINTS.map((p) => localizePoint(p, locale)), [locale]);
   const [selectedId, setSelectedId] = useState<string>(COVERAGE_POINTS[0].id);
   const [filterType, setFilterType] = useState<FilterId>("all");
   const [ready, setReady] = useState(false);
@@ -278,10 +379,10 @@ export default function CoverageMap() {
   const polygonsRef = useRef<Map<string, Leaflet.Polygon>>(new Map());
   const selectRef = useRef<(id: string) => void>(() => {});
 
-  const selectedPoint = COVERAGE_POINTS.find((p) => p.id === selectedId) ?? COVERAGE_POINTS[0];
+  const selectedPoint = points.find((p) => p.id === selectedId) ?? points[0];
   const filteredPoints = useMemo(
-    () => COVERAGE_POINTS.filter((p) => filterType === "all" || p.type === filterType),
-    [filterType]
+    () => points.filter((p) => filterType === "all" || p.type === filterType),
+    [points, filterType]
   );
 
   useEffect(() => {
@@ -318,7 +419,7 @@ export default function CoverageMap() {
           ...polygonStyle(region, "all", ""),
           lineJoin: "round",
         }).addTo(m);
-        poly.bindTooltip(region.name, { sticky: true, className: "seva-tip", direction: "top" });
+        poly.bindTooltip(regionName(region, locale), { sticky: true, className: "seva-tip", direction: "top" });
         poly.on("click", () => {
           const target =
             COVERAGE_POINTS.find((p) => p.region === region.id) ??
@@ -342,7 +443,7 @@ export default function CoverageMap() {
       mapRef.current = null;
       if (map) map.remove();
     };
-  }, []);
+  }, [locale]);
 
   // Basemap abu-abu terang (Esri) agar warna wilayah menjadi fokus
   useEffect(() => {
@@ -401,7 +502,7 @@ export default function CoverageMap() {
 
   const handleSelect = (id: string) => {
     setSelectedId(id);
-    const point = COVERAGE_POINTS.find((p) => p.id === id);
+    const point = points.find((p) => p.id === id);
     if (point && mapRef.current) {
       mapRef.current.panTo([point.lat, point.lng], { animate: true });
     }
@@ -409,7 +510,7 @@ export default function CoverageMap() {
 
   const handleFilter = (id: FilterId) => {
     setFilterType(id);
-    const next = COVERAGE_POINTS.filter((p) => id === "all" || p.type === id);
+    const next = points.filter((p) => id === "all" || p.type === id);
     if (next.length && !next.some((p) => p.id === selectedId)) setSelectedId(next[0].id);
   };
 
@@ -421,13 +522,13 @@ export default function CoverageMap() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
               <MapPin className="w-3.5 h-3.5" />
-              <span>PETA JANGKAUAN SEVA</span>
+              <span>{t.eyebrow}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight break-words">
-              Peta Wilayah Operasional Jabodetabek
+              {t.title}
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-              Batas wilayah administratif Jakarta, Bogor, Depok, Tangerang, dan Bekasi beserta hub bandara dan stasiun transit yang terlayani SEVA.
+              {t.intro}
             </p>
           </div>
         </div>
@@ -441,16 +542,16 @@ export default function CoverageMap() {
                 <span className="relative flex h-2 w-2">
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                Seluruh Zona Aktif 24/7
+                {t.allActive}
               </span>
               <span className="text-slate-300 text-xs hidden sm:inline">/</span>
               <span className="text-slate-600 text-xs tabular-nums hidden sm:inline">
-                {FLEET_TOTAL_VEHICLES.toLocaleString("id-ID")} Armada Terpantau
+                {t.vehicles(FLEET_TOTAL_VEHICLES.toLocaleString(t.numberLocale))}
               </span>
             </div>
 
-            <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar text-xs max-w-full pb-0.5" role="group" aria-label="Filter titik">
-              {FILTERS.map((f) => (
+            <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar text-xs max-w-full pb-0.5" role="group" aria-label={t.filterLabel}>
+              {FILTER_IDS.map((id) => ({ id, label: t.filters[id] })).map((f) => (
                 <button
                   key={f.id}
                   type="button"
@@ -474,20 +575,20 @@ export default function CoverageMap() {
               <div
                 ref={mapEl}
                 role="region"
-                aria-label="Peta wilayah operasional SEVA di Jabodetabek"
+                aria-label={t.mapLabel}
                 className="absolute inset-0 seva-map"
               />
 
               {!ready && (
                 <div className="absolute inset-0 flex items-center justify-center text-xs text-slate-500 font-medium">
-                  Memuat peta…
+                  {t.loading}
                 </div>
               )}
 
               {/* Legend */}
               <div className="absolute bottom-3 left-3 z-[500] hidden sm:block px-3 py-2.5 rounded-lg bg-white/95 border border-slate-200 text-[11px] text-slate-700 shadow-xs">
                 <ul className="grid grid-cols-2 gap-x-5 gap-y-1.5">
-                  {URBAN_LEGEND.map((item) => (
+                  {urbanLegend(locale).map((item) => (
                     <li key={item.id} className="flex items-center gap-2">
                       <span
                         className="w-3 h-3 rounded-[3px] border shrink-0"
@@ -498,14 +599,14 @@ export default function CoverageMap() {
                   ))}
                   <li className="flex items-center gap-2 col-span-2">
                     <span className="w-3 h-3 rounded-[3px] border border-dashed border-slate-500 bg-slate-400/20 shrink-0" />
-                    Kabupaten penyangga
+                    {t.buffer}
                   </li>
                 </ul>
                 <div className="flex items-center gap-2 mt-2 pt-2 border-t border-slate-200">
                   <Plane className="w-3 h-3 text-[#225FD2]" />
-                  Bandara
+                  {t.airport}
                   <Train className="w-3 h-3 text-[#225FD2] ml-2" />
-                  Stasiun
+                  {t.station}
                 </div>
               </div>
             </div>
@@ -515,7 +616,7 @@ export default function CoverageMap() {
               <div className="p-5 space-y-4 flex-1">
                 <div>
                   <div className="text-[11px] uppercase text-slate-500 font-bold mb-2">
-                    Layanan aktif ({selectedPoint.name})
+                    {t.activeServices(selectedPoint.name)}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedPoint.services.map((srv) => (
@@ -539,7 +640,7 @@ export default function CoverageMap() {
                 {/* Point list */}
                 <div>
                   <div className="text-[11px] uppercase text-slate-500 font-bold mb-2">
-                    Titik layanan ({filteredPoints.length})
+                    {t.points(filteredPoints.length)}
                   </div>
                   <ul className="rounded-lg border border-slate-200 divide-y divide-slate-200 overflow-hidden">
                     {filteredPoints.map((p) => (
@@ -575,11 +676,11 @@ export default function CoverageMap() {
                   href="#download"
                   className="w-full py-2.5 px-4 rounded-lg bg-[#225FD2] hover:bg-[#194cb0] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <span>Pesan Penjemputan di Titik Ini</span>
+                  <span>{t.book}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
                 <p className="text-[10px] text-center text-slate-500 mt-2">
-                  Tersedia untuk pengguna iOS &amp; Android di seluruh Jabodetabek
+                  {t.available}
                 </p>
               </div>
             </aside>
@@ -587,7 +688,7 @@ export default function CoverageMap() {
         </div>
 
         <p className="mt-3 text-[11px] text-slate-500">
-          Batas wilayah: © OpenStreetMap contributors (ODbL). Posisi titik bersifat perkiraan.
+          {t.attribution}
         </p>
       </div>
     </section>

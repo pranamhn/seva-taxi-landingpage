@@ -1,143 +1,75 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Sparkles } from "lucide-react";
-
-interface CityItem {
-  code: string;
-  name: string;
-  province: string;
-  zone: "jakarta" | "tangerang" | "bodetabek";
-  activeFleet: string;
-  avgArrival: string;
-  status: "AKTIF";
-}
-
-const CITY_DIRECTORY: CityItem[] = [
-  {
-    code: "JKT-01",
-    name: "Jakarta Pusat",
-    province: "DKI Jakarta",
-    zone: "jakarta",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "2–4 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "JKT-02",
-    name: "Jakarta Utara",
-    province: "DKI Jakarta",
-    zone: "jakarta",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "JKT-03",
-    name: "Jakarta Barat",
-    province: "DKI Jakarta",
-    zone: "jakarta",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "JKT-04",
-    name: "Jakarta Selatan",
-    province: "DKI Jakarta",
-    zone: "jakarta",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "2–4 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "JKT-05",
-    name: "Jakarta Timur",
-    province: "DKI Jakarta",
-    zone: "jakarta",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "2–4 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "TNG-01",
-    name: "Kota Tangerang",
-    province: "Banten",
-    zone: "tangerang",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "2–4 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "TNG-02",
-    name: "Kota Tangerang Selatan",
-    province: "Banten",
-    zone: "tangerang",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "BGR-01",
-    name: "Kota Bogor",
-    province: "Jawa Barat",
-    zone: "bodetabek",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "BGR-02",
-    name: "Kabupaten Bogor",
-    province: "Jawa Barat",
-    zone: "bodetabek",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "DPK-01",
-    name: "Kota Depok",
-    province: "Jawa Barat",
-    zone: "bodetabek",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "BKS-01",
-    name: "Kota Bekasi",
-    province: "Jawa Barat",
-    zone: "bodetabek",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-  {
-    code: "BKS-02",
-    name: "Kabupaten Bekasi",
-    province: "Jawa Barat",
-    zone: "bodetabek",
-    activeFleet: "Aktif 24/7",
-    avgArrival: "3–5 mnt",
-    status: "AKTIF",
-  },
-];
+import Link from "next/link";
+import { ArrowRight, Search, Sparkles } from "lucide-react";
+import { CITY_DIRECTORY, ZONE_LABELS, arrivalLabel, cityName, provinceName, type CityItem } from "@/lib/cities";
+import { localePath, type Locale } from "@/lib/i18n";
 
 type ZoneFilter = "all" | CityItem["zone"];
 
-const ZONE_FILTERS: { id: ZoneFilter; label: string }[] = [
-  { id: "all", label: "Semua Wilayah" },
-  { id: "jakarta", label: "DKI Jakarta" },
-  { id: "tangerang", label: "Tangerang & BSD" },
-  { id: "bodetabek", label: "Bogor, Depok & Bekasi" },
-];
+const COPY: Record<
+  Locale,
+  {
+    zones: Record<ZoneFilter, string>;
+    eyebrow: string;
+    title: string;
+    intro: string;
+    directoryTitle: string;
+    directoryIntro: string;
+    activeZones: string;
+    searchLabel: string;
+    searchPlaceholder: string;
+    active: string;
+    pickup: string;
+    fares: string;
+    empty: (q: string) => string;
+    filterLabel: string;
+  }
+> = {
+  id: {
+    zones: { all: "Semua Wilayah", ...ZONE_LABELS.id },
+    eyebrow: "WILAYAH OPERASIONAL",
+    title: "Beroperasi Penuh di Jabodetabek",
+    intro: "Saat ini SEVA melayani seluruh kawasan Jakarta, Bogor, Depok, Tangerang, dan Bekasi — termasuk penjemputan bandara dan stasiun kereta.",
+    directoryTitle: "Direktori Wilayah Layanan",
+    directoryIntro: "SEVA RIDE, SEVA CAR, dan SEVA SEND aktif 24 jam di seluruh wilayah berikut.",
+    activeZones: "zona aktif",
+    searchLabel: "Cari kota atau kabupaten",
+    searchPlaceholder: "Cari kota atau wilayah...",
+    active: "Aktif",
+    pickup: "Jemput:",
+    fares: "Tarif",
+    empty: (q) => `Tidak ada kota atau kabupaten yang cocok dengan pencarian "${q}".`,
+    filterLabel: "Filter wilayah",
+  },
+  en: {
+    zones: { all: "All Areas", ...ZONE_LABELS.en },
+    eyebrow: "SERVICE AREAS",
+    title: "Serving All of Greater Jakarta",
+    intro: "SEVA covers Jakarta, Bogor, Depok, Tangerang, and Bekasi, including airport and train station pickups.",
+    directoryTitle: "Service Area Directory",
+    directoryIntro: "SEVA RIDE, SEVA CAR, and SEVA SEND run 24 hours a day in all of these areas.",
+    activeZones: "active areas",
+    searchLabel: "Search for a city or regency",
+    searchPlaceholder: "Search a city or area...",
+    active: "Active",
+    pickup: "Pickup:",
+    fares: "Fares",
+    empty: (q) => `No city or regency matches "${q}".`,
+    filterLabel: "Filter areas",
+  },
+};
+
+const ZONE_IDS: ZoneFilter[] = ["all", "jakarta", "tangerang", "bodetabek"];
 
 interface CityCoverageProps {
   hideHeader?: boolean;
+  locale?: Locale;
 }
 
-export default function CityCoverage({ hideHeader = false }: CityCoverageProps) {
+export default function CityCoverage({ hideHeader = false, locale = "id" }: CityCoverageProps) {
+  const t = COPY[locale];
   const [search, setSearch] = useState("");
   const [activeZone, setActiveZone] = useState<ZoneFilter>("all");
 
@@ -147,6 +79,7 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
     const matchesSearch =
       !query ||
       c.name.toLowerCase().includes(query) ||
+      c.nameEn.toLowerCase().includes(query) ||
       c.province.toLowerCase().includes(query) ||
       c.code.toLowerCase().includes(query);
 
@@ -165,13 +98,13 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-2 shadow-2xs">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>WILAYAH OPERASIONAL</span>
+                <span>{t.eyebrow}</span>
               </div>
               <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
-                Beroperasi Penuh di Jabodetabek
+                {t.title}
               </h2>
               <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-xl leading-relaxed">
-                Saat ini SEVA melayani seluruh kawasan Jakarta, Bogor, Depok, Tangerang, dan Bekasi — termasuk penjemputan bandara dan stasiun kereta.
+                {t.intro}
               </p>
             </div>
           </div>
@@ -182,23 +115,24 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
           <div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
-              Direktori Wilayah Layanan
+              {t.directoryTitle}
             </h2>
             <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-              SEVA RIDE, SEVA CAR, dan SEVA SEND aktif 24 jam di seluruh wilayah berikut.
+              {t.directoryIntro}
             </p>
           </div>
           <span className="inline-flex items-center gap-2 self-start lg:self-auto text-xs font-semibold text-emerald-700 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span className="tabular-nums">{CITY_DIRECTORY.length}</span> zona aktif
+            <span className="tabular-nums">{CITY_DIRECTORY.length}</span> {t.activeZones}
           </span>
         </div>
         )}
 
         {/* Controls: Zone Filter & Search */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-200/80">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar -mx-1 px-1" role="group" aria-label="Filter wilayah">
-            {ZONE_FILTERS.map((z) => {
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar -mx-1 px-1" role="group" aria-label={t.filterLabel}>
+            {ZONE_IDS.map((id) => {
+              const z = { id, label: t.zones[id] };
               const isActive = activeZone === z.id;
               return (
                 <button
@@ -230,9 +164,9 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
             <input
               type="text"
               value={search}
-              aria-label="Cari kota atau kabupaten"
+              aria-label={t.searchLabel}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari kota atau wilayah..."
+              placeholder={t.searchPlaceholder}
               className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-white border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#225FD2] focus:ring-2 focus:ring-blue-500/15 transition-colors"
             />
           </div>
@@ -241,8 +175,9 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
         {/* City Cards Grid - Compact & Responsive (2 kolom di mobile, 4 kolom di desktop) */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
           {filtered.map((city) => (
-            <article
+            <Link
               key={city.code}
+              href={localePath(locale, `/cities/${city.slug}`)}
               className="group flex flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-3 sm:p-4 hover:border-[#225FD2]/40 hover:shadow-xs transition-all duration-150"
             >
               <div>
@@ -252,35 +187,38 @@ export default function CityCoverage({ hideHeader = false }: CityCoverageProps) 
                   </span>
                   <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-full shrink-0">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Aktif
+                    {t.active}
                   </span>
                 </header>
 
                 <div>
                   <h3 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug truncate">
-                    {city.name}
+                    {cityName(city, locale)}
                   </h3>
                   <p className="mt-0.5 text-[10px] sm:text-xs text-slate-500 truncate">
-                    {city.province}
+                    {provinceName(city, locale)}
                   </p>
                 </div>
               </div>
 
               <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-[11px]">
                 <div className="flex items-center gap-1 text-slate-500">
-                  <span>Jemput:</span>
-                  <span className="font-semibold text-slate-900 tabular-nums">{city.avgArrival}</span>
+                  <span>{t.pickup}</span>
+                  <span className="font-semibold text-slate-900 tabular-nums">{arrivalLabel(city, locale)}</span>
                 </div>
-                <span className="font-medium text-slate-400">24/7</span>
+                <span className="inline-flex items-center gap-0.5 font-semibold text-slate-400 group-hover:text-[#225FD2] transition-colors">
+                  {t.fares}
+                  <ArrowRight className="w-3 h-3" aria-hidden="true" />
+                </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 
         {filtered.length === 0 && (
           <div className="text-center py-12 bg-slate-50 rounded-2xl border border-slate-200">
             <p className="text-sm text-slate-600">
-              Tidak ada kota atau kabupaten yang cocok dengan pencarian &quot;{search}&quot;.
+              {t.empty(search)}
             </p>
           </div>
         )}

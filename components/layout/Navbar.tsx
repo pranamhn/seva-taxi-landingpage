@@ -18,90 +18,133 @@ import {
   ChevronDown,
   Sparkles,
   ArrowRight,
-  HelpCircle,
+  Info,
+  Newspaper,
 } from "lucide-react";
 import StoreBadges from "@/components/ui/StoreBadges";
 import Image from "next/image";
 import { SUPPORT_EMAIL } from "@/lib/site";
+import { basePath, localeFromPathname, localePath, type Locale } from "@/lib/i18n";
 
-export const PASSENGER_SERVICES = [
-  {
-    label: "SEVA Ride",
-    href: "/services/ride",
-    desc: "Taksi motor gesit mulai Rp 8.000",
-    badge: "Hemat",
-    badgeType: "primary",
-    icon: Bike,
-  },
-  {
-    label: "SEVA Car",
-    href: "/services/car",
-    desc: "Taksi mobil AC nyaman mulai Rp 9.500",
-    badge: "Populer",
-    badgeType: "popular",
-    icon: Car,
-  },
-];
+type NavItem = {
+  label: string;
+  href: string;
+  desc: string;
+  badge: string;
+  badgeType: string;
+  icon: typeof Bike;
+};
 
-export const LOGISTICS_SERVICES = [
+// Teks navbar per bahasa. href selalu path versi Indonesia; diubah lewat localePath() saat render.
+const NAV: Record<
+  Locale,
   {
-    label: "SEVA Send",
-    href: "/services/send",
-    desc: "Pengiriman kilat & kurir on-demand",
-    badge: "Kilat",
-    badgeType: "fast",
-    icon: Package,
+    passenger: NavItem[];
+    logistics: NavItem[];
+    partners: NavItem[];
+    links: { label: string; href: string; icon: typeof Bike }[];
+    home: string;
+    services: string;
+    servicesMobile: string;
+    partner: string;
+    passengerHeading: string;
+    logisticsHeading: string;
+    partnerHeading: string;
+    compareFares: string;
+    seeAllServices: string;
+    seeAllServicesMobile: string;
+    partnerContact: string;
+    mainNav: string;
+    mobileNav: string;
+    menuHeading: string;
+    openMenu: string;
+    closeMenu: string;
+    logoAlt: string;
+  }
+> = {
+  id: {
+    passenger: [
+      { label: "SEVA Ride", href: "/services/ride", desc: "Taksi motor gesit mulai Rp 8.000", badge: "Hemat", badgeType: "primary", icon: Bike },
+      { label: "SEVA Car", href: "/services/car", desc: "Taksi mobil nyaman mulai Rp 9.500", badge: "Populer", badgeType: "popular", icon: Car },
+    ],
+    logistics: [
+      { label: "SEVA Send", href: "/services/send", desc: "Pengiriman kilat & kurir on-demand", badge: "Kilat", badgeType: "fast", icon: Package },
+      { label: "SEVA Food", href: "/services/food", desc: "Pesan antar kuliner favorit hangat", badge: "Segera Hadir", badgeType: "soon", icon: Utensils },
+    ],
+    partners: [
+      { label: "Driver Partners", href: "/partner/driver", desc: "Bagi hasil 95%, pendaftaran mitra online", badge: "Komisi 5%", badgeType: "driver", icon: Bike },
+      { label: "Fleet Partners", href: "/partner/fleet", desc: "Integrasi armada rental & live monitoring", badge: "Armada", badgeType: "fleet", icon: Car },
+      { label: "B2B Partners", href: "/partner/b2b", desc: "Mobilitas dinas korporat & faktur resmi PPN", badge: "Korporat", badgeType: "b2b", icon: Briefcase },
+    ],
+    links: [
+      { label: "Operasional", href: "/cities", icon: MapPin },
+      { label: "Newsroom", href: "/newsroom", icon: Newspaper },
+      { label: "Tentang Kami", href: "/about", icon: Info },
+    ],
+    home: "Beranda",
+    services: "Layanan",
+    servicesMobile: "Layanan Mobilitas",
+    partner: "Partner",
+    passengerHeading: "Transportasi Penumpang",
+    logisticsHeading: "Logistik & Kuliner",
+    partnerHeading: "Ekosistem Kemitraan",
+    compareFares: "Bandingkan tarif seluruh tipe kendaraan",
+    seeAllServices: "Lihat Semua Layanan",
+    seeAllServicesMobile: "Lihat Semua Layanan & Tarif",
+    partnerContact: "Hubungi Kemitraan:",
+    mainNav: "Navigasi utama",
+    mobileNav: "Navigasi seluler",
+    menuHeading: "Menu Navigasi",
+    openMenu: "Buka menu",
+    closeMenu: "Tutup menu",
+    logoAlt: "SEVA - Ride Hailing & Mobility Partner",
   },
-  {
-    label: "SEVA Food",
-    href: "/services/food",
-    desc: "Pesan antar kuliner favorit hangat",
-    badge: "Segera Hadir",
-    badgeType: "soon",
-    icon: Utensils,
+  en: {
+    passenger: [
+      { label: "SEVA Ride", href: "/services/ride", desc: "Motorbike rides from Rp 8,000", badge: "Budget", badgeType: "primary", icon: Bike },
+      { label: "SEVA Car", href: "/services/car", desc: "Comfortable car rides from Rp 9,500", badge: "Popular", badgeType: "popular", icon: Car },
+    ],
+    logistics: [
+      { label: "SEVA Send", href: "/services/send", desc: "Same-day, on-demand courier", badge: "Fast", badgeType: "fast", icon: Package },
+      { label: "SEVA Food", href: "/services/food", desc: "Food delivery from local favourites", badge: "Coming Soon", badgeType: "soon", icon: Utensils },
+    ],
+    partners: [
+      { label: "Driver Partners", href: "/partner/driver", desc: "Keep 95% of every fare, sign up online", badge: "5% fee", badgeType: "driver", icon: Bike },
+      { label: "Fleet Partners", href: "/partner/fleet", desc: "Connect your rental fleet with live monitoring", badge: "Fleet", badgeType: "fleet", icon: Car },
+      { label: "B2B Partners", href: "/partner/b2b", desc: "Corporate travel with VAT invoices", badge: "Corporate", badgeType: "b2b", icon: Briefcase },
+    ],
+    links: [
+      { label: "Service Areas", href: "/cities", icon: MapPin },
+      { label: "Newsroom", href: "/newsroom", icon: Newspaper },
+      { label: "About Us", href: "/about", icon: Info },
+    ],
+    home: "Home",
+    services: "Services",
+    servicesMobile: "Services",
+    partner: "Partners",
+    passengerHeading: "Passenger Transport",
+    logisticsHeading: "Delivery & Food",
+    partnerHeading: "Partner With Us",
+    compareFares: "Compare fares for every vehicle type",
+    seeAllServices: "See All Services",
+    seeAllServicesMobile: "See All Services & Fares",
+    partnerContact: "Partnerships:",
+    mainNav: "Main navigation",
+    mobileNav: "Mobile navigation",
+    menuHeading: "Menu",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    logoAlt: "SEVA - Ride Hailing & Mobility Partner",
   },
-];
+};
 
-export const SERVICE_DROPDOWN_ITEMS = [
-  ...PASSENGER_SERVICES,
-  ...LOGISTICS_SERVICES,
-];
-
-export const PARTNER_DROPDOWN_ITEMS = [
-  {
-    label: "Driver Partners",
-    href: "/driver-partners",
-    desc: "Bagi hasil 95%, pendaftaran mitra online",
-    badge: "Komisi 5%",
-    badgeType: "driver",
-    icon: Bike,
-  },
-  {
-    label: "Fleet Partners",
-    href: "/fleet-partners",
-    desc: "Integrasi armada rental & live monitoring",
-    badge: "Armada",
-    badgeType: "fleet",
-    icon: Car,
-  },
-  {
-    label: "B2B Partners",
-    href: "/b2b-partners",
-    desc: "Mobilitas dinas korporat & faktur resmi PPN",
-    badge: "Korporat",
-    badgeType: "b2b",
-    icon: Briefcase,
-  },
-];
-
-export const navLinks = [
-  { label: "Kota Operasional", href: "/cities", icon: MapPin },
-  { label: "Fleet Operator", href: "/fleet-partners", icon: Car },
-  { label: "FAQ", href: "/faq", icon: HelpCircle },
-];
 
 export default function Navbar() {
   const pathname = usePathname();
+  const locale = localeFromPathname(pathname);
+  const base = basePath(pathname);
+  const t = NAV[locale];
+  const lp = (href: string) => localePath(locale, href);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   
@@ -118,8 +161,8 @@ export default function Navbar() {
   const servicesCloseTimer = useRef<NodeJS.Timeout | null>(null);
   const partnerCloseTimer = useRef<NodeJS.Timeout | null>(null);
 
-  const isServicesActive = pathname.startsWith("/services");
-  const isPartnerActive = pathname === "/driver-partners" || pathname === "/fleet-partners" || pathname === "/b2b-partners";
+  const isServicesActive = base.startsWith("/services");
+  const isPartnerActive = base.startsWith("/partner/");
 
   const openServices = () => {
     if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
@@ -197,13 +240,13 @@ export default function Navbar() {
 
         {/* Brand Logo */}
         <Link 
-          href="/" 
+          href={lp("/")} 
           className="flex items-center shrink-0 transition-transform duration-200 hover:scale-[1.02]"
           aria-label="SEVA Ride-Hailing"
         >
           <Image
             src="/assets/logo/logo-seva.png"
-            alt="SEVA - Ride Hailing & Mobility Partner"
+            alt={t.logoAlt}
             width={152}
             height={48}
             priority
@@ -212,18 +255,18 @@ export default function Navbar() {
         </Link>
 
         {/* Center Desktop Navigation Links */}
-        <nav aria-label="Navigasi utama" className="hidden lg:flex items-center gap-1 xl:gap-2">
+        <nav aria-label={t.mainNav} className="hidden lg:flex items-center gap-1 xl:gap-2">
           {/* Beranda */}
           <Link
-            href="/"
-            aria-current={pathname === "/" ? "page" : undefined}
+            href={lp("/")}
+            aria-current={base === "/" ? "page" : undefined}
             className={`text-[13.5px] px-3.5 py-2 rounded-xl font-medium transition-all duration-150 ${
-              pathname === "/"
+              base === "/"
                 ? "text-[#225FD2] font-semibold bg-blue-50/80 shadow-2xs"
                 : "text-slate-600 hover:text-[#225FD2] hover:bg-slate-100/70"
             }`}
           >
-            Beranda
+            {t.home}
           </Link>
 
           {/* Layanan Dropdown (2-Column) */}
@@ -246,7 +289,7 @@ export default function Navbar() {
                   : "text-slate-600 hover:text-[#225FD2] hover:bg-slate-100/70"
               }`}
             >
-              <span>Layanan</span>
+              <span>{t.services}</span>
               <ChevronDown 
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
                   servicesOpen ? "rotate-180 text-[#225FD2]" : "text-slate-400"
@@ -268,18 +311,18 @@ export default function Navbar() {
                   <div className="space-y-1 pr-1.5">
                     <div className="px-2 py-1 mb-1">
                       <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400">
-                        Transportasi Penumpang
+                        {t.passengerHeading}
                       </span>
                     </div>
 
                     <div className="space-y-1">
-                      {PASSENGER_SERVICES.map((item) => {
+                      {t.passenger.map((item) => {
                         const Icon = item.icon;
-                        const isItemActive = pathname === item.href;
+                        const isItemActive = base === item.href;
                         return (
                           <Link
                             key={item.label}
-                            href={item.href}
+                            href={lp(item.href)}
                             onClick={() => setServicesOpen(false)}
                             className={`group flex items-center gap-3 p-2.5 rounded-xl transition-all ${
                               isItemActive
@@ -321,18 +364,18 @@ export default function Navbar() {
                   <div className="space-y-1 pl-3.5">
                     <div className="px-2 py-1 mb-1">
                       <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400">
-                        Logistik &amp; Kuliner
+                        {t.logisticsHeading}
                       </span>
                     </div>
 
                     <div className="space-y-1">
-                      {LOGISTICS_SERVICES.map((item) => {
+                      {t.logistics.map((item) => {
                         const Icon = item.icon;
-                        const isItemActive = pathname === item.href;
+                        const isItemActive = base === item.href;
                         return (
                           <Link
                             key={item.label}
-                            href={item.href}
+                            href={lp(item.href)}
                             onClick={() => setServicesOpen(false)}
                             className={`group flex items-center gap-3 p-2.5 rounded-xl transition-all ${
                               isItemActive
@@ -375,15 +418,15 @@ export default function Navbar() {
                 {/* Dropdown Bottom Banner Full Width */}
                 <div className="mt-3 pt-2.5 -mx-3.5 -mb-3.5 px-3.5 py-2.5 bg-slate-50/80 rounded-b-2xl border-t border-slate-100 flex items-center justify-between">
                   <span className="text-[11.5px] text-slate-500">
-                    Bandingkan tarif seluruh tipe kendaraan
+                    {t.compareFares}
                   </span>
                   <Link
-                    href="/services"
+                    href={lp("/services")}
                     onClick={() => setServicesOpen(false)}
                     className="flex items-center gap-1 text-[#225FD2] hover:text-[#194cb0] transition-colors text-xs font-bold"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>Lihat Semua Layanan</span>
+                    <span>{t.seeAllServices}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -411,7 +454,7 @@ export default function Navbar() {
                   : "text-slate-600 hover:text-[#225FD2] hover:bg-slate-100/70"
               }`}
             >
-              <span>Partner</span>
+              <span>{t.partner}</span>
               <ChevronDown 
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
                   partnerOpen ? "rotate-180 text-[#225FD2]" : "text-slate-400"
@@ -428,18 +471,18 @@ export default function Navbar() {
               >
                 <div className="px-2 py-1 mb-1">
                   <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400">
-                    Ekosistem Kemitraan
+                    {t.partnerHeading}
                   </span>
                 </div>
 
                 <div className="space-y-1">
-                  {PARTNER_DROPDOWN_ITEMS.map((item) => {
+                  {t.partners.map((item) => {
                     const Icon = item.icon;
-                    const isItemActive = pathname === item.href;
+                    const isItemActive = base === item.href;
                     return (
                       <Link
                         key={item.label}
-                        href={item.href}
+                        href={lp(item.href)}
                         onClick={() => setPartnerOpen(false)}
                         className={`group flex items-center gap-3 p-2.5 rounded-xl transition-all ${
                           isItemActive
@@ -480,7 +523,7 @@ export default function Navbar() {
 
                 {/* Partner Bottom Banner */}
                 <div className="mt-3 pt-2.5 -mx-3 -mb-3 px-3.5 py-2.5 bg-slate-50/80 rounded-b-2xl border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="text-slate-500 font-medium">Hubungi Kemitraan:</span>
+                  <span className="text-slate-500 font-medium">{t.partnerContact}</span>
                   <a
                     href={`mailto:${SUPPORT_EMAIL}`}
                     className="font-bold text-[#225FD2] hover:underline"
@@ -493,12 +536,12 @@ export default function Navbar() {
           </div>
 
           {/* Remaining Desktop Nav Links: Cara Pesan, Cakupan Kota */}
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+          {t.links.map((link) => {
+            const isActive = base === link.href;
             return (
               <Link
                 key={link.label}
-                href={link.href}
+                href={lp(link.href)}
                 aria-current={isActive ? "page" : undefined}
                 className={`text-[13.5px] px-3.5 py-2 rounded-xl font-medium transition-all duration-150 ${
                   isActive
@@ -512,23 +555,25 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right Action: Clean App Store & Google Play Badges */}
-        <div className="hidden sm:flex items-center gap-2 shrink-0">
-          <StoreBadges size="sm" />
-        </div>
+        {/* Right Actions: store badges, menu toggle */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden sm:flex items-center gap-2">
+            <StoreBadges size="sm" locale={locale} />
+          </div>
 
-        {/* Mobile Controls: Menu toggle */}
-        <div className="flex sm:hidden items-center gap-2">
+          {/* Mobile & Tablet Controls: Menu toggle (muncul sampai breakpoint lg, sama dengan drawer) */}
+          <div className="flex lg:hidden items-center gap-2">
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 rounded-xl bg-slate-100/90 border border-slate-200 text-slate-700 hover:bg-slate-200 transition-colors"
-            aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
+            aria-label={mobileOpen ? t.closeMenu : t.openMenu}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
             {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
+          </div>
         </div>
 
       </div>
@@ -537,27 +582,27 @@ export default function Navbar() {
       {mobileOpen && (
         <div id="mobile-menu" className="lg:hidden bg-white/98 backdrop-blur-2xl border-b border-slate-200/90 px-5 py-4 space-y-4 shadow-xl animate-in fade-in duration-200 max-h-[85vh] overflow-y-auto">
           <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2">
-            Menu Navigasi
+            {t.menuHeading}
           </div>
 
-          <nav aria-label="Navigasi seluler" className="flex flex-col space-y-1">
+          <nav aria-label={t.mobileNav} className="flex flex-col space-y-1">
             {/* Beranda */}
             <Link
-              href="/"
+              href={lp("/")}
               onClick={() => setMobileOpen(false)}
               className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition-all ${
-                pathname === "/"
+                base === "/"
                   ? "text-[#225FD2] bg-blue-50/90 border border-blue-200 font-bold"
                   : "text-slate-700 hover:text-[#225FD2] hover:bg-slate-50"
               }`}
             >
               <div className="flex items-center gap-2.5">
                 <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${
-                  pathname === "/" ? "bg-blue-100 text-[#225FD2]" : "bg-slate-100 text-slate-500"
+                  base === "/" ? "bg-blue-100 text-[#225FD2]" : "bg-slate-100 text-slate-500"
                 }`}>
                   <Home className="w-3.5 h-3.5" />
                 </div>
-                <span>Beranda</span>
+                <span>{t.home}</span>
               </div>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
             </Link>
@@ -575,7 +620,7 @@ export default function Navbar() {
                   }`}>
                     <Car className="w-3.5 h-3.5" />
                   </div>
-                  <span>Layanan Mobilitas</span>
+                  <span>{t.servicesMobile}</span>
                 </div>
                 <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
               </button>
@@ -583,13 +628,13 @@ export default function Navbar() {
               {mobileServicesOpen && (
                 <div className="p-2.5 bg-white border-t border-slate-200/60 space-y-2">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {SERVICE_DROPDOWN_ITEMS.map((item) => {
+                    {[...t.passenger, ...t.logistics].map((item) => {
                       const Icon = item.icon;
-                      const isItemActive = pathname === item.href;
+                      const isItemActive = base === item.href;
                       return (
                         <Link
                           key={item.label}
-                          href={item.href}
+                          href={lp(item.href)}
                           onClick={() => setMobileOpen(false)}
                           className={`p-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between border ${
                             isItemActive
@@ -619,11 +664,11 @@ export default function Navbar() {
                   </div>
 
                   <Link
-                    href="/services"
+                    href={lp("/services")}
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-[#225FD2] bg-blue-50 border border-blue-100"
                   >
-                    <span>Lihat Semua Layanan &amp; Tarif</span>
+                    <span>{t.seeAllServicesMobile}</span>
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
@@ -643,20 +688,20 @@ export default function Navbar() {
                   }`}>
                     <Users className="w-3.5 h-3.5" />
                   </div>
-                  <span>Partner</span>
+                  <span>{t.partner}</span>
                 </div>
                 <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${mobilePartnerOpen ? "rotate-180" : ""}`} />
               </button>
 
               {mobilePartnerOpen && (
                 <div className="p-2.5 bg-white border-t border-slate-200/60 space-y-1">
-                  {PARTNER_DROPDOWN_ITEMS.map((item) => {
+                  {t.partners.map((item) => {
                     const Icon = item.icon;
-                    const isItemActive = pathname === item.href;
+                    const isItemActive = base === item.href;
                     return (
                       <Link
                         key={item.label}
-                        href={item.href}
+                        href={lp(item.href)}
                         onClick={() => setMobileOpen(false)}
                         className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-colors border ${
                           isItemActive
@@ -688,13 +733,13 @@ export default function Navbar() {
             </div>
 
             {/* Remaining Mobile Links */}
-            {navLinks.map((link) => {
+            {t.links.map((link) => {
               const Icon = link.icon;
-              const isActive = pathname === link.href;
+              const isActive = base === link.href;
               return (
                 <Link
                   key={link.label}
-                  href={link.href}
+                  href={lp(link.href)}
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => setMobileOpen(false)}
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition-all ${
@@ -719,7 +764,7 @@ export default function Navbar() {
 
           {/* Download Badges on Mobile Drawer */}
           <div className="pt-3 border-t border-slate-100 flex items-center justify-center gap-3">
-            <StoreBadges size="md" />
+            <StoreBadges size="md" locale={locale} />
           </div>
         </div>
       )}

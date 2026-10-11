@@ -90,7 +90,7 @@ export const ARTICLES: Article[] = [
       },
       {
         type: "cta",
-        text: "Lihat spesifikasi lengkap, perlengkapan helm SNI, dan simulasi tarif SEVA Ride.",
+        text: "Lihat spesifikasi lengkap dan simulasi tarif SEVA Ride.",
         href: "/services/ride",
         label: "Detail SEVA Ride",
       },
@@ -113,7 +113,7 @@ export const ARTICLES: Article[] = [
     blocks: [
       {
         type: "p",
-        text: "Perjalanan ke Bandara Soekarno-Hatta (CGK) sering melibatkan koper besar, rombongan keluarga, dan jadwal penerbangan yang tidak boleh terlewat. Taksi online dengan mobil ber-AC seperti SEVA Car membuat perjalanan lebih nyaman dan biayanya bisa diperkirakan sejak awal.",
+        text: "Perjalanan ke Bandara Soekarno-Hatta (CGK) sering melibatkan koper besar, rombongan keluarga, dan jadwal penerbangan yang tidak boleh terlewat. Taksi online seperti SEVA Car membuat perjalanan lebih nyaman dan biayanya bisa diperkirakan sejak awal.",
       },
       { type: "h2", text: "Estimasi tarif SEVA Car ke Bandara Soekarno-Hatta" },
       {
@@ -235,7 +235,7 @@ export const ARTICLES: Article[] = [
       },
     ],
     related: [
-      { href: "/b2b-partners", label: "SEVA Send untuk kebutuhan kantor" },
+      { href: "/partner/b2b", label: "SEVA Send untuk kebutuhan kantor" },
       { href: "/faq", label: "Pusat Bantuan & FAQ" },
     ],
   },
@@ -263,7 +263,7 @@ export const ARTICLES: Article[] = [
           "Ingin tarif paling ringan: mulai Rp 8.000 + Rp 2.500/km.",
         ],
       },
-      { type: "h2", text: "Kapan memilih SEVA Car (mobil ber-AC)" },
+      { type: "h2", text: "Kapan memilih SEVA Car (mobil)" },
       {
         type: "ul",
         items: [
@@ -467,7 +467,7 @@ export const ARTICLES: Article[] = [
       {
         type: "cta",
         text: "Untuk pengiriman rutin perusahaan, gunakan akun korporat dengan tagihan bulanan terpusat.",
-        href: "/b2b-partners",
+        href: "/partner/b2b",
         label: "Akun korporat",
       },
     ],
@@ -516,7 +516,7 @@ export const ARTICLES: Article[] = [
         type: "ul",
         items: [
           "STNK dan pajak kendaraan aktif.",
-          "Sepeda motor minimal tahun 2016, atau mobil MPV minimal tahun 2017 ber-AC.",
+          "Sepeda motor atau mobil MPV minimal tahun 2017.",
           "Smartphone Android atau iOS dengan GPS aktif.",
           "Kendaraan bersih dan layak jalan.",
         ],
@@ -534,12 +534,12 @@ export const ARTICLES: Article[] = [
       {
         type: "cta",
         text: "Lihat keuntungan lengkap dan mulai pendaftaran mitra pengemudi.",
-        href: "/driver-partners",
+        href: "/partner/driver",
         label: "Daftar jadi driver",
       },
     ],
     related: [
-      { href: "/driver-partners", label: "Halaman mitra pengemudi" },
+      { href: "/partner/driver", label: "Halaman mitra pengemudi" },
       { href: "/faq", label: "Pusat Bantuan & FAQ" },
     ],
   },
@@ -716,7 +716,7 @@ export const ARTICLES: Article[] = [
           "Tunggu di tempat terang dan ramai, terutama saat malam hari.",
           "Aktifkan Bagikan Perjalanan agar keluarga atau teman bisa memantau rute Anda secara live.",
           "Hubungi driver hanya lewat chat atau telepon di aplikasi; nomor HP Anda tetap tersamar.",
-          "Gunakan tombol darurat SOS 24/7 bila merasa tidak aman; Anda akan terhubung ke tim respons SEVA.",
+          "Gunakan tombol darurat SOS bila merasa tidak aman untuk menelepon 112 atau kontak darurat Anda.",
           "Jangan pernah membagikan kode OTP kepada siapa pun, termasuk yang mengaku dari SEVA.",
           "Untuk SEVA Ride, selalu gunakan helm yang disediakan driver.",
         ],
@@ -799,7 +799,7 @@ export const ARTICLES: Article[] = [
         type: "ul",
         items: [
           "SEVA Ride untuk perjalanan motor sendiri dengan barang ringan.",
-          "SEVA Car untuk mobil ber-AC hingga 4 penumpang.",
+          "SEVA Car untuk mobil hingga 4 penumpang.",
           "SEVA Send untuk mengirim paket hingga 20 kg.",
         ],
       },
@@ -858,13 +858,13 @@ export const ARTICLES: Article[] = [
       {
         type: "cta",
         text: "Isi formulir singkat dan tim SEVA akan menghubungi Anda untuk penawaran.",
-        href: "/b2b-partners#ajukan-kemitraan",
+        href: "/partner/b2b#ajukan-kemitraan",
         label: "Ajukan akun korporat",
       },
     ],
     related: [
       { href: "/blog/ongkir-kurir-instan-jakarta-bekasi-tangerang", label: "Ongkir kurir instan antarkota" },
-      { href: "/b2b-partners", label: "B2B Partners" },
+      { href: "/partner/b2b", label: "B2B Partners" },
     ],
   },
   {
@@ -905,13 +905,13 @@ export const ARTICLES: Article[] = [
       {
         type: "cta",
         text: "Daftarkan armada Anda lewat formulir kemitraan fleet operator.",
-        href: "/fleet-partners#daftar-operator",
+        href: "/partner/fleet#daftar-operator",
         label: "Daftarkan armada",
       },
     ],
     related: [
       { href: "/blog/cara-daftar-driver-ojek-online", label: "Cara daftar driver" },
-      { href: "/fleet-partners", label: "Halaman fleet operator" },
+      { href: "/partner/fleet", label: "Halaman fleet operator" },
     ],
   },
   {
@@ -1289,7 +1289,7 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Ajukan akun korporat untuk perusahaan Anda.",
-        "href": "/b2b-partners#ajukan-kemitraan",
+        "href": "/partner/b2b#ajukan-kemitraan",
         "label": "Ajukan akun korporat"
       }
     ],
@@ -1544,7 +1544,7 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Lihat syarat dan keuntungan menjadi mitra pengemudi.",
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Gabung jadi driver"
       }
     ],
@@ -1554,7 +1554,7 @@ export const ARTICLES: Article[] = [
         "label": "Cara daftar driver"
       },
       {
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Halaman mitra pengemudi"
       }
     ]
@@ -1635,7 +1635,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari kawasan Thamrin, Sudirman, dan Monas menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari kawasan Thamrin, Sudirman, dan Monas menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -1718,7 +1718,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari SCBD, Kuningan, dan Kebayoran menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari SCBD, Kuningan, dan Kebayoran menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -1801,7 +1801,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari Puri Indah, Grogol, dan Kebon Jeruk menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari Puri Indah, Grogol, dan Kebon Jeruk menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -1884,7 +1884,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari PIK, Pluit, dan Kelapa Gading menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari PIK, Pluit, dan Kelapa Gading menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -1967,7 +1967,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari Cawang, Rawamangun, dan Cakung menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari Cawang, Rawamangun, dan Cakung menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -2050,7 +2050,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari pusat Kota Tangerang dan sekitarnya menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari pusat Kota Tangerang dan sekitarnya menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -2133,7 +2133,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari BSD City, Alam Sutera, dan Serpong menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari BSD City, Alam Sutera, dan Serpong menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -2216,7 +2216,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari kawasan Bintaro Jaya menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari kawasan Bintaro Jaya menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -2299,7 +2299,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari Margonda, Cinere, dan Sawangan menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari Margonda, Cinere, dan Sawangan menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -2382,7 +2382,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari Bekasi Barat, Summarecon, dan Harapan Indah menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari Bekasi Barat, Summarecon, dan Harapan Indah menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -2465,7 +2465,7 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Berangkat dari pusat Kota Bogor dan Sentul menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV ber-AC, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
+        "text": "Berangkat dari pusat Kota Bogor dan Sentul menuju Bandara Soekarno-Hatta? SEVA Car menjemput Anda di depan rumah atau lobi gedung dengan mobil MPV yang nyaman, sehingga Anda tidak perlu repot membawa koper ke titik transportasi umum."
       },
       {
         "type": "h2",
@@ -4971,7 +4971,7 @@ export const ARTICLES: Article[] = [
     "slug": "cara-menggunakan-tombol-sos",
     "title": "Kapan dan Bagaimana Menggunakan Tombol SOS di Aplikasi SEVA",
     "seoTitle": "Cara Menggunakan Tombol SOS SEVA",
-    "description": "Penjelasan tombol darurat SOS 24/7 di aplikasi SEVA: kapan digunakan, apa yang terjadi setelah ditekan, dan langkah keselamatan tambahan.",
+    "description": "Penjelasan tombol darurat SOS di aplikasi SEVA: kapan digunakan, apa yang terjadi setelah ditekan, dan langkah keselamatan tambahan.",
     "category": "Tips & Keamanan",
     "published": "2026-10-11",
     "readMinutes": 2,
@@ -4981,15 +4981,15 @@ export const ARTICLES: Article[] = [
     "blocks": [
       {
         "type": "p",
-        "text": "Tombol darurat (SOS) tersedia 24/7 di aplikasi SEVA untuk situasi yang membuat Anda merasa tidak aman."
+        "text": "Tombol darurat (SOS) tersedia di aplikasi SEVA untuk situasi yang membuat Anda merasa tidak aman."
       },
       {
         "type": "ul",
         "items": [
-          "Tekan SOS satu kali untuk terhubung dengan tim respons SEVA.",
+          "Tekan SOS untuk menelepon layanan darurat 112 atau kontak darurat yang sudah Anda simpan di aplikasi.",
           "Tetap di tempat yang ramai dan terang bila memungkinkan.",
           "Aktifkan juga Bagikan Perjalanan untuk keluarga.",
-          "Dalam keadaan darurat yang mengancam jiwa, hubungi juga layanan darurat setempat."
+          "Simpan minimal satu kontak darurat keluarga di aplikasi sebelum bepergian."
         ]
       },
       {
@@ -5278,7 +5278,7 @@ export const ARTICLES: Article[] = [
     "slug": "syarat-kendaraan-driver-seva",
     "title": "Syarat Kendaraan untuk Jadi Driver SEVA",
     "seoTitle": "Syarat Kendaraan untuk Jadi Driver SEVA",
-    "description": "Syarat kendaraan mitra SEVA: motor minimal tahun 2016, mobil MPV minimal 2017 ber-AC, STNK dan pajak aktif, serta kondisi layak jalan.",
+    "description": "Syarat kendaraan mitra SEVA: kendaraan minimal tahun 2017, STNK dan pajak aktif, serta kondisi layak jalan.",
     "category": "Mitra & Bisnis",
     "published": "2026-10-11",
     "readMinutes": 2,
@@ -5289,8 +5289,8 @@ export const ARTICLES: Article[] = [
       {
         "type": "ul",
         "items": [
-          "Sepeda motor minimal tahun 2016 dalam kondisi prima.",
-          "Mobil MPV minimal tahun 2017 dengan AC dingin.",
+          "Sepeda motor minimal tahun 2017 dalam kondisi prima.",
+          "Mobil MPV minimal tahun 2017.",
           "STNK dan pajak kendaraan aktif sesuai unit.",
           "Kondisi fisik kendaraan bersih dan layak jalan.",
           "Smartphone Android atau iOS dengan GPS aktif."
@@ -5299,13 +5299,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Lihat syarat lengkap mitra pengemudi.",
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Halaman driver"
       }
     ],
     "related": [
       {
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Halaman terkait"
       },
       {
@@ -5339,13 +5339,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Gabung menjadi mitra pengemudi SEVA.",
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Daftar driver"
       }
     ],
     "related": [
       {
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Halaman terkait"
       },
       {
@@ -5381,13 +5381,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Lihat keuntungan mitra pengemudi.",
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Halaman driver"
       }
     ],
     "related": [
       {
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Halaman terkait"
       },
       {
@@ -5429,7 +5429,7 @@ export const ARTICLES: Article[] = [
     ],
     "related": [
       {
-        "href": "/driver-partners",
+        "href": "/partner/driver",
         "label": "Halaman terkait"
       },
       {
@@ -5463,13 +5463,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Pelajari kemitraan fleet operator.",
-        "href": "/fleet-partners",
+        "href": "/partner/fleet",
         "label": "Fleet operator"
       }
     ],
     "related": [
       {
-        "href": "/fleet-partners",
+        "href": "/partner/fleet",
         "label": "Halaman terkait"
       },
       {
@@ -5502,13 +5502,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Daftarkan armada Anda.",
-        "href": "/fleet-partners#daftar-operator",
+        "href": "/partner/fleet#daftar-operator",
         "label": "Daftar fleet operator"
       }
     ],
     "related": [
       {
-        "href": "/fleet-partners",
+        "href": "/partner/fleet",
         "label": "Halaman terkait"
       },
       {
@@ -5545,13 +5545,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Pelajari kemitraan fleet operator.",
-        "href": "/fleet-partners",
+        "href": "/partner/fleet",
         "label": "Fleet operator"
       }
     ],
     "related": [
       {
-        "href": "/fleet-partners",
+        "href": "/partner/fleet",
         "label": "Halaman terkait"
       },
       {
@@ -5584,13 +5584,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Ajukan akun korporat.",
-        "href": "/b2b-partners#ajukan-kemitraan",
+        "href": "/partner/b2b#ajukan-kemitraan",
         "label": "Akun korporat"
       }
     ],
     "related": [
       {
-        "href": "/b2b-partners",
+        "href": "/partner/b2b",
         "label": "Halaman terkait"
       },
       {
@@ -5603,7 +5603,7 @@ export const ARTICLES: Article[] = [
     "slug": "antar-jemput-tamu-hotel",
     "title": "Antar-Jemput Tamu Hotel & Bandara dengan Akun Korporat",
     "seoTitle": "Antar-Jemput Tamu Hotel & Bandara",
-    "description": "Solusi transportasi tamu hotel dan perusahaan dengan SEVA Car: penjemputan di lobi dan bandara, tagihan terpusat, dan mobil MPV ber-AC.",
+    "description": "Solusi transportasi tamu hotel dan perusahaan dengan SEVA Car: penjemputan di lobi dan bandara, tagihan terpusat, dan mobil MPV yang nyaman.",
     "category": "Mitra & Bisnis",
     "published": "2026-10-11",
     "readMinutes": 2,
@@ -5618,7 +5618,7 @@ export const ARTICLES: Article[] = [
       {
         "type": "ul",
         "items": [
-          "Armada MPV ber-AC untuk tamu.",
+          "Armada MPV yang nyaman untuk tamu.",
           "Penjemputan di lobi hotel atau area kedatangan bandara.",
           "Biaya tercatat dalam tagihan bulanan terpusat."
         ]
@@ -5626,13 +5626,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Pelajari solusi B2B SEVA.",
-        "href": "/b2b-partners",
+        "href": "/partner/b2b",
         "label": "B2B Partners"
       }
     ],
     "related": [
       {
-        "href": "/b2b-partners",
+        "href": "/partner/b2b",
         "label": "Halaman terkait"
       },
       {
@@ -5664,13 +5664,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Diskusikan kebutuhan acara Anda.",
-        "href": "/b2b-partners#ajukan-kemitraan",
+        "href": "/partner/b2b#ajukan-kemitraan",
         "label": "Hubungi tim SEVA"
       }
     ],
     "related": [
       {
-        "href": "/b2b-partners",
+        "href": "/partner/b2b",
         "label": "Halaman terkait"
       },
       {
@@ -5720,13 +5720,13 @@ export const ARTICLES: Article[] = [
       {
         "type": "cta",
         "text": "Ajukan akun korporat.",
-        "href": "/b2b-partners#ajukan-kemitraan",
+        "href": "/partner/b2b#ajukan-kemitraan",
         "label": "Akun korporat"
       }
     ],
     "related": [
       {
-        "href": "/b2b-partners",
+        "href": "/partner/b2b",
         "label": "Halaman terkait"
       },
       {

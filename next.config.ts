@@ -9,6 +9,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Dua root layout (app/(id) & app/(en)) → 404 untuk URL tak dikenal ditangani app/global-not-found.tsx
+  experimental: { globalNotFound: true },
   turbopack: {
     rules: {
       "*.css": {
@@ -18,12 +20,24 @@ const nextConfig: NextConfig = {
     },
   },
   redirects() {
-    // URL lama /panduan dipindah ke /blog, driver & fleet-operator dipindah ke partners
+    // URL lama /panduan dipindah ke /blog; halaman kemitraan dipindah ke /partner/{driver,fleet,b2b}
+    const partnerMoves = [
+      { from: "/driver-partners", to: "/partner/driver" },
+      { from: "/fleet-partners", to: "/partner/fleet" },
+      { from: "/b2b-partners", to: "/partner/b2b" },
+    ];
     return [
       { source: "/panduan", destination: "/blog", permanent: true },
       { source: "/panduan/:slug", destination: "/blog/:slug", permanent: true },
-      { source: "/driver", destination: "/driver-partners", permanent: true },
-      { source: "/fleet-operator", destination: "/fleet-partners", permanent: true },
+      { source: "/driver", destination: "/partner/driver", permanent: true },
+      { source: "/fleet-operator", destination: "/partner/fleet", permanent: true },
+      { source: "/fleet-partner", destination: "/partner/b2b", permanent: true },
+      { source: "/partner", destination: "/partner/driver", permanent: false },
+      { source: "/en/partner", destination: "/en/partner/driver", permanent: false },
+      ...partnerMoves.flatMap(({ from, to }) => [
+        { source: from, destination: to, permanent: true },
+        { source: `/en${from}`, destination: `/en${to}`, permanent: true },
+      ]),
     ];
   },
   headers() {

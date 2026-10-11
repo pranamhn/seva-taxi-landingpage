@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { SITE_URL } from "@/lib/site";
+import { localePath, type Locale } from "@/lib/i18n";
 
 interface BreadcrumbItem {
   label: string;
@@ -19,6 +20,8 @@ interface PageHeaderProps {
   subtitle: string;
   breadcrumbs: BreadcrumbItem[];
   metrics?: MetricItem[];
+  /** Bahasa halaman; href breadcrumb diberikan halaman dalam bentuk path final. */
+  locale?: Locale;
 }
 
 export default function PageHeader({
@@ -27,7 +30,10 @@ export default function PageHeader({
   subtitle,
   breadcrumbs,
   metrics,
+  locale = "id",
 }: PageHeaderProps) {
+  const homeLabel = locale === "en" ? "Home" : "Beranda";
+  const homeHref = localePath(locale, "/");
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -35,8 +41,8 @@ export default function PageHeader({
       {
         "@type": "ListItem",
         position: 1,
-        name: "Beranda",
-        item: SITE_URL,
+        name: homeLabel,
+        item: `${SITE_URL}${homeHref === "/" ? "" : homeHref}`,
       },
       ...breadcrumbs.map((crumb, idx) => ({
         "@type": "ListItem",
@@ -55,9 +61,9 @@ export default function PageHeader({
       />
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
         {/* Breadcrumbs */}
-        <nav className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 mb-4">
-          <Link href="/" className="inline-flex items-center min-h-6 py-1 hover:text-[#225FD2] transition-colors shrink-0">
-            Beranda
+        <nav aria-label={locale === "en" ? "Breadcrumb" : "Navigasi jejak"} className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 mb-4">
+          <Link href={homeHref} className="inline-flex items-center min-h-6 py-1 hover:text-[#225FD2] transition-colors shrink-0">
+            {homeLabel}
           </Link>
           {breadcrumbs.map((crumb, idx) => (
             <div key={idx} className="flex items-center gap-1.5 shrink-0">

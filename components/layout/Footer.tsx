@@ -1,6 +1,35 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { LEGAL_NAME, SUPPORT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL } from "@/lib/site";
+import { usePathname } from "next/navigation";
+import { LEGAL_NAME, SUPPORT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, INSTAGRAM_URL, LINKEDIN_URL } from "@/lib/site";
+import { localePath, basePath, localeFromPathname, type Locale } from "@/lib/i18n";
+
+function LanguageSwitch({ locale, base }: { locale: Locale; base: string }) {
+  return (
+    <div
+      className="inline-flex items-center rounded-lg border border-slate-200 bg-white p-0.5 text-[11px] font-semibold shadow-2xs"
+      role="group"
+      aria-label="Bahasa / Language"
+    >
+      {(["id", "en"] as const).map((l) => (
+        <Link
+          key={l}
+          href={localePath(l, base)}
+          hrefLang={l}
+          lang={l}
+          aria-current={locale === l ? "true" : undefined}
+          className={`px-2 py-1 rounded-md uppercase transition-colors ${
+            locale === l ? "bg-[#225FD2] text-white" : "text-slate-600 hover:text-[#225FD2]"
+          }`}
+        >
+          {l}
+        </Link>
+      ))}
+    </div>
+  );
+}
 
 function LinkedinIcon({ className }: { className?: string }) {
   return (
@@ -22,17 +51,110 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-export default function Footer() {
+type FooterLink = { label: string; href: string; external?: boolean };
+
+const LINK_CLASS = "inline-block py-1 hover:text-[#225FD2] transition-colors";
+
+const COPY: Record<
+  Locale,
+  {
+    tagline: string;
+    columns: { title: string; links: FooterLink[] }[];
+    rights: string;
+    privacy: string;
+    terms: string;
+  }
+> = {
+  id: {
+    tagline:
+      "Platform transportasi online dan ride-hailing di Jabodetabek dengan armada terawat, tarif pasti di awal tanpa lonjakan sepihak, serta fitur keselamatan perjalanan.",
+    columns: [
+      {
+        title: "Layanan",
+        links: [
+          { label: "SEVA Ride", href: "/services/ride" },
+          { label: "SEVA Car", href: "/services/car" },
+          { label: "SEVA Send", href: "/services/send" },
+          { label: "SEVA Food (Segera Hadir)", href: "/services/food" },
+        ],
+      },
+      {
+        title: "Perusahaan",
+        links: [
+          { label: "Hubungi Kami", href: "/contact" },
+          { label: "Promo", href: "/promo" },
+          { label: "Blog & Panduan", href: "/blog" },
+        ],
+      },
+      {
+        title: "Keamanan & Bantuan",
+        links: [
+          { label: "Pusat Bantuan", href: "/faq" },
+          { label: "Standar Keselamatan", href: "/safety" },
+          { label: "Panduan Cara Pesan", href: "/how-it-works" },
+          { label: `Bantuan: ${SUPPORT_EMAIL}`, href: `mailto:${SUPPORT_EMAIL}`, external: true },
+          { label: `WhatsApp: ${CONTACT_PHONE_DISPLAY}`, href: CONTACT_WHATSAPP_URL, external: true },
+        ],
+      },
+    ],
+    rights: "Hak Cipta Dilindungi.",
+    privacy: "Kebijakan Privasi",
+    terms: "Syarat & Ketentuan",
+  },
+  en: {
+    tagline:
+      "Ride-hailing and courier service across Greater Jakarta with well-maintained vehicles, an upfront fare with no surge pricing, and built-in trip safety features.",
+    columns: [
+      {
+        title: "Services",
+        links: [
+          { label: "SEVA Ride", href: "/services/ride" },
+          { label: "SEVA Car", href: "/services/car" },
+          { label: "SEVA Send", href: "/services/send" },
+          { label: "SEVA Food (Coming Soon)", href: "/services/food" },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { label: "Contact Us", href: "/contact" },
+          { label: "Promos", href: "/promo" },
+          { label: "Blog & Guides", href: "/blog" },
+        ],
+      },
+      {
+        title: "Safety & Help",
+        links: [
+          { label: "Help Center", href: "/faq" },
+          { label: "Safety Standards", href: "/safety" },
+          { label: "How to Book", href: "/how-it-works" },
+          { label: `Support: ${SUPPORT_EMAIL}`, href: `mailto:${SUPPORT_EMAIL}`, external: true },
+          { label: `WhatsApp: ${CONTACT_PHONE_DISPLAY}`, href: CONTACT_WHATSAPP_URL, external: true },
+        ],
+      },
+    ],
+    rights: "All rights reserved.",
+    privacy: "Privacy Policy",
+    terms: "Terms & Conditions",
+  },
+};
+
+export default function Footer({ locale: propLocale }: { locale?: Locale }) {
+  const pathname = usePathname() || "/";
+  const locale = propLocale || localeFromPathname(pathname);
+  const base = basePath(pathname);
+  const t = COPY[locale];
+  const lp = (href: string) => localePath(locale, href);
   return (
     <footer className="bg-slate-50 border-t border-slate-200/80 pt-10 sm:pt-12 pb-5 sm:pb-6 text-slate-600">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        
+
         {/* Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-8 sm:pb-10 border-b border-slate-200/80">
-          
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-8 sm:pb-10 border-b border-slate-200/80">
+
           {/* Brand Info (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block transition-transform hover:scale-[1.02]">
+            <Link href={lp("/")} className="inline-block transition-transform hover:scale-[1.02]">
               <Image
                 src="/assets/logo/logo-seva.png"
                 alt="SEVA — Ride Hailing &amp; Mobility Partner"
@@ -42,15 +164,14 @@ export default function Footer() {
               />
             </Link>
 
-            <p className="text-xs text-slate-600 leading-relaxed max-w-sm">
-              Platform transportasi online dan ride-hailing di Jabodetabek dengan armada terawat, tarif pasti di awal tanpa lonjakan sepihak, serta fitur keselamatan perjalanan.
-            </p>
+            <p className="text-xs text-slate-600 leading-relaxed max-w-sm">{t.tagline}</p>
 
-            <div className="flex items-center gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <LanguageSwitch locale={locale} base={base} />
               <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
                 <Image
                   src="/images/logo-pse-small.png"
-                  alt="PSE Kominfo"
+                  alt="PSE Komdigi"
                   width={182}
                   height={50}
                   className="h-3.5 w-auto object-contain"
@@ -84,69 +205,42 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Column 1: Layanan Ride */}
-          <div className="space-y-3">
-            <div className="text-xs uppercase tracking-wider text-slate-900 font-bold">
-              Layanan Mobilitas
+          {t.columns.map((col) => (
+            <div key={col.title} className="space-y-3">
+              <div className="text-xs uppercase tracking-wider text-slate-900 font-bold">{col.title}</div>
+              <ul className="space-y-0.5 text-xs">
+                {col.links.map((link) => (
+                  <li key={link.href}>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className={`${LINK_CLASS} break-all`}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={lp(link.href)} className={LINK_CLASS}>
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="space-y-0.5 text-xs">
-              <li><Link href="/services/ride" className="inline-block py-1 hover:text-[#225FD2] transition-colors">SEVA Ride</Link></li>
-              <li><Link href="/services/car" className="inline-block py-1 hover:text-[#225FD2] transition-colors">SEVA Car</Link></li>
-              <li><Link href="/services/send" className="inline-block py-1 hover:text-[#225FD2] transition-colors">SEVA Send</Link></li>
-              <li><Link href="/services/food" className="inline-block py-1 hover:text-[#225FD2] transition-colors">SEVA Food (Segera Hadir)</Link></li>
-            </ul>
-          </div>
-
-          {/* Links Column 2: Mitra & Pengemudi */}
-          <div className="space-y-3">
-            <div className="text-xs uppercase tracking-wider text-slate-900 font-bold">
-              Gabung Mitra
-            </div>
-            <ul className="space-y-0.5 text-xs">
-              <li><Link href="/driver-partners" className="inline-block py-1 hover:text-[#225FD2] transition-colors">Driver Partners</Link></li>
-              <li><Link href="/fleet-partners" className="inline-block py-1 hover:text-[#225FD2] transition-colors">Fleet Partners</Link></li>
-              <li><Link href="/b2b-partners" className="inline-block py-1 hover:text-[#225FD2] transition-colors">B2B Partners</Link></li>
-            </ul>
-          </div>
-
-          {/* Links Column 3: Keamanan & Bantuan */}
-          <div className="space-y-3">
-            <div className="text-xs uppercase tracking-wider text-slate-900 font-bold">
-              Keamanan &amp; Bantuan
-            </div>
-            <ul className="space-y-0.5 text-xs">
-              <li><Link href="/safety" className="inline-block py-1 hover:text-[#225FD2] transition-colors">Standar Keselamatan</Link></li>
-              <li><Link href="/how-it-works" className="inline-block py-1 hover:text-[#225FD2] transition-colors">Panduan Cara Pesan</Link></li>
-              <li><Link href="/blog" className="inline-block py-1 hover:text-[#225FD2] transition-colors">Blog &amp; Panduan</Link></li>
-              <li>
-                <a href={`mailto:${SUPPORT_EMAIL}`} className="inline-block py-1 hover:text-[#225FD2] transition-colors">
-                  Bantuan: {SUPPORT_EMAIL}
-                </a>
-              </li>
-              <li>
-                <a href={CONTACT_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block py-1 hover:text-[#225FD2] transition-colors">
-                  WhatsApp: {CONTACT_PHONE_DISPLAY}
-                </a>
-              </li>
-              <li>
-                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="inline-block py-1 hover:text-[#225FD2] transition-colors">
-                  Instagram: {INSTAGRAM_HANDLE}
-                </a>
-              </li>
-            </ul>
-          </div>
+          ))}
 
         </div>
 
         {/* Bottom Attribution Bar */}
-        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 text-xs text-slate-500">
+        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} {LEGAL_NAME}. Hak Cipta Dilindungi.
+            &copy; {new Date().getFullYear()} {LEGAL_NAME}. {t.rights}
           </div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <Link href="/privacy" className="inline-block py-1 hover:text-[#225FD2] transition-colors">Kebijakan Privasi</Link>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Link href={lp("/privacy")} className={LINK_CLASS}>{t.privacy}</Link>
             <span className="text-slate-300">•</span>
-            <Link href="/terms" className="inline-block py-1 hover:text-[#225FD2] transition-colors">Syarat &amp; Ketentuan</Link>
+            <Link href={lp("/terms")} className={LINK_CLASS}>{t.terms}</Link>
           </div>
         </div>
 

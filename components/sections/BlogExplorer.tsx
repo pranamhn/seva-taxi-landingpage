@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   BookOpen,
 } from "lucide-react";
+import { DATE_LOCALE, localePath, type Locale } from "@/lib/i18n";
 
 export interface ArticleSummary {
   slug: string;
@@ -28,42 +29,95 @@ export interface ArticleSummary {
 
 const PAGE_SIZE = 9;
 
-const formatDate = (iso: string) =>
-  new Date(iso).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+const ALL = "__all__";
 
-const CATEGORY_STYLES: Record<
-  string,
+const UI: Record<
+  Locale,
   {
-    icon: typeof BookOpen;
-    badge: string;
-    gradient: string;
+    all: string;
+    categoriesLabel: string;
+    searchPlaceholder: string;
+    searchLabel: string;
+    readTime: (n: number) => string;
+    readMore: string;
+    empty: (q: string) => string;
+    showAll: string;
+    pagesLabel: string;
+    showing: [string, string, string];
+    prev: string;
+    next: string;
   }
 > = {
-  "Bandara & Stasiun": {
-    icon: Train,
-    badge: "bg-sky-50 text-sky-700 border-sky-200/80",
-    gradient: "from-sky-500/10 via-blue-500/5 to-transparent",
+  id: {
+    all: "Semua",
+    categoriesLabel: "Kategori artikel",
+    searchPlaceholder: "Cari artikel (tarif, bandara, paket)...",
+    searchLabel: "Cari artikel",
+    readTime: (n) => `${n} mnt baca`,
+    readMore: "Baca Selengkapnya",
+    empty: (q) => `Belum ada artikel yang cocok dengan "${q}".`,
+    showAll: "Tampilkan semua artikel",
+    pagesLabel: "Halaman artikel",
+    showing: ["Menampilkan", "dari", "artikel"],
+    prev: "Halaman sebelumnya",
+    next: "Halaman berikutnya",
   },
-  "Tarif & Biaya": {
-    icon: Calculator,
-    badge: "bg-blue-50 text-[#225FD2] border-blue-200/80",
-    gradient: "from-blue-500/10 via-indigo-500/5 to-transparent",
+  en: {
+    all: "All",
+    categoriesLabel: "Article categories",
+    searchPlaceholder: "Search articles (fares, airport, parcels)...",
+    searchLabel: "Search articles",
+    readTime: (n) => `${n} min read`,
+    readMore: "Read More",
+    empty: (q) => `No articles match "${q}" yet.`,
+    showAll: "Show all articles",
+    pagesLabel: "Article pages",
+    showing: ["Showing", "of", "articles"],
+    prev: "Previous page",
+    next: "Next page",
   },
-  "Kirim Paket": {
-    icon: Package,
-    badge: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
-    gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
-  },
-  "Mitra Driver": {
-    icon: Car,
-    badge: "bg-indigo-50 text-indigo-700 border-indigo-200/80",
-    gradient: "from-indigo-500/10 via-purple-500/5 to-transparent",
-  },
-  "Keamanan": {
-    icon: ShieldCheck,
-    badge: "bg-teal-50 text-teal-700 border-teal-200/80",
-    gradient: "from-teal-500/10 via-emerald-500/5 to-transparent",
-  },
+};
+
+type CategoryStyle = { icon: typeof BookOpen; badge: string; gradient: string };
+
+const STYLE_AIRPORT: CategoryStyle = {
+  icon: Train,
+  badge: "bg-sky-50 text-sky-700 border-sky-200/80",
+  gradient: "from-sky-500/10 via-blue-500/5 to-transparent",
+};
+const STYLE_FARES: CategoryStyle = {
+  icon: Calculator,
+  badge: "bg-blue-50 text-[#225FD2] border-blue-200/80",
+  gradient: "from-blue-500/10 via-indigo-500/5 to-transparent",
+};
+const STYLE_DELIVERY: CategoryStyle = {
+  icon: Package,
+  badge: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+  gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
+};
+const STYLE_PARTNERS: CategoryStyle = {
+  icon: Car,
+  badge: "bg-indigo-50 text-indigo-700 border-indigo-200/80",
+  gradient: "from-indigo-500/10 via-purple-500/5 to-transparent",
+};
+const STYLE_SAFETY: CategoryStyle = {
+  icon: ShieldCheck,
+  badge: "bg-teal-50 text-teal-700 border-teal-200/80",
+  gradient: "from-teal-500/10 via-emerald-500/5 to-transparent",
+};
+
+// Kunci = nama kategori artikel di lib/articles.ts (id) dan lib/articles-en.ts (en).
+const CATEGORY_STYLES: Record<string, CategoryStyle> = {
+  "Bandara & Stasiun": STYLE_AIRPORT,
+  "Airports & Stations": STYLE_AIRPORT,
+  "Tarif & Biaya": STYLE_FARES,
+  "Fares & Costs": STYLE_FARES,
+  Pengiriman: STYLE_DELIVERY,
+  Delivery: STYLE_DELIVERY,
+  "Mitra & Bisnis": STYLE_PARTNERS,
+  "Partners & Business": STYLE_PARTNERS,
+  "Tips & Keamanan": STYLE_SAFETY,
+  "Tips & Safety": STYLE_SAFETY,
 };
 
 const DEFAULT_CATEGORY_STYLE = {
@@ -72,16 +126,19 @@ const DEFAULT_CATEGORY_STYLE = {
   gradient: "from-blue-500/10 via-slate-500/5 to-transparent",
 };
 
-export default function BlogExplorer({ articles }: { articles: ArticleSummary[] }) {
-  const [category, setCategory] = useState("Semua");
+export default function BlogExplorer({ articles, locale = "id" }: { articles: ArticleSummary[]; locale?: Locale }) {
+  const ui = UI[locale];
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString(DATE_LOCALE[locale], { day: "numeric", month: "short", year: "numeric" });
+  const [category, setCategory] = useState(ALL);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
 
-  const categories = useMemo(() => ["Semua", ...Array.from(new Set(articles.map((a) => a.category)))], [articles]);
+  const categories = useMemo(() => [ALL, ...Array.from(new Set(articles.map((a) => a.category)))], [articles]);
   const q = query.trim().toLowerCase();
   const filtered = articles.filter(
     (a) =>
-      (category === "Semua" || a.category === category) &&
+      (category === ALL || a.category === category) &&
       (!q || a.title.toLowerCase().includes(q) || a.description.toLowerCase().includes(q))
   );
 
@@ -104,10 +161,10 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
         
         {/* Filter + pencarian */}
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto no-scrollbar py-1" role="group" aria-label="Kategori artikel">
+          <div className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto no-scrollbar py-1" role="group" aria-label={ui.categoriesLabel}>
             {categories.map((c) => {
               const active = c === category;
-              const count = c === "Semua" ? articles.length : articles.filter((a) => a.category === c).length;
+              const count = c === ALL ? articles.length : articles.filter((a) => a.category === c).length;
               return (
                 <button
                   key={c}
@@ -120,7 +177,7 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
                       : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
                   }`}
                 >
-                  {c}
+                  {c === ALL ? ui.all : c}
                   <span
                     className={`rounded-full px-2 py-0.5 text-[10px] font-bold tabular-nums ${
                       active ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
@@ -142,8 +199,8 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
                 setQuery(e.target.value);
                 setPage(1);
               }}
-              placeholder="Cari artikel (tarif, bandara, paket)..."
-              aria-label="Cari artikel"
+              placeholder={ui.searchPlaceholder}
+              aria-label={ui.searchLabel}
               className="w-full rounded-2xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#225FD2] focus:outline-none focus:ring-2 focus:ring-blue-500/15 shadow-2xs"
             />
           </div>
@@ -159,7 +216,7 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
               return (
                 <Link
                   key={a.slug}
-                  href={`/blog/${a.slug}`}
+                  href={localePath(locale, `/blog/${a.slug}`)}
                   className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-xs hover:shadow-xl hover:-translate-y-1 hover:border-blue-300/80 transition-all duration-300 overflow-hidden"
                 >
                   {/* Soft Decorative Ambient Top Mesh */}
@@ -177,7 +234,7 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
 
                       <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 bg-slate-100/80 px-2.5 py-1 rounded-full">
                         <Clock className="w-3 h-3 text-slate-400" />
-                        <span>{a.readMinutes} mnt baca</span>
+                        <span>{ui.readTime(a.readMinutes)}</span>
                       </span>
                     </div>
 
@@ -201,7 +258,7 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
                   {/* Action Footer */}
                   <div className="relative z-10 mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
                     <span className="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-[#225FD2] transition-colors">
-                      Baca Selengkapnya
+                      {ui.readMore}
                     </span>
                     <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-[#225FD2] text-slate-500 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:scale-105">
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -214,17 +271,17 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
         ) : (
           <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs">
             <p className="text-sm font-semibold text-slate-700">
-              Belum ada artikel yang cocok dengan &quot;{query}&quot;.
+              {ui.empty(query)}
             </p>
             <button
               type="button"
               onClick={() => {
                 setQuery("");
-                changeCategory("Semua");
+                changeCategory(ALL);
               }}
               className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#225FD2] hover:underline cursor-pointer"
             >
-              <span>Tampilkan semua artikel</span>
+              <span>{ui.showAll}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -232,16 +289,20 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <nav className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-between" aria-label="Halaman artikel">
+          <nav className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-between" aria-label={ui.pagesLabel}>
             <p className="text-xs text-slate-500 font-medium">
-              Menampilkan <span className="text-slate-900 font-bold tabular-nums">{(current - 1) * PAGE_SIZE + 1}–{Math.min(current * PAGE_SIZE, filtered.length)}</span> dari <span className="text-slate-900 font-bold tabular-nums">{filtered.length}</span> artikel
+              {ui.showing[0]}{" "}
+              <span className="text-slate-900 font-bold tabular-nums">
+                {(current - 1) * PAGE_SIZE + 1}–{Math.min(current * PAGE_SIZE, filtered.length)}
+              </span>{" "}
+              {ui.showing[1]} <span className="text-slate-900 font-bold tabular-nums">{filtered.length}</span> {ui.showing[2]}
             </p>
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => goTo(current - 1)}
                 disabled={current === 1}
-                aria-label="Halaman sebelumnya"
+                aria-label={ui.prev}
                 className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer shadow-2xs"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -265,7 +326,7 @@ export default function BlogExplorer({ articles }: { articles: ArticleSummary[] 
                 type="button"
                 onClick={() => goTo(current + 1)}
                 disabled={current === totalPages}
-                aria-label="Halaman berikutnya"
+                aria-label={ui.next}
                 className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer shadow-2xs"
               >
                 <ChevronRight className="h-4 w-4" />

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Locale } from "@/lib/i18n";
 
 export interface LegalSection {
   id: string;
@@ -10,10 +11,17 @@ interface LegalDocumentProps {
   updatedAt: string;
   intro: ReactNode;
   sections: LegalSection[];
+  locale?: Locale;
 }
 
+const UI: Record<Locale, { toc: string; updated: string }> = {
+  id: { toc: "Daftar Isi", updated: "Terakhir diperbarui:" },
+  en: { toc: "Contents", updated: "Last updated:" },
+};
+
 // Shared layout for long-form legal pages: sticky table of contents + numbered sections.
-export default function LegalDocument({ updatedAt, intro, sections }: LegalDocumentProps) {
+export default function LegalDocument({ updatedAt, intro, sections, locale = "id" }: LegalDocumentProps) {
+  const ui = UI[locale];
   return (
     <section className="py-12 sm:py-16 bg-white">
       <div className="section-container">
@@ -21,11 +29,11 @@ export default function LegalDocument({ updatedAt, intro, sections }: LegalDocum
           {/* Table of contents */}
           <aside className="lg:col-span-3">
             <nav
-              aria-label="Daftar isi"
+              aria-label={ui.toc}
               className="lg:sticky lg:top-24 rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4"
             >
               <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2.5">
-                Daftar Isi
+                {ui.toc}
               </p>
               <ol className="space-y-0.5 text-xs">
                 {sections.map((section, idx) => (
@@ -45,7 +53,7 @@ export default function LegalDocument({ updatedAt, intro, sections }: LegalDocum
 
           {/* Document body */}
           <article className="lg:col-span-9 max-w-3xl">
-            <p className="text-xs text-slate-500 mb-5">Terakhir diperbarui: {updatedAt}</p>
+            <p className="text-xs text-slate-500 mb-5">{ui.updated} {updatedAt}</p>
             <div className="text-sm text-slate-700 leading-relaxed space-y-3 mb-10">{intro}</div>
 
             <div className="space-y-9">
