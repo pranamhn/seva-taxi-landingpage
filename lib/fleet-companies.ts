@@ -44,7 +44,7 @@ export const FLEET_COMPANIES: FleetCompany[] = [
     category: "taxi",
     typeLabel: "Taksi Publik Reguler",
     share: "8.7%",
-    description: "Salah satu korporasi taksi publik legendaris dan berlisensi di Indonesia.",
+    description: "Operator taksi publik reguler.",
   },
   {
     name: "PT. Karya Kreatif Andalan",
@@ -108,7 +108,7 @@ export const FLEET_COMPANIES: FleetCompany[] = [
     subscription: "Active",
     vehicles: 0,
     category: "ev",
-    typeLabel: "Pionir Mobil Listrik (BEV)",
+    typeLabel: "Mobil Listrik (BEV)",
     share: "0.0%",
     description: "Mitra transisi armada masa depan ramah lingkungan bebas emisi (dalam tahap penyiapan unit).",
   },

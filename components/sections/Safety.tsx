@@ -6,7 +6,7 @@ const SAFETY_FEATURES = [
   {
     icon: AlertTriangle,
     title: "Tombol Darurat (SOS) 24/7",
-    desc: "Akses satu ketukan di aplikasi untuk menghubungkan Anda langsung dengan Command Center darurat SEVA dan aparat berwenang terdekat.",
+    desc: "Akses satu ketukan di aplikasi untuk menghubungkan Anda langsung dengan tim respons darurat SEVA.",
     badge: "Respon Prioritas",
     accent: "text-red-600 bg-red-50 border-red-200",
   },
@@ -35,7 +35,7 @@ export default function Safety() {
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 mb-3 shadow-2xs">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>STANDAR KEAMANAN TERTINGGI</span>
+            <span>FITUR KEAMANAN PERJALANAN</span>
           </div>
           <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
             Tenang di Setiap Perjalanan,{" "}
@@ -62,7 +62,7 @@ export default function Safety() {
                     <div className={`w-11 h-11 rounded-2xl flex items-center justify-center border ${feat.accent}`}>
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-[11px] font-bold font-mono px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-700 shadow-2xs">
+                    <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-700 shadow-2xs">
                       {feat.badge}
                     </span>
                   </div>

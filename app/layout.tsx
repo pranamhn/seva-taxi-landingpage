@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import { LEGAL_NAME, SITE_NAME, SITE_URL, SUPPORT_EMAIL } from "@/lib/site";
+import {
+  CONTACT_PHONE_E164,
+  INSTAGRAM_URL,
+  LEGAL_NAME,
+  SITE_NAME,
+  SITE_URL,
+  SUPPORT_EMAIL,
+} from "@/lib/site";
+import { OG_IMAGE } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,9 +28,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
+  title: {
+    default: "SEVA Taxi — Ride-Hailing & Taksi Online Jabodetabek",
+    template: `%s | ${SITE_NAME}`,
+  },
   description:
-    "Pesan taksi online dengan mudah. Driver terverifikasi, harga transparan, perjalanan aman bersama SEVA Taxi. Tersedia di Jabodetabek: Jakarta, Bogor, Depok, Tangerang, dan Bekasi.",
+    "Pesan ojek & taksi online SEVA di Jabodetabek: driver terverifikasi, tarif pasti di awal tanpa lonjakan, plus kirim paket instan dengan SEVA Send.",
   keywords: [
     "SEVA Taxi",
     "ride hailing Indonesia",
@@ -45,38 +57,72 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
+    title: "SEVA Taxi — Ride-Hailing & Taksi Online Jabodetabek",
     description:
       "Pergi ke mana saja, kapan saja. Driver terverifikasi, harga transparan, perjalanan aman.",
+    url: "/",
     type: "website",
     locale: "id_ID",
     siteName: SITE_NAME,
-    images: [
-      {
-        url: "/og-seva-taxi.jpg",
-        width: 1200,
-        height: 630,
-        alt: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SEVA Taxi — Ride-Hailing Terpercaya di Indonesia",
+    title: "SEVA Taxi — Ride-Hailing & Taksi Online Jabodetabek",
     description: "Pergi ke mana saja, kapan saja. Pesan ride sekarang.",
-    images: ["/og-seva-taxi.jpg"],
+    images: [OG_IMAGE.url],
   },
   robots: { index: true, follow: true },
 };
 
-const organizationJsonLd = {
+const JABODETABEK = [
+  "Jakarta",
+  "Kota Bogor",
+  "Kabupaten Bogor",
+  "Kota Depok",
+  "Kota Tangerang",
+  "Kota Tangerang Selatan",
+  "Kota Bekasi",
+  "Kabupaten Bekasi",
+];
+
+const siteJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: SITE_NAME,
-  legalName: LEGAL_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}/icons/icon-512.png`,
-  email: SUPPORT_EMAIL,
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      legalName: LEGAL_NAME,
+      url: SITE_URL,
+      logo: `${SITE_URL}/icons/icon-512.png`,
+      email: SUPPORT_EMAIL,
+      sameAs: [INSTAGRAM_URL],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        telephone: `+${CONTACT_PHONE_E164}`,
+        email: SUPPORT_EMAIL,
+        areaServed: "ID",
+        availableLanguage: ["id"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      inLanguage: "id-ID",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "TaxiService",
+      "@id": `${SITE_URL}/#taxi-service`,
+      name: "SEVA Ride & SEVA Car",
+      provider: { "@id": `${SITE_URL}/#organization` },
+      areaServed: JABODETABEK.map((name) => ({ "@type": "City", name })),
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -87,9 +133,10 @@ export default function RootLayout({
       <body className="antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );

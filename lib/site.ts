@@ -16,9 +16,11 @@ export const PUBLIC_ROUTES = [
   { path: "/how-it-works", priority: 0.7, changeFrequency: "monthly" },
   { path: "/safety", priority: 0.7, changeFrequency: "monthly" },
   { path: "/cities", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/driver", priority: 0.85, changeFrequency: "monthly" },
-  { path: "/fleet-operator", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/driver-partners", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/fleet-partners", priority: 0.8, changeFrequency: "monthly" },
   { path: "/b2b-partners", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ] as const;
@@ -33,3 +35,4 @@ export const CONTACT_PHONE_DISPLAY = "+62 813-7797-167";
 export const CONTACT_WHATSAPP_URL = `https://wa.me/${CONTACT_PHONE_E164}`;
 export const INSTAGRAM_HANDLE = "@seva.taxi";
 export const INSTAGRAM_URL = "https://www.instagram.com/seva.taxi";
+export const LINKEDIN_URL = "https://www.linkedin.com/company/sevataxi";

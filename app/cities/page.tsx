@@ -14,13 +14,15 @@ import {
   HelpCircle,
   Sparkles,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
 
-export const metadata: Metadata = {
-  title: "Cakupan Wilayah Operasional — SEVA",
+export const metadata: Metadata = pageMetadata({
+  title: "Cakupan Wilayah Operasional",
   description:
-    "Zona operasional resmi SEVA beroperasi penuh di wilayah Jabodetabek (Jakarta, Bogor, Depok, Tangerang, Bekasi), termasuk penjemputan Bandara Soekarno-Hatta, Halim, dan KCIC Whoosh.",
-  alternates: { canonical: "/cities" },
-};
+    "Wilayah layanan SEVA di Jabodetabek: Jakarta, Bogor, Depok, Tangerang, dan Bekasi, termasuk penjemputan di Bandara Soekarno-Hatta, Halim, dan Whoosh.",
+  path: "/cities",
+});
 
 const TRANSIT_HUBS = [
   {
@@ -34,7 +36,7 @@ const TRANSIT_HUBS = [
     icon: Plane,
     name: "Bandara Halim Perdanakusuma (HLP)",
     location: "Jakarta Timur",
-    desc: "Shelter penjemputan resmi tepat di area lobi kedatangan penumpang untuk rute cepat ke pusat bisnis Jakarta.",
+    desc: "Penjemputan di area lobi kedatangan penumpang untuk rute cepat ke pusat bisnis Jakarta.",
     badge: "Hub Bandara Kota",
   },
   {
@@ -85,7 +87,7 @@ export default function CitiesPage() {
           breadcrumbs={[{ label: "Cakupan Wilayah" }]}
           metrics={[
             { label: "Wilayah Operasional", value: "Jabodetabek", hint: "Jakarta, Bogor, Depok, Tangerang, Bekasi" },
-            { label: "Hub Bandara & Kereta", value: "CGK • HLP • Whoosh", hint: "Shelter titik jemput resmi" },
+            { label: "Hub Bandara & Kereta", value: "CGK • HLP • Whoosh", hint: "Titik jemput di area kedatangan" },
             { label: "Ketersediaan Layanan", value: "Aktif 24/7", hint: "Siap melayani perjalanan" },
           ]}
         />
@@ -132,7 +134,7 @@ export default function CitiesPage() {
                       <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1">
                         {hub.name}
                       </h3>
-                      <div className="text-xs text-slate-500 font-mono mb-2.5 flex items-center gap-1">
+                      <div className="text-xs text-slate-500 mb-2.5 flex items-center gap-1">
                         <MapPin className="w-3 h-3 text-slate-400" />
                         <span>{hub.location}</span>
                       </div>
@@ -146,6 +148,8 @@ export default function CitiesPage() {
             </div>
           </div>
         </section>
+
+        <FaqJsonLd faqs={FAQS_CITIES} />
 
         {/* FAQs Section */}
         <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
@@ -170,7 +174,7 @@ export default function CitiesPage() {
                   className="p-5 sm:p-6 bg-slate-50/70 rounded-2xl border border-slate-200/80 space-y-2"
                 >
                   <h3 className="font-bold text-slate-900 text-sm sm:text-base flex items-start gap-2.5">
-                    <span className="text-[#225FD2] font-mono text-xs mt-0.5 font-bold">0{idx + 1}.</span>
+                    <span className="text-[#225FD2] text-xs mt-0.5 font-bold">0{idx + 1}.</span>
                     <span>{faq.q}</span>
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
@@ -184,7 +188,7 @@ export default function CitiesPage() {
               <p className="text-xs sm:text-sm text-slate-500">
                 Ingin mendaftarkan diri sebagai mitra pengemudi di Jabodetabek?{" "}
                 <Link
-                  href="/fleet-operator"
+                  href="/fleet-partners"
                   className="text-[#225FD2] font-semibold hover:underline inline-flex items-center gap-1"
                 >
                   Kemitraan fleet operator <ArrowRight className="w-3.5 h-3.5" />

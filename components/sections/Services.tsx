@@ -18,19 +18,19 @@ const RIDE_SERVICES = [
     image: "/assets/bikecard.webp",
     imageFit: "cover",
     fallbackVehicle: "/assets/bikecard.webp",
-    badge: "Tarif Termurah",
+    badge: "Hemat",
     capacity: "1 Penumpang",
     luggage: "1 Ransel / Tas Laptop",
     baseFare: "Rp 8.000",
     kmFare: "Rp 2.500 / km",
     eta: "1-3 Menit",
     description:
-      "Solusi mobilitas paling lincah untuk mengejar waktu di jam sibuk perkotaan. Driver terverifikasi dilengkapi helm berstandar SNI higienis, penutup kepala steril, dan jas hujan cadangan.",
+      "Solusi mobilitas lincah untuk mengejar waktu di jam sibuk perkotaan. Driver terverifikasi dilengkapi helm berstandar SNI higienis, penutup kepala steril, dan jas hujan cadangan.",
     features: [
       "Penjemputan instan dalam hitungan menit",
       "Helm higienis & hairnet steril gratis",
       "Driver terlatih safety riding profesional",
-      "Rute navigasi tercepat menghindari macet",
+      "Rute navigasi menghindari macet",
     ],
   },
   {
@@ -41,17 +41,17 @@ const RIDE_SERVICES = [
     image: "/assets/carcard.webp",
     imageFit: "cover",
     fallbackVehicle: "/assets/vehicles/toyota-avanza.webp",
-    badge: "Paling Populer",
+    badge: "Nyaman",
     capacity: "4 Penumpang",
     luggage: "2 Koper Medium",
     baseFare: "Rp 9.500",
     kmFare: "Rp 6.200 / km",
     eta: "3-5 Menit",
     description:
-      "Pilihan utama komuter perkotaan untuk mobilitas sehari-hari. Kabin dingin ber-AC, interior bersih dan wangi, serta argo resmi tanpa tarif lonjakan sepihak.",
+      "Pilihan utama komuter perkotaan untuk mobilitas sehari-hari. Kabin dingin ber-AC, interior bersih dan wangi, serta tarif pasti tanpa lonjakan sepihak.",
     features: [
       "Armada standar Euro 4 & transmisi halus",
-      "Kamera kabin (dashcam) & tombol darurat",
+      "Tombol darurat & live tracking",
       "Standar keselamatan & SOP berkendara ketat",
       "Bebas biaya pembatalan dalam 5 menit pertama",
     ],
@@ -76,7 +76,7 @@ const RIDE_SERVICES = [
       "Kurir langsung jalan tanpa transit gudang",
       "Live tracking posisi kurir di peta",
       "Bukti foto penerimaan & tanda tangan digital",
-      "Pengantaran cepat, aman dan terpercaya",
+      "Pengantaran cepat dan aman",
     ],
   },
   {
@@ -88,18 +88,18 @@ const RIDE_SERVICES = [
     imageFit: "contain",
     fallbackVehicle: "/assets/foodcard.webp",
     badge: "Soon",
-    capacity: "Merchant Resto Pilihan",
-    luggage: "Thermal Box Khusus",
+    capacity: "Mitra Resto Pilihan",
+    luggage: "Tas Antar Khusus",
     baseFare: "Promo Menarik",
-    kmFare: "Ongkir Hemat",
+    kmFare: "Ongkir Terjangkau",
     eta: "Segera Hadir",
     description:
-      "Layanan pesan antar makanan dari resto favorit, kuliner legendaris, dan UMKM lokal langsung diantar ke tempat Anda. Makanan tetap hangat dan higienis berkat tas termal berstandar khusus.",
+      "Layanan pesan antar makanan dari mitra resto pilihan dan UMKM lokal langsung diantar ke tempat Anda. Pesanan terlindungi dengan tas khusus pengantaran yang bersih dan rapi.",
     features: [
-      "Beragam pilihan resto & kuliner nusantara",
-      "Thermal delivery bag higienis penjaga suhu",
-      "Voucher diskon & promo gratis ongkir",
-      "Pembayaran instan terhubung SEVA Wallet",
+      "Pilihan resto terdekat & kuliner lokal",
+      "Tas khusus pengantaran aman & rapi",
+      "Voucher diskon & promo ongkir hemat",
+      "Pembayaran non-tunai praktis di aplikasi",
     ],
   },
 ];
@@ -136,8 +136,8 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
           </div>
         )}
 
-        {/* Tab Navigation Pill Bar */}
-        <div className="flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap pb-1 mb-6">
+        {/* Tab Navigation Pill Bar - Grid 2x2 rapi & simetris di Mobile, Flex Center di Desktop */}
+        <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-2 sm:gap-3 max-w-md sm:max-w-none mx-auto mb-6">
           {RIDE_SERVICES.map((service) => {
             const isActive = activeTab === service.id;
             const isSoon = service.badge === "Soon";
@@ -146,7 +146,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
                 key={service.id}
                 type="button"
                 onClick={() => setActiveTab(service.id)}
-                className={`flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap shrink-0 border cursor-pointer ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap border cursor-pointer w-full sm:w-auto ${
                   isActive
                     ? "bg-[#225FD2] text-white border-[#225FD2] shadow-md shadow-blue-500/25"
                     : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
@@ -155,15 +155,21 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
                 <span>{service.name}</span>
                 {service.badge && (
                   <span
-                    className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                    className={`text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full font-bold shrink-0 ${
                       isActive
-                        ? "bg-white/20 text-white"
+                        ? "bg-white text-[#225FD2]"
                         : isSoon
                         ? "bg-amber-100 text-amber-800 border border-amber-200"
                         : "bg-blue-50 text-[#225FD2]"
                     }`}
                   >
-                    {service.badge}
+                    {service.badge === "Tiba Hari Ini" ? (
+                      <>
+                        <span className="hidden sm:inline">Tiba </span>Hari Ini
+                      </>
+                    ) : (
+                      service.badge
+                    )}
                   </span>
                 )}
               </button>
@@ -179,7 +185,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
             <div className="lg:col-span-7 space-y-5">
               
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-50 text-[#225FD2] border border-blue-200/70 mb-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-[#225FD2] border border-blue-200/70 mb-2">
                   {currentService.category}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -210,7 +216,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
                 </div>
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 col-span-2 sm:col-span-1">
                   <span className="text-[11px] font-medium text-slate-500 block">Tarif Dasar</span>
-                  <span className="text-xs sm:text-sm font-bold text-emerald-600 font-mono mt-0.5 block">
+                  <span className="text-xs sm:text-sm font-bold text-emerald-700 tabular-nums mt-0.5 block">
                     {currentService.baseFare}
                   </span>
                 </div>
@@ -218,7 +224,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
 
               {/* Service Features Checkmarks */}
               <div className="space-y-2 pt-1">
-                <p className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
+                <p className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                   Standar Kenyamanan &amp; Keamanan:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -271,7 +277,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
                         {currentService.name} • {currentService.category}
                       </span>
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-200/80">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-200/80">
                       {currentService.kmFare}
                     </span>
                   </div>
@@ -319,7 +325,7 @@ export default function Services({ hideHeader = false }: { hideHeader?: boolean 
                           : "Thermal Bag Penjaga Suhu Makanan"}
                       </span>
                     </div>
-                    <span className="text-[10px] font-mono text-emerald-600 font-bold shrink-0 bg-emerald-50 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] text-emerald-700 font-bold shrink-0 bg-emerald-50 px-2 py-0.5 rounded-full">
                       Siap Jemput
                     </span>
                   </div>

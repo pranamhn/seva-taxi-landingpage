@@ -15,18 +15,17 @@ import {
   Clock,
   Wallet,
   Sparkles,
-  CheckCircle2,
   ArrowRight,
-  MapPin,
   Compass,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "SEVA Ride — Layanan Taksi Motor Online Hemat & Cepat | SEVA Taxi",
+export const metadata: Metadata = pageMetadata({
+  title: "SEVA Ride — Layanan Taksi Motor Online Hemat & Cepat",
   description:
-    "Solusi mobilitas lincah roda dua on-demand untuk tembus kemacetan kota. Dilengkapi helm berstandar SNI higienis, hairnet steril, dan argo resmi mulai Rp 8.000.",
-  alternates: { canonical: "/services/ride" },
-};
+    "Solusi mobilitas lincah roda dua on-demand untuk tembus kemacetan kota. Dilengkapi helm berstandar SNI higienis, hairnet steril, dan tarif mulai Rp 8.000.",
+  path: "/services/ride",
+});
 
 const RIDE_SPECS = [
   { label: "Tipe Kendaraan", value: "Sepeda Motor (Matic / Bebek Terawat)" },
@@ -73,7 +72,7 @@ export default function SevaRidePage() {
         <PageHeader
           badge="LAYANAN MOBILITAS // SEVA RIDE"
           title="SEVA Ride: Tembus Macet Lebih Lincah & Hemat"
-          subtitle="Solusi mobilitas roda dua on-demand paling andal untuk mengejar jadwal jam sibuk perkotaan. Helm berstandar SNI, hairnet steril, dan argo resmi transparan di muka."
+          subtitle="Solusi mobilitas roda dua on-demand yang andal untuk mengejar jadwal jam sibuk perkotaan. Helm berstandar SNI, hairnet steril, dan tarif pasti transparan di muka."
           breadcrumbs={[
             { label: "Layanan", href: "/services" },
             { label: "SEVA Ride" },
@@ -102,7 +101,7 @@ export default function SevaRidePage() {
                 </h2>
 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  SEVA Ride dirancang khusus untuk memotong waktu tempuh di tengah padatnya lalu lintas kota. Pengemudi terverifikasi kami menguasai rute pintas tercepat dengan kepatuhan penuh pada keselamatan lalu lintas.
+                  SEVA Ride dirancang khusus untuk memotong waktu tempuh di tengah padatnya lalu lintas kota. Pengemudi terverifikasi kami menguasai rute alternatif dengan kepatuhan penuh pada keselamatan lalu lintas.
                 </p>
 
                 {/* Key Highlights */}
@@ -175,9 +174,9 @@ export default function SevaRidePage() {
                       className="object-cover object-center"
                     />
                     <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#225FD2] text-white shadow-xs">
-                      Tarif Termurah
+                      Hemat
                     </div>
-                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
+                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
                       Mulai Rp 8.000
                     </div>
                   </div>
@@ -185,7 +184,7 @@ export default function SevaRidePage() {
 
                 {/* Specs Box */}
                 <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-                  <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
                     Spesifikasi & Standar Armada
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
@@ -215,53 +214,53 @@ export default function SevaRidePage() {
                 Simulasi Perjalanan SEVA Ride
               </h2>
               <p className="mt-2 text-sm text-slate-600">
-                Tarif resmi dihitung berdasarkan jarak tempuh rute tercepat. Tanpa biaya parkir liar atau tarif siluman.
+                Tarif dihitung berdasarkan jarak tempuh rute yang ditampilkan di aplikasi. Tanpa biaya parkir liar atau tarif siluman.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase">Jarak Dekat (3 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 15.500</div>
+                  <div className="text-xs font-semibold text-slate-500 uppercase">Jarak Dekat (3 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 15.500</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Cocok untuk antar stasiun MRT/KRL ke gedung kantor atau antar perumahan.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi waktu:</span>
-                  <span className="font-bold text-slate-900 font-mono">~7-10 Menit</span>
+                  <span className="font-bold text-slate-900">~7-10 Menit</span>
                 </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-blue-50/60 border border-blue-200 shadow-xs flex flex-col justify-between relative overflow-hidden">
                 <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#225FD2] text-white">
-                  Rute Terbanyak
+                  Rute Harian
                 </div>
                 <div>
-                  <div className="text-xs font-mono font-semibold text-[#225FD2] uppercase">Jarak Menengah (8 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 28.000</div>
+                  <div className="text-xs font-semibold text-[#225FD2] uppercase">Jarak Menengah (8 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 28.000</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Pilihan komuter harian antar wilayah kota yang padat saat jam sibuk.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-blue-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi waktu:</span>
-                  <span className="font-bold text-slate-900 font-mono">~18-25 Menit</span>
+                  <span className="font-bold text-slate-900">~18-25 Menit</span>
                 </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase">Jarak Jauh (15 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 45.500</div>
+                  <div className="text-xs font-semibold text-slate-500 uppercase">Jarak Jauh (15 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 45.500</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Perjalanan lintas batas kota penyangga (Depok, Bekasi, Tangerang ke Jakarta).
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi waktu:</span>
-                  <span className="font-bold text-slate-900 font-mono">~35-45 Menit</span>
+                  <span className="font-bold text-slate-900">~35-45 Menit</span>
                 </div>
               </div>
             </div>
@@ -276,7 +275,7 @@ export default function SevaRidePage() {
                 Cara Pesan SEVA Ride dalam 4 Langkah
               </h2>
               <p className="mt-2 text-sm text-slate-600">
-                Pesan motor kapan saja dalam hitungan detik langsung dari aplikasi smartphone Anda.
+                Pesan motor kapan saja dengan beberapa ketukan langsung dari aplikasi smartphone Anda.
               </p>
             </div>
 
@@ -304,7 +303,7 @@ export default function SevaRidePage() {
                 },
               ].map((item) => (
                 <div key={item.step} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-2xl font-black font-mono text-[#225FD2] mb-3">{item.step}</div>
+                  <div className="text-2xl font-black text-[#225FD2] mb-3">{item.step}</div>
                   <h3 className="font-bold text-slate-900 text-sm mb-1.5">{item.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>

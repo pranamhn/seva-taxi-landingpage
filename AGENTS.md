@@ -9,9 +9,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 <!-- END:nextjs-agent-rules -->
 
 ## UI Design Guidelines (Anti-AI Slop)
-All front-end UI and component development MUST strictly follow [DESIGN_SYSTEM.md](file:///Users/pranamahendra/Github/SEVA/seva-taxi/DESIGN_SYSTEM.md).
-- Background: `#0A0A0A` (Deep Black), zero ambient color gradients or glowing mesh blobs.
-- Surface Cards: `#141414` with solid 1px `#262626` borders. Maximum border-radius 8px (no giant pill shapes).
-- Shadows: Flat UI (`box-shadow: none`). Zero fuzzy blurs.
+All front-end UI and component development MUST strictly follow [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). The site uses the **SEVA Clean Light System** (section 1 of that file) — do not switch pages or sections to a dark theme.
+- Canvas: white `#FFFFFF` with `#F8FAFC` for alternating sections. Brand accent SEVA Royal Blue `#225FD2`; green `#10B981` only for live/active status.
+- Surface cards: white with 1px `#E2E8F0` borders, radius `rounded-xl`–`rounded-2xl`; subtle shadows only (see section 1.3).
+- Keep color restrained: neutral cards and text, color reserved for the primary CTA, status, and data (e.g. map regions).
 - Icons: Never wrap icons in generic colored circles on every card.
 - Typography & Copy: Utilitarian, high contrast, tabular numbers for stats, zero AI buzzwords ("Revolutionize", "Seamless", "Empower", "Next-Gen").

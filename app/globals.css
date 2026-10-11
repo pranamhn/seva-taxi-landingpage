@@ -5,7 +5,8 @@
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  /* clip (bukan hidden): mencegah scroll horizontal tanpa mematikan position: sticky */
+  overflow-x: clip;
 }
 
 @theme {
@@ -252,9 +253,9 @@ body {
   border-radius: 9999px;
   background-color: #eff6ff;
   border: 1px solid #dbeafe;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   color: #1e40af;
   letter-spacing: 0.02em;
 }
@@ -269,23 +270,13 @@ body {
 .section-container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 1rem;
 }
 
-/* Marquee for operator partner logos */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 35s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+@media (min-width: 640px) {
+  .section-container {
+    padding: 0 1.5rem;
+  }
 }
 
 /* Scrollbar styling */
@@ -351,3 +342,12 @@ body {
 }
 .leaflet-tooltip.seva-tip::before { display: none; }
 .leaflet-tooltip.seva-tip--active { background: #225fd2; border-color: #ffffff; color: #ffffff; }
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

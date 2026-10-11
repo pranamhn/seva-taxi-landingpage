@@ -1,10 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Sparkles,
-  QrCode,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 import StoreBadges from "@/components/ui/StoreBadges";
 import Image from "next/image";
 
@@ -36,10 +33,10 @@ const APP_SCREENS = [
   {
     id: "wallet",
     name: "Dompet",
-    title: "Bebas Pilih Pembayaran Nontunai",
-    desc: "Terhubung langsung dengan QRIS, SEVA Wallet, dan Kartu Debit. Simpan struk digital otomatis untuk klaim perjalanan kantor.",
+    title: "Pembayaran Praktis Nontunai",
+    desc: "Terhubung langsung dengan SEVA eWallet dan QRIS. Simpan struk digital otomatis untuk klaim perjalanan kantor.",
     image: "/images/app/app-wallet.jpg",
-    badge: "CASHLESS WALLET",
+    badge: "SEVA eWALLET",
   },
   {
     id: "profile",
@@ -76,16 +73,16 @@ export default function AppDownload() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black tracking-tight leading-tight text-balance">
-                Pengalaman Ride-Hailing Paling Nyaman Ada di Saku Anda
+                Pengalaman Ride-Hailing yang Nyaman, Ada di Saku Anda
               </h2>
 
               <p className="text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed">
-                Unduh aplikasi SEVA sekarang untuk iOS dan Android. Nikmati potongan diskon pengguna baru hingga Rp 30.000 untuk perjalanan pertama Anda!
+                Unduh aplikasi SEVA sekarang untuk iOS dan Android, lalu pesan perjalanan pertama Anda dalam beberapa ketukan.
               </p>
 
               {/* Screen Feature Selector */}
               <div className="pt-2">
-                <div className="text-xs font-mono uppercase text-blue-200 tracking-wider mb-2.5">
+                <div className="text-xs font-semibold uppercase text-blue-200 tracking-wider mb-2.5">
                   Jelajahi Fitur Aplikasi
                 </div>
                 <div
@@ -117,32 +114,20 @@ export default function AppDownload() {
 
               {/* Active Screen Info Text */}
               <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
-                <div className="flex items-center gap-2 text-[11px] font-mono text-cyan-300 font-bold mb-1">
+                <div className="flex items-center gap-2 text-[11px] text-cyan-300 font-bold mb-1">
                   <span>{activeScreen.badge}</span>
                 </div>
-                <h4 className="text-base font-bold text-white mb-1">
+                <h3 className="text-base font-bold text-white mb-1">
                   {activeScreen.title}
-                </h4>
+                </h3>
                 <p className="text-xs text-blue-100 leading-relaxed">
                   {activeScreen.desc}
                 </p>
               </div>
 
-              {/* Download Buttons & QR Code */}
+              {/* Download Buttons */}
               <div className="pt-3 flex flex-wrap items-center gap-4">
-                <div className="flex items-center gap-2.5">
-                  <StoreBadges size="lg" />
-                </div>
-
-                <div className="hidden sm:flex items-center gap-3 pl-4 border-l border-white/20">
-                  <div className="w-12 h-12 rounded-xl bg-white p-1 flex items-center justify-center text-slate-900 shadow-md">
-                    <QrCode className="w-10 h-10" />
-                  </div>
-                  <div className="text-left text-xs">
-                    <p className="font-bold text-white">Scan untuk Unduh</p>
-                    <p className="text-[11px] text-blue-200">iOS &amp; Android</p>
-                  </div>
-                </div>
+                <StoreBadges size="lg" />
               </div>
 
             </div>

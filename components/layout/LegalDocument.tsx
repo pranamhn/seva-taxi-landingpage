@@ -24,17 +24,17 @@ export default function LegalDocument({ updatedAt, intro, sections }: LegalDocum
               aria-label="Daftar isi"
               className="lg:sticky lg:top-24 rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4"
             >
-              <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 mb-2.5">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2.5">
                 Daftar Isi
               </p>
-              <ol className="space-y-1.5 text-xs">
+              <ol className="space-y-0.5 text-xs">
                 {sections.map((section, idx) => (
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
-                      className="flex gap-2 text-slate-600 hover:text-[#225FD2] transition-colors"
+                      className="flex gap-2 py-1.5 text-slate-600 hover:text-[#225FD2] transition-colors"
                     >
-                      <span className="font-mono text-slate-400 shrink-0">{idx + 1}.</span>
+                      <span className="font-medium text-slate-400 shrink-0">{idx + 1}.</span>
                       <span>{section.title}</span>
                     </a>
                   </li>
@@ -45,7 +45,7 @@ export default function LegalDocument({ updatedAt, intro, sections }: LegalDocum
 
           {/* Document body */}
           <article className="lg:col-span-9 max-w-3xl">
-            <p className="text-xs font-mono text-slate-500 mb-5">Terakhir diperbarui: {updatedAt}</p>
+            <p className="text-xs text-slate-500 mb-5">Terakhir diperbarui: {updatedAt}</p>
             <div className="text-sm text-slate-700 leading-relaxed space-y-3 mb-10">{intro}</div>
 
             <div className="space-y-9">

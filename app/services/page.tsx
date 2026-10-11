@@ -19,13 +19,15 @@ import {
   ArrowRight,
   BadgeCheck,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
 
-export const metadata: Metadata = {
-  title: "Pilihan Armada & Tarif Resmi — SEVA",
+export const metadata: Metadata = pageMetadata({
+  title: "Pilihan Armada & Tarif",
   description:
     "Daftar tipe kendaraan, spesifikasi kapasitas, dan tarif argo pasti transparan untuk SEVA RIDE, SEVA CAR, SEVA SEND, dan SEVA FOOD.",
-  alternates: { canonical: "/services" },
-};
+  path: "/services",
+});
 
 const COMPARISON_DATA = [
   {
@@ -46,7 +48,7 @@ const COMPARISON_DATA = [
     name: "SEVA CAR",
     href: "/services/car",
     icon: Car,
-    type: "Mobil MPV / Sedan (AC)",
+    type: "Mobil MPV",
     baseFare: "Rp 9.500",
     kmFare: "Rp 6.200 / km",
     capacity: "4 Penumpang",
@@ -75,8 +77,8 @@ const COMPARISON_DATA = [
     href: "/services/food",
     icon: Utensils,
     type: "Pesan Antar Makanan",
-    baseFare: "Tarif Promo",
-    kmFare: "Tarif Promo",
+    baseFare: "Segera Hadir",
+    kmFare: "Segera Hadir",
     capacity: "Makanan & Minuman",
     luggage: "Tas thermal higienis",
     eta: "Estimasi Masak + Kirim",
@@ -99,20 +101,20 @@ const SERVICE_BENEFITS = [
   },
   {
     icon: BadgeCheck,
-    title: "Driver Terverifikasi Resmi",
+    title: "Driver Terverifikasi",
     desc: "Setiap mitra pengemudi melewati verifikasi identitas, pengecekan dokumen kendaraan aktif, serta pembekalan SOP keselamatan berkendara.",
   },
   {
     icon: Clock,
     title: "Penjemputan Presisi & Cepat",
-    desc: "Algoritma penugasan pintar SEVA menghubungkan pesanan Anda langsung ke driver terdekat, memangkas waktu tunggu penjemputan hingga di bawah 4 menit.",
+    desc: "Algoritma penugasan pintar SEVA menghubungkan pesanan Anda langsung ke driver terdekat, membantu memangkas waktu tunggu penjemputan.",
   },
 ];
 
 const FAQS = [
   {
     q: "Bagaimana cara SEVA menghitung tarif perjalanan?",
-    a: "Tarif dihitung berdasarkan tarif buka pintu dasar ditambah biaya per kilometer sesuai jarak rute tercepat yang tertera di peta aplikasi sebelum Anda memesan.",
+    a: "Tarif dihitung berdasarkan tarif buka pintu dasar ditambah biaya per kilometer sesuai jarak rute yang tertera di peta aplikasi sebelum Anda memesan.",
   },
   {
     q: "Apakah ada biaya tambahan untuk membawa barang atau bagasi?",
@@ -120,7 +122,7 @@ const FAQS = [
   },
   {
     q: "Metode pembayaran apa saja yang diterima?",
-    a: "SEVA mendukung pembayaran tunai langsung ke pengemudi serta pembayaran non-tunai praktis melalui SEVA Wallet dan QRIS terintegrasi.",
+    a: "SEVA mendukung pembayaran tunai langsung ke pengemudi serta pembayaran non-tunai praktis melalui SEVA eWallet dan QRIS terintegrasi.",
   },
   {
     q: "Kapan layanan SEVA FOOD resmi dapat digunakan?",
@@ -135,7 +137,7 @@ export default function ServicesPage() {
       <main className="bg-white text-slate-900 min-h-screen">
         {/* Hero / Page Header */}
         <PageHeader
-          badge="LAYANAN RESMI SEVA // TARIF ARGO PASTI"
+          badge="LAYANAN SEVA // TARIF PASTI"
           title="Pilihan Armada & Tarif Layanan"
           subtitle="Jelajahi armada terstandar SEVA: motor lincah tembus macet, mobil taksi ber-AC yang nyaman, pengiriman paket instan, hingga layanan pesan antar kuliner."
           breadcrumbs={[{ label: "Armada" }]}
@@ -155,7 +157,7 @@ export default function ServicesPage() {
             <div className="text-center max-w-2xl mx-auto mb-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>TABEL PERBANDINGAN RESMI</span>
+                <span>TABEL PERBANDINGAN</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Bandingkan Spesifikasi & Tarif
@@ -194,7 +196,7 @@ export default function ServicesPage() {
                                 <span>{item.name}</span>
                                 <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#225FD2]" />
                               </div>
-                              <div className="text-[11px] text-slate-500 font-mono">Jemput ~{item.eta}</div>
+                              <div className="text-[11px] text-slate-500 font-medium">Jemput ~{item.eta}</div>
                             </div>
                           </Link>
                         </td>
@@ -263,7 +265,7 @@ export default function ServicesPage() {
 
                     <div className="pt-2 border-t border-slate-100 text-xs">
                       <div className="bg-slate-50/80 p-2.5 rounded-xl">
-                        <div className="text-[10px] font-mono text-slate-500 uppercase">Tarif Dasar Buka Pintu</div>
+                        <div className="text-[10px] font-semibold text-slate-500 uppercase">Tarif Dasar Buka Pintu</div>
                         <div className="font-bold text-slate-900 text-sm mt-0.5">{item.baseFare}</div>
                       </div>
                     </div>
@@ -331,6 +333,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        <FaqJsonLd faqs={FAQS} />
+
         {/* FAQ Layanan & Tarif */}
         <section className="py-16 sm:py-20 bg-slate-50/50 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
@@ -354,7 +358,7 @@ export default function ServicesPage() {
                   className="p-5 sm:p-6 bg-white rounded-2xl border border-slate-200/80 shadow-2xs space-y-2"
                 >
                   <h3 className="font-bold text-slate-900 text-sm sm:text-base flex items-start gap-2.5">
-                    <span className="text-[#225FD2] font-mono text-xs mt-0.5 font-bold">0{idx + 1}.</span>
+                    <span className="text-[#225FD2] text-xs mt-0.5 font-bold">0{idx + 1}.</span>
                     <span>{faq.q}</span>
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">

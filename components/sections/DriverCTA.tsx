@@ -70,7 +70,7 @@ export default function DriverCTA() {
 
               {/* 3 Simple Requirements */}
               <div className="pt-2">
-                <div className="text-[11px] font-mono text-blue-200 uppercase tracking-wider mb-2 font-bold">
+                <div className="text-[11px] text-blue-200 uppercase tracking-wider mb-2 font-bold">
                   Persyaratan Mudah:
                 </div>
                 <div className="flex flex-wrap gap-2 text-xs text-blue-100">
@@ -117,7 +117,7 @@ export default function DriverCTA() {
                   </div>
                   <div>
                     <div className="text-[11px] font-bold text-slate-900 leading-tight">Bagi Hasil Bersih</div>
-                    <div className="text-[9px] text-slate-500 font-medium">Potongan cuma 5%</div>
+                    <div className="text-[10px] text-slate-500 font-medium">Potongan cuma 5%</div>
                   </div>
                 </div>
 
@@ -128,7 +128,7 @@ export default function DriverCTA() {
                   </div>
                   <div>
                     <div className="text-[11px] font-bold text-slate-900 leading-tight">Pencairan Harian</div>
-                    <div className="text-[9px] text-emerald-600 font-semibold">Instan H+0 ke Rekening</div>
+                    <div className="text-[10px] text-emerald-700 font-semibold">Instan H+0 ke Rekening</div>
                   </div>
                 </div>
 

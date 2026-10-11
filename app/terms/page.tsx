@@ -6,13 +6,14 @@ import PageHeader from "@/components/layout/PageHeader";
 import LegalDocument, { type LegalSection } from "@/components/layout/LegalDocument";
 import { LEGAL_NAME, SUPPORT_EMAIL } from "@/lib/site";
 import { CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Syarat & Ketentuan — SEVA Taxi",
+export const metadata: Metadata = pageMetadata({
+  title: "Syarat & Ketentuan",
   description:
-    "Syarat dan ketentuan penggunaan layanan SEVA RIDE, SEVA CAR, SEVA SEND, dan SEVA FOOD, termasuk pemesanan, tarif, pembayaran, pembatalan, dan tanggung jawab para pihak.",
-  alternates: { canonical: "/terms" },
-};
+    "Syarat dan ketentuan layanan SEVA RIDE, CAR, SEND, dan FOOD: pemesanan, tarif, pembayaran, pembatalan, serta tanggung jawab para pihak.",
+  path: "/terms",
+});
 
 const CONTACT_EMAIL = SUPPORT_EMAIL;
 
@@ -38,7 +39,7 @@ const sections: LegalSection[] = [
         <li><strong>Layanan</strong> — layanan SEVA yang tersedia melalui aplikasi dan situs, yaitu SEVA RIDE, SEVA CAR, SEVA SEND, dan layanan lain yang diumumkan (termasuk SEVA FOOD sejak diluncurkan).</li>
         <li><strong>Pengguna</strong> — setiap orang yang menggunakan situs atau aplikasi untuk memesan Layanan.</li>
         <li><strong>Mitra</strong> — pengemudi, kurir, dan fleet operator yang bekerja sama dengan SEVA untuk menjalankan Layanan.</li>
-        <li><strong>SEVA Wallet</strong> — dompet digital di dalam aplikasi SEVA yang dipakai untuk pembayaran dan pencatatan saldo.</li>
+        <li><strong>SEVA eWallet</strong> — dompet digital di dalam aplikasi SEVA yang dipakai untuk pembayaran dan pencatatan saldo.</li>
       </ul>
     ),
   },
@@ -80,7 +81,7 @@ const sections: LegalSection[] = [
       <>
         <ul>
           <li>Tarif ditampilkan di aplikasi sebelum Anda mengonfirmasi pemesanan. Simulasi tarif di situs ini hanya estimasi dan dapat berbeda dengan tarif yang tampil di aplikasi.</li>
-          <li>Pembayaran dilakukan melalui SEVA Wallet atau metode lain yang tersedia di aplikasi. Penyelesaian pembayaran dapat memerlukan verifikasi OTP.</li>
+          <li>Pembayaran dilakukan melalui SEVA eWallet atau metode lain yang tersedia di aplikasi. Penyelesaian pembayaran dapat memerlukan verifikasi OTP.</li>
           <li>Biaya tambahan yang relevan dengan perjalanan atau pengiriman akan ditampilkan di aplikasi.</li>
         </ul>
       </>

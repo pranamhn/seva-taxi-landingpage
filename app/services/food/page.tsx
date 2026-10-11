@@ -5,29 +5,28 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
 import AppDownload from "@/components/sections/AppDownload";
-import StoreBadges from "@/components/ui/StoreBadges";
 import {
-  Utensils,
   Bike,
   Car,
   Package,
-  ShieldCheck,
   Clock,
   Sparkles,
   ArrowRight,
-  Flame,
+  ShieldCheck,
   Store,
   Percent,
-  CheckCircle2,
   Mail,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
+import { SUPPORT_EMAIL } from "@/lib/site";
+import LeadForm from "@/components/sections/LeadForm";
 
-export const metadata: Metadata = {
-  title: "SEVA Food (Segera Hadir) — Pesan Antar Kuliner & Resto Favorit | SEVA Taxi",
+export const metadata: Metadata = pageMetadata({
+  title: "SEVA Food — Pesan Antar Makanan (Segera Hadir)",
   description:
-    "Layanan pesan antar makanan dari resto favorit dan UMKM nusantara. Dilengkapi tas termal higienis penjaga suhu dan skema komisi adil bagi pelaku kuliner.",
-  alternates: { canonical: "/services/food" },
-};
+    "Layanan pesan antar makanan praktis dari resto pilihan dan UMKM kuliner lokal. Diantar aman dengan tas khusus oleh mitra pengemudi SEVA.",
+  path: "/services/food",
+});
 
 const FOOD_SPECS = [
   { label: "Status Peluncuran", value: "Tahap Integrasi Merchant & Restoran Rekanan" },
@@ -99,22 +98,22 @@ export default function SevaFoodPage() {
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                  Nikmati Makanan Hangat Langsung di Meja Anda
+                  Pesan Antar Makanan Lebih Praktis
                 </h2>
 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  SEVA Food hadir untuk memberikan pengalaman pesan antar kuliner yang lebih baik bagi pelanggan maupun mitra merchant. Kami menjaga integritas rasa hidangan dengan tas termal berinsulasi tinggi, diantar tepat waktu oleh mitra pengemudi terlatih.
+                  SEVA Food disiapkan untuk memudahkan pemesanan makanan dan minuman dari mitra resto terdekat, diantar dengan standar keamanan kemasan oleh mitra pengemudi SEVA.
                 </p>
 
                 {/* Key Highlights */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
-                    <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center mb-2.5">
-                      <Flame className="w-4 h-4" />
+                    <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#225FD2] flex items-center justify-center mb-2.5">
+                      <ShieldCheck className="w-4 h-4" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm">Tas Termal Pengontrol Suhu</div>
+                    <div className="font-bold text-slate-900 text-sm">Tas Khusus Pengantaran</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Menjaga makanan panas tetap hangat dan minuman segar tetap dingin tanpa mencair saat diantar.
+                      Pesanan dibawa dengan tas khusus pengantaran agar kemasan makanan tetap rapi dan terlindungi di perjalanan.
                     </p>
                   </div>
 
@@ -122,19 +121,19 @@ export default function SevaFoodPage() {
                     <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center mb-2.5">
                       <Percent className="w-4 h-4" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm">Skema Komisi Adil & Berkelanjutan</div>
+                    <div className="font-bold text-slate-900 text-sm">Skema Kemitraan Ramah Mitra</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Potongan komisi rendah sehingga merchant tidak perlu menaikkan harga menu secara berlebihan.
+                      Skema bagi hasil yang transparan dan kompetitif untuk mendukung pertumbuhan usaha resto lokal.
                     </p>
                   </div>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
-                    <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#225FD2] flex items-center justify-center mb-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center mb-2.5">
                       <Store className="w-4 h-4" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm">Beragam Pilihan Kuliner Nusantara</div>
+                    <div className="font-bold text-slate-900 text-sm">Pilihan Kuliner Terdekat</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Mulai dari restoran waralaba ternama hingga warung kuliner legendaris UMKM di sekitar Anda.
+                      Kemudahan memesan aneka menu favorit dari mitra resto dan UMKM kuliner di sekitar lokasi Anda.
                     </p>
                   </div>
 
@@ -142,9 +141,9 @@ export default function SevaFoodPage() {
                     <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center mb-2.5">
                       <Clock className="w-4 h-4" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm">Estimasi Waktu Tepat & Terpantau</div>
+                    <div className="font-bold text-slate-900 text-sm">Status Pengantaran Terpantau</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Pantau proses memasak di dapur resto hingga pergerakan driver yang membawa pesanan Anda.
+                      Pantau proses pesanan dan pergerakan mitra driver secara langsung di peta hingga tiba di tujuan.
                     </p>
                   </div>
                 </div>
@@ -152,7 +151,7 @@ export default function SevaFoodPage() {
                 {/* CTAs */}
                 <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <a
-                    href="mailto:partners@seva.id?subject=Pendaftaran%20Merchant%20SEVA%20Food"
+                    href="#daftar-merchant"
                     className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#225FD2] text-white font-semibold text-xs hover:bg-[#1a4cb0] transition-colors shadow-xs"
                   >
                     <Mail className="w-3.5 h-3.5" />
@@ -182,7 +181,7 @@ export default function SevaFoodPage() {
                     <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-600 text-white shadow-xs">
                       Segera Hadir
                     </div>
-                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
+                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
                       Promo Menarik
                     </div>
                   </div>
@@ -190,7 +189,7 @@ export default function SevaFoodPage() {
 
                 {/* Specs Box */}
                 <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-                  <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
                     Standar Operasional SEVA Food
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
@@ -221,7 +220,7 @@ export default function SevaFoodPage() {
                   Bergabung Lebih Awal Bersama Ekosistem SEVA Food
                 </h2>
                 <p className="text-sm sm:text-base text-blue-100 leading-relaxed font-normal">
-                  Dapatkan eksposur prioritas kepada pengguna aktif SEVA di kota Anda dengan komisi transparan yang mendukung profitabilitas resto Anda.
+                  Dapatkan eksposur prioritas kepada pengguna aktif SEVA di Jabodetabek dengan komisi transparan yang mendukung profitabilitas resto Anda.
                 </p>
 
                 <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
@@ -234,18 +233,18 @@ export default function SevaFoodPage() {
                     <div className="text-blue-200 text-[11px]">Promosi langsung di halaman depan aplikasi</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs">
-                    <div className="font-bold text-white mb-1">Pencairan Dana Instan</div>
-                    <div className="text-blue-200 text-[11px]">Sistem settlement otomatis & transparan</div>
+                    <div className="font-bold text-white mb-1">Settlement Transparan</div>
+                    <div className="text-blue-200 text-[11px]">Rincian penjualan & pencairan dapat dipantau</div>
                   </div>
                 </div>
 
                 <div className="pt-4 flex flex-wrap items-center gap-4">
                   <a
-                    href="mailto:partners@seva.id?subject=Pendaftaran%20Merchant%20Kuliner%20SEVA"
+                    href={`mailto:${SUPPORT_EMAIL}?subject=Pendaftaran%20Merchant%20Kuliner%20SEVA`}
                     className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-[#225FD2] font-bold text-xs hover:bg-blue-50 transition-colors shadow-sm"
                   >
                     <Mail className="w-4 h-4" />
-                    <span>Hubungi Tim Kemitraan (partners@seva.id)</span>
+                    <span>Hubungi Tim Kemitraan ({SUPPORT_EMAIL})</span>
                   </a>
                 </div>
               </div>
@@ -299,6 +298,9 @@ export default function SevaFoodPage() {
             </div>
           </div>
         </section>
+
+        {/* Lead form: dikirim lewat WhatsApp */}
+        <LeadForm variant="merchant" />
 
         {/* App Download CTA */}
         <AppDownload />

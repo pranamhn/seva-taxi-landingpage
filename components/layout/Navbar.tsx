@@ -11,8 +11,6 @@ import {
   Bike,
   Package,
   Utensils,
-  ShieldCheck, 
-  Compass, 
   MapPin, 
   Users,
   Briefcase,
@@ -20,9 +18,11 @@ import {
   ChevronDown,
   Sparkles,
   ArrowRight,
+  HelpCircle,
 } from "lucide-react";
 import StoreBadges from "@/components/ui/StoreBadges";
 import Image from "next/image";
+import { SUPPORT_EMAIL } from "@/lib/site";
 
 export const PASSENGER_SERVICES = [
   {
@@ -70,7 +70,7 @@ export const SERVICE_DROPDOWN_ITEMS = [
 export const PARTNER_DROPDOWN_ITEMS = [
   {
     label: "Driver Partners",
-    href: "/driver",
+    href: "/driver-partners",
     desc: "Bagi hasil 95%, pendaftaran mitra online",
     badge: "Komisi 5%",
     badgeType: "driver",
@@ -78,7 +78,7 @@ export const PARTNER_DROPDOWN_ITEMS = [
   },
   {
     label: "Fleet Partners",
-    href: "/fleet-operator",
+    href: "/fleet-partners",
     desc: "Integrasi armada rental & live monitoring",
     badge: "Armada",
     badgeType: "fleet",
@@ -96,7 +96,8 @@ export const PARTNER_DROPDOWN_ITEMS = [
 
 export const navLinks = [
   { label: "Kota Operasional", href: "/cities", icon: MapPin },
-  { label: "Fleet Operator", href: "/fleet-operator", icon: Car },
+  { label: "Fleet Operator", href: "/fleet-partners", icon: Car },
+  { label: "FAQ", href: "/faq", icon: HelpCircle },
 ];
 
 export default function Navbar() {
@@ -118,7 +119,7 @@ export default function Navbar() {
   const partnerCloseTimer = useRef<NodeJS.Timeout | null>(null);
 
   const isServicesActive = pathname.startsWith("/services");
-  const isPartnerActive = pathname === "/driver" || pathname === "/b2b-partners";
+  const isPartnerActive = pathname === "/driver-partners" || pathname === "/fleet-partners" || pathname === "/b2b-partners";
 
   const openServices = () => {
     if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
@@ -160,11 +161,14 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  useEffect(() => {
+  // Tutup semua menu saat pindah halaman (penyesuaian state saat render, tanpa effect)
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
     setServicesOpen(false);
     setPartnerOpen(false);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -200,8 +204,8 @@ export default function Navbar() {
           <Image
             src="/assets/logo/logo-seva.png"
             alt="SEVA - Ride Hailing & Mobility Partner"
-            width={864}
-            height={272}
+            width={152}
+            height={48}
             priority
             className="h-7 sm:h-8 md:h-8.5 w-auto object-contain select-none"
           />
@@ -295,7 +299,7 @@ export default function Navbar() {
                                 <span className="text-xs font-bold text-slate-900 group-hover:text-[#225FD2] transition-colors">
                                   {item.label}
                                 </span>
-                                <span className={`text-[9.5px] font-semibold px-2 py-0.5 rounded-full ${
+                                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                                   item.badgeType === "popular"
                                     ? "bg-blue-50 text-[#225FD2]"
                                     : "bg-emerald-50 text-emerald-700"
@@ -348,7 +352,7 @@ export default function Navbar() {
                                 <span className="text-xs font-bold text-slate-900 group-hover:text-[#225FD2] transition-colors">
                                   {item.label}
                                 </span>
-                                <span className={`text-[9.5px] font-semibold px-2 py-0.5 rounded-full ${
+                                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                                   item.badgeType === "soon"
                                     ? "bg-amber-50 text-amber-800"
                                     : "bg-emerald-50 text-emerald-700"
@@ -371,7 +375,7 @@ export default function Navbar() {
                 {/* Dropdown Bottom Banner Full Width */}
                 <div className="mt-3 pt-2.5 -mx-3.5 -mb-3.5 px-3.5 py-2.5 bg-slate-50/80 rounded-b-2xl border-t border-slate-100 flex items-center justify-between">
                   <span className="text-[11.5px] text-slate-500">
-                    Bandingkan tarif argo resmi seluruh tipe kendaraan
+                    Bandingkan tarif seluruh tipe kendaraan
                   </span>
                   <Link
                     href="/services"
@@ -455,7 +459,7 @@ export default function Navbar() {
                             <span className="text-xs font-bold text-slate-900 group-hover:text-[#225FD2] transition-colors">
                               {item.label}
                             </span>
-                            <span className={`text-[9.5px] font-semibold px-2 py-0.5 rounded-full ${
+                            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                               item.badgeType === "driver"
                                 ? "bg-emerald-50 text-emerald-700"
                                 : item.badgeType === "fleet"
@@ -478,10 +482,10 @@ export default function Navbar() {
                 <div className="mt-3 pt-2.5 -mx-3 -mb-3 px-3.5 py-2.5 bg-slate-50/80 rounded-b-2xl border-t border-slate-100 flex items-center justify-between text-xs">
                   <span className="text-slate-500 font-medium">Hubungi Kemitraan:</span>
                   <a
-                    href="mailto:partners@seva.id"
+                    href={`mailto:${SUPPORT_EMAIL}`}
                     className="font-bold text-[#225FD2] hover:underline"
                   >
-                    partners@seva.id →
+                    {SUPPORT_EMAIL} →
                   </a>
                 </div>
               </div>
@@ -513,21 +517,8 @@ export default function Navbar() {
           <StoreBadges size="sm" />
         </div>
 
-        {/* Mobile Controls: App Store quick badge + Menu toggle */}
+        {/* Mobile Controls: Menu toggle */}
         <div className="flex sm:hidden items-center gap-2">
-          <a
-            href="https://apps.apple.com/id/app/seva-driver/id6761700121"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="h-8 px-2.5 rounded-lg bg-black text-white text-[11px] font-semibold flex items-center gap-1 shadow-xs"
-            aria-label="App Store"
-          >
-            <svg className="w-3 h-3 fill-current text-white" viewBox="0 0 170 170">
-              <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.05-7.5-7.65-11.4-13.81-5.77-9.13-10.22-19.53-13.36-31.21-3.13-11.68-4.7-22.95-4.7-33.82 0-14.28 3.5-26.04 10.51-35.29 7.01-9.25 15.82-13.97 26.43-14.16 4.9 0 10.28 1.34 16.14 4.01 5.86 2.68 9.77 4.07 11.75 4.19 1.76-.12 5.92-1.63 12.47-4.53 6.56-2.9 12.08-4.22 16.58-3.96 12.43.76 22.37 5.37 29.82 13.85-10.87 6.57-16.18 15.77-15.93 27.6.25 9.17 3.73 16.89 10.45 23.16 6.72 6.27 14.81 9.87 24.28 10.8-2.22 6.94-4.87 13.78-7.95 20.52zM119.22 31.84c0-7.39 2.67-14.24 8.01-20.56 5.34-6.32 11.96-10.28 19.86-11.88.35 1.5.53 3.03.53 4.59 0 7.39-2.73 14.35-8.19 20.88-5.46 6.53-12.19 10.46-20.21 11.78z" />
-            </svg>
-            <span>iOS</span>
-          </a>
-
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -545,7 +536,7 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div id="mobile-menu" className="lg:hidden bg-white/98 backdrop-blur-2xl border-b border-slate-200/90 px-5 py-4 space-y-4 shadow-xl animate-in fade-in duration-200 max-h-[85vh] overflow-y-auto">
-          <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider px-2">
+          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2">
             Menu Navigasi
           </div>
 
@@ -613,7 +604,7 @@ export default function Navbar() {
                               <div className="text-[10px] text-slate-500 mt-0.5 truncate">{item.desc}</div>
                             </div>
                           </div>
-                          <span className={`text-[8.5px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
                             item.badgeType === "soon"
                               ? "bg-amber-100 text-amber-700"
                               : item.badgeType === "popular"
@@ -680,7 +671,7 @@ export default function Navbar() {
                             <div className="text-[10px] text-slate-500 mt-0.5 line-clamp-1">{item.desc}</div>
                           </div>
                         </div>
-                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
+                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                           item.badgeType === "driver"
                             ? "bg-emerald-100 text-emerald-700"
                             : item.badgeType === "fleet"

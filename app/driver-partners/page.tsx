@@ -1,39 +1,33 @@
 import { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
-import AppDownload from "@/components/sections/AppDownload";
 import StoreBadges from "@/components/ui/StoreBadges";
 import {
-  Bike,
-  Car,
   Wallet,
   Zap,
   Clock,
-  ShieldCheck,
   CheckCircle2,
   FileText,
-  Smartphone,
   Award,
   Sparkles,
-  ArrowRight,
   Headphones,
+  Smartphone,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Pendaftaran Mitra Pengemudi — SEVA Driver",
+export const metadata: Metadata = pageMetadata({
+  title: "Pendaftaran Mitra Pengemudi",
   description:
     "Gabung jadi mitra pengemudi SEVA Ride atau SEVA Car. Komisi hanya 5% (bawa pulang bersih 95%), pencairan dana harian H+0, dan kebebasan penuh mengatur jam kerja.",
-  alternates: { canonical: "/driver" },
-};
+  path: "/driver-partners",
+});
 
 const DRIVER_BENEFITS = [
   {
     icon: Wallet,
     title: "Bawa Pulang Bersih 95%",
-    desc: "Potongan platform hanya 5%, tidak lebih. Kerja keras Anda dihargai maksimal dengan porsi pendapatan terbesar milik Anda.",
+    desc: "Potongan platform hanya 5%, tidak lebih. Kerja keras Anda dihargai maksimal dengan 95% pendapatan perjalanan menjadi milik Anda.",
     badge: "Komisi 5%",
   },
   {
@@ -49,16 +43,16 @@ const DRIVER_BENEFITS = [
     badge: "Bebas Waktu",
   },
   {
-    icon: ShieldCheck,
-    title: "Perlindungan Asuransi Perjalanan",
-    desc: "Seluruh mitra pengemudi dilindungi jaminan asuransi kecelakaan diri selama menerima dan menyelesaikan pesanan.",
-    badge: "Terlindungi",
-  },
-  {
     icon: Award,
     title: "Bonus Target & Insentif Rutin",
     desc: "Raih bonus performa mingguan dan skema insentif jam sibuk untuk meningkatkan total penghasilan Anda.",
     badge: "Bonus Mingguan",
+  },
+  {
+    icon: Smartphone,
+    title: "Pendaftaran Gratis & 100% Online",
+    desc: "Daftar langsung dari aplikasi SEVA Driver tanpa biaya pendaftaran. Unggah dokumen dari ponsel, tanpa perlu datang ke kantor.",
+    badge: "Tanpa Biaya",
   },
   {
     icon: Headphones,
@@ -84,7 +78,7 @@ const REQUIREMENTS = [
     items: [
       "STNK dan Pajak Kendaraan aktif sesuai unit",
       "Sepeda motor minimal tahun 2016 (kondisi prima)",
-      "Mobil MPV/Sedan minimal tahun 2017 ber-AC dingin",
+      "Mobil MPV minimal tahun 2017 ber-AC dingin",
       "Smartphone Android (RAM min 3GB) atau iOS dengan GPS aktif",
       "Kondisi fisik kendaraan bersih dan layak jalan",
     ],
@@ -110,7 +104,7 @@ const STEPS = [
   {
     step: "04",
     title: "Ambil Atribut & Langsung Narik",
-    desc: "Akun aktif seketika. Hidupkan tombol online dan mulai terima pesanan pertama Anda di kota Anda!",
+    desc: "Setelah akun aktif, hidupkan tombol online dan mulai terima pesanan pertama Anda.",
   },
 ];
 
@@ -143,7 +137,7 @@ export default function DriverPage() {
                 <div className="lg:col-span-8 space-y-4 sm:space-y-5">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-white/10 border border-white/20 text-blue-200 max-w-full">
                     <Sparkles className="w-3.5 h-3.5 text-blue-300 shrink-0" />
-                    <span className="break-words">PENDAFTARAN DIBUKA DI JABODETABEK &amp; KOTA BESAR</span>
+                    <span className="break-words">PENDAFTARAN DIBUKA DI JABODETABEK</span>
                   </div>
 
                   <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight break-words">
@@ -161,10 +155,10 @@ export default function DriverPage() {
 
                 <div className="lg:col-span-4 flex justify-center">
                   <div className="p-6 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md text-center max-w-xs space-y-3">
-                    <div className="text-xs font-mono uppercase text-blue-200">Estimasi Pendapatan Rata-rata</div>
-                    <div className="text-3xl sm:text-4xl font-black font-mono text-emerald-400">Rp 5–12 Jt</div>
+                    <div className="text-xs font-semibold uppercase text-blue-200">Ilustrasi Pendapatan Bulanan</div>
+                    <div className="text-3xl sm:text-4xl font-black text-emerald-400 tabular-nums">Rp 5–12 Jt</div>
                     <p className="text-xs text-blue-100/80">
-                      Per bulan berdasarkan performa trip harian dan bonus insentif jam sibuk.
+                      Ilustrasi, bukan jaminan. Hasil bergantung pada jam aktif, jumlah trip, wilayah, dan bonus.
                     </p>
                   </div>
                 </div>
@@ -185,7 +179,7 @@ export default function DriverPage() {
                 Mengapa Harus Bergabung dengan SEVA?
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">
-                Kami menempatkan kesejahteraan pengemudi sebagai prioritas nomor satu dalam ekosistem transportasi.
+                Kami menempatkan kesejahteraan pengemudi sebagai prioritas dalam ekosistem transportasi.
               </p>
             </div>
 
@@ -202,7 +196,7 @@ export default function DriverPage() {
                         <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center">
                           <Icon className="w-5 h-5" />
                         </div>
-                        <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-100">
+                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-100">
                           {b.badge}
                         </span>
                       </div>
@@ -267,7 +261,7 @@ export default function DriverPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {STEPS.map((s) => (
                 <div key={s.step} className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                  <div className="text-3xl font-black font-mono text-[#225FD2] mb-3">{s.step}</div>
+                  <div className="text-3xl font-black text-[#225FD2] tracking-tight mb-3">{s.step}</div>
                   <h3 className="font-bold text-slate-900 text-sm mb-1.5">{s.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
                 </div>
@@ -275,9 +269,6 @@ export default function DriverPage() {
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        <AppDownload />
       </main>
       <Footer />
     </>

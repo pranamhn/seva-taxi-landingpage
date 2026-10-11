@@ -11,9 +11,7 @@ import {
   Bike,
   Car,
   Utensils,
-  ShieldCheck,
   Clock,
-  Wallet,
   Sparkles,
   CheckCircle2,
   ArrowRight,
@@ -22,13 +20,14 @@ import {
   FileCheck,
   AlertTriangle,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "SEVA Send — Layanan Kurir & Pengiriman Paket Instan On-Demand | SEVA Taxi",
+export const metadata: Metadata = pageMetadata({
+  title: "SEVA Send — Kurir & Kirim Paket Instan",
   description:
-    "Kirim dokumen penting, pesanan bisnis, atau paket harian instan tiba dalam hitungan jam. Tanpa transit gudang, live tracking GPS real-time, dan bukti foto tanda terima resmi.",
-  alternates: { canonical: "/services/send" },
-};
+    "Kirim dokumen dan paket instan di Jabodetabek, tiba dalam hitungan jam. Tanpa transit gudang, live tracking GPS, dan foto bukti serah terima.",
+  path: "/services/send",
+});
 
 const SEND_SPECS = [
   { label: "Beban Maksimal", value: "Hingga 20 kg per Pengiriman" },
@@ -123,7 +122,7 @@ export default function SevaSendPage() {
                     <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center mb-2.5">
                       <Camera className="w-4 h-4" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm">Foto Tanda Terima Resmi</div>
+                    <div className="font-bold text-slate-900 text-sm">Foto Tanda Terima</div>
                     <p className="text-xs text-slate-600 mt-1">
                       Dokumentasi foto saat kurir menyerahkan barang langsung muncul di riwayat aplikasi Anda.
                     </p>
@@ -179,7 +178,7 @@ export default function SevaSendPage() {
                     <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#225FD2] text-white shadow-xs">
                       Tiba Hari Ini
                     </div>
-                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
+                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
                       Mulai Rp 10.000
                     </div>
                   </div>
@@ -187,7 +186,7 @@ export default function SevaSendPage() {
 
                 {/* Specs Box */}
                 <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-                  <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
                     Spesifikasi Batas Pengiriman
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
@@ -224,46 +223,46 @@ export default function SevaSendPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase">Radius Dekat (4 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 22.000</div>
+                  <div className="text-xs font-semibold text-slate-500 uppercase">Radius Dekat (4 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 22.000</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Pengiriman dokumen kantor mendesak, kunci tertinggal, atau pesanan kuliner rumahan.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi sampai:</span>
-                  <span className="font-bold text-slate-900 font-mono">~20-30 Menit</span>
+                  <span className="font-bold text-slate-900">~20-30 Menit</span>
                 </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-blue-50/60 border border-blue-200 shadow-xs flex flex-col justify-between relative overflow-hidden">
                 <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#225FD2] text-white">
-                  Paling Populer
+                  Rute Harian
                 </div>
                 <div>
-                  <div className="text-xs font-mono font-semibold text-[#225FD2] uppercase">Radius Kota (10 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 40.000</div>
+                  <div className="text-xs font-semibold text-[#225FD2] uppercase">Radius Kota (10 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 40.000</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Pesanan online shop instan antar kecamatan, pakaian, alat elektronik, dan hampers.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-blue-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi sampai:</span>
-                  <span className="font-bold text-slate-900 font-mono">~45-60 Menit</span>
+                  <span className="font-bold text-slate-900">~45-60 Menit</span>
                 </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase">Lintas Kota (18 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 64.000</div>
+                  <div className="text-xs font-semibold text-slate-500 uppercase">Lintas Kota (18 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 64.000</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Pengiriman antar perbatasan kota yang membutuhkan kepastian sampai hari yang sama.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi sampai:</span>
-                  <span className="font-bold text-slate-900 font-mono">~1.5 - 2 Jam</span>
+                  <span className="font-bold text-slate-900">~1.5 - 2 Jam</span>
                 </div>
               </div>
             </div>

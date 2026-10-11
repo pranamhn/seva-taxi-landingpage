@@ -6,8 +6,6 @@ import {
   Car,
   Bike,
   Package,
-  MapPin,
-  Navigation,
   ArrowRight,
   ArrowUpDown,
   Download,
@@ -58,7 +56,7 @@ const RIDE_CATEGORIES = [
     badge: "Hemat",
     baseFare: 8000,
     perKm: 2500,
-    eta: "~2 mnt",
+    eta: "~1–3 mnt",
   },
   {
     id: "car",
@@ -67,7 +65,7 @@ const RIDE_CATEGORIES = [
     badge: "Populer",
     baseFare: 9500,
     perKm: 6200,
-    eta: "~3 mnt",
+    eta: "~3–5 mnt",
   },
   {
     id: "send",
@@ -76,7 +74,7 @@ const RIDE_CATEGORIES = [
     badge: "Instan",
     baseFare: 10000,
     perKm: 3000,
-    eta: "~5 mnt",
+    eta: "~2–4 mnt",
   },
   {
     id: "food",
@@ -136,9 +134,10 @@ export default function Hero() {
           <div className="text-left space-y-3 sm:space-y-4 lg:space-y-[clamp(8px,1.6vh,16px)] w-full animate-hero-fade">
             
             {/* Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-blue-500/10 border border-blue-500/20 text-[#225FD2] shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#225FD2]" />
-              <span>Platform Ride-Hailing &amp; Taksi Terpercaya di Indonesia</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wide bg-blue-500/10 border border-blue-500/20 text-[#225FD2] shadow-2xs max-w-full">
+              <Sparkles className="w-3.5 h-3.5 text-[#225FD2] shrink-0" />
+              <span className="sm:hidden">Ride-Hailing &amp; Taksi Online</span>
+              <span className="hidden sm:inline">Platform Ride-Hailing &amp; Taksi Online Jabodetabek</span>
             </div>
 
             {/* Main Headline */}
@@ -170,7 +169,6 @@ export default function Hero() {
                       type="button"
                       onClick={() => setActiveCategory(cat.id)}
                       aria-pressed={isActive}
-                      aria-label={cat.badge === "Soon" ? `${cat.name} (segera hadir)` : cat.name}
                       className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 relative py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs transition-all duration-200 cursor-pointer ${
                         isActive
                           ? "bg-white text-[#225FD2] shadow-sm border border-slate-200/90 font-bold"
@@ -183,10 +181,11 @@ export default function Hero() {
                         {cat.name.replace(/^SEVA\s+/, "")}
                       </span>
                       {cat.badge === "Soon" && (
-                        <span className="absolute -top-2 -right-0.5 text-[8.5px] leading-none px-1.5 py-[3px] rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-200 shadow-2xs">
+                        <span className="absolute -top-2 -right-0.5 text-[10px] leading-none px-1.5 py-[3px] rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-200 shadow-2xs">
                           Soon
                         </span>
                       )}
+                      {cat.badge === "Soon" && <span className="sr-only"> (segera hadir)</span>}
                     </button>
                   );
                 })}
@@ -210,7 +209,7 @@ export default function Hero() {
                 <div className="pl-6 pr-10 space-y-1.5">
                   {/* Pickup Field */}
                   <div className="relative">
-                    <div className="text-[9.5px] font-mono uppercase font-bold text-slate-400 tracking-wider leading-none mb-0.5">
+                    <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider leading-none mb-0.5">
                       Titik Jemput
                     </div>
                     <input
@@ -235,7 +234,7 @@ export default function Hero() {
 
                   {/* Destination Field */}
                   <div className="relative">
-                    <div className="text-[9.5px] font-mono uppercase font-bold text-slate-400 tracking-wider leading-none mb-0.5">
+                    <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider leading-none mb-0.5">
                       Tujuan Pengantaran
                     </div>
                     <input
@@ -274,7 +273,7 @@ export default function Hero() {
 
               {/* Commuter Route Pills (Quick Suggestions) */}
               <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
-                <span className="text-[10px] font-mono uppercase font-bold text-slate-400 shrink-0">
+                <span className="text-[10px] uppercase font-bold text-slate-400 shrink-0">
                   Rute Cepat:
                 </span>
                 {RIDE_PRESETS.map((preset) => {
@@ -306,15 +305,15 @@ export default function Hero() {
                     </span>
                     <span className="text-slate-300">•</span>
                     <span className="text-emerald-600 font-semibold truncate">
-                      {activeCategory === "food" ? "Segera Hadir" : "Tarif Pasti (Argo Resmi)"}
+                      {activeCategory === "food" ? "Segera Hadir" : "Tarif Pasti di Awal"}
                     </span>
                   </div>
                   <div className="flex items-baseline gap-1.5 mt-0.5">
-                    <span className="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono tracking-tight">
+                    <span className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight tabular-nums">
                       {activeCategory === "food" ? "Coming Soon" : `Rp ${calculatedFare.toLocaleString("id-ID")}`}
                     </span>
                     {activeCategory !== "food" && (
-                      <span className="text-[11px] font-mono text-slate-400">
+                      <span className="text-[11px] font-medium text-slate-400">
                         ({distance} km)
                       </span>
                     )}
@@ -352,7 +351,7 @@ export default function Hero() {
                   <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" aria-hidden="true" />
                 </span>
                 <span className="font-bold text-slate-900">4.8/5.0</span>
-                <span className="font-medium text-slate-500">Rating Jabodetabek</span>
+                <span className="font-medium text-slate-500">Rating</span>
               </div>
             </div>
 
@@ -377,11 +376,11 @@ export default function Hero() {
               </div>
               <div className="relative">
                 <p className="font-bold text-xs sm:text-[13px] text-slate-900 tracking-tight leading-tight">
-                  SEVA Wallet
+                  SEVA eWallet
                 </p>
                 <p className="mt-1 flex items-center gap-1.5 whitespace-nowrap">
                   <span className="text-[11px] sm:text-xs font-bold text-slate-700 tabular-nums">Rp 384.000</span>
-                  <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] sm:text-[10px] leading-none font-bold text-emerald-700">
+                  <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] leading-none font-bold text-emerald-700">
                     Cashless
                   </span>
                 </p>

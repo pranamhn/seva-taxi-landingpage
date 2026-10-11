@@ -23,7 +23,7 @@ const STEPS = [
   {
     step: "03",
     title: "Driver Menjemput & Bayar Cashless",
-    desc: "Pantau kedatangan armada langsung di peta. Sapa driver profesional Anda, nikmati perjalanan nyaman ber-AC, dan bayar otomatis via QRIS, SEVA Wallet, atau Tunai.",
+    desc: "Pantau kedatangan armada langsung di peta. Sapa driver profesional Anda, nikmati perjalanan nyaman ber-AC, dan bayar otomatis via SEVA eWallet, QRIS, atau Tunai.",
     screenshot: "/images/app/app-chat.jpg",
     icon: CreditCard,
     highlight: "Keamanan perjalanan terpantau real-time",
@@ -48,7 +48,7 @@ export default function HowItWorks() {
             </span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Tidak perlu menunggu di pinggir jalan atau tawar-menawar harga. Semua selesai dalam hitungan detik melalui smartphone Anda.
+            Tidak perlu menunggu di pinggir jalan atau tawar-menawar harga. Cukup beberapa ketukan dari smartphone Anda.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function HowItWorks() {
                 <div>
                   {/* Step Number & Icon Header */}
                   <div className="flex items-center justify-between mb-5">
-                    <span className="text-2xl font-black font-mono text-[#225FD2]/30">
+                    <span className="text-2xl font-black tracking-tight text-[#225FD2]/75">
                       {s.step}
                     </span>
                     <div className="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-200/70 flex items-center justify-center text-[#225FD2]">

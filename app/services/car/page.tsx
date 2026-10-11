@@ -11,30 +11,28 @@ import {
   Bike,
   Package,
   Utensils,
-  ShieldCheck,
-  Clock,
   Wallet,
   Sparkles,
-  CheckCircle2,
   ArrowRight,
   Luggage,
   Wind,
   Video,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "SEVA Car — Taksi Mobil Harian Ber-AC Nyaman & Resmi | SEVA Taxi",
+export const metadata: Metadata = pageMetadata({
+  title: "SEVA Car — Taksi Mobil Online Ber-AC",
   description:
-    "Armada taksi dan mobil harian ber-AC dingin terstandar. Kapasitas 4 penumpang, kabin bersih, argo resmi transparan tanpa lonjakan tarif sepihak.",
-  alternates: { canonical: "/services/car" },
-};
+    "Armada taksi dan mobil harian ber-AC dingin terstandar. Kapasitas 4 penumpang, kabin bersih, tarif pasti transparan tanpa lonjakan sepihak.",
+  path: "/services/car",
+});
 
 const CAR_SPECS = [
-  { label: "Tipe Armada", value: "MPV & Sedan Terstandar (Euro 4)" },
+  { label: "Tipe Armada", value: "MPV Terstandar (Euro 4)" },
   { label: "Kapasitas Penumpang", value: "Hingga 4 Orang Dewasa" },
   { label: "Kapasitas Bagasi", value: "2 Koper Medium + 2 Tas Ransel" },
   { label: "Kenyamanan Kabin", value: "AC Dingin Terkalibrasi & Kabin Bersih Higienis" },
-  { label: "Fitur Keselamatan", value: "Dashcam Aktif, Sabuk Pengaman Lengkap, Tombol SOS" },
+  { label: "Fitur Keselamatan", value: "Sabuk Pengaman Lengkap, Tombol SOS, Live Tracking" },
   { label: "Kebijakan Pembatalan", value: "Gratis Pembatalan dalam 5 Menit Pertama" },
 ];
 
@@ -103,7 +101,7 @@ export default function SevaCarPage() {
                 </h2>
 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  SEVA Car menghadirkan standar baru mobilitas roda empat perkotaan. Menggunakan armada MPV dan Sedan generasi terbaru dengan kabin wangi, pendingin udara dingin maksimal, serta pengemudi profesional yang ramah dan beretika tinggi.
+                  SEVA Car menghadirkan standar baru mobilitas roda empat perkotaan. Menggunakan armada MPV generasi terbaru dengan kabin wangi, pendingin udara dingin maksimal, serta pengemudi profesional yang ramah dan beretika tinggi.
                 </p>
 
                 {/* Key Highlights */}
@@ -132,9 +130,9 @@ export default function SevaCarPage() {
                     <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center mb-2.5">
                       <Video className="w-4 h-4" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm">Keamanan Dashcam & GPS</div>
+                    <div className="font-bold text-slate-900 text-sm">Keamanan GPS & SOS</div>
                     <p className="text-xs text-slate-600 mt-1">
-                      Setiap perjalanan terpantau live oleh Command Center dan dilindungi tombol darurat SOS 24/7.
+                      Perjalanan dapat dipantau lewat live tracking dan dilindungi tombol darurat SOS 24/7.
                     </p>
                   </div>
 
@@ -176,9 +174,9 @@ export default function SevaCarPage() {
                       className="object-cover object-center"
                     />
                     <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#225FD2] text-white shadow-xs">
-                      Paling Populer
+                      Nyaman
                     </div>
-                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
+                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-slate-900 backdrop-blur-sm shadow-xs border border-slate-200">
                       Mulai Rp 9.500
                     </div>
                   </div>
@@ -186,7 +184,7 @@ export default function SevaCarPage() {
 
                 {/* Specs Box */}
                 <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-                  <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-700 pb-2 border-b border-slate-200">
                     Spesifikasi & Fasilitas Kabin
                   </div>
                   <dl className="divide-y divide-slate-200/60 text-xs">
@@ -223,46 +221,46 @@ export default function SevaCarPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase">Perjalanan Dekat (5 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 40.500</div>
+                  <div className="text-xs font-semibold text-slate-500 uppercase">Perjalanan Dekat (5 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 40.500</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Perjalanan meeting kantor, belanja bulanan supermarket, atau antar anak les.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi waktu:</span>
-                  <span className="font-bold text-slate-900 font-mono">~12-18 Menit</span>
+                  <span className="font-bold text-slate-900">~12-18 Menit</span>
                 </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-blue-50/60 border border-blue-200 shadow-xs flex flex-col justify-between relative overflow-hidden">
                 <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#225FD2] text-white">
-                  Paling Diminati
+                  Rute Harian
                 </div>
                 <div>
-                  <div className="text-xs font-mono font-semibold text-[#225FD2] uppercase">Rute Kota (12 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 83.900</div>
+                  <div className="text-xs font-semibold text-[#225FD2] uppercase">Rute Kota (12 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 83.900</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Mobilitas antar sentra bisnis (Sudirman, Kuningan, SCBD, TB Simatupang).
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-blue-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi waktu:</span>
-                  <span className="font-bold text-slate-900 font-mono">~25-40 Menit</span>
+                  <span className="font-bold text-slate-900">~25-40 Menit</span>
                 </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-mono font-semibold text-slate-500 uppercase">Rute Bandara (25 km)</div>
-                  <div className="mt-2 text-3xl font-extrabold text-slate-900 font-mono">Rp 164.500</div>
+                  <div className="text-xs font-semibold text-slate-500 uppercase">Rute Bandara (25 km)</div>
+                  <div className="mt-2 text-3xl font-extrabold text-slate-900 tabular-nums">Rp 164.500</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">
                     Perjalanan ke Bandara Soekarno-Hatta / Halim Perdanakusuma dengan bagasi koper aman.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span>Estimasi waktu:</span>
-                  <span className="font-bold text-slate-900 font-mono">~45-60 Menit</span>
+                  <span className="font-bold text-slate-900">~45-60 Menit</span>
                 </div>
               </div>
             </div>
@@ -296,7 +294,7 @@ export default function SevaCarPage() {
                 {
                   step: "03",
                   title: "Lihat Detail Mobil & Driver",
-                  desc: "Dapatkan nama driver, nomor plat kendaraan resmi, dan foto mobil di aplikasi.",
+                  desc: "Dapatkan nama driver, nomor plat kendaraan, dan foto mobil di aplikasi.",
                 },
                 {
                   step: "04",
@@ -305,7 +303,7 @@ export default function SevaCarPage() {
                 },
               ].map((item) => (
                 <div key={item.step} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-2xl font-black font-mono text-[#225FD2] mb-3">{item.step}</div>
+                  <div className="text-2xl font-black text-[#225FD2] mb-3">{item.step}</div>
                   <h3 className="font-bold text-slate-900 text-sm mb-1.5">{item.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>

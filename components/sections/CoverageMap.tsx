@@ -49,7 +49,7 @@ const COVERAGE_POINTS: CoverageZone[] = [
     group: "tangerang",
     eta: "~2–4 mnt",
     services: ["SEVA Car", "SEVA Ride", "SEVA Send"],
-    desc: "Shelter titik jemput resmi di Terminal 1, 2, dan 3 (kedatangan domestik & internasional).",
+    desc: "Titik jemput di area kedatangan Terminal 1, 2, dan 3 (kedatangan domestik & internasional).",
     badge: "Hub Bandara Utama",
   },
   {
@@ -444,7 +444,7 @@ export default function CoverageMap() {
                 Seluruh Zona Aktif 24/7
               </span>
               <span className="text-slate-300 text-xs hidden sm:inline">/</span>
-              <span className="text-slate-600 text-xs font-mono tabular-nums hidden sm:inline">
+              <span className="text-slate-600 text-xs tabular-nums hidden sm:inline">
                 {FLEET_TOTAL_VEHICLES.toLocaleString("id-ID")} Armada Terpantau
               </span>
             </div>
@@ -479,7 +479,7 @@ export default function CoverageMap() {
               />
 
               {!ready && (
-                <div className="absolute inset-0 flex items-center justify-center text-xs text-slate-500 font-mono">
+                <div className="absolute inset-0 flex items-center justify-center text-xs text-slate-500 font-medium">
                   Memuat peta…
                 </div>
               )}
@@ -514,7 +514,7 @@ export default function CoverageMap() {
             <aside className="flex flex-col bg-white border-t lg:border-t-0 lg:border-l border-slate-200">
               <div className="p-5 space-y-4 flex-1">
                 <div>
-                  <div className="text-[11px] font-mono uppercase text-slate-500 font-bold mb-2">
+                  <div className="text-[11px] uppercase text-slate-500 font-bold mb-2">
                     Layanan aktif ({selectedPoint.name})
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -538,7 +538,7 @@ export default function CoverageMap() {
 
                 {/* Point list */}
                 <div>
-                  <div className="text-[11px] font-mono uppercase text-slate-500 font-bold mb-2">
+                  <div className="text-[11px] uppercase text-slate-500 font-bold mb-2">
                     Titik layanan ({filteredPoints.length})
                   </div>
                   <ul className="rounded-lg border border-slate-200 divide-y divide-slate-200 overflow-hidden">
@@ -561,7 +561,7 @@ export default function CoverageMap() {
                             />
                             <span className="truncate">{p.label}</span>
                           </span>
-                          <span className="text-[10px] text-slate-500 font-mono shrink-0">{p.city}</span>
+                          <span className="text-[10px] text-slate-500 font-medium shrink-0">{p.city}</span>
                         </button>
                       </li>
                     ))}

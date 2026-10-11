@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function FleetPartnerRedirectPage() {
-  redirect("/b2b-partners");
+  permanentRedirect("/b2b-partners");
 }

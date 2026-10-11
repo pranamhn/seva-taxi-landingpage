@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Image from "next/image";
-import { FLEET_COMPANIES, FLEET_COMPANY_COUNT, type FleetCompany } from "@/lib/fleet-companies";
+import { FLEET_COMPANIES, FLEET_COMPANY_COUNT } from "@/lib/fleet-companies";
 
 export default function FleetOperatorDirectory() {
   const [search, setSearch] = useState("");
@@ -51,7 +51,7 @@ export default function FleetOperatorDirectory() {
               <Car className="w-6 h-6" />
             </div>
             <div>
-              <div className="text-2xl font-black text-slate-900 font-mono">
+              <div className="text-2xl font-black text-slate-900 tabular-nums">
                 {totalVehicles.toLocaleString("id-ID")}
               </div>
               <div className="text-xs text-slate-500 font-medium">
@@ -181,11 +181,11 @@ export default function FleetOperatorDirectory() {
                       Active
                     </span>
                   </td>
-                  <td className="py-4 px-6 text-right font-mono font-bold text-slate-900 text-base">
+                  <td className="py-4 px-6 text-right font-bold text-slate-900 text-base tabular-nums">
                     {item.vehicles.toLocaleString("id-ID")}{" "}
                     <span className="text-xs text-slate-400 font-normal">Unit</span>
                   </td>
-                  <td className="py-4 px-6 text-right text-xs text-slate-500 font-mono">
+                  <td className="py-4 px-6 text-right text-xs text-slate-500 tabular-nums">
                     <div className="flex items-center justify-end gap-2">
                       <div className="w-16 bg-slate-100 rounded-full h-1.5 overflow-hidden">
                         <div
@@ -238,7 +238,7 @@ export default function FleetOperatorDirectory() {
 
               <div className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl flex items-center justify-between">
                 <span className="text-slate-500">Jumlah Armada:</span>
-                <span className="font-mono font-bold text-slate-900 text-sm">
+                <span className="font-bold text-slate-900 text-sm tabular-nums">
                   {item.vehicles.toLocaleString("id-ID")} Unit
                 </span>
               </div>

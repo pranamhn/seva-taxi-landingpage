@@ -4,6 +4,8 @@
 > **Target Audience:** Designers, frontend developers, and AI agents.  
 > **Core Objective:** Eliminate generic "AI slop" (cliché SaaS templates, floating purple orbs, glassmorphic frosted cards, meaningless icons, and vapid buzzwords) in favor of high-density, functional, and authoritative engineering design.
 
+> **Tema yang berlaku: SEVA Clean Light System (bagian 1).** Situs `seva.taxi` memakai kanvas terang. Contoh kode bertoken gelap (`#0A0A0A`, `#141414`, `#262626`, `#EDEDED`) di bagian 5 dan tabel 9.4 adalah arsip lama — saat memakainya, terjemahkan ke token terang: `#0A0A0A`/`#141414` → `#FFFFFF`/`#F8FAFC`, `#262626` → `#E2E8F0`, `#EDEDED` (teks) → `#0F172A`, aksen → `#225FD2`.
+
 ---
 
 ## Table of Contents
@@ -68,7 +70,7 @@ AI designs splash neon blue/purple across titles, icons, border highlights, butt
 - **Example Compliant Screen:**
   - Element 1: Primary Action Button background (`#2563EB`).
   - Element 2: Small "Live GPS" status dot (`#10B981`).
-  - All other elements (borders, titles, icons, secondary buttons, badges) must remain neutral monochrome (`#141414`, `#262626`, `#A1A1A1`, `#EDEDED`).
+  - All other elements (borders, titles, icons, secondary buttons, badges) must remain neutral slate (`#0F172A`, `#475569`, `#64748B`, `#E2E8F0`).
 
 ---
 
@@ -76,11 +78,11 @@ AI designs splash neon blue/purple across titles, icons, border highlights, butt
 
 | # | AI Slop Pattern | Why It Is Slop | Mandatory Alternative |
 |---|---|---|---|
-| **01** | **Glowing Mesh Orbs / Background Blobs** | Decorative radial blurs serving zero informational purpose. | Solid `#0A0A0A` background. If visual interest is needed, use a functional SVG grid/coordinate line or actual fleet telemetry data. |
+| **01** | **Glowing Mesh Orbs / Background Blobs** | Decorative radial blurs serving zero informational purpose. | Solid white `#FFFFFF` / `#F8FAFC` background. If visual interest is needed, use a functional SVG grid/coordinate line or actual fleet telemetry data. |
 | **02** | **Icon-in-a-Circle Overdose** | Every single headline or bullet prefixed with `w-12 h-12 rounded-full bg-blue-500/10 text-blue-500`. | Remove the circle and icon entirely. Let the bold technical heading and quantitative metric speak for itself. Reserve icons strictly for functional buttons or direction chevrons. |
 | **03** | **Symmetrical 3-Card Cliché** | A section with 3 identical cards: [Icon] -> [H3 Title] -> [2-line vague description] -> [Learn More ->]. | Asymmetrical layouts: 70/30 data panels, tabular specs, dense split-screens with live vehicle stats, or side-by-side comparison tables. |
-| **04** | **Frosted Glassmorphism Everywhere** | `backdrop-blur-md bg-white/5 border border-white/10` making text illegible and UI floaty. | Solid, opaque surfaces: `bg-[#141414]` with crisp `border-[#262626]`. High contrast, zero blur legibility. |
-| **05** | **Gradient Text on Headlines** | `bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text`. Cheapens the brand. | Solid white `#EDEDED` or high-contrast silver `#F5F5F7` with tight letter tracking (`tracking-tight`). |
+| **04** | **Frosted Glassmorphism Everywhere** | `backdrop-blur-md bg-white/5 border border-white/10` making text illegible and UI floaty. | Solid, opaque surfaces: white cards with crisp `border-[#E2E8F0]`. High contrast, zero blur legibility. |
+| **05** | **Gradient Text on Headlines** | `bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text`. Cheapens the brand. | Solid ink `#0F172A` (slate-900) with tight letter tracking (`tracking-tight`); a single brand-blue phrase is acceptable. |
 | **06** | **Floating / Bobbing CSS Keyframes** | Cards floating up and down continuously (`@keyframes floatY`). Distracting and unfunctional. | Zero constant motion. Transitions only occur in response to direct user interaction (hover, click, tab change) and take `<= 150ms`. |
 | **07** | **Fake Metric Counters Without Context** | "10M+ Happy Users", "99.9% Satisfaction" without baseline date, source, or audit metrics. | Concrete operational figures: "850+ Kendaraan Aktif Jabodetabek", "GPS Ping Refresh 5 Detik", "Integrasi sevaqu FMS v2.4". |
 

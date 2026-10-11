@@ -5,13 +5,14 @@ import PageHeader from "@/components/layout/PageHeader";
 import LegalDocument, { type LegalSection } from "@/components/layout/LegalDocument";
 import { LEGAL_NAME, SUPPORT_EMAIL } from "@/lib/site";
 import { CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Kebijakan Privasi — SEVA Taxi",
+export const metadata: Metadata = pageMetadata({
+  title: "Kebijakan Privasi",
   description:
-    "Cara CV Twin Digital Investama mengumpulkan, menggunakan, melindungi, dan membagikan data pribadi pengguna layanan SEVA, serta hak Anda berdasarkan UU Pelindungan Data Pribadi.",
-  alternates: { canonical: "/privacy" },
-};
+    "Cara SEVA mengumpulkan, menggunakan, dan melindungi data pribadi pengguna, serta hak Anda berdasarkan UU Pelindungan Data Pribadi.",
+  path: "/privacy",
+});
 
 const CONTACT_EMAIL = SUPPORT_EMAIL;
 
@@ -48,7 +49,7 @@ const sections: LegalSection[] = [
           </li>
           <li>
             <strong>Data transaksi</strong> — rincian pemesanan, tarif, metode pembayaran, dan
-            riwayat penggunaan SEVA Wallet.
+            riwayat penggunaan SEVA eWallet.
           </li>
           <li>
             <strong>Data komunikasi</strong> — pesan dan panggilan antara Anda dan mitra pengemudi
@@ -78,9 +79,14 @@ const sections: LegalSection[] = [
           menampilkan estimasi dan tidak kami kirim atau simpan di server.
         </p>
         <p>
-          Pada saat kebijakan ini diterbitkan, situs ini tidak memasang cookie pelacak, piksel
-          iklan, maupun layanan analitik pihak ketiga. Jika di kemudian hari hal ini berubah, kami
-          akan memperbarui kebijakan ini.
+          Kami menggunakan Vercel Web Analytics untuk menghitung kunjungan halaman secara agregat.
+          Layanan ini tidak memakai cookie dan tidak mengidentifikasi Anda secara pribadi. Situs ini
+          tidak memasang cookie pelacak maupun piksel iklan.
+        </p>
+        <p>
+          Formulir kemitraan (korporat, fleet operator, dan merchant) tidak menyimpan isian Anda di
+          server kami. Isian disusun menjadi pesan yang Anda kirim sendiri melalui WhatsApp atau
+          email ke tim SEVA, lalu kami gunakan untuk menindaklanjuti permintaan Anda.
         </p>
       </>
     ),
@@ -91,7 +97,7 @@ const sections: LegalSection[] = [
     content: (
       <ul>
         <li>Menyediakan layanan: memproses pemesanan, mencocokkan Anda dengan mitra pengemudi, dan mengantarkan perjalanan atau paket.</li>
-        <li>Memproses pembayaran, termasuk verifikasi OTP dan pencatatan SEVA Wallet.</li>
+        <li>Memproses pembayaran, termasuk verifikasi OTP dan pencatatan SEVA eWallet.</li>
         <li>Menjaga keselamatan, mencegah penipuan, dan menangani laporan atau keluhan.</li>
         <li>Memberikan dukungan pelanggan dan menghubungi Anda terkait pesanan.</li>
         <li>Memenuhi kewajiban hukum dan permintaan resmi dari otoritas yang berwenang.</li>
