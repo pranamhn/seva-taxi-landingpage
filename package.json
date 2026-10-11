@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "sitemap": "node scripts/generate-sevataxi-xml.mjs",
+    "prebuild": "npm run sitemap",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

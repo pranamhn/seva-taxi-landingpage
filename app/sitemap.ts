@@ -22,7 +22,10 @@ const abs = (locale: Locale, path: string) => {
 // Setiap URL dicantumkan per bahasa, lengkap dengan pasangan hreflang-nya.
 function expand(entries: Entry[]): MetadataRoute.Sitemap {
   return entries.flatMap(({ path, priority, changeFrequency, lastModified, locales }) => {
-    const languages = Object.fromEntries(locales.map((l) => [l === "id" ? "id-ID" : l, abs(l, path)]));
+    const languages = Object.fromEntries([
+      ...locales.map((l) => [l === "id" ? "id-ID" : l, abs(l, path)]),
+      ...(locales.length > 1 ? [["x-default", abs("id", path)]] : []),
+    ]);
     return locales.map((locale) => ({
       url: abs(locale, path),
       lastModified,
