@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Clock, Mail, Percent, ShieldCheck, Sparkles, Store } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, ClockIcon as Clock, EnvelopeSimpleIcon as Mail, PercentIcon as Percent, ShieldCheckIcon as ShieldCheck, SparkleIcon as Sparkles, StorefrontIcon as Store } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -11,11 +11,11 @@ import OtherServices from "@/components/sections/OtherServices";
 import { localePath, type Locale } from "@/lib/i18n";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
-const HIGHLIGHT_STYLE: { icon: LucideIcon; tone: string }[] = [
-  { icon: ShieldCheck, tone: "bg-blue-100 text-[#225FD2]" },
-  { icon: Percent, tone: "bg-emerald-100 text-emerald-700" },
-  { icon: Store, tone: "bg-amber-100 text-amber-700" },
-  { icon: Clock, tone: "bg-purple-100 text-purple-700" },
+const HIGHLIGHT_STYLE: { icon: PhosphorIcon; tone: string }[] = [
+  { icon: ShieldCheck, tone: "text-[#225FD2]" },
+  { icon: Percent, tone: "text-emerald-700" },
+  { icon: Store, tone: "text-amber-700" },
+  { icon: Clock, tone: "text-purple-700" },
 ];
 
 export const FOOD_COPY = {
@@ -150,7 +150,7 @@ export default function FoodPage({ locale }: { locale: Locale }) {
                   <span>{t.eyebrow}</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.heading}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.heading}</h2>
 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{t.body}</p>
 
@@ -160,9 +160,7 @@ export default function FoodPage({ locale }: { locale: Locale }) {
                     const { icon: Icon, tone } = HIGHLIGHT_STYLE[i];
                     return (
                       <div key={h.title} className="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className={`w-8 h-8 rounded-lg ${tone} flex items-center justify-center mb-2.5`}>
-                          <Icon className="w-4 h-4" />
-                        </div>
+                        <Icon weight="duotone" className={`w-6 h-6 ${tone} mb-2.5`} />
                         <div className="font-bold text-slate-900 text-sm">{h.title}</div>
                         <p className="text-xs text-slate-600 mt-1">{h.desc}</p>
                       </div>
@@ -242,7 +240,7 @@ export default function FoodPage({ locale }: { locale: Locale }) {
                   <Store className="w-3.5 h-3.5" />
                   <span>{t.merchantEyebrow}</span>
                 </div>
-                <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">{t.merchantTitle}</h2>
+                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight">{t.merchantTitle}</h2>
                 <p className="text-sm sm:text-base text-blue-100 leading-relaxed font-normal">{t.merchantBody}</p>
 
                 <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">

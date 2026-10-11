@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { track } from "@vercel/analytics";
-import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
+import { ArrowRightIcon as ArrowRight, CheckCircleIcon as CheckCircle2, EnvelopeSimpleIcon as Mail } from "@phosphor-icons/react/dist/ssr";
 import { CONTACT_WHATSAPP_URL, SUPPORT_EMAIL } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 
@@ -366,7 +366,7 @@ export default function LeadForm({ variant, locale = "id" }: { variant: Variant;
           <span className="inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-[#225FD2]">
             {cfg.badge}
           </span>
-          <h2 className="mt-3 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">{cfg.title}</h2>
+          <h2 className="mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">{cfg.title}</h2>
           <p className="mt-2 max-w-md text-sm text-slate-600 leading-relaxed">{cfg.intro}</p>
 
           <ol className="mt-6 space-y-3">

@@ -1,11 +1,11 @@
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Bike, Car, Package, Utensils } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, MotorcycleIcon as Bike, CarIcon as Car, PackageIcon as Package, ForkKnifeIcon as Utensils } from "@phosphor-icons/react/dist/ssr";
 import { localePath, type Locale } from "@/lib/i18n";
 
 export type ServiceSlug = "ride" | "car" | "send" | "food";
 
-const ICON: Record<ServiceSlug, LucideIcon> = { ride: Bike, car: Car, send: Package, food: Utensils };
+const ICON: Record<ServiceSlug, PhosphorIcon> = { ride: Bike, car: Car, send: Package, food: Utensils };
 
 const COPY: Record<
   Locale,
@@ -63,9 +63,7 @@ export default function OtherServices({ current, locale }: { current: ServiceSlu
                 className="p-4 rounded-xl border border-slate-200 hover:border-blue-400 hover:shadow-xs transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                    <Icon className="w-5 h-5" />
-                  </div>
+                  <Icon weight="duotone" className="w-8 h-8 text-[#225FD2] shrink-0 group-hover:scale-105 transition-transform" />
                   <div>
                     <div className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
                       <span>SEVA {key.toUpperCase()}</span>

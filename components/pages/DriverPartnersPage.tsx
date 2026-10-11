@@ -1,12 +1,12 @@
-import type { LucideIcon } from "lucide-react";
-import { Award, CheckCircle2, Clock, FileText, Headphones, Smartphone, Sparkles, Wallet, Zap } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { MedalIcon as Award, CheckCircleIcon as CheckCircle2, ClockIcon as Clock, FileTextIcon as FileText, HeadsetIcon as Headphones, DeviceMobileIcon as Smartphone, SparkleIcon as Sparkles, WalletIcon as Wallet, LightningIcon as Zap } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
 import StoreBadges from "@/components/ui/StoreBadges";
 import type { Locale } from "@/lib/i18n";
 
-const BENEFIT_ICONS: LucideIcon[] = [Wallet, Zap, Clock, Award, Smartphone, Headphones];
+const BENEFIT_ICONS: PhosphorIcon[] = [Wallet, Zap, Clock, Award, Smartphone, Headphones];
 
 export const DRIVER_COPY = {
   id: {
@@ -170,7 +170,7 @@ export default function DriverPartnersPage({ locale }: { locale: Locale }) {
                     <span className="break-words">{t.heroEyebrow}</span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight break-words">{t.heroTitle}</h2>
+                  <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white leading-tight break-words">{t.heroTitle}</h2>
 
                   <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed max-w-2xl">{t.heroBody}</p>
 
@@ -182,7 +182,7 @@ export default function DriverPartnersPage({ locale }: { locale: Locale }) {
                 <div className="lg:col-span-4 flex justify-center">
                   <div className="p-6 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md text-center max-w-xs space-y-3">
                     <div className="text-xs font-semibold uppercase text-blue-200">{t.earningsLabel}</div>
-                    <div className="text-3xl sm:text-4xl font-black text-emerald-400 tabular-nums">{t.earningsValue}</div>
+                    <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400 tabular-nums">{t.earningsValue}</div>
                     <p className="text-xs text-blue-100/80">{t.earningsNote}</p>
                   </div>
                 </div>
@@ -195,11 +195,7 @@ export default function DriverPartnersPage({ locale }: { locale: Locale }) {
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.benefitsEyebrow}</span>
-              </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.benefitsTitle}
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">{t.benefitsIntro}</p>
@@ -215,9 +211,7 @@ export default function DriverPartnersPage({ locale }: { locale: Locale }) {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center">
-                          <Icon className="w-5 h-5" />
-                        </div>
+                        <Icon weight="duotone" className="w-8 h-8 text-[#225FD2]" />
                         <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-100">{b.badge}</span>
                       </div>
                       <h3 className="font-bold text-slate-900 text-base mb-2">{b.title}</h3>
@@ -238,7 +232,7 @@ export default function DriverPartnersPage({ locale }: { locale: Locale }) {
                 <FileText className="w-3.5 h-3.5" />
                 <span>{t.reqEyebrow}</span>
               </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.reqTitle}
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">{t.reqIntro}</p>
@@ -266,7 +260,7 @@ export default function DriverPartnersPage({ locale }: { locale: Locale }) {
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-12">
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.stepsTitle}
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">{t.stepsIntro}</p>
@@ -275,7 +269,7 @@ export default function DriverPartnersPage({ locale }: { locale: Locale }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {t.steps.map((s, i) => (
                 <div key={s.title} className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                  <div className="text-3xl font-black text-[#225FD2] tracking-tight mb-3">0{i + 1}</div>
+                  <div className="text-3xl font-extrabold text-[#225FD2] tracking-tight mb-3">0{i + 1}</div>
                   <h3 className="font-bold text-slate-900 text-sm mb-1.5">{s.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
                 </div>

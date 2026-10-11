@@ -2,20 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Clock,
-  Search,
-  Calendar,
-  Train,
-  Calculator,
-  Package,
-  Car,
-  ShieldCheck,
-  BookOpen,
-} from "lucide-react";
+import { ArrowRightIcon as ArrowRight, CaretLeftIcon as ChevronLeft, CaretRightIcon as ChevronRight, ClockIcon as Clock, MagnifyingGlassIcon as Search, CalendarBlankIcon as Calendar, TrainIcon as Train, CalculatorIcon as Calculator, PackageIcon as Package, CarIcon as Car, ShieldCheckIcon as ShieldCheck, BookOpenIcon as BookOpen } from "@phosphor-icons/react/dist/ssr";
 import { DATE_LOCALE, localePath, type Locale } from "@/lib/i18n";
 
 export interface ArticleSummary {
@@ -250,7 +237,7 @@ export default function BlogExplorer({ articles, locale = "id" }: { articles: Ar
                     </h2>
 
                     {/* Description */}
-                    <p className="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 flex-1">
+                    <p className="mt-2.5 text-sm text-slate-600 leading-relaxed line-clamp-3 flex-1">
                       {a.description}
                     </p>
                   </div>

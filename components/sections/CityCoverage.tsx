@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Search, Sparkles } from "lucide-react";
+import { ArrowRightIcon as ArrowRight, MagnifyingGlassIcon as Search } from "@phosphor-icons/react/dist/ssr";
 import { CITY_DIRECTORY, ZONE_LABELS, arrivalLabel, cityName, provinceName, type CityItem } from "@/lib/cities";
 import { localePath, type Locale } from "@/lib/i18n";
 
@@ -96,11 +96,7 @@ export default function CityCoverage({ hideHeader = false, locale = "id" }: City
         {!hideHeader && (
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-slate-200/80 mb-5">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-2 shadow-2xs">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.eyebrow}</span>
-              </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.title}
               </h2>
               <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-xl leading-relaxed">
@@ -114,7 +110,7 @@ export default function CityCoverage({ hideHeader = false, locale = "id" }: City
         {hideHeader && (
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
           <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
               {t.directoryTitle}
             </h2>
             <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">

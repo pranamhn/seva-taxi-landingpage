@@ -3,15 +3,7 @@
 import "leaflet/dist/leaflet.css";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type * as Leaflet from "leaflet";
-import {
-  MapPin,
-  Plane,
-  Train,
-  Car,
-  Bike,
-  Package,
-  ArrowRight,
-} from "lucide-react";
+import { AirplaneTiltIcon as Plane, TrainIcon as Train, CarIcon as Car, MotorcycleIcon as Bike, PackageIcon as Package, ArrowRightIcon as ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { REGION_POLYGONS, type RegionGroup } from "@/lib/coverage-geo";
 import { FLEET_TOTAL_VEHICLES } from "@/lib/fleet-companies";
 import type { Locale } from "@/lib/i18n";
@@ -321,13 +313,13 @@ const urbanLegend = (locale: Locale) =>
     color: REGION_COLORS[r.id],
   }));
 
-// Ikon (path lucide) untuk penanda di peta
+// Ikon (path Phosphor fill) untuk penanda di peta
 const ICON_PATHS: Record<CoverageZone["kind"], string> = {
   airport:
-    '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+    '<path d="M215.52,197.26a8,8,0,0,1-1.86,8.39l-24,24A8,8,0,0,1,184,232a7.09,7.09,0,0,1-.79,0,8,8,0,0,1-5.87-3.52l-44.07-66.12L112,183.59V208a8,8,0,0,1-2.34,5.65s-14,14.06-15.88,15.88A7.91,7.91,0,0,1,91,231.41a8,8,0,0,1-10.41-4.35l-.06-.15-14.7-36.76L29,175.42a8,8,0,0,1-2.69-13.08l16-16A8,8,0,0,1,48,144H72.4l21.27-21.27L27.56,78.65a8,8,0,0,1-1.22-12.32l24-24a8,8,0,0,1,8.39-1.86l85.94,31.25L176.2,40.19a28,28,0,0,1,39.6,39.6l-31.53,31.53Z"/>',
   station:
-    '<path d="M8 3.1V7a4 4 0 0 0 8 0V3.1"/><path d="m9 15-1-1"/><path d="m15 15 1-1"/><path d="M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z"/><path d="m8 19-2 3"/><path d="m16 19 2 3"/>',
-  area: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+    '<path d="M184,24H72A32,32,0,0,0,40,56V184a32,32,0,0,0,32,32h8L65.6,235.2a8,8,0,1,0,12.8,9.6L100,216h56l21.6,28.8a8,8,0,1,0,12.8-9.6L176,216h8a32,32,0,0,0,32-32V56A32,32,0,0,0,184,24ZM84,184a12,12,0,1,1,12-12A12,12,0,0,1,84,184Zm36-64H56V80h64Zm52,64a12,12,0,1,1,12-12A12,12,0,0,1,172,184Zm28-64H136V80h64Z"/>',
+  area: '<path d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"/>',
 };
 
 function markerHtml(point: CoverageZone, selected: boolean) {
@@ -336,7 +328,7 @@ function markerHtml(point: CoverageZone, selected: boolean) {
     point.type === "hub" ? "seva-pin--hub" : "",
     selected ? "seva-pin--active" : "",
   ].join(" ");
-  return `<div class="${cls}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[point.kind]}</svg></div>`;
+  return `<div class="${cls}"><svg viewBox="0 0 256 256" width="16" height="16" fill="currentColor" aria-hidden="true">${ICON_PATHS[point.kind]}</svg></div>`;
 }
 
 type FilterId = "all" | ZoneType;
@@ -520,11 +512,7 @@ export default function CoverageMap({ locale = "id" }: { locale?: Locale }) {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>{t.eyebrow}</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight break-words">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight break-words">
               {t.title}
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">

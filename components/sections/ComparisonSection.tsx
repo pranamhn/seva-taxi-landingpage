@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Sparkles } from "lucide-react";
+import { CheckIcon as Check } from "@phosphor-icons/react/dist/ssr";
 import type { Locale } from "@/lib/i18n";
 
 // Hanya menjelaskan standar SEVA sendiri — tanpa membandingkan atau menyebut kekurangan aplikasi lain.
@@ -47,17 +47,13 @@ export default function ComparisonSection({ locale = "id" }: { locale?: Locale }
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.eyebrow}</span>
-          </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
             {t.titleLead}{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#194cb0] to-[#225FD2]">
               {t.titleAccent}
             </span>
           </h2>
-          <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-2 text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
             {t.intro}
           </p>
         </div>
@@ -81,7 +77,7 @@ export default function ComparisonSection({ locale = "id" }: { locale?: Locale }
                 </div>
                 <div className="md:p-5 md:col-span-8 md:border-l border-slate-200/80 md:bg-blue-50/30 flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
                   <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    <Check weight="bold" className="w-3.5 h-3.5" />
                   </div>
                   <p className="leading-relaxed break-words">{row.seva}</p>
                 </div>

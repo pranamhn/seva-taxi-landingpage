@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Download, Mail, Sparkles, CheckCircle2, ShieldCheck, Image as ImageIcon } from "lucide-react";
+import { ArrowRightIcon as ArrowRight, ArrowUpRightIcon as ArrowUpRight, DownloadSimpleIcon as Download, EnvelopeSimpleIcon as Mail, CheckCircleIcon as CheckCircle2, ShieldCheckIcon as ShieldCheck, ImageIcon } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -167,11 +167,7 @@ export default function NewsroomPage({ locale }: { locale: Locale }) {
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6 relative">
             {/* Section Header */}
             <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3 shadow-2xs">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.resourcesEyebrow}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
                 {t.resourcesTitle}
               </h2>
               <p className="mt-2.5 text-sm sm:text-[15px] text-slate-600 leading-relaxed">
@@ -186,9 +182,7 @@ export default function NewsroomPage({ locale }: { locale: Locale }) {
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-[0_15px_35px_-20px_rgba(34,95,210,0.10)] hover:shadow-xl hover:border-blue-400/50 transition-all duration-300 flex flex-col justify-between group">
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200/70 flex items-center justify-center text-[#225FD2] shadow-2xs group-hover:scale-105 transition-transform">
-                      <Mail className="w-6 h-6" />
-                    </div>
+                    <Mail weight="duotone" className="w-9 h-9 text-[#225FD2] group-hover:scale-105 transition-transform" />
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/70 shadow-2xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                       {t.mediaResponseTime}
@@ -233,9 +227,7 @@ export default function NewsroomPage({ locale }: { locale: Locale }) {
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-[0_15px_35px_-20px_rgba(34,95,210,0.10)] hover:shadow-xl hover:border-blue-400/50 transition-all duration-300 flex flex-col justify-between group">
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200/70 flex items-center justify-center text-indigo-600 shadow-2xs group-hover:scale-105 transition-transform">
-                      <ImageIcon className="w-6 h-6" />
-                    </div>
+                    <ImageIcon weight="duotone" className="w-9 h-9 text-indigo-600 group-hover:scale-105 transition-transform" />
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs">
                       {t.brandEyebrow}
                     </span>

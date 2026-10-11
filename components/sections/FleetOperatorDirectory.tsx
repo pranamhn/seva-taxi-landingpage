@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Search,
-  Building2,
-  Car,
-  Sparkles,
-} from "lucide-react";
+import { MagnifyingGlassIcon as Search, BuildingsIcon as Building2, CarIcon as Car } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { FLEET_COMPANIES, FLEET_COMPANY_COUNT } from "@/lib/fleet-companies";
 import type { Locale } from "@/lib/i18n";
@@ -98,11 +93,7 @@ export default function FleetOperatorDirectory({ locale = "id" }: { locale?: Loc
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200/80 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{t.eyebrow}</span>
-            </div>
-            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
               {t.title}
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
@@ -116,11 +107,9 @@ export default function FleetOperatorDirectory({ locale = "id" }: { locale?: Loc
 
           {/* Quick Counter Card */}
           <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex items-center gap-4 shrink-0">
-            <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center border border-blue-100">
-              <Car className="w-6 h-6" />
-            </div>
+            <Car weight="duotone" className="w-9 h-9 text-[#225FD2]" />
             <div>
-              <div className="text-2xl font-black text-slate-900 tabular-nums">
+              <div className="text-2xl font-extrabold text-slate-900 tabular-nums">
                 {totalVehicles.toLocaleString(t.numberLocale)}
               </div>
               <div className="text-xs text-slate-500 font-medium">

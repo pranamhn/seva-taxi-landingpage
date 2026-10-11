@@ -1,11 +1,11 @@
-import { Geist_Mono, Inter } from "next/font/google";
+import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 
 // Dipakai kedua root layout: app/(id)/layout.tsx dan app/(en)/layout.tsx.
-export const inter = Inter({
+export const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "variable",
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-jakarta",
 });
 
 export const geistMono = Geist_Mono({
@@ -15,4 +15,4 @@ export const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-export const fontClassNames = `${inter.variable} ${geistMono.variable}`;
+export const fontClassNames = `${jakarta.variable} ${geistMono.variable}`;

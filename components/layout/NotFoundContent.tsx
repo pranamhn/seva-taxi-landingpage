@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon as ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { localePath, type Locale } from "@/lib/i18n";
 
 const COPY: Record<Locale, { title: string; body: string; back: string; links: { label: string; href: string }[] }> = {

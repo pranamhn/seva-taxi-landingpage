@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Car, CreditCard, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { MapPinIcon as MapPin, CarIcon as Car, CreditCardIcon as CreditCard, ArrowRightIcon as ArrowRight, CheckCircleIcon as CheckCircle2 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
 
@@ -18,7 +18,7 @@ const COPY: Record<
     titleAccent: string;
     intro: string;
     stepOf: (n: number) => string;
-    steps: { title: string; desc: string; highlight: string }[];
+    steps: { label: string; title: string; desc: string; highlight: string }[];
   }
 > = {
   id: {
@@ -29,16 +29,19 @@ const COPY: Record<
     stepOf: (n) => `Langkah ${n} dari 3`,
     steps: [
       {
+        label: "Atur Lokasi",
         title: "Tentukan Titik Jemput & Tujuan",
         desc: "Buka aplikasi SEVA di Android atau iOS. Masukkan alamat tujuan atau geser pin di peta untuk titik penjemputan yang akurat hingga nomor gerbang atau lobi gedung.",
         highlight: "Titik jemput akurat di peta",
       },
       {
+        label: "Cek Tarif",
         title: "Pilih Kendaraan & Cek Tarif Transparan",
         desc: "Tentukan pilihan armada: SEVA Ride, SEVA Car, atau SEVA Send. Lihat rincian biaya argo pasti dan estimasi waktu penjemputan driver sebelum melakukan konfirmasi.",
         highlight: "Tarif pasti tanpa lonjakan liar saat jam sibuk",
       },
       {
+        label: "Jemput & Bayar",
         title: "Driver Menjemput & Bayar Cashless",
         desc: "Pantau kedatangan armada langsung di peta. Sapa driver profesional Anda, nikmati perjalanan yang nyaman, dan bayar otomatis via SEVA eWallet, QRIS, atau Tunai.",
         highlight: "Keamanan perjalanan terpantau real-time",
@@ -53,16 +56,19 @@ const COPY: Record<
     stepOf: (n) => `Step ${n} of 3`,
     steps: [
       {
+        label: "Set Location",
         title: "Set Your Pickup & Destination",
         desc: "Open the SEVA app on Android or iOS. Enter your destination or drag the pin on the map to the exact pickup point, down to the gate or building lobby.",
         highlight: "Accurate pickup point on the map",
       },
       {
+        label: "Check the Fare",
         title: "Choose a Vehicle & See the Fare",
         desc: "Pick SEVA Ride, SEVA Car, or SEVA Send. See the fixed fare and estimated pickup time before you confirm.",
         highlight: "Fixed fare, no rush-hour surge",
       },
       {
+        label: "Ride & Pay",
         title: "Meet Your Driver & Pay Cashless",
         desc: "Watch your driver arrive on the map, enjoy the ride, and pay with SEVA eWallet, QRIS, or cash.",
         highlight: "Trip tracked in real time",
@@ -79,11 +85,7 @@ export default function HowItWorks({ locale = "id" }: { locale?: Locale }) {
         
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.eyebrow}</span>
-          </div>
-          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
             {t.titleLead}{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#194cb0] to-[#225FD2]">
               {t.titleAccent}
@@ -102,16 +104,21 @@ export default function HowItWorks({ locale = "id" }: { locale?: Locale }) {
             return (
               <div
                 key={s.step}
-                className="relative bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-[0_15px_35px_-20px_rgba(34,95,210,0.12)] flex flex-col justify-between hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/50 transition-all duration-300"
+                className="relative bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-[0_15px_35px_-20px_rgba(34,95,210,0.12)] flex flex-col justify-between hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/50 transition-all duration-300 group"
               >
                 <div>
                   {/* Step Number & Icon Header */}
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="text-2xl font-black tracking-tight text-[#225FD2]/75">
-                      {s.step}
-                    </span>
-                    <div className="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-200/70 flex items-center justify-center text-[#225FD2]">
-                      <Icon className="w-5 h-5" />
+                  <div className="flex items-center justify-between gap-3 mb-5">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-[#225FD2] text-white font-mono text-xs font-bold shadow-sm shadow-blue-500/25 shrink-0">
+                        {s.step}
+                      </span>
+                      <span className="text-sm sm:text-[15px] font-bold text-slate-900 tracking-tight truncate">
+                        {s.label}
+                      </span>
+                    </div>
+                    <div className="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-200/70 flex items-center justify-center text-[#225FD2] shadow-2xs group-hover:scale-105 group-hover:bg-[#225FD2] group-hover:text-white group-hover:border-[#225FD2] transition-all duration-300 shrink-0">
+                      <Icon weight="duotone" className="w-5 h-5 transition-transform duration-300" />
                     </div>
                   </div>
 
@@ -135,7 +142,7 @@ export default function HowItWorks({ locale = "id" }: { locale?: Locale }) {
                   <h3 className="text-lg font-bold text-slate-900 mb-2">
                     {s.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {s.desc}
                   </p>
                 </div>

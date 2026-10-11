@@ -3,24 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  Menu, 
-  X, 
-  Home,
-  Car, 
-  Bike,
-  Package,
-  Utensils,
-  MapPin, 
-  Users,
-  Briefcase,
-  ChevronRight,
-  ChevronDown,
-  Sparkles,
-  ArrowRight,
-  Info,
-  Newspaper,
-} from "lucide-react";
+import { ListIcon as Menu, XIcon as X, HouseIcon as Home, CarIcon as Car, MotorcycleIcon as Bike, PackageIcon as Package, ForkKnifeIcon as Utensils, MapPinIcon as MapPin, UsersIcon as Users, BriefcaseIcon as Briefcase, CaretRightIcon as ChevronRight, CaretDownIcon as ChevronDown, SparkleIcon as Sparkles, ArrowRightIcon as ArrowRight, InfoIcon as Info, NewspaperIcon as Newspaper } from "@phosphor-icons/react/dist/ssr";
 import StoreBadges from "@/components/ui/StoreBadges";
 import Image from "next/image";
 import { SUPPORT_EMAIL } from "@/lib/site";

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, CircleHelp, Megaphone } from "lucide-react";
+import { ArrowRightIcon as ArrowRight, BookOpenIcon as BookOpen, QuestionIcon as CircleHelp, MegaphoneIcon as Megaphone } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";

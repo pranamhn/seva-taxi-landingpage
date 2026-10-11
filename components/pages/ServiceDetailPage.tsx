@@ -1,25 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { LucideIcon } from "lucide-react";
-import {
-  ArrowRight,
-  AlertTriangle,
-  Bike,
-  Camera,
-  Car,
-  CheckCircle2,
-  Clock,
-  Compass,
-  FileCheck,
-  Luggage,
-  MapPin,
-  Package,
-  ShieldCheck,
-  Sparkles,
-  Video,
-  Wallet,
-  Wind,
-} from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, WarningIcon as AlertTriangle, MotorcycleIcon as Bike, CameraIcon as Camera, CarIcon as Car, CheckCircleIcon as CheckCircle2, ClockIcon as Clock, CompassIcon as Compass, FileTextIcon as FileCheck, SuitcaseIcon as Luggage, MapPinIcon as MapPin, PackageIcon as Package, ShieldCheckIcon as ShieldCheck, VideoCameraIcon as Video, WalletIcon as Wallet, WindIcon as Wind } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -34,10 +16,10 @@ import { localePath, type Locale } from "@/lib/i18n";
 
 type Tone = "blue" | "emerald" | "amber" | "purple";
 const TONE: Record<Tone, string> = {
-  blue: "bg-blue-100 text-[#225FD2]",
-  emerald: "bg-emerald-100 text-emerald-700",
-  amber: "bg-amber-100 text-amber-700",
-  purple: "bg-purple-100 text-purple-700",
+  blue: "text-[#225FD2]",
+  emerald: "text-emerald-700",
+  amber: "text-amber-700",
+  purple: "text-purple-700",
 };
 
 type ServiceKey = "ride" | "car" | "send";
@@ -52,7 +34,7 @@ type DetailCopy = {
   eyebrow: string;
   heading: string;
   body: string;
-  highlights: { icon: LucideIcon; tone: Tone; title: string; desc: string }[];
+  highlights: { icon: PhosphorIcon; tone: Tone; title: string; desc: string }[];
   imageAlt: string;
   imageBadge: string;
   specsTitle: string;
@@ -472,7 +454,7 @@ export default function ServiceDetailPage({ service, locale }: { service: Servic
                   <span>{t.eyebrow}</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.heading}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.heading}</h2>
 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{t.body}</p>
 
@@ -482,9 +464,7 @@ export default function ServiceDetailPage({ service, locale }: { service: Servic
                     const Icon = h.icon;
                     return (
                       <div key={h.title} className="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className={`w-8 h-8 rounded-lg ${TONE[h.tone]} flex items-center justify-center mb-2.5`}>
-                          <Icon className="w-4 h-4" />
-                        </div>
+                        <Icon weight="duotone" className={`w-6 h-6 ${TONE[h.tone]} mb-2.5`} />
                         <div className="font-bold text-slate-900 text-sm">{h.title}</div>
                         <p className="text-xs text-slate-600 mt-1">{h.desc}</p>
                       </div>
@@ -549,11 +529,7 @@ export default function ServiceDetailPage({ service, locale }: { service: Servic
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-2xl mx-auto mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.pricingEyebrow}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.pricingTitle}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.pricingTitle}</h2>
               <p className="mt-2 text-sm text-slate-600">{t.pricingIntro}</p>
             </div>
 
@@ -598,14 +574,14 @@ export default function ServiceDetailPage({ service, locale }: { service: Servic
           <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
             <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
               <div className="text-center max-w-2xl mx-auto mb-12">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.steps.title}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.steps.title}</h2>
                 <p className="mt-2 text-sm text-slate-600">{t.steps.intro}</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {t.steps.items.map((item, i) => (
                   <div key={item.title} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div className="text-2xl font-black text-[#225FD2] mb-3">0{i + 1}</div>
+                    <div className="text-2xl font-extrabold text-[#225FD2] mb-3">0{i + 1}</div>
                     <h3 className="font-bold text-slate-900 text-sm mb-1.5">{item.title}</h3>
                     <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
                   </div>
@@ -620,7 +596,7 @@ export default function ServiceDetailPage({ service, locale }: { service: Servic
           <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
             <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
               <div className="text-center max-w-2xl mx-auto mb-12">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.guidelines.title}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.guidelines.title}</h2>
                 <p className="mt-2 text-sm text-slate-600">{t.guidelines.intro}</p>
               </div>
 

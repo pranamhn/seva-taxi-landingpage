@@ -2,19 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  Car,
-  Bike,
-  Package,
-  ArrowRight,
-  ArrowUpDown,
-  Download,
-  Sparkles,
-  Star,
-  Clock,
-  Wallet,
-  BadgeCheck,
-} from "lucide-react";
+import { CarIcon as Car, MotorcycleIcon as Bike, PackageIcon as Package, ArrowRightIcon as ArrowRight, ArrowsDownUpIcon as ArrowUpDown, DownloadSimpleIcon as Download, StarIcon as Star, ClockIcon as Clock, WalletIcon as Wallet, SealCheckIcon as BadgeCheck } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { FARES } from "@/lib/articles";
 import type { Locale } from "@/lib/i18n";
@@ -186,12 +174,6 @@ export default function Hero({ locale = "id" }: { locale?: Locale }) {
           {/* Left Column: Heading, Subtitle, and Clean Quick Ride Estimator */}
           <div className="text-left space-y-3 sm:space-y-4 lg:space-y-[clamp(8px,1.6vh,16px)] w-full animate-hero-fade">
             
-            {/* Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wide bg-blue-500/10 border border-blue-500/20 text-[#225FD2] shadow-2xs max-w-full">
-              <Sparkles className="w-3.5 h-3.5 text-[#225FD2] shrink-0" />
-              <span className="sm:hidden">{t.badgeShort}</span>
-              <span className="hidden sm:inline">{t.badgeLong}</span>
-            </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-[clamp(28px,min(5.4vh,3.3vw),42px)] font-extrabold tracking-tight text-slate-900 leading-[1.14] break-words">
@@ -381,7 +363,7 @@ export default function Hero({ locale = "id" }: { locale?: Locale }) {
               </div>
               <div className="inline-flex items-center gap-2 h-9 pl-1.5 pr-3 rounded-xl bg-white/85 backdrop-blur border border-slate-200/80 shadow-2xs text-xs">
                 <span className="w-6 h-6 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
-                  <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" aria-hidden="true" />
+                  <Star weight="fill" className="w-3.5 h-3.5 text-amber-500" aria-hidden="true" />
                 </span>
                 <span className="font-bold text-slate-900">4.8/5.0</span>
                 <span className="font-medium text-slate-500">{t.rating}</span>

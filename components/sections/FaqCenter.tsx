@@ -2,22 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import {
-  ArrowRight,
-  Building2,
-  Car,
-  ChevronDown,
-  HelpCircle,
-  Mail,
-  Package,
-  Phone,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  Wallet,
-  UserCheck,
-} from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, BuildingsIcon as Building2, CarIcon as Car, CaretDownIcon as ChevronDown, QuestionIcon as HelpCircle, EnvelopeSimpleIcon as Mail, PackageIcon as Package, PhoneIcon as Phone, MagnifyingGlassIcon as Search, ShieldCheckIcon as ShieldCheck, SparkleIcon as Sparkles, WalletIcon as Wallet, UserCheckIcon as UserCheck } from "@phosphor-icons/react/dist/ssr";
 import { FAQ_CATEGORY_LABELS, FAQ_LIST, type FaqCategory } from "@/lib/faq";
 import { FAQ_CATEGORY_LABELS_EN, FAQ_LIST_EN } from "@/lib/faq-en";
 import { localePath, type Locale } from "@/lib/i18n";
@@ -25,7 +11,7 @@ import { CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, SUPPORT_EMAIL } from "@/li
 
 type CategoryFilter = "all" | FaqCategory;
 
-const CATEGORY_ICONS: { id: CategoryFilter; icon: LucideIcon }[] = [
+const CATEGORY_ICONS: { id: CategoryFilter; icon: PhosphorIcon }[] = [
   { id: "all", icon: Sparkles },
   { id: "booking", icon: Car },
   { id: "send", icon: Package },
@@ -323,7 +309,7 @@ export default function FaqCenter({ locale = "id" }: { locale?: Locale }) {
                     </button>
 
                     {isOpen && (
-                      <div id={panelId} className="px-4 sm:px-5 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 space-y-3">
+                      <div id={panelId} className="px-4 sm:px-5 pb-5 pt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100 space-y-3">
                         <p>{faq.answer}</p>
                         {faq.link && (
                           <Link

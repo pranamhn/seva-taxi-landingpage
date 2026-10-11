@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
+import { SparkleIcon as Sparkles } from "@phosphor-icons/react/dist/ssr";
 import StoreBadges from "@/components/ui/StoreBadges";
 import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
@@ -114,7 +114,7 @@ export default function AppDownload({ locale = "id" }: { locale?: Locale }) {
                 <span>{t.eyebrow}</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black tracking-tight leading-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-extrabold tracking-tight leading-tight text-balance">
                 {t.title}
               </h2>
 

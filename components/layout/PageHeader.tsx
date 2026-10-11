@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { CaretRightIcon as ChevronRight } from "@phosphor-icons/react/dist/ssr";
 import { SITE_URL } from "@/lib/site";
 import { localePath, type Locale } from "@/lib/i18n";
 
@@ -25,7 +25,6 @@ interface PageHeaderProps {
 }
 
 export default function PageHeader({
-  badge,
   title,
   subtitle,
   breadcrumbs,
@@ -82,10 +81,6 @@ export default function PageHeader({
         {/* Header Content */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[11px] font-semibold uppercase tracking-wider text-[#225FD2] max-w-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#225FD2] shrink-0"></span>
-              <span className="break-words">{badge}</span>
-            </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight break-words">
               {title}
             </h1>

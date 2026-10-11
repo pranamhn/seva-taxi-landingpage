@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Bike, Car, Clock, Info, Package } from "lucide-react";
+import { ArrowRightIcon as ArrowRight, MotorcycleIcon as Bike, CarIcon as Car, ClockIcon as Clock, InfoIcon as Info, PackageIcon as Package } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";

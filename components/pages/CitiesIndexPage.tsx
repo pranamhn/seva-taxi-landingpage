@@ -1,6 +1,6 @@
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, HelpCircle, MapPin, Plane, Sparkles, Train } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, MapPinIcon as MapPin, AirplaneTiltIcon as Plane, TrainIcon as Train } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -9,7 +9,7 @@ import CoverageMap from "@/components/sections/CoverageMap";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
 import { localePath, type Locale } from "@/lib/i18n";
 
-const HUB_ICONS: LucideIcon[] = [Plane, Plane, Train, Train];
+const HUB_ICONS: PhosphorIcon[] = [Plane, Plane, Train, Train];
 
 export const CITIES_COPY = {
   id: {
@@ -170,11 +170,7 @@ export default function CitiesIndexPage({ locale }: { locale: Locale }) {
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.hubsEyebrow}</span>
-              </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.hubsTitle}
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">{t.hubsIntro}</p>
@@ -190,9 +186,7 @@ export default function CitiesIndexPage({ locale }: { locale: Locale }) {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center border border-blue-100">
-                          <Icon className="w-5 h-5" />
-                        </div>
+                        <Icon weight="duotone" className="w-8 h-8 text-[#225FD2]" />
                         <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-200">{hub.badge}</span>
                       </div>
                       <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1">{hub.name}</h3>
@@ -215,11 +209,7 @@ export default function CitiesIndexPage({ locale }: { locale: Locale }) {
         <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <HelpCircle className="w-3.5 h-3.5" />
-                <span>{t.faqEyebrow}</span>
-              </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.faqTitle}
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">{t.faqIntro}</p>
@@ -232,7 +222,7 @@ export default function CitiesIndexPage({ locale }: { locale: Locale }) {
                     <span className="text-[#225FD2] text-xs mt-0.5 font-bold">0{idx + 1}.</span>
                     <span>{faq.q}</span>
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">{faq.a}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed pl-6">{faq.a}</p>
                 </div>
               ))}
             </div>

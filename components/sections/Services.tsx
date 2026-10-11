@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  Check,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
+import { CheckIcon as Check, ArrowRightIcon as ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { FARES } from "@/lib/articles";
 import { localePath, type Locale } from "@/lib/i18n";
@@ -246,11 +242,7 @@ export default function Services({ hideHeader = false, locale = "id" }: { hideHe
         {/* Section Header (Hidden when used inside /services page with PageHeader) */}
         {!hideHeader && (
           <div className="text-center max-w-4xl mx-auto mb-6 sm:mb-8">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-2.5 shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{t.eyebrow}</span>
-            </div>
-            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
               {t.titleLead}{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#194cb0] to-[#225FD2]">
                 {t.titleAccent}
@@ -313,9 +305,6 @@ export default function Services({ hideHeader = false, locale = "id" }: { hideHe
             <div className="lg:col-span-7 space-y-5">
               
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-[#225FD2] border border-blue-200/70 mb-2">
-                  {currentService.category}
-                </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                   {currentService.name}
                 </h3>
@@ -359,7 +348,7 @@ export default function Services({ hideHeader = false, locale = "id" }: { hideHe
                   {currentService.features.map((feat, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-slate-700">
                       <div className="w-4 h-4 rounded-full bg-blue-50 text-[#225FD2] flex items-center justify-center shrink-0">
-                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                        <Check weight="bold" className="w-2.5 h-2.5" />
                       </div>
                       <span>{feat}</span>
                     </div>

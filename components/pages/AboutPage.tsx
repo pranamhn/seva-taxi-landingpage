@@ -1,22 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  ShieldCheck,
-  BadgePercent,
-  CircleDollarSign,
-  Building2,
-  Sparkles,
-  CheckCircle2,
-  Clock,
-  MapPin,
-  Car,
-  Bike,
-  Package,
-  Utensils,
-  ExternalLink,
-  Users,
-} from "lucide-react";
+import { ArrowRightIcon as ArrowRight, ShieldCheckIcon as ShieldCheck, BuildingsIcon as Building2, SparkleIcon as Sparkles, CheckCircleIcon as CheckCircle2, ClockIcon as Clock, CarIcon as Car, MotorcycleIcon as Bike, PackageIcon as Package, ForkKnifeIcon as Utensils, ArrowSquareOutIcon as ExternalLink } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -315,7 +299,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                   <span>{t.missionEyebrow}</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
                   {t.missionTitle}
                 </h2>
 
@@ -331,9 +315,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                       key={idx}
                       className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 transition-colors hover:bg-blue-50/40 hover:border-blue-200/70"
                     >
-                      <div className="w-5 h-5 rounded-full bg-[#225FD2] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
-                        <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.5]" />
-                      </div>
+                      <CheckCircle2 weight="fill" className="w-5 h-5 text-[#225FD2] shrink-0 mt-0.5" />
                       <div>
                         <h3 className="text-xs sm:text-sm font-bold text-slate-900">{pillar.title}</h3>
                         <p className="text-xs text-slate-600 mt-0.5">{pillar.desc}</p>
@@ -429,7 +411,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                   <Car className="w-3.5 h-3.5" />
                   <span>{t.servicesEyebrow}</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                   {t.servicesTitle}
                 </h2>
                 <p className="text-sm text-slate-600 leading-relaxed">{t.servicesSubtitle}</p>
@@ -510,7 +492,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>{t.principlesEyebrow}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 {t.principlesTitle}
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">{t.principlesSubtitle}</p>
@@ -611,7 +593,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>{t.legalEyebrow}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 {t.legalTitle}
               </h2>
             </div>
@@ -620,9 +602,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
               {/* Card 1: Official Legal & PSE Entity */}
               <div className="p-6 sm:p-8 rounded-3xl border border-slate-200/90 bg-slate-50/60 shadow-sm space-y-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-blue-100 text-[#225FD2] flex items-center justify-center shrink-0">
-                    <Building2 className="w-5 h-5" />
-                  </div>
+                  <Building2 weight="duotone" className="w-8 h-8 text-[#225FD2] shrink-0" />
                   <div>
                     <h3 className="text-base font-bold text-slate-900">{t.operatorLabel}</h3>
                     <p className="text-sm font-semibold text-slate-700 mt-0.5">{LEGAL_NAME}</p>
@@ -674,9 +654,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
               <div className="p-6 sm:p-8 rounded-3xl border border-slate-200/90 bg-gradient-to-br from-blue-50/30 via-white to-slate-50 shadow-sm flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                      <Clock className="w-5 h-5" />
-                    </div>
+                    <Clock weight="duotone" className="w-8 h-8 text-emerald-700 shrink-0" />
                     <div>
                       <h3 className="text-base font-bold text-slate-900">{t.supportLabel}</h3>
                       <p className="text-xs text-slate-500 mt-0.5">{t.supportDesc}</p>

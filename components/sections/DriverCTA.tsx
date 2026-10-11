@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Sparkles, Wallet, Zap, Clock } from "lucide-react";
+import { CheckCircleIcon as CheckCircle2, SparkleIcon as Sparkles, WalletIcon as Wallet, LightningIcon as Zap, ClockIcon as Clock } from "@phosphor-icons/react/dist/ssr";
 import StoreBadges from "@/components/ui/StoreBadges";
 import Image from "next/image";
 
@@ -28,7 +28,7 @@ export default function DriverCTA() {
               </div>
 
               {/* Headline */}
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
                 Gabung Jadi Mitra Pengemudi,{" "}
                 <br className="hidden sm:inline" />
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-300">
@@ -52,17 +52,13 @@ export default function DriverCTA() {
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
-                  <div className="w-8 h-8 rounded-xl bg-blue-400/20 text-blue-300 flex items-center justify-center mb-2">
-                    <Zap className="w-4 h-4" />
-                  </div>
+                  <Zap weight="duotone" className="w-6 h-6 text-blue-300 mb-2" />
                   <div className="text-xs font-bold text-white">Pencairan H+0</div>
                   <div className="text-[11px] text-blue-200/80 mt-0.5">Tarik saldo tiap hari</div>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
-                  <div className="w-8 h-8 rounded-xl bg-purple-400/20 text-purple-300 flex items-center justify-center mb-2">
-                    <Clock className="w-4 h-4" />
-                  </div>
+                  <Clock weight="duotone" className="w-6 h-6 text-purple-300 mb-2" />
                   <div className="text-xs font-bold text-white">Jam Kerja Bebas</div>
                   <div className="text-[11px] text-blue-200/80 mt-0.5">Atur jadwal sendiri</div>
                 </div>
@@ -123,9 +119,7 @@ export default function DriverCTA() {
 
                 {/* Floating Badge 2 (Bottom Right): Pencairan Cepat */}
                 <div className="absolute bottom-6 right-6 z-20 flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-white text-slate-900 shadow-lg animate-float-slow select-none">
-                  <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#225FD2] flex items-center justify-center font-bold text-xs">
-                    <Wallet className="w-4 h-4 text-[#225FD2]" />
-                  </div>
+                  <Wallet weight="duotone" className="w-5 h-5 text-[#225FD2]" />
                   <div>
                     <div className="text-[11px] font-bold text-slate-900 leading-tight">Pencairan Harian</div>
                     <div className="text-[10px] text-emerald-700 font-semibold">Instan H+0 ke Rekening</div>

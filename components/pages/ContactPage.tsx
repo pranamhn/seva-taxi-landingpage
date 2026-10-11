@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Mail, MapPin, MessageCircle } from "lucide-react";
+import { ArrowRightIcon as ArrowRight, EnvelopeSimpleIcon as Mail, MapPinIcon as MapPin, ChatCircleIcon as MessageCircle } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";

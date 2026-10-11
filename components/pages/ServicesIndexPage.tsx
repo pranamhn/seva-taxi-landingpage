@@ -1,6 +1,6 @@
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, BadgeCheck, Bike, Car, CheckCircle2, Clock, HelpCircle, Package, ShieldCheck, Sparkles, Utensils, Wallet } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, SealCheckIcon as BadgeCheck, MotorcycleIcon as Bike, CarIcon as Car, ClockIcon as Clock, PackageIcon as Package, ShieldCheckIcon as ShieldCheck, ForkKnifeIcon as Utensils, WalletIcon as Wallet } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -12,8 +12,8 @@ import { localePath, type Locale } from "@/lib/i18n";
 
 type Slug = "ride" | "car" | "send" | "food";
 const SLUGS: Slug[] = ["ride", "car", "send", "food"];
-const ICON: Record<Slug, LucideIcon> = { ride: Bike, car: Car, send: Package, food: Utensils };
-const BENEFIT_ICONS: LucideIcon[] = [Wallet, ShieldCheck, BadgeCheck, Clock];
+const ICON: Record<Slug, PhosphorIcon> = { ride: Bike, car: Car, send: Package, food: Utensils };
+const BENEFIT_ICONS: PhosphorIcon[] = [Wallet, ShieldCheck, BadgeCheck, Clock];
 
 type Row = { type: string; capacity: string; luggage: string; eta: string; idealFor: string };
 
@@ -169,11 +169,7 @@ export default function ServicesIndexPage({ locale }: { locale: Locale }) {
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-2xl mx-auto mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.compareEyebrow}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.compareTitle}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.compareTitle}</h2>
               <p className="mt-2 text-sm text-slate-600">{t.compareIntro}</p>
             </div>
 
@@ -198,9 +194,7 @@ export default function ServicesIndexPage({ locale }: { locale: Locale }) {
                       <tr key={item.slug} className="hover:bg-blue-50/30 transition-colors">
                         <td className="py-4 px-6">
                           <Link href={item.href} className="flex items-center gap-3 group">
-                            <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center shrink-0 border border-blue-100 group-hover:scale-105 group-hover:bg-[#225FD2] group-hover:text-white transition-all">
-                              <Icon className="w-4 h-4" />
-                            </div>
+                            <Icon weight="duotone" className="w-7 h-7 text-[#225FD2] shrink-0 group-hover:scale-105" />
                             <div>
                               <div className="font-bold text-slate-900 group-hover:text-[#225FD2] transition-colors flex items-center gap-1">
                                 <span>{item.name}</span>
@@ -246,9 +240,7 @@ export default function ServicesIndexPage({ locale }: { locale: Locale }) {
                   <div key={item.slug} className="p-5 bg-white rounded-2xl border border-slate-200/80 shadow-xs space-y-3.5">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center shrink-0 border border-blue-100">
-                          <Icon className="w-4 h-4" />
-                        </div>
+                        <Icon weight="duotone" className="w-7 h-7 text-[#225FD2] shrink-0" />
                         <div>
                           <div className="font-bold text-slate-900 text-base">{item.name}</div>
                           <div className="text-xs text-slate-500">{item.type}</div>
@@ -296,11 +288,7 @@ export default function ServicesIndexPage({ locale }: { locale: Locale }) {
         <section className="py-16 sm:py-20 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>{t.benefitsEyebrow}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.benefitsTitle}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.benefitsTitle}</h2>
               <p className="mt-2 text-sm text-slate-600">{t.benefitsIntro}</p>
             </div>
 
@@ -313,11 +301,9 @@ export default function ServicesIndexPage({ locale }: { locale: Locale }) {
                     className="p-6 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-blue-200 hover:bg-blue-50/20 transition-all duration-200 flex flex-col justify-between group"
                   >
                     <div>
-                      <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-[#225FD2] mb-4 group-hover:scale-105 transition-transform">
-                        <Icon className="w-6 h-6" />
-                      </div>
+                      <Icon weight="duotone" className="w-9 h-9 text-[#225FD2] mb-4 group-hover:scale-105 transition-transform" />
                       <h3 className="font-bold text-slate-900 text-base mb-2">{benefit.title}</h3>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{benefit.desc}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{benefit.desc}</p>
                     </div>
                   </div>
                 );
@@ -332,11 +318,7 @@ export default function ServicesIndexPage({ locale }: { locale: Locale }) {
         <section className="py-16 sm:py-20 bg-slate-50/50 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <HelpCircle className="w-3.5 h-3.5" />
-                <span>{t.faqEyebrow}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{t.faqTitle}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{t.faqTitle}</h2>
               <p className="mt-2 text-sm text-slate-600">{t.faqIntro}</p>
             </div>
 
@@ -347,7 +329,7 @@ export default function ServicesIndexPage({ locale }: { locale: Locale }) {
                     <span className="text-[#225FD2] text-xs mt-0.5 font-bold">0{idx + 1}.</span>
                     <span>{faq.q}</span>
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">{faq.a}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed pl-6">{faq.a}</p>
                 </div>
               ))}
             </div>

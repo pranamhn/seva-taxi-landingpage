@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Clock, Info } from "lucide-react";
+import { ArrowRightIcon as ArrowRight, ClockIcon as Clock, InfoIcon as Info } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -224,7 +224,7 @@ export default function ArticlePage({ article, articles, locale }: { article: Ar
           <section className="py-12 sm:py-16 bg-slate-50/60 border-t border-slate-200/80">
             <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">{ui.more}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">{ui.more}</h2>
                 <Link href={lp("/blog")} className="text-xs sm:text-sm font-bold text-[#225FD2] hover:underline flex items-center gap-1">
                   <span>{ui.seeAll}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

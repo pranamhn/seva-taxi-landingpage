@@ -1,6 +1,6 @@
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, BarChart3, Briefcase, Building2, Calendar, CheckCircle2, Mail, Package, Receipt, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, ChartBarIcon as BarChart3, BriefcaseIcon as Briefcase, BuildingsIcon as Building2, CalendarBlankIcon as Calendar, CheckCircleIcon as CheckCircle2, EnvelopeSimpleIcon as Mail, PackageIcon as Package, ReceiptIcon as Receipt, ShieldCheckIcon as ShieldCheck, LightningIcon as Zap } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -8,8 +8,8 @@ import AppDownload from "@/components/sections/AppDownload";
 import LeadForm from "@/components/sections/LeadForm";
 import { localePath, type Locale } from "@/lib/i18n";
 
-const SOLUTION_ICONS: LucideIcon[] = [Briefcase, Building2, Package, Calendar];
-const ADVANTAGE_ICONS: LucideIcon[] = [Receipt, BarChart3, Zap, ShieldCheck];
+const SOLUTION_ICONS: PhosphorIcon[] = [Briefcase, Building2, Package, Calendar];
+const ADVANTAGE_ICONS: PhosphorIcon[] = [Receipt, BarChart3, Zap, ShieldCheck];
 
 export const B2B_COPY = {
   id: {
@@ -204,7 +204,7 @@ export default function B2BPartnersPage({ locale }: { locale: Locale }) {
                   <span>{t.heroEyebrow}</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">{t.heroTitle}</h2>
+                <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">{t.heroTitle}</h2>
 
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{t.heroBody}</p>
 
@@ -248,7 +248,7 @@ export default function B2BPartnersPage({ locale }: { locale: Locale }) {
                   <div className="space-y-4">
                     <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs">
                       <div className="text-[11px] text-slate-500 font-medium">{t.console.tripsLabel}</div>
-                      <div className="text-2xl font-black text-slate-900 mt-1 tabular-nums">{t.console.trips}</div>
+                      <div className="text-2xl font-extrabold text-slate-900 mt-1 tabular-nums">{t.console.trips}</div>
                       <div className="text-[11px] text-emerald-600 font-semibold mt-1">{t.console.saving}</div>
                     </div>
 
@@ -273,11 +273,7 @@ export default function B2BPartnersPage({ locale }: { locale: Locale }) {
         <section className="py-14 sm:py-20 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.solutionsEyebrow}</span>
-              </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.solutionsTitle}
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">{t.solutionsIntro}</p>
@@ -290,13 +286,11 @@ export default function B2BPartnersPage({ locale }: { locale: Locale }) {
                   <div key={item.title} className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-blue-300 transition-all flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#225FD2] flex items-center justify-center">
-                          <Icon className="w-5 h-5" />
-                        </div>
+                        <Icon weight="duotone" className="w-8 h-8 text-[#225FD2]" />
                         <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#225FD2] border border-blue-100">{item.badge}</span>
                       </div>
                       <h3 className="font-bold text-slate-900 text-base mb-2">{item.title}</h3>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 );
@@ -309,7 +303,7 @@ export default function B2BPartnersPage({ locale }: { locale: Locale }) {
         <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-12">
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.advantagesTitle}
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">{t.advantagesIntro}</p>
@@ -320,9 +314,7 @@ export default function B2BPartnersPage({ locale }: { locale: Locale }) {
                 const Icon = ADVANTAGE_ICONS[i];
                 return (
                   <div key={adv.title} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div className="w-9 h-9 rounded-xl bg-blue-100 text-[#225FD2] flex items-center justify-center mb-3">
-                      <Icon className="w-4 h-4" />
-                    </div>
+                    <Icon weight="duotone" className="w-7 h-7 text-[#225FD2] mb-3" />
                     <h3 className="font-bold text-slate-900 text-sm mb-1.5">{adv.title}</h3>
                     <p className="text-xs text-slate-600 leading-relaxed">{adv.desc}</p>
                   </div>

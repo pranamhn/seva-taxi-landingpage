@@ -1,12 +1,12 @@
 "use client";
 
-import { ShieldCheck, PhoneCall, Share2, AlertTriangle } from "lucide-react";
+import { PhoneCallIcon as PhoneCall, ShareNetworkIcon as Share2, SirenIcon as Siren } from "@phosphor-icons/react/dist/ssr";
 import type { Locale } from "@/lib/i18n";
 
 const FEATURE_STYLE = [
-  { icon: AlertTriangle, accent: "text-red-600 bg-red-50 border-red-200" },
-  { icon: Share2, accent: "text-[#225FD2] bg-blue-50 border-blue-200" },
-  { icon: PhoneCall, accent: "text-amber-600 bg-amber-50 border-amber-200" },
+  { icon: Siren, accent: "text-red-600" },
+  { icon: Share2, accent: "text-[#225FD2]" },
+  { icon: PhoneCall, accent: "text-amber-600" },
 ];
 
 const COPY: Record<
@@ -69,11 +69,7 @@ export default function Safety({ locale = "id" }: { locale?: Locale }) {
         
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 mb-3 shadow-2xs">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>{t.eyebrow}</span>
-          </div>
-          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
             {t.titleLead}{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-600">
               {t.titleAccent}
@@ -95,9 +91,7 @@ export default function Safety({ locale = "id" }: { locale?: Locale }) {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className={`w-11 h-11 rounded-2xl flex items-center justify-center border ${accent}`}>
-                      <Icon className="w-5 h-5" />
-                    </div>
+                    <Icon weight="duotone" className={`w-8 h-8 ${accent}`} />
                     <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-700 shadow-2xs">
                       {feat.badge}
                     </span>
@@ -106,7 +100,7 @@ export default function Safety({ locale = "id" }: { locale?: Locale }) {
                   <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">
                     {feat.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {feat.desc}
                   </p>
                 </div>

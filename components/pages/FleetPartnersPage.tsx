@@ -1,20 +1,5 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  ArrowRight,
-  BarChart3,
-  CheckCircle2,
-  ExternalLink,
-  Laptop,
-  Mail,
-  MapPin,
-  Phone,
-  ShieldCheck,
-  Sparkles,
-  TrendingUp,
-  Users,
-  Wrench,
-  Zap,
-} from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon as ArrowRight, ChartBarIcon as BarChart3, ArrowSquareOutIcon as ExternalLink, LaptopIcon as Laptop, EnvelopeSimpleIcon as Mail, MapPinIcon as MapPin, PhoneIcon as Phone, ShieldCheckIcon as ShieldCheck, TrendUpIcon as TrendingUp, UsersIcon as Users, WrenchIcon as Wrench, LightningIcon as Zap } from "@phosphor-icons/react/dist/ssr";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/layout/PageHeader";
@@ -24,8 +9,8 @@ import { CONTACT_WHATSAPP_URL, SUPPORT_EMAIL } from "@/lib/site";
 import { FLEET_COMPANY_COUNT, FLEET_TOTAL_VEHICLES } from "@/lib/fleet-companies";
 import type { Locale } from "@/lib/i18n";
 
-const BENEFIT_ICONS: LucideIcon[] = [TrendingUp, BarChart3, Zap, ShieldCheck];
-const MODULE_ICONS: LucideIcon[] = [MapPin, Users, Wrench];
+const BENEFIT_ICONS: PhosphorIcon[] = [TrendingUp, BarChart3, Zap, ShieldCheck];
+const MODULE_ICONS: PhosphorIcon[] = [MapPin, Users, Wrench];
 
 const total = (locale: Locale) => FLEET_TOTAL_VEHICLES.toLocaleString(locale === "en" ? "en-US" : "id-ID");
 
@@ -174,7 +159,7 @@ export default function FleetPartnersPage({ locale }: { locale: Locale }) {
                     <span>{t.fmsEyebrow}</span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">{t.fmsTitle}</h2>
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">{t.fmsTitle}</h2>
 
                   <p className="text-xs sm:text-sm md:text-base text-blue-100/90 leading-relaxed max-w-xl">{t.fmsBody}</p>
 
@@ -215,9 +200,7 @@ export default function FleetPartnersPage({ locale }: { locale: Locale }) {
 
                     <div className="relative flex items-center justify-between gap-3 pb-4 border-b border-white/15">
                       <div className="flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#225FD2] shadow-sm">
-                          <Laptop className="h-5 w-5" />
-                        </span>
+                        <Laptop weight="duotone" className="w-8 h-8 text-[#225FD2]" />
                         <div>
                           <p className="text-sm font-bold text-white leading-tight">SEVA FMS</p>
                           <p className="text-[11px] text-blue-200 font-medium">sevaqu.com</p>
@@ -234,9 +217,7 @@ export default function FleetPartnersPage({ locale }: { locale: Locale }) {
                         const Icon = MODULE_ICONS[i];
                         return (
                           <li key={title} className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.06] p-3 transition-colors hover:bg-white/10">
-                            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-100">
-                              <Icon className="h-4 w-4" />
-                            </span>
+                            <Icon weight="duotone" className="w-6 h-6 mt-0.5 shrink-0 text-blue-100" />
                             <span>
                               <span className="block text-sm font-semibold text-white">{title}</span>
                               <span className="block text-xs text-blue-200/90 leading-relaxed">{desc}</span>
@@ -258,11 +239,7 @@ export default function FleetPartnersPage({ locale }: { locale: Locale }) {
         <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-14">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3.5">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t.benefitsEyebrow}</span>
-              </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.benefitsTitle}
               </h2>
               <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">{t.benefitsIntro}</p>
@@ -277,11 +254,9 @@ export default function FleetPartnersPage({ locale }: { locale: Locale }) {
                     className="p-6 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-blue-200 hover:bg-blue-50/20 transition-all duration-200 flex flex-col justify-between group"
                   >
                     <div>
-                      <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-[#225FD2] mb-4 group-hover:scale-105 transition-transform">
-                        <Icon className="w-6 h-6" />
-                      </div>
+                      <Icon weight="duotone" className="w-9 h-9 text-[#225FD2] mb-4 group-hover:scale-105 transition-transform" />
                       <h3 className="font-bold text-slate-900 text-base mb-2">{item.title}</h3>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 );
@@ -294,11 +269,7 @@ export default function FleetPartnersPage({ locale }: { locale: Locale }) {
         <section className="py-16 sm:py-24 bg-slate-50/70 border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto mb-14">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#225FD2] bg-blue-500/10 border border-blue-500/20 mb-3.5">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>{t.stepsEyebrow}</span>
-              </div>
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-slate-900 tracking-tight leading-tight sm:whitespace-nowrap">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
                 {t.stepsTitle}
               </h2>
               <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">{t.stepsIntro}</p>
@@ -308,9 +279,9 @@ export default function FleetPartnersPage({ locale }: { locale: Locale }) {
               {t.steps.map((step, idx) => (
                 <div key={step.title} className="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-2xs relative flex flex-col justify-between">
                   <div>
-                    <div className="text-2xl font-black text-[#225FD2] tracking-tight mb-3">0{idx + 1}</div>
+                    <div className="text-2xl font-extrabold text-[#225FD2] tracking-tight mb-3">0{idx + 1}</div>
                     <h3 className="font-bold text-slate-900 text-base mb-2">{step.title}</h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{step.desc}</p>
+                    <p className="text-sm text-slate-600 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
