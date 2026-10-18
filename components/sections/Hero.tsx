@@ -173,7 +173,11 @@ export default function Hero({ locale = "id" }: { locale?: Locale }) {
           
           {/* Left Column: Heading, Subtitle, and Clean Quick Ride Estimator */}
           <div className="text-left space-y-3 sm:space-y-4 lg:space-y-[clamp(8px,1.6vh,16px)] w-full animate-hero-fade">
-            
+            {/* SEO & Service Category Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-[#225FD2] border border-blue-200/70 shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#225FD2] animate-pulse" />
+              <span>{t.badgeLong}</span>
+            </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-[clamp(28px,min(5.4vh,3.3vw),42px)] font-extrabold tracking-tight text-slate-900 leading-[1.14] break-words">

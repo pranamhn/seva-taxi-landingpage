@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
@@ -13,28 +15,52 @@ const HEIGHT: Record<Size, string> = {
 // Renders the App Store + Google Play badges as two sibling links so the
 // parent decides the flex layout. Badges are self-hosted in /public/images/badges.
 const ALT: Record<Locale, { appStore: string; googlePlay: string }> = {
-  id: { appStore: "Unduh di App Store", googlePlay: "Dapatkan di Google Play" },
-  en: { appStore: "Download on the App Store", googlePlay: "Get it on Google Play" },
+  id: { appStore: "Unduh di App Store (Segera Hadir)", googlePlay: "Dapatkan di Google Play" },
+  en: { appStore: "Download on the App Store (Coming Soon)", googlePlay: "Get it on Google Play" },
 };
 
 export default function StoreBadges({ size = "lg", locale = "id" }: { size?: Size; locale?: Locale }) {
   const height = HEIGHT[size];
+
+  const handleAppStoreClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!APP_STORE_URL) {
+      e.preventDefault();
+      alert(
+        locale === "id"
+          ? "Aplikasi SEVA untuk iOS saat ini sedang dalam proses review di Apple App Store dan akan segera hadir!"
+          : "SEVA iOS app is currently under review on the Apple App Store and will be available soon!"
+      );
+    }
+  };
+
   return (
     <>
-      <a
-        href={APP_STORE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="shrink-0 transition-transform hover:scale-105"
-      >
-        <Image
-          src="/images/badges/app-store.svg"
-          alt={ALT[locale].appStore}
-          width={120}
-          height={40}
-          className={`${height} w-auto`}
-        />
-      </a>
+      <div className="relative inline-flex items-center shrink-0">
+        <a
+          href={APP_STORE_URL || "#"}
+          onClick={handleAppStoreClick}
+          target={APP_STORE_URL ? "_blank" : undefined}
+          rel={APP_STORE_URL ? "noopener noreferrer" : undefined}
+          aria-label={ALT[locale].appStore}
+          className={`shrink-0 transition-transform ${
+            APP_STORE_URL ? "hover:scale-105" : "cursor-pointer hover:opacity-90"
+          }`}
+        >
+          <Image
+            src="/images/badges/app-store.svg"
+            alt={ALT[locale].appStore}
+            width={120}
+            height={40}
+            className={`${height} w-auto ${!APP_STORE_URL ? "opacity-85" : ""}`}
+          />
+        </a>
+        {!APP_STORE_URL && (
+          <span className="absolute -top-2 -right-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500 text-white shadow-xs pointer-events-none select-none tracking-tight">
+            {locale === "id" ? "Segera Hadir" : "Coming Soon"}
+          </span>
+        )}
+      </div>
+
       <a
         href={PLAY_STORE_URL}
         target="_blank"

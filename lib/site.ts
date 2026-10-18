@@ -29,8 +29,9 @@ export const PUBLIC_ROUTES = [
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ] as const;
 
-export const APP_STORE_URL = "https://apps.apple.com/id/app/seva-driver/id6761700121";
-export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.rentfms.driver&pcampaignid=web_share";
+// App Store & Play Store URLs (iOS app is still under review / preparation)
+export const APP_STORE_URL = "";
+export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.seva.ridehailing&hl=id";
 
 // Kontak resmi
 export const SUPPORT_EMAIL = "support@seva.taxi";

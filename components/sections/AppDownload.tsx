@@ -21,7 +21,7 @@ const COPY: Record<
   id: {
     eyebrow: "UNDUH APLIKASI SEVA SEKARANG",
     title: "Pengalaman Ride-Hailing yang Nyaman, Ada di Saku Anda",
-    body: "Unduh aplikasi SEVA sekarang untuk iOS dan Android, lalu pesan perjalanan pertama Anda dalam beberapa ketukan.",
+    body: "Unduh aplikasi SEVA sekarang di Android (versi iOS segera hadir di App Store), lalu pesan perjalanan pertama Anda dalam beberapa ketukan.",
     explore: "Jelajahi Fitur Aplikasi",
     tabsLabel: "Fitur aplikasi SEVA",
     screens: [
@@ -55,7 +55,7 @@ const COPY: Record<
   en: {
     eyebrow: "GET THE SEVA APP",
     title: "Comfortable Rides, Right in Your Pocket",
-    body: "Download SEVA for iOS and Android and book your first trip in a few taps.",
+    body: "Download the SEVA app today on Android (iOS version coming soon on the App Store) and book your first trip in a few taps.",
     explore: "Explore the App",
     tabsLabel: "SEVA app features",
     screens: [
