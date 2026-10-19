@@ -348,7 +348,7 @@ graph TD
 
 #### Pilar 6: Nilai Tambah Kompetitif (The SEVA Advantage vs Gojek/Grab)
 - **Kelemahan Gojek/Grab bagi Pengusaha Armada:** Sistem Gojek dan Grab didesain untuk pengemudi perorangan; perusahaan rental atau pengelola armada besar (*fleet operators*) sulit memantau perawatan kendaraan, kesehatan mesin, dan telemetri langsung secara mandiri.
-- **Keunggulan SEVA Taxi:** Terintegrasi langsung dengan platform **sevaqu.com**. Pemilik armada (seperti *Sarnaz Transport, Arkatama Trans, Sinergi Aletra EV, Express Group, LTI*) dapat mengelola puluhan hingga ratusan armada mereka menggunakan modul OBD-II, GPS refresh 5 detik, pengingat servis otomatis, dan rekonsiliasi finansial dalam satu dasbor B2B terpadu.
+- **Keunggulan SEVA Taxi:** Terintegrasi langsung dengan platform **sevaqu.com**. Pemilik armada (seperti *Sarnaz Transport, Arkatama Trans, Express Group, LTI*) dapat mengelola puluhan hingga ratusan armada mereka menggunakan modul OBD-II, GPS refresh 5 detik, pengingat servis otomatis, dan rekonsiliasi finansial dalam satu dasbor B2B terpadu.
 
 ---
 
