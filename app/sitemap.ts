@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { PUBLIC_ROUTES, SITE_URL } from "@/lib/site";
+import { CONTENT_LAST_MODIFIED, PUBLIC_ROUTES, SITE_URL } from "@/lib/site";
 import { ARTICLES } from "@/lib/articles";
 import { ARTICLES_EN } from "@/lib/articles-en";
 import { CITY_DIRECTORY } from "@/lib/cities";
@@ -37,7 +37,7 @@ function expand(entries: Entry[]): MetadataRoute.Sitemap {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const lastModified = new Date(CONTENT_LAST_MODIFIED);
   const enArticles = new Set(ARTICLES_EN.map((a) => a.slug));
 
   const pages: Entry[] = PUBLIC_ROUTES.map(({ path, priority, changeFrequency }) => ({

@@ -6,6 +6,13 @@ export const SITE_NAME = "SEVA Taxi";
 export const LEGAL_NAME = "CV Twin Digital Investama";
 
 // Public, indexable routes.
+/**
+ * Tanggal terakhir isi halaman statis (beranda, layanan, kota, dll.) benar-benar berubah, dipakai sebagai
+ * <lastmod> di sitemap. Ubah HANYA saat konten berubah: lastmod yang berubah di setiap build membuat Google
+ * mengabaikannya, sehingga perubahan nyata ikut terlambat dirayapi.
+ */
+export const CONTENT_LAST_MODIFIED = "2026-10-21";
+
 export const PUBLIC_ROUTES = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
   { path: "/services", priority: 0.9, changeFrequency: "monthly" },
