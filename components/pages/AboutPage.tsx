@@ -622,7 +622,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                       className="h-5 w-auto object-contain"
                     />
                     <span className="font-mono text-xs font-bold text-slate-900 bg-slate-100 px-2 py-1 rounded-md">
-                      028759.01/DJAI.PSE
+                      009824.01/DJAI.PSE/09/2026
                     </span>
                   </div>
                   <p className="text-xs text-slate-500 pt-1">

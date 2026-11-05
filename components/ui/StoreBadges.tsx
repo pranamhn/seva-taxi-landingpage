@@ -35,7 +35,7 @@ export default function StoreBadges({ size = "lg", locale = "id" }: { size?: Siz
 
   return (
     <>
-      <div className="relative inline-flex items-center shrink-0">
+      <div className="inline-flex items-center shrink-0">
         <a
           href={APP_STORE_URL || "#"}
           onClick={handleAppStoreClick}
@@ -54,11 +54,6 @@ export default function StoreBadges({ size = "lg", locale = "id" }: { size?: Siz
             className={`${height} w-auto ${!APP_STORE_URL ? "opacity-85" : ""}`}
           />
         </a>
-        {!APP_STORE_URL && (
-          <span className="absolute -top-2 -right-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500 text-white shadow-xs pointer-events-none select-none tracking-tight">
-            {locale === "id" ? "Segera Hadir" : "Coming Soon"}
-          </span>
-        )}
       </div>
 
       <a

@@ -3,7 +3,7 @@
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://sevataxi.com").replace(/\/$/, "");
 
 export const SITE_NAME = "SEVA Taxi";
-export const LEGAL_NAME = "CV Twin Digital Investama";
+export const LEGAL_NAME = "PT Accessbanx Inovasi Digital";
 
 // Public, indexable routes.
 /**

@@ -98,7 +98,7 @@ export default function SiteJsonLd() {
             "@id": `${SITE_URL}/about`,
             url: `${SITE_URL}/about`,
             name: "Tentang SEVA & Legalitas TDPSE Komdigi",
-            description: "Profil perusahaan CV Twin Digital Investama, visi misi, dan legalitas resmi TDPSE.",
+            description: "Profil perusahaan PT Accessbanx Inovasi Digital, visi misi, dan legalitas resmi TDPSE.",
           },
           {
             "@type": "WebPage",

@@ -176,7 +176,7 @@ export default function Footer({ locale: propLocale }: { locale?: Locale }) {
                   height={50}
                   className="h-3.5 w-auto object-contain"
                 />
-                <span>TDPSE 028759.01/DJAI.PSE</span>
+                <span>TDPSE 009824.01/DJAI.PSE/09/2026</span>
               </span>
             </div>
 
