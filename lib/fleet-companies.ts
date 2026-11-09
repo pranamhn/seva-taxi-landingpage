@@ -30,7 +30,7 @@ export const FLEET_COMPANIES: FleetCompany[] = [
   },
   {
     name: "PT Transgo Mobility Rental",
-    logo: "/assets/logo/partners/trimmed/transgo.png",
+    logo: "/assets/logo/partners/trimmed/transgo-tgm.png",
     status: "Active",
     subscription: "Active",
     vehicles: 1126,

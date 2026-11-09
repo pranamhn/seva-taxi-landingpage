@@ -25,6 +25,7 @@ interface PageHeaderProps {
 }
 
 export default function PageHeader({
+  badge,
   title,
   subtitle,
   breadcrumbs,
@@ -81,6 +82,11 @@ export default function PageHeader({
         {/* Header Content */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl space-y-3">
+            {badge && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider text-[#225FD2] bg-blue-50 border border-blue-200 w-fit">
+                {badge}
+              </div>
+            )}
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight break-words">
               {title}
             </h1>
