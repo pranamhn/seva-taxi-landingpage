@@ -1,22 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   CarIcon as Car,
   MotorcycleIcon as Bike,
   PackageIcon as Package,
   ArrowRightIcon as ArrowRight,
   ArrowsDownUpIcon as ArrowUpDown,
-  DownloadSimpleIcon as Download,
   StarIcon as Star,
-  ClockIcon as Clock,
   WalletIcon as Wallet,
   SealCheckIcon as BadgeCheck,
-  ShieldCheckIcon as ShieldCheck,
   CheckCircleIcon as CheckCircle,
   MapPinIcon as MapPin,
-  SparkleIcon as Sparkles,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { FARES } from "@/lib/articles";

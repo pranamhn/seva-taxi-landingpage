@@ -6,7 +6,6 @@ import {
   ArrowRightIcon as ArrowRight,
   MagnifyingGlassIcon as Search,
   MapPinIcon as MapPin,
-  SparkleIcon as Sparkles,
 } from "@phosphor-icons/react/dist/ssr";
 import { CITY_DIRECTORY, ZONE_LABELS, arrivalLabel, cityName, provinceName, type CityItem } from "@/lib/cities";
 import { localePath, type Locale } from "@/lib/i18n";

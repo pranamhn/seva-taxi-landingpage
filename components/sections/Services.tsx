@@ -10,9 +10,6 @@ import {
   PackageIcon as Package,
   ForkKnifeIcon as Utensils,
   SparkleIcon as Sparkles,
-  ClockIcon as Clock,
-  UsersIcon as Users,
-  TagIcon as Tag,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { FARES } from "@/lib/articles";

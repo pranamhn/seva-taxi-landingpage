@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import {
   CheckIcon as Check,
   XIcon as X,
   ShieldCheckIcon as ShieldCheck,
   SparkleIcon as Sparkles,
-  ArrowRightIcon as ArrowRight,
 } from "@phosphor-icons/react/dist/ssr";
 import type { Locale } from "@/lib/i18n";
 
@@ -141,7 +139,6 @@ const COPY: Record<
 
 export default function ComparisonSection({ locale = "id" }: { locale?: Locale }) {
   const t = COPY[locale];
-  const [activeView, setActiveView] = useState<"both" | "lama" | "seva">("both");
 
   return (
     <section className="py-16 sm:py-24 bg-[#f8fafc] border-b border-slate-200/80 transition-colors">

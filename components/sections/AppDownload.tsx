@@ -4,9 +4,6 @@ import { useState } from "react";
 import {
   SparkleIcon as Sparkles,
   CheckCircleIcon as CheckCircle,
-  DownloadSimpleIcon as Download,
-  DeviceMobileIcon as DeviceMobile,
-  ShieldCheckIcon as ShieldCheck,
 } from "@phosphor-icons/react/dist/ssr";
 import StoreBadges from "@/components/ui/StoreBadges";
 import Image from "next/image";

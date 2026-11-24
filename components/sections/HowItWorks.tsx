@@ -4,7 +4,6 @@ import {
   MapPinIcon as MapPin,
   CarIcon as Car,
   CreditCardIcon as CreditCard,
-  ArrowRightIcon as ArrowRight,
   CheckCircleIcon as CheckCircle,
   SparkleIcon as Sparkles,
 } from "@phosphor-icons/react/dist/ssr";

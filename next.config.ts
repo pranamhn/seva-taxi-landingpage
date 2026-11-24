@@ -10,7 +10,10 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Dua root layout (app/(id) & app/(en)) → 404 untuk URL tak dikenal ditangani app/global-not-found.tsx
-  experimental: { globalNotFound: true },
+  experimental: {
+    globalNotFound: true,
+    agentUpgrade: "security",
+  },
   turbopack: {
     rules: {
       "*.css": {

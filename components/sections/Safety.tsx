@@ -5,8 +5,6 @@ import {
   ShareNetworkIcon as Share2,
   SirenIcon as Siren,
   ShieldCheckIcon as ShieldCheck,
-  LockKeyIcon as LockKey,
-  SparkleIcon as Sparkles,
   CheckCircleIcon as CheckCircle,
 } from "@phosphor-icons/react/dist/ssr";
 import type { Locale } from "@/lib/i18n";
