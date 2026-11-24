@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRightIcon as ArrowRight, MagnifyingGlassIcon as Search } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowRightIcon as ArrowRight,
+  MagnifyingGlassIcon as Search,
+  MapPinIcon as MapPin,
+  SparkleIcon as Sparkles,
+} from "@phosphor-icons/react/dist/ssr";
 import { CITY_DIRECTORY, ZONE_LABELS, arrivalLabel, cityName, provinceName, type CityItem } from "@/lib/cities";
 import { localePath, type Locale } from "@/lib/i18n";
 
@@ -29,33 +34,33 @@ const COPY: Record<
 > = {
   id: {
     zones: { all: "Semua Wilayah", ...ZONE_LABELS.id },
-    eyebrow: "WILAYAH OPERASIONAL",
-    title: "Beroperasi Penuh di Jabodetabek",
-    intro: "Saat ini SEVA melayani seluruh kawasan Jakarta, Bogor, Depok, Tangerang, dan Bekasi — termasuk penjemputan bandara dan stasiun kereta.",
+    eyebrow: "WILAYAH OPERASIONAL RESMI",
+    title: "Melayani Seluruh Kawasan Jabodetabek",
+    intro: "SEVA melayani 100% kawasan Jakarta, Bogor, Depok, Tangerang, dan Bekasi — termasuk penjemputan bandara CGK, KCIC Halim, dan stasiun komuter.",
     directoryTitle: "Direktori Wilayah Layanan",
-    directoryIntro: "SEVA RIDE, SEVA CAR, dan SEVA SEND aktif 24 jam di seluruh wilayah berikut.",
+    directoryIntro: "SEVA RIDE, SEVA CAR, dan SEVA SEND beroperasi aktif 24 jam nonstop di seluruh area berikut.",
     activeZones: "zona aktif",
     searchLabel: "Cari kota atau kabupaten",
-    searchPlaceholder: "Cari kota atau wilayah...",
-    active: "Aktif",
+    searchPlaceholder: "Cari kota, kabupaten, atau kode...",
+    active: "Siap Jemput",
     pickup: "Jemput:",
-    fares: "Tarif",
+    fares: "Cek Tarif",
     empty: (q) => `Tidak ada kota atau kabupaten yang cocok dengan pencarian "${q}".`,
     filterLabel: "Filter wilayah",
   },
   en: {
     zones: { all: "All Areas", ...ZONE_LABELS.en },
-    eyebrow: "SERVICE AREAS",
-    title: "Serving All of Greater Jakarta",
-    intro: "SEVA covers Jakarta, Bogor, Depok, Tangerang, and Bekasi, including airport and train station pickups.",
+    eyebrow: "OFFICIAL SERVICE AREAS",
+    title: "Serving All Greater Jakarta Regions",
+    intro: "SEVA operates 100% across Jakarta, Bogor, Depok, Tangerang, and Bekasi, including CGK Airport, KCIC Halim, and commuter rail hubs.",
     directoryTitle: "Service Area Directory",
-    directoryIntro: "SEVA RIDE, SEVA CAR, and SEVA SEND run 24 hours a day in all of these areas.",
-    activeZones: "active areas",
+    directoryIntro: "SEVA RIDE, SEVA CAR, and SEVA SEND operate 24 hours a day in all of these service areas.",
+    activeZones: "active regions",
     searchLabel: "Search for a city or regency",
-    searchPlaceholder: "Search a city or area...",
-    active: "Active",
+    searchPlaceholder: "Search city, regency, or code...",
+    active: "Ready",
     pickup: "Pickup:",
-    fares: "Fares",
+    fares: "View Fares",
     empty: (q) => `No city or regency matches "${q}".`,
     filterLabel: "Filter areas",
   },
@@ -90,120 +95,126 @@ export default function CityCoverage({ hideHeader = false, locale = "id" }: City
     zone === "all" ? CITY_DIRECTORY.length : CITY_DIRECTORY.filter((c) => c.zone === zone).length;
 
   return (
-    <section id="cities" className="py-8 sm:py-12 bg-white border-b border-slate-200/80">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        {/* Optional Header (shown on Home, hidden if page already has PageHeader) */}
+    <section id="cities" className="py-16 sm:py-20 bg-white border-b border-slate-200/80 transition-colors">
+      <div className="max-w-[1260px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
         {!hideHeader && (
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-slate-200/80 mb-5">
-            <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight text-balance">
-                {t.title}
-              </h2>
-              <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-xl leading-relaxed">
-                {t.intro}
-              </p>
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#225FD2] text-xs font-bold tracking-wide uppercase shadow-2xs">
+              <MapPin size={14} className="text-[#225FD2]" />
+              <span>{t.eyebrow}</span>
             </div>
-          </div>
-        )}
 
-        {/* Directory header (page already has a hero header on /cities) */}
-        {hideHeader && (
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-              {t.directoryTitle}
+            <h2 className="v11-h text-3xl sm:text-4xl text-slate-900 leading-[1.14]">
+              {t.title}
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-              {t.directoryIntro}
+
+            <p className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              {t.intro}
             </p>
           </div>
-          <span className="inline-flex items-center gap-2 self-start lg:self-auto text-xs font-semibold text-emerald-700 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span className="tabular-nums">{CITY_DIRECTORY.length}</span> {t.activeZones}
-          </span>
-        </div>
         )}
 
-        {/* Controls: Zone Filter & Search */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-200/80">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar -mx-1 px-1" role="group" aria-label={t.filterLabel}>
+        {hideHeader && (
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+            <div>
+              <h2 className="v11-h text-2xl sm:text-3xl text-slate-900">
+                {t.directoryTitle}
+              </h2>
+              <p className="mt-1 text-sm text-slate-600 max-w-2xl leading-relaxed">
+                {t.directoryIntro}
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 shadow-2xs shrink-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="tabular-nums font-mono">{CITY_DIRECTORY.length}</span> {t.activeZones}
+            </span>
+          </div>
+        )}
+
+        {/* Filter Pills & Search Bar */}
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-8 p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+          
+          {/* Zone Buttons */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar -mx-1 px-1" role="group" aria-label={t.filterLabel}>
             {ZONE_IDS.map((id) => {
-              const z = { id, label: t.zones[id] };
-              const isActive = activeZone === z.id;
+              const isActive = activeZone === id;
               return (
                 <button
-                  key={z.id}
+                  key={id}
                   type="button"
-                  onClick={() => setActiveZone(z.id)}
+                  onClick={() => setActiveZone(id)}
                   aria-pressed={isActive}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap border cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     isActive
-                      ? "bg-[#225FD2] text-white border-[#225FD2]"
-                      : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                      ? "v11-btn-brand shadow-sm"
+                      : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-100"
                   }`}
                 >
-                  {z.label}
+                  <span>{t.zones[id]}</span>
                   <span
-                    className={`tabular-nums text-[10px] font-semibold px-1.5 py-0.5 rounded ${
-                      isActive ? "bg-white text-[#225FD2]" : "bg-slate-100 text-slate-600"
+                    className={`tabular-nums text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-md ${
+                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
                     }`}
                   >
-                    {countFor(z.id)}
+                    {countFor(id)}
                   </span>
                 </button>
               );
             })}
           </div>
 
-          <div className="w-full md:w-64 relative shrink-0">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          {/* Search Input */}
+          <div className="w-full md:w-72 relative shrink-0">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={search}
               aria-label={t.searchLabel}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t.searchPlaceholder}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-white border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#225FD2] focus:ring-2 focus:ring-blue-500/15 transition-colors"
+              className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-white border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#225FD2] focus:ring-2 focus:ring-blue-500/15 transition-all"
             />
           </div>
         </div>
 
-        {/* City Cards Grid - Compact & Responsive (2 kolom di mobile, 4 kolom di desktop) */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
+        {/* Tactile 3D City Cards Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           {filtered.map((city) => (
             <Link
               key={city.code}
               href={localePath(locale, `/cities/${city.slug}`)}
-              className="group flex flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-3 sm:p-4 hover:border-[#225FD2]/40 hover:shadow-xs transition-all duration-150"
+              className="v11-card3d !p-3.5 sm:!p-4.5 flex flex-col justify-between group hover:-translate-y-1 transition-all"
             >
               <div>
-                <header className="flex items-center justify-between gap-1 mb-2">
-                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-[#225FD2] transition-colors">
+                <header className="flex items-center justify-between gap-1 mb-2.5">
+                  <span className="text-[11px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-lg bg-blue-50 text-[#225FD2] border border-blue-200">
                     {city.code}
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-full shrink-0">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 shrink-0">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     {t.active}
                   </span>
                 </header>
 
                 <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug truncate">
+                  <h3 className="v11-h text-sm sm:text-base text-slate-900 leading-snug truncate group-hover:text-[#225FD2] transition-colors">
                     {cityName(city, locale)}
                   </h3>
-                  <p className="mt-0.5 text-[10px] sm:text-xs text-slate-500 truncate">
+                  <p className="mt-0.5 text-[11px] text-slate-500 truncate">
                     {provinceName(city, locale)}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-[11px]">
-                <div className="flex items-center gap-1 text-slate-500">
+              <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                <div className="flex items-center gap-1 text-slate-500 font-medium">
                   <span>{t.pickup}</span>
-                  <span className="font-semibold text-slate-900 tabular-nums">{arrivalLabel(city, locale)}</span>
+                  <span className="font-bold text-slate-900 font-mono">{arrivalLabel(city, locale)}</span>
                 </div>
-                <span className="inline-flex items-center gap-0.5 font-semibold text-slate-400 group-hover:text-[#225FD2] transition-colors">
-                  {t.fares}
+                <span className="inline-flex items-center gap-0.5 font-bold text-[#225FD2] group-hover:translate-x-0.5 transition-transform">
+                  <span>{t.fares}</span>
                   <ArrowRight className="w-3 h-3" aria-hidden="true" />
                 </span>
               </div>
@@ -218,6 +229,7 @@ export default function CityCoverage({ hideHeader = false, locale = "id" }: City
             </p>
           </div>
         )}
+
       </div>
     </section>
   );

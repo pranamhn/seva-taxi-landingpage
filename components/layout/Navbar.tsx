@@ -538,18 +538,25 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right Actions: store badges, menu toggle */}
-        <div className="flex items-center gap-2 shrink-0">
-          <div className="hidden sm:flex items-center gap-2">
+        {/* Right Actions: CTA button, store badges, menu toggle */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          <a
+            href="#hero"
+            className="hidden md:inline-flex v11-btn v11-btn-brand !min-h-[36px] px-4 py-1.5 text-xs font-bold shadow-sm"
+          >
+            <span>{locale === "en" ? "Book a Ride" : "Pesan Sekarang"}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+          <div className="hidden xl:flex items-center gap-2">
             <StoreBadges size="sm" locale={locale} />
           </div>
 
-          {/* Mobile & Tablet Controls: Menu toggle (muncul sampai breakpoint lg, sama dengan drawer) */}
+          {/* Mobile & Tablet Controls: Menu toggle */}
           <div className="flex lg:hidden items-center gap-2">
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2 rounded-xl bg-slate-100/90 border border-slate-200 text-slate-700 hover:bg-slate-200 transition-colors"
+            className="p-2 rounded-xl bg-slate-100/90 border border-slate-200 text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
             aria-label={mobileOpen ? t.closeMenu : t.openMenu}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"

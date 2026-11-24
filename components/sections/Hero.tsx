@@ -2,18 +2,32 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CarIcon as Car, MotorcycleIcon as Bike, PackageIcon as Package, ArrowRightIcon as ArrowRight, ArrowsDownUpIcon as ArrowUpDown, DownloadSimpleIcon as Download, StarIcon as Star, ClockIcon as Clock, WalletIcon as Wallet, SealCheckIcon as BadgeCheck } from "@phosphor-icons/react/dist/ssr";
+import {
+  CarIcon as Car,
+  MotorcycleIcon as Bike,
+  PackageIcon as Package,
+  ArrowRightIcon as ArrowRight,
+  ArrowsDownUpIcon as ArrowUpDown,
+  DownloadSimpleIcon as Download,
+  StarIcon as Star,
+  ClockIcon as Clock,
+  WalletIcon as Wallet,
+  SealCheckIcon as BadgeCheck,
+  ShieldCheckIcon as ShieldCheck,
+  CheckCircleIcon as CheckCircle,
+  MapPinIcon as MapPin,
+  SparkleIcon as Sparkles,
+} from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { FARES } from "@/lib/articles";
 import type { Locale } from "@/lib/i18n";
 
 type Route = { name?: string; distance: number; pickup: string; dest: string };
 
-// Kategori yang bisa dipesan sekarang; tarif diambil dari FARES agar sama dengan halaman layanan & FAQ
 const RIDE_CATEGORIES = [
-  { id: "ride", icon: Bike, name: "SEVA RIDE", baseFare: FARES.ride.base, perKm: FARES.ride.perKm },
-  { id: "car", icon: Car, name: "SEVA CAR", baseFare: FARES.car.base, perKm: FARES.car.perKm },
-  { id: "send", icon: Package, name: "SEVA SEND", baseFare: FARES.send.base, perKm: FARES.send.perKm },
+  { id: "ride", icon: Bike, name: "SEVA RIDE", label: "Ride (Motor)", baseFare: FARES.ride.base, perKm: FARES.ride.perKm, eta: "~1–3 mnt", badge: "Hemat" },
+  { id: "car", icon: Car, name: "SEVA CAR", label: "Car (Mobil)", baseFare: FARES.car.base, perKm: FARES.car.perKm, eta: "~3–5 mnt", badge: "Populer" },
+  { id: "send", icon: Package, name: "SEVA SEND", label: "Send (Kurir)", baseFare: FARES.send.base, perKm: FARES.send.perKm, eta: "~2–4 mnt", badge: "Kilat" },
 ] as const;
 
 type CategoryId = (typeof RIDE_CATEGORIES)[number]["id"];
@@ -28,42 +42,32 @@ const COPY: Record<
     h1Accent: string;
     h1Tail: string;
     subtitle: string;
-    categories: Record<CategoryId, { eta: string }>;
     defaultRoute: Route;
     presets: Route[];
     pickupLabel: string;
     destLabel: string;
-    pickupAria: string;
-    destAria: string;
     pickupPlaceholder: string;
     pickupPlaceholderSend: string;
     destPlaceholder: string;
     destPlaceholderSend: string;
     swap: string;
-    pickupEta: string;
     fixedFare: string;
     bookNow: string;
     sendNow: string;
-    downloads: string;
     rating: string;
     mockupAlt: string;
-    cardTitle: string;
-    cardSubtitle: string;
+    doodleNote: string;
+    trustPills: string[];
   }
 > = {
   id: {
     numberLocale: "id-ID",
     badgeShort: "Ride-Hailing & Taksi Online",
-    badgeLong: "Platform Ride-Hailing & Taksi Online Jabodetabek",
-    h1Lead: "Perjalanan Nyaman,",
-    h1Accent: "Cepat & Aman",
-    h1Tail: "dengan Tarif Transparan",
-    subtitle: "Pesan SEVA RIDE, SEVA CAR, atau kirim barang dengan SEVA SEND. Tarif pasti di awal, tanpa lonjakan liar.",
-    categories: {
-      ride: { eta: "~1–3 mnt" },
-      car: { eta: "~3–5 mnt" },
-      send: { eta: "~2–4 mnt" },
-    },
+    badgeLong: "Platform Mobilitas & Taksi Online Jabodetabek",
+    h1Lead: "Perjalanan Nyaman, Cepat & Aman.",
+    h1Accent: "Tarif Pasti di Awal",
+    h1Tail: "Tanpa Lonjakan Liar.",
+    subtitle: "Pesan SEVA RIDE, SEVA CAR, atau kirim barang kilat via SEVA SEND. Tarif transparan sejak sebelum Anda klik pesan — bebas was-was saat hujan dan jam sibuk.",
     defaultRoute: { distance: 8.5, pickup: "Stasiun Gambir, Jakarta Pusat", dest: "SCBD Sudirman, Jakarta Selatan" },
     presets: [
       { name: "CGK ➔ Thamrin", distance: 31.4, pickup: "Terminal 3 Bandara Soekarno-Hatta (CGK)", dest: "Grand Indonesia / Bundaran HI, Thamrin" },
@@ -72,36 +76,32 @@ const COPY: Record<
     ],
     pickupLabel: "Titik Jemput",
     destLabel: "Tujuan Pengantaran",
-    pickupAria: "Lokasi penjemputan",
-    destAria: "Tujuan perjalanan",
     pickupPlaceholder: "Lokasi penjemputan...",
     pickupPlaceholderSend: "Alamat penjemputan barang / paket...",
     destPlaceholder: "Tujuan perjalanan...",
     destPlaceholderSend: "Alamat tujuan pengiriman...",
     swap: "Tukar Titik Jemput dan Tujuan",
-    pickupEta: "Jemput",
-    fixedFare: "Tarif Pasti di Awal",
+    fixedFare: "Tarif Pasti Transparan",
     bookNow: "Pesan Sekarang",
     sendNow: "Kirim Sekarang",
-    downloads: "Unduhan Aplikasi",
-    rating: "Rating",
+    rating: "4.9/5 dari 120k+ Ulasan",
     mockupAlt: "Aplikasi SEVA Ride Hailing - Beranda Utama",
-    cardTitle: "Ride Hailing SEVA",
-    cardSubtitle: "Pembayaran Terverifikasi",
+    doodleNote: "⚡ Estimasi tarif real-time dalam 3 detik!",
+    trustPills: [
+      "Tanpa Lonjakan Jam Sibuk & Hujan",
+      "Bagi Hasil Mitra 95% (Komisi 5%)",
+      "Driver Terverifikasi SKCK & SIM",
+      "Perlindungan Asuransi Resmi",
+    ],
   },
   en: {
     numberLocale: "en-US",
     badgeShort: "Ride-Hailing & Online Taxi",
-    badgeLong: "Ride-Hailing & Online Taxi in Greater Jakarta",
-    h1Lead: "Comfortable,",
-    h1Accent: "Fast & Safe Rides",
-    h1Tail: "with Upfront Fares",
-    subtitle: "Book SEVA RIDE or SEVA CAR, or send a package with SEVA SEND. Your fare is fixed before you book, with no surge pricing.",
-    categories: {
-      ride: { eta: "~1–3 min" },
-      car: { eta: "~3–5 min" },
-      send: { eta: "~2–4 min" },
-    },
+    badgeLong: "Mobility & Online Taxi Platform in Greater Jakarta",
+    h1Lead: "Comfortable, Fast & Safe Rides.",
+    h1Accent: "Upfront Fixed Fares",
+    h1Tail: "with Zero Surge.",
+    subtitle: "Book SEVA RIDE, SEVA CAR, or on-demand parcel dispatch via SEVA SEND. Exact fare locked before booking — no surge shock during rush hour or rain.",
     defaultRoute: { distance: 8.5, pickup: "Gambir Station, Central Jakarta", dest: "SCBD Sudirman, South Jakarta" },
     presets: [
       { name: "CGK ➔ Thamrin", distance: 31.4, pickup: "Soekarno-Hatta Airport Terminal 3 (CGK)", dest: "Grand Indonesia / Bundaran HI, Thamrin" },
@@ -110,22 +110,23 @@ const COPY: Record<
     ],
     pickupLabel: "Pickup",
     destLabel: "Drop-off",
-    pickupAria: "Pickup location",
-    destAria: "Destination",
     pickupPlaceholder: "Pickup location...",
     pickupPlaceholderSend: "Package pickup address...",
     destPlaceholder: "Where to?",
     destPlaceholderSend: "Delivery address...",
     swap: "Swap pickup and destination",
-    pickupEta: "Pickup",
-    fixedFare: "Upfront Fare",
+    fixedFare: "Upfront Fixed Fare",
     bookNow: "Book Now",
     sendNow: "Send Now",
-    downloads: "App Downloads",
-    rating: "Rating",
+    rating: "4.9/5 from 120k+ Reviews",
     mockupAlt: "SEVA ride-hailing app - home screen",
-    cardTitle: "SEVA Ride Hailing",
-    cardSubtitle: "Verified Payments",
+    doodleNote: "⚡ Real-time fare estimate in 3 seconds!",
+    trustPills: [
+      "No Surge Pricing in Rush Hour & Rain",
+      "Drivers Keep 95% (5% Platform Fee)",
+      "Police-Vetted & Verified Drivers",
+      "Official Passenger Insurance",
+    ],
   },
 };
 
@@ -145,9 +146,14 @@ export default function Hero({ locale = "id" }: { locale?: Locale }) {
     setDistance(preset.distance);
   };
 
+  const handleSwap = () => {
+    setPickup(dest);
+    setDest(pickup);
+  };
+
   return (
-    <section id="hero" className="relative isolate w-full min-h-[100svh] flex items-center justify-center pt-[84px] sm:pt-[88px] pb-6 sm:pb-8 overflow-hidden bg-white">
-      {/* Sky Blue Highway Ambient Background with Soft Fade */}
+    <section id="hero" className="relative isolate w-full min-h-[100svh] flex items-center justify-center pt-24 sm:pt-28 pb-14 sm:pb-20 overflow-hidden bg-[#fafbfc]">
+      {/* Sky Blue Ambient Background with Clean Mask */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
           src="/hero-bg.webp"
@@ -156,289 +162,266 @@ export default function Hero({ locale = "id" }: { locale?: Locale }) {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-top opacity-95"
+          className="object-cover object-top opacity-90"
           style={{
-            maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)",
+            maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/35 to-white" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/50 to-[#fafbfc]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-[1240px] w-full mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-[1260px] w-full mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-8 lg:gap-12 xl:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Heading, Subtitle, and Clean Quick Ride Estimator */}
-          <div className="text-left space-y-3 sm:space-y-4 lg:space-y-[clamp(8px,1.6vh,16px)] w-full animate-hero-fade">
-            {/* SEO & Service Category Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-[#225FD2] border border-blue-200/70 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#225FD2] animate-pulse" />
+          {/* Left Column (7 cols): Punchy Bricolage Headline + Tactile 3D Estimator Card */}
+          <div className="lg:col-span-7 text-left space-y-5 sm:space-y-6">
+            
+            {/* Top Pill Announcement */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/95 border border-blue-200/90 text-[#225FD2] text-xs font-bold shadow-2xs">
+              <span className="flex h-2 w-2 rounded-full bg-[#225FD2] animate-pulse" />
               <span>{t.badgeLong}</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[clamp(28px,min(5.4vh,3.3vw),42px)] font-extrabold tracking-tight text-slate-900 leading-[1.14] break-words">
+            {/* Punchy Bricolage Headline */}
+            <h1 className="v11-h text-[2.35rem] sm:text-5xl lg:text-[3.4rem] text-slate-900 leading-[1.08] tracking-tight">
               {t.h1Lead}{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#194cb0] to-[#225FD2]">
+              <span className="v11-mark text-[#225FD2]">
                 {t.h1Accent}
               </span>{" "}
-              <br className="hidden lg:block" />
-              {t.h1Tail}
+              <span className="block mt-1 sm:mt-1.5">{t.h1Tail}</span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-[15px] text-slate-600 max-w-xl leading-relaxed">
+            {/* Subtitle with Stabilo Highlighter */}
+            <p className="text-base sm:text-[17px] text-slate-600 max-w-xl leading-relaxed">
               {t.subtitle}
             </p>
 
-            {/* Premium Ride Booking Simulator Card */}
-            <div className="w-full max-w-[540px] bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_-15px_rgba(34,95,210,0.18)] space-y-3.5 transition-all">
+            {/* Estimator Wrapper with Playful Hand-drawn Doodle Note */}
+            <div className="relative w-full max-w-[580px] pt-4">
               
-              {/* Category Switcher Tabs: SEVA RIDE, SEVA CAR, SEVA SEND */}
-              <div className="grid grid-cols-3 gap-1 sm:gap-1.5 bg-slate-100/90 p-1 sm:p-1.5 rounded-2xl border border-slate-200/60">
-                {RIDE_CATEGORIES.map((cat) => {
-                  const Icon = cat.icon;
-                  const isActive = activeCategory === cat.id;
-                  return (
+              {/* Handwritten Doodle Note (Desktop xl) pointing at simulator */}
+              <div className="hidden sm:flex items-center gap-2 absolute -top-4 right-2 v11-hand text-[#225FD2] text-[21px] rotate-[2deg] pointer-events-none select-none">
+                <span>{t.doodleNote}</span>
+                <svg width="36" height="20" viewBox="0 0 36 20" className="shrink-0 text-[#225FD2] rotate-12" aria-hidden="true">
+                  <path d="M4 4 C 14 12, 24 14, 32 14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                  <path d="M24 8 L32 14 L24 18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+
+              {/* Tactile 3D Ride Estimator Simulator Card */}
+              <div className="v11-card3d p-5 sm:p-6 shadow-xl space-y-4">
+                
+                {/* Header of Card: Category Switcher */}
+                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                    Pilih Layanan Armada
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Armada Siap Jemput
+                  </span>
+                </div>
+
+                {/* Tactile Category Tabs */}
+                <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-slate-100/80 border border-slate-200/80">
+                  {RIDE_CATEGORIES.map((cat) => {
+                    const Icon = cat.icon;
+                    const isActive = activeCategory === cat.id;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => setActiveCategory(cat.id)}
+                        className={`v11-btn !min-h-[42px] px-2 py-1.5 text-xs transition-all cursor-pointer ${
+                          isActive
+                            ? "v11-btn-brand shadow-md"
+                            : "v11-btn-ghost !text-slate-700 hover:!text-slate-900"
+                        }`}
+                      >
+                        <Icon className="w-4 h-4 shrink-0" />
+                        <span className="truncate">{cat.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Pickup & Destination Inputs with Swap */}
+                <div className="space-y-2.5">
+                  {/* Pickup Row */}
+                  <div className="relative flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-white focus-within:border-[#225FD2] focus-within:ring-2 focus-within:ring-blue-500/10 transition">
+                    <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#225FD2] flex items-center justify-center shrink-0">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#225FD2]" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <label htmlFor="hero-pickup" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        {t.pickupLabel}
+                      </label>
+                      <input
+                        id="hero-pickup"
+                        type="text"
+                        value={pickup}
+                        onChange={(e) => setPickup(e.target.value)}
+                        placeholder={activeCategory === "send" ? t.pickupPlaceholderSend : t.pickupPlaceholder}
+                        className="w-full text-xs sm:text-[13px] font-semibold text-slate-800 bg-transparent outline-none truncate"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Swap Button Bar */}
+                  <div className="flex items-center justify-center -my-1.5 relative z-10">
                     <button
-                      key={cat.id}
                       type="button"
-                      onClick={() => setActiveCategory(cat.id)}
-                      aria-pressed={isActive}
-                      className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 relative py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs transition-all duration-200 cursor-pointer ${
-                        isActive
-                          ? "bg-white text-[#225FD2] shadow-sm border border-slate-200/90 font-bold"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-white/60 font-semibold"
-                      }`}
+                      onClick={handleSwap}
+                      className="px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-500 hover:text-[#225FD2] hover:border-[#225FD2] text-[11px] font-bold shadow-2xs flex items-center gap-1 transition cursor-pointer"
+                      title={t.swap}
                     >
-                      <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? "text-[#225FD2]" : "text-slate-500"}`} />
-                      <span className="truncate">
-                        <span className="hidden sm:inline">SEVA </span>
-                        {cat.name.replace(/^SEVA\s+/, "")}
-                      </span>
+                      <ArrowUpDown className="w-3 h-3" />
+                      <span>Tukar Rute</span>
                     </button>
-                  );
-                })}
-              </div>
-
-              {/* Connected Route Selector (Unified Pickup & Destination Box) */}
-              <div className="relative rounded-2xl bg-slate-50/90 border border-slate-200/90 p-2.5 sm:p-3 transition-colors focus-within:border-blue-400 focus-within:bg-white focus-within:shadow-sm">
-                {/* Left Route Indicator (Pickup Dot -> Dashed Line -> Destination Marker) */}
-                <div className="absolute left-3.5 top-[18px] bottom-[18px] flex flex-col items-center justify-between pointer-events-none">
-                  {/* Pickup Dot */}
-                  <div className="w-2.5 h-2.5 rounded-full border-2 border-[#225FD2] bg-white flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-[#225FD2]" />
-                  </div>
-                  {/* Dashed Connector Line */}
-                  <div className="w-0 flex-1 my-1 border-l-2 border-dashed border-slate-300" />
-                  {/* Destination Marker */}
-                  <div className="w-2.5 h-2.5 rounded-xs bg-emerald-500 shadow-xs" />
-                </div>
-
-                {/* Input Fields */}
-                <div className="pl-6 pr-10 space-y-1.5">
-                  {/* Pickup Field */}
-                  <div className="relative">
-                    <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider leading-none mb-0.5">
-                      {t.pickupLabel}
-                    </div>
-                    <input
-                      type="text"
-                      value={pickup}
-                      aria-label={t.pickupAria}
-                      autoComplete="off"
-                      onChange={(e) => setPickup(e.target.value)}
-                      placeholder={
-                        activeCategory === "send" ? t.pickupPlaceholderSend : t.pickupPlaceholder
-                      }
-                      className="w-full text-xs sm:text-[13px] font-semibold text-slate-900 bg-transparent outline-none truncate placeholder:text-slate-400 placeholder:font-normal"
-                    />
                   </div>
 
-                  {/* Clean Divider */}
-                  <div className="h-px bg-slate-200/80 my-1" />
-
-                  {/* Destination Field */}
-                  <div className="relative">
-                    <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider leading-none mb-0.5">
-                      {t.destLabel}
+                  {/* Destination Row */}
+                  <div className="relative flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-white focus-within:border-[#225FD2] focus-within:ring-2 focus-within:ring-blue-500/10 transition">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4 text-emerald-600" />
                     </div>
-                    <input
-                      type="text"
-                      value={dest}
-                      aria-label={t.destAria}
-                      autoComplete="off"
-                      onChange={(e) => setDest(e.target.value)}
-                      placeholder={
-                        activeCategory === "send" ? t.destPlaceholderSend : t.destPlaceholder
-                      }
-                      className="w-full text-xs sm:text-[13px] font-semibold text-slate-900 bg-transparent outline-none truncate placeholder:text-slate-400 placeholder:font-normal"
-                    />
+                    <div className="flex-1 min-w-0">
+                      <label htmlFor="hero-dest" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        {t.destLabel}
+                      </label>
+                      <input
+                        id="hero-dest"
+                        type="text"
+                        value={dest}
+                        onChange={(e) => setDest(e.target.value)}
+                        placeholder={activeCategory === "send" ? t.destPlaceholderSend : t.destPlaceholder}
+                        className="w-full text-xs sm:text-[13px] font-semibold text-slate-800 bg-transparent outline-none truncate"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                {/* Swap Button */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    const temp = pickup;
-                    setPickup(dest);
-                    setDest(temp);
-                  }}
-                  title={t.swap}
-                  aria-label={t.swap}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-500 hover:text-[#225FD2] flex items-center justify-center transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
-                >
-                  <ArrowUpDown className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              {/* Commuter Route Pills (Quick Suggestions) */}
-              <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
-                <span className="text-[10px] uppercase font-bold text-slate-400 shrink-0">
-                  Rute Cepat:
-                </span>
-                {t.presets.map((preset) => {
-                  const isSelected = pickup === preset.pickup && dest === preset.dest;
-                  return (
+                {/* 1-Click Preset Route Chips */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                  <span className="text-[11px] font-bold text-slate-400 mr-1">Rute Cepat:</span>
+                  {t.presets.map((preset) => (
                     <button
                       key={preset.name}
                       type="button"
                       onClick={() => handleSelectPreset(preset)}
-                      className={`px-2.5 py-1 rounded-lg border transition-all whitespace-nowrap shrink-0 text-xs cursor-pointer ${
-                        isSelected
-                          ? "bg-blue-50 border-blue-300 text-[#225FD2] font-bold shadow-2xs"
-                          : "bg-slate-50/80 border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-100"
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition cursor-pointer border ${
+                        preset.pickup === pickup && preset.dest === dest
+                          ? "bg-blue-50 text-[#225FD2] border-blue-300 font-bold"
+                          : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
                       }`}
                     >
                       {preset.name}
                     </button>
-                  );
-                })}
-              </div>
-
-              {/* Price Calculation & Action Trigger */}
-              <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-[#225FD2]" />
-                      <span>{t.pickupEta}: {t.categories[selectedVehicle.id].eta}</span>
-                    </span>
-                    <span className="text-slate-300">•</span>
-                    <span className="text-emerald-600 font-semibold truncate">
-                      {t.fixedFare}
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-1.5 mt-0.5">
-                    <span className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight tabular-nums">
-                      Rp {calculatedFare.toLocaleString(t.numberLocale)}
-                    </span>
-                    <span className="text-[11px] font-medium text-slate-400">
-                      ({distance} km)
-                    </span>
-                  </div>
+                  ))}
                 </div>
 
-                <Link
-                  href="#download"
-                  className="h-10 px-5 rounded-xl bg-gradient-to-r from-[#225FD2] to-[#184cb3] hover:from-[#1b53c7] hover:to-[#143f96] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 hover:scale-[1.02] active:scale-[0.98] shrink-0 w-full sm:w-auto"
-                >
-                  <span>
-                    {activeCategory === "send" ? t.sendNow : t.bookNow}
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                {/* Calculation Output & 3D CTA Bar */}
+                <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-slate-50/70 p-3 sm:p-4 rounded-2xl">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-slate-500">{t.fixedFare}</span>
+                      <span className="px-2 py-0.5 rounded-full bg-blue-100 text-[#225FD2] text-[10px] font-bold font-mono">
+                        {distance.toFixed(1)} km • {selectedVehicle.eta}
+                      </span>
+                    </div>
+                    <div className="mt-1 flex items-baseline gap-1.5">
+                      <span className="v11-h text-2xl sm:text-3xl text-slate-900 font-bold">
+                        Rp {calculatedFare.toLocaleString(t.numberLocale)}
+                      </span>
+                      <span className="text-[11px] font-semibold text-emerald-600">
+                        (Tanpa lonjakan)
+                      </span>
+                    </div>
+                  </div>
+
+                  <a
+                    href="#download"
+                    className="v11-btn v11-btn-brand px-6 py-3 text-sm font-bold shadow-lg w-full sm:w-auto"
+                  >
+                    <span>{activeCategory === "send" ? t.sendNow : t.bookNow}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+
               </div>
 
-            </div>
+              {/* Micro Trust Indicators below the card */}
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-slate-500">
+                {t.trustPills.map((pill) => (
+                  <div key={pill} className="flex items-center gap-1.5">
+                    <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0" weight="fill" />
+                    <span>{pill}</span>
+                  </div>
+                ))}
+              </div>
 
-            {/* Trust Badges Bar */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1">
-              <div className="inline-flex items-center gap-2 h-9 pl-1.5 pr-3 rounded-xl bg-white/85 backdrop-blur border border-slate-200/80 shadow-2xs text-xs">
-                <span className="w-6 h-6 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
-                  <Download className="w-3.5 h-3.5 text-[#225FD2]" aria-hidden="true" />
-                </span>
-                <span className="font-bold text-slate-900">10K+</span>
-                <span className="font-medium text-slate-600">{t.downloads}</span>
-              </div>
-              <div className="inline-flex items-center gap-2 h-9 pl-1.5 pr-3 rounded-xl bg-white/85 backdrop-blur border border-slate-200/80 shadow-2xs text-xs">
-                <span className="w-6 h-6 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
-                  <Star weight="fill" className="w-3.5 h-3.5 text-amber-500" aria-hidden="true" />
-                </span>
-                <span className="font-bold text-slate-900">4.8/5.0</span>
-                <span className="font-medium text-slate-500">{t.rating}</span>
-              </div>
             </div>
 
           </div>
 
-          {/* Right Column: Visual Smartphone Mockup with Real Passenger App Screen from User */}
-          <div className="relative flex justify-center items-center mt-6 lg:mt-0">
+          {/* Right Column (5 cols): Phone Mockup with Tactile 3D Floating Badges */}
+          <div className="lg:col-span-5 relative flex items-center justify-center pt-6 lg:pt-0">
             
-            {/* Ambient Radial Blue Glow */}
-            <div className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] rounded-full bg-blue-500/18 blur-3xl pointer-events-none -z-10" />
+            {/* Ambient Radiant Glow behind Phone */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] h-[340px] sm:h-[420px] rounded-full bg-blue-500/15 blur-3xl pointer-events-none" />
 
-            {/* Floating e-Wallet Card (Top Left) — Glossy Liquid Glass */}
-            <div className="absolute top-6 sm:top-10 left-0 z-30 flex items-center gap-3 overflow-hidden rounded-2xl sm:rounded-[22px] pl-2.5 pr-4 py-2.5 sm:pl-3 sm:pr-5 sm:py-3 bg-gradient-to-br from-white/95 via-white/85 to-blue-100/70 backdrop-blur-2xl backdrop-saturate-150 border border-white/80 ring-1 ring-blue-900/5 shadow-[0_24px_48px_-16px_rgba(34,95,210,0.45),0_4px_12px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.95)] select-none animate-float-slow">
-              {/* Top gloss highlight */}
-              <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent" />
-              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#5b94ff] via-[#225FD2] to-[#143f96] shadow-[0_8px_16px_-6px_rgba(34,95,210,0.75),inset_0_1px_0_rgba(255,255,255,0.45)] flex items-center justify-center shrink-0">
-                <Wallet className="w-5 h-5 text-white drop-shadow-sm" aria-hidden="true" />
-                <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 border border-white"></span>
-                </span>
+            {/* Floating Top Left Badge: eWallet Live Balance */}
+            <div
+              className="v11-float absolute -top-4 sm:top-2 -left-2 sm:-left-6 z-20 v11-card3d !p-3 sm:!p-3.5 shadow-xl flex items-center gap-3 select-none"
+              style={{ "--r": "-3deg" } as React.CSSProperties}
+            >
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2D6FE8] to-[#194CB0] text-white flex items-center justify-center shadow-md shrink-0">
+                <Wallet className="w-5 h-5 text-white" />
               </div>
-              <div className="relative">
-                <p className="font-bold text-xs sm:text-[13px] text-slate-900 tracking-tight leading-tight">
-                  SEVA eWallet
-                </p>
-                <p className="mt-1 flex items-center gap-1.5 whitespace-nowrap">
-                  <span className="text-[11px] sm:text-xs font-bold text-slate-700 tabular-nums">Rp 384.000</span>
-                  <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] leading-none font-bold text-emerald-700">
-                    Cashless
-                  </span>
-                </p>
+              <div>
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">SEVA eWallet</p>
+                <p className="v11-h text-sm sm:text-base text-slate-900 font-bold font-mono">Rp 384.000</p>
+                <div className="flex items-center gap-1 mt-0.5 text-[10px] text-emerald-600 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Cashless Instan</span>
+                </div>
               </div>
             </div>
 
-            {/* Realistic Smartphone Mockup — Beranda SEVA Ride Hailing */}
-            <div className="relative w-full max-w-[285px] sm:max-w-[320px] md:max-w-[335px] lg:max-w-none lg:w-auto lg:shrink-0 lg:aspect-[427/860] lg:h-[min(660px,calc(100svh-215px))] z-10 transition-transform duration-300 hover:scale-[1.01] drop-shadow-[0_25px_50px_rgba(0,66,196,0.28)]">
+            {/* Realistic Smartphone Mockup */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] z-10 drop-shadow-[0_25px_50px_rgba(34,95,210,0.28)] transition-transform duration-300 hover:scale-[1.01]">
               <Image
                 src="/images/app/beranda-seva-ride-hailing.webp"
                 alt={t.mockupAlt}
                 width={427}
                 height={860}
-                sizes="(max-width: 640px) 285px, 320px"
                 priority
-                className="block w-full h-auto lg:h-full object-contain select-none"
+                className="block w-full h-auto object-contain select-none"
                 draggable={false}
               />
             </div>
 
-            {/* Floating Verified Ride Card (Bottom Right) — Glossy Liquid Glass */}
-            <div className="absolute bottom-6 sm:bottom-10 right-0 z-30 flex items-center gap-3 overflow-hidden rounded-2xl sm:rounded-[22px] pl-2.5 pr-4 py-2.5 sm:pl-3 sm:pr-5 sm:py-3 bg-gradient-to-br from-white/95 via-white/85 to-emerald-100/70 backdrop-blur-2xl backdrop-saturate-150 border border-white/80 ring-1 ring-emerald-900/5 shadow-[0_24px_48px_-16px_rgba(16,185,129,0.45),0_4px_12px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.95)] select-none animate-float-slow">
-              {/* Top gloss highlight */}
-              <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent" />
-              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl p-2 bg-gradient-to-br from-white to-emerald-100 border border-white shadow-[0_8px_16px_-6px_rgba(16,185,129,0.55),inset_0_1px_0_rgba(255,255,255,0.9)] flex items-center justify-center shrink-0">
-                <Image src="/icons/vehicle.webp" alt="Ride Hailing" width={40} height={40} className="w-full h-full object-contain" />
-                <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#225FD2] border border-white"></span>
-                </span>
+            {/* Floating Bottom Right Badge: Verified Driver & High Rating */}
+            <div
+              className="v11-float absolute -bottom-4 sm:bottom-4 -right-2 sm:-right-4 z-20 v11-card3d !p-3 sm:!p-3.5 shadow-xl flex items-center gap-3 select-none"
+              style={{ "--r": "3deg", animationDelay: "-3s" } as React.CSSProperties}
+            >
+              <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shrink-0">
+                <BadgeCheck className="w-5 h-5 text-white" />
               </div>
-              <div className="relative">
-                <p className="font-bold text-xs sm:text-[13px] text-slate-900 tracking-tight leading-tight">
-                  {t.cardTitle}
-                </p>
-                <p className="mt-1 flex items-center gap-1 whitespace-nowrap text-[10px] sm:text-xs font-semibold text-emerald-700">
-                  <BadgeCheck className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-                  {t.cardSubtitle}
-                </p>
+              <div>
+                <div className="flex items-center gap-1 text-amber-500">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                  ))}
+                  <span className="text-xs font-bold text-slate-900 ml-1">4.9</span>
+                </div>
+                <p className="v11-h text-xs sm:text-[13px] text-slate-900 font-bold mt-0.5">Driver Terverifikasi</p>
+                <p className="text-[10px] text-slate-500 font-medium">Bagi hasil 95% • SKCK & SIM Aktif</p>
               </div>
             </div>
 

@@ -11,6 +11,8 @@ body {
 
 @theme {
   --font-sans: var(--font-jakarta), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-brico: var(--font-brico), "Bricolage Grotesque", var(--font-jakarta), sans-serif;
+  --font-hand: var(--font-hand), "Caveat", cursive, sans-serif;
   --font-mono: var(--font-geist-mono), "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Official SEVA Light Palette copied from seva-landingpage */
@@ -350,4 +352,296 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ==========================================================================
+   DEEPORTAL & SANTAI V11 DESIGN SYSTEM
+   Lively, eye-catching, tactile 3D buttons, markers, float cards, and sticky notes
+   ========================================================================== */
+
+.font-hand, .v11-hand {
+  font-family: var(--font-hand), 'Caveat', cursive, sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.font-brico, .v11-h {
+  font-family: var(--font-brico), var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* Stabilo / Highlighter Effect */
+.v11-hi {
+  background: linear-gradient(transparent 52%, #FFE24A 52%, #FFE24A 92%, transparent 92%);
+  padding: 0 0.16em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  border-radius: 2px;
+}
+.v11-hi-blue {
+  background: linear-gradient(transparent 52%, #dbeafe 52%, #dbeafe 92%, transparent 92%);
+  padding: 0 0.16em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  border-radius: 2px;
+}
+.v11-hi-cyan {
+  background: linear-gradient(transparent 52%, #cffafe 52%, #cffafe 92%, transparent 92%);
+  padding: 0 0.16em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  border-radius: 2px;
+}
+
+/* Hand-drawn marker underline */
+.v11-mark {
+  position: relative;
+  z-index: 0;
+  white-space: nowrap;
+}
+.v11-mark::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -2%;
+  right: -2%;
+  bottom: -0.1em;
+  height: 0.32em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'%3E%3Cpath d='M6 15 C 70 7, 170 5, 294 11' fill='none' stroke='%23225FD2' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M22 19 C 100 13, 200 12, 270 16' fill='none' stroke='%23225FD2' stroke-width='6' stroke-linecap='round' opacity='.85'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+}
+.v11-mark-amber::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'%3E%3Cpath d='M6 15 C 70 7, 170 5, 294 11' fill='none' stroke='%23FFD43B' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M22 19 C 100 13, 200 12, 270 16' fill='none' stroke='%23FFD43B' stroke-width='6' stroke-linecap='round' opacity='.85'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+}
+
+/* Strikethrough annotation */
+.v11-strike {
+  position: relative;
+  white-space: nowrap;
+}
+.v11-strike::after {
+  content: '';
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  top: 52%;
+  height: 3px;
+  background: #D8382F;
+  border-radius: 3px;
+  transform: rotate(-4deg);
+}
+
+/* Doodle circle */
+.v11-circle {
+  position: absolute;
+  inset: -6px -12px;
+  border: 2.5px solid #225FD2;
+  border-radius: 50%;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+.v11-circle-red {
+  position: absolute;
+  inset: -6px -12px;
+  border: 2.5px solid #D8382F;
+  border-radius: 50%;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+
+/* Sticky notes, tape & rings */
+.v11-sticky {
+  background: #FFE878;
+  box-shadow: 0 14px 22px -14px rgba(60, 40, 0, 0.4), inset 0 -18px 30px -24px rgba(120, 90, 0, 0.3);
+  color: #2B2100;
+  border-radius: 12px;
+}
+.v11-sticky-blue {
+  background: #EFF6FF;
+  box-shadow: 0 14px 22px -14px rgba(34, 95, 210, 0.25), inset 0 -18px 30px -24px rgba(34, 95, 210, 0.15);
+  color: #1E40AF;
+  border-radius: 12px;
+}
+.v11-sticky-emerald {
+  background: #D1FAE5;
+  box-shadow: 0 14px 22px -14px rgba(0, 60, 30, 0.3), inset 0 -18px 30px -24px rgba(0, 80, 40, 0.2);
+  color: #064E3B;
+  border-radius: 12px;
+}
+.v11-tape {
+  position: absolute;
+  width: 60px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+/* Floating micro-widgets */
+.v11-float {
+  position: absolute;
+  z-index: 20;
+  animation: v11-bob 6s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes v11-bob {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-8px) rotate(calc(var(--r, 0deg) * -0.5));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v11-float {
+    animation: none;
+  }
+}
+
+/* Tactile 3D Cards */
+.v11-card3d {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 24px;
+  padding: 24px;
+  color: #0f172a;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  box-shadow: inset 0 0 0 1.5px #E2E8F0, inset 0 1px 0 #fff, 0 4px 0 #CBD5E1, 0 16px 30px -12px rgba(15, 23, 42, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.v11-card3d:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1.5px #CBD5E1, inset 0 1px 0 #fff, 0 6px 0 #94A3B8, 0 24px 40px -16px rgba(34, 95, 210, 0.16);
+}
+.v11-card3d::before {
+  content: '';
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 46%;
+  border-radius: 23px 23px 40% 40% / 23px 23px 16px 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: -1;
+}
+
+.v11-card3d-brand {
+  color: #fff;
+  background: linear-gradient(180deg, #2D6FE8 0%, #225FD2 55%, #194CB0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -2px 0 rgba(0, 0, 0, 0.15), 0 5px 0 #133987, 0 20px 36px -16px rgba(34, 95, 210, 0.5);
+}
+.v11-card3d-brand::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+}
+
+.v11-card3d-emerald {
+  color: #fff;
+  background: linear-gradient(180deg, #2BC47A 0%, #16A34A 55%, #15803D 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -2px 0 rgba(0, 0, 0, 0.15), 0 5px 0 #166534, 0 20px 36px -16px rgba(22, 163, 74, 0.5);
+}
+.v11-card3d-emerald::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+}
+
+/* Tactile 3D Buttons */
+.v11-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.2s ease;
+  transform: translateY(0);
+}
+.v11-btn::before {
+  content: '';
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 48%;
+  border-radius: 13px 13px 40% 40% / 13px 13px 18px 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06));
+  pointer-events: none;
+  z-index: -1;
+}
+.v11-btn::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -60%;
+  width: 40%;
+  transform: skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  pointer-events: none;
+  transition: left 0.6s ease;
+}
+.v11-btn:hover::after {
+  left: 130%;
+}
+.v11-btn:hover {
+  filter: brightness(1.05);
+}
+.v11-btn:active {
+  transform: translateY(3px);
+}
+
+.v11-btn-brand {
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(10, 30, 90, 0.4);
+  background: linear-gradient(180deg, #2D6FE8 0%, #225FD2 55%, #194CB0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -2px 0 rgba(0, 0, 0, 0.12), 0 4px 0 #133987, 0 12px 22px -8px rgba(34, 95, 210, 0.55);
+}
+.v11-btn-brand:active {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(0, 0, 0, 0.12), 0 1px 0 #133987, 0 5px 10px -6px rgba(34, 95, 210, 0.5);
+}
+
+.v11-btn-ghost {
+  color: #0F172A;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  box-shadow: inset 0 0 0 1.5px #E2E8F0, inset 0 1px 0 #fff, 0 4px 0 #CBD5E1, 0 10px 18px -10px rgba(15, 23, 42, 0.15);
+}
+.v11-btn-ghost:active {
+  box-shadow: inset 0 0 0 1.5px #E2E8F0, 0 1px 0 #CBD5E1, 0 4px 8px -6px rgba(15, 23, 42, 0.15);
+}
+
+.v11-btn-dark {
+  color: #fff;
+  background: linear-gradient(180deg, #334155 0%, #0F172A 60%, #020617 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 4px 0 #020617, 0 14px 24px -10px rgba(2, 6, 23, 0.7);
+}
+.v11-btn-dark:active {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 0 #020617, 0 6px 10px -6px rgba(2, 6, 23, 0.6);
+}
+
+.v11-btn-mango {
+  color: #1d1203;
+  background: linear-gradient(180deg, #FFE3B0 0%, #FEAB30 100%);
+  box-shadow: inset 0 0 0 1.5px rgba(29, 18, 3, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 4px 0 #C97E1C, 0 12px 20px -10px rgba(120, 70, 0, 0.35);
+}
+.v11-btn-mango:active {
+  box-shadow: inset 0 0 0 1.5px rgba(29, 18, 3, 0.18), 0 1px 0 #C97E1C;
+}
+
+/* Warm Radiant Closing CTA Box */
+.v11-final {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  padding: 48px 24px;
+  color: #1d1203;
+  background: radial-gradient(90% 120% at 100% 0%, #FFE8B8 0%, transparent 60%), linear-gradient(135deg, #FEAB30 0%, #F06413 100%);
+  box-shadow: 0 40px 80px -30px rgba(240, 100, 19, 0.45);
+}
+@media (min-width: 640px) {
+  .v11-final {
+    padding: 64px 56px;
+  }
 }
