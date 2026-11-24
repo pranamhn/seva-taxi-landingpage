@@ -504,7 +504,6 @@ body {
 /* Tactile 3D Cards */
 .v11-card3d {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
   border-radius: 24px;
   padding: 24px;

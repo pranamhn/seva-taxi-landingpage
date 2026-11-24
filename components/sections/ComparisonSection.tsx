@@ -164,10 +164,10 @@ export default function ComparisonSection({ locale = "id" }: { locale?: Locale }
         </div>
 
         {/* 2-Column Comparison Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-stretch max-w-5xl mx-auto pt-6">
           
           {/* Column 1: Keresahan Cara Lama (Subtle Red/Slate tint with strikethroughs) */}
-          <div className="rounded-3xl border border-slate-300/80 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between relative overflow-hidden">
+          <div className="rounded-3xl border border-slate-300/80 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between relative">
             <div className="space-y-6">
               
               {/* Card Header */}
@@ -212,10 +212,10 @@ export default function ComparisonSection({ locale = "id" }: { locale?: Locale }
           </div>
 
           {/* Column 2: Standar Pasti SEVA (Tactile 3D Card with Blue & Emerald Highlights) */}
-          <div className="v11-card3d !p-6 sm:!p-8 shadow-xl flex flex-col justify-between relative overflow-hidden ring-2 ring-blue-500/10">
+          <div className="v11-card3d !p-6 sm:!p-8 shadow-xl flex flex-col justify-between relative !overflow-visible ring-2 ring-blue-500/10">
             
-            {/* Playful Sticky Note Doodle on Top Right */}
-            <div className="v11-sticky absolute -top-2 right-4 z-20 px-3.5 py-1.5 v11-hand text-[18px] text-[#3B3000] rotate-[3deg] shadow-md pointer-events-none select-none hidden sm:block">
+            {/* Playful Sticky Note Doodle on Top Right (Overflow visible, tape not clipped) */}
+            <div className="v11-sticky absolute -top-5 right-4 sm:right-6 z-20 px-4 py-2 v11-hand text-[17px] sm:text-[19px] text-[#3B3000] rotate-[3deg] shadow-lg pointer-events-none select-none">
               <span className="v11-tape" />
               <span>{t.stickyNote}</span>
             </div>
