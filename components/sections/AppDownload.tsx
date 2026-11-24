@@ -220,25 +220,20 @@ export default function AppDownload({ locale = "id" }: { locale?: Locale }) {
 
             </div>
 
-            {/* Right Column: Smartphone Screen Mockup (5 cols) */}
+            {/* Right Column: App Screen Showcase Card (5 cols) */}
             <div className="lg:col-span-5 flex justify-center items-center">
-              <div className="relative w-full max-w-[280px] sm:max-w-[320px] p-2.5 bg-slate-900/60 backdrop-blur-xl rounded-[46px] border-4 border-white/40 shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
-                
-                {/* Speaker Notch */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-slate-900 rounded-full z-30" />
-
-                {/* Smartphone Display Screen */}
-                <div className="relative w-full aspect-[9/18.5] rounded-[36px] overflow-hidden bg-slate-900 shadow-inner">
+              <div className="relative w-full max-w-[290px] sm:max-w-[330px] rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] border-2 border-white/20 bg-slate-900 transition-all duration-300 hover:scale-[1.02] hover:border-white/35">
+                {/* Showcase Screen Graphic (No double phone bezel) */}
+                <div className="relative w-full aspect-[473/1024]">
                   <Image
                     src={activeScreen.image}
                     alt={activeScreen.title}
                     fill
-                    sizes="(max-width: 640px) 80vw, 320px"
+                    sizes="(max-width: 640px) 80vw, 330px"
                     className="object-cover object-top transition-opacity duration-300"
+                    priority
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/80 to-transparent pointer-events-none" />
                 </div>
-
               </div>
             </div>
 

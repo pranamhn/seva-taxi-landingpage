@@ -369,55 +369,67 @@ export default function Hero({ locale = "id" }: { locale?: Locale }) {
             {/* Ambient Radiant Glow behind Phone */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] h-[340px] sm:h-[420px] rounded-full bg-blue-500/15 blur-3xl pointer-events-none" />
 
-            {/* Floating Top Left Badge: eWallet Live Balance */}
-            <div
-              className="v11-float absolute -top-4 sm:top-2 -left-2 sm:-left-6 z-20 v11-card3d !p-3 sm:!p-3.5 shadow-xl flex items-center gap-3 select-none"
-              style={{ "--r": "-3deg" } as React.CSSProperties}
-            >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2D6FE8] to-[#194CB0] text-white flex items-center justify-center shadow-md shrink-0">
-                <Wallet className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">SEVA eWallet</p>
-                <p className="v11-h text-sm sm:text-base text-slate-900 font-bold font-mono">Rp 384.000</p>
-                <div className="flex items-center gap-1 mt-0.5 text-[10px] text-emerald-600 font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Cashless Instan</span>
+            {/* Central Phone Mockup & Anchored Floating Badges Wrapper */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] mx-auto">
+
+              {/* Floating Top Left Badge: eWallet Live Balance */}
+              <div
+                className="v11-float absolute top-8 -left-4 sm:-left-12 z-30 pointer-events-none select-none"
+                style={{ "--r": "-3deg", animationDelay: "0s" } as React.CSSProperties}
+              >
+                <div className="v11-card3d !p-3 sm:!p-3.5 shadow-2xl flex items-center gap-3 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl pointer-events-auto">
+                  <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-[#2D6FE8] to-[#194CB0] text-white flex items-center justify-center shadow-md shrink-0">
+                    <Wallet className="w-5 h-5 text-white" />
+                    <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 border border-white"></span>
+                    </span>
+                  </div>
+                  <div className="whitespace-nowrap pr-1">
+                    <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">SEVA eWallet</p>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <span className="v11-h text-sm sm:text-base text-slate-900 font-bold font-mono">Rp 384.000</span>
+                      <span className="px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold">Cashless</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Realistic Smartphone Mockup */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[320px] z-10 drop-shadow-[0_25px_50px_rgba(34,95,210,0.28)] transition-transform duration-300 hover:scale-[1.01]">
-              <Image
-                src="/images/app/beranda-seva-ride-hailing.webp"
-                alt={t.mockupAlt}
-                width={427}
-                height={860}
-                priority
-                className="block w-full h-auto object-contain select-none"
-                draggable={false}
-              />
-            </div>
-
-            {/* Floating Bottom Right Badge: Verified Driver & High Rating */}
-            <div
-              className="v11-float absolute -bottom-4 sm:bottom-4 -right-2 sm:-right-4 z-20 v11-card3d !p-3 sm:!p-3.5 shadow-xl flex items-center gap-3 select-none"
-              style={{ "--r": "3deg", animationDelay: "-3s" } as React.CSSProperties}
-            >
-              <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shrink-0">
-                <BadgeCheck className="w-5 h-5 text-white" />
+              {/* Realistic Smartphone Mockup */}
+              <div className="relative w-full z-10 drop-shadow-[0_25px_50px_rgba(34,95,210,0.28)] transition-transform duration-300 hover:scale-[1.01]">
+                <Image
+                  src="/images/app/beranda-seva-ride-hailing.webp"
+                  alt={t.mockupAlt}
+                  width={427}
+                  height={860}
+                  priority
+                  className="block w-full h-auto object-contain select-none"
+                  draggable={false}
+                />
               </div>
-              <div>
-                <div className="flex items-center gap-1 text-amber-500">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
-                  ))}
-                  <span className="text-xs font-bold text-slate-900 ml-1">4.9</span>
+
+              {/* Floating Bottom Right Badge: Verified Driver & High Rating */}
+              <div
+                className="v11-float absolute bottom-12 -right-4 sm:-right-10 z-30 pointer-events-none select-none"
+                style={{ "--r": "3deg", animationDelay: "-3s" } as React.CSSProperties}
+              >
+                <div className="v11-card3d !p-3 sm:!p-3.5 shadow-2xl flex items-center gap-3 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl pointer-events-auto">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shrink-0">
+                    <BadgeCheck className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="whitespace-nowrap pr-1">
+                    <div className="flex items-center gap-1 text-amber-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                      <span className="text-xs font-bold text-slate-900 ml-1">4.9</span>
+                    </div>
+                    <p className="v11-h text-xs sm:text-[13px] text-slate-900 font-bold mt-0.5">Driver Terverifikasi</p>
+                    <p className="text-[10px] text-slate-500 font-medium">Bagi hasil 95% • SKCK & SIM Aktif</p>
+                  </div>
                 </div>
-                <p className="v11-h text-xs sm:text-[13px] text-slate-900 font-bold mt-0.5">Driver Terverifikasi</p>
-                <p className="text-[10px] text-slate-500 font-medium">Bagi hasil 95% • SKCK & SIM Aktif</p>
               </div>
+
             </div>
 
           </div>
